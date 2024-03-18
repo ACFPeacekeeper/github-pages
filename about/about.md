@@ -19,7 +19,7 @@ I studied for my [Bachelor of Science (BSc)](https://fenix.tecnico.ulisboa.pt/cu
 
 I'm currently taking a Advanced Formation Diploma in Methodologies and Techniques of Scientific Research and attending the Mathematics for Machine Learning course, both at [IST](https://tecnico.ulisboa.pt/en/).
 
-Beyond this, I also took MOOCs from several different universities to complement my academic knowledge or learn more about subjects I'm interested in:
+Beyond this, I also took MOOCs from several different universities to complement my academic knowledge or to learn more about subjects I'm interested in:
 - From [IST](https://tecnico.ulisboa.pt/en/):
     - [Eigenvalues - vapX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+vapX+2021/about);
     - [Machine Learning, Maths & Ethics: Hands-on - lematecX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+lematecX+2021/about);
