@@ -20,6 +20,6 @@ I studied Computer Science and Engineering (BSc, MSc) at [IST](https://tecnico.u
 I'm currently taking a Advanced Formation Diploma in Methodologies and Techniques of Scientific Research and attending the Mathematics for Machine Learning course, both at [IST](https://tecnico.ulisboa.pt/en/).
 
 # Hobbies & Personal Projects
-During my spare time, I enjoy reading books (History, Politics, Economics, SciFi, Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy, Table Tops), listening to music and watching movies, anime and TV series.
+During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
 Beyond this, I develop and code some personal projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
 Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
