@@ -10,5 +10,5 @@ I am also co-founding a Games Development company called Retsam Entertainment, w
 Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) and a Multimodal Deep Learning Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/).
 I also volunteered as a Computer Science Instructor at [TreeTree2](https://www.treetree2.org/), as a developer at [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), as a Marketing Assistant at [LabJogos](https://labjogos.tecnico.ulisboa.pt/en) and as the EBEC IT Responsible for [BEST Lisbon](https://best.tecnico.ulisboa.pt/).
 
-During my spare time, I enjoy reading books (History, Politics, Economics, SciFi, etc.), playing games (RPGs, Action-Adventure, FPS, Strategy, Table Tops), listening to music and watching movies, anime and TV series.
+During my spare time, I enjoy reading books (History, Politics, Economics, SciFi, Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy, Table Tops), listening to music and watching movies, anime and TV series.
 I also work towards some of my personal programming projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
