@@ -4,7 +4,7 @@ title: About Me
 permalink: /about/
 ---
 <p align='center'>
-    <img alt="Jinx from Arcane, a League of Legends Series, holding a hextech crystal" src="http://localhost:4000/about/images/steamuserimages-a.akamaihd.jpeg">
+    <img alt="Jinx from Arcane, a League of Legends Series, holding a hextech crystal" src="http://acfpeacekeeper.github.io/github-pages/about/images/steamuserimages-a.akamaihd.jpeg" onerror="this.src='http://localhost:4000/about/images/steamuserimages-a.akamaihd.jpeg';">
 </p>
 
 I'm currently a Artificial Intelligence Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks such as the Capacitated Vehicle Routing Problem - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/).
