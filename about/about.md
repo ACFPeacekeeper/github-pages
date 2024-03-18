@@ -9,7 +9,7 @@ permalink: /about/
 
 # Current Work
 I'm currently a Artificial Intelligence Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks such as the Capacitated Vehicle Routing Problem - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/).
-I am also co-founding a Games Development company called [Retsam Entertainment](https://twitter.com/RetsamGames) with [@jfperodrigues](https://github.com/jfperodrigues) and [@fafpinheiro](https://github.com/fafpinheiro).
+I am also co-founding a Games Development studio called [Retsam Entertainment](https://twitter.com/RetsamGames) with [@jfperodrigues](https://github.com/jfperodrigues) and [@fafpinheiro](https://github.com/fafpinheiro).
 
 # Previous Work
 Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) and a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I developed Robust Multimodal Deep Learning Models.
