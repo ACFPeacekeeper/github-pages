@@ -37,7 +37,7 @@ Beyond this, I develop and code some personal projects, which are mostly in the 
 Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
 
 # Other Interests & Activities
-When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, technology and innovation, education and economics. I also held positions as: 
+When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, technology and innovation, education and economics, and held positions as: 
 - Vice-President of: my parish.
 - Member of the secretariat of: my highschool, my parish of residence, my university, the Secondary and Higher Education committee of Lisbon, and the county of Lisbon;
 - Member of the political comission of: the county of Lisbon, and the district of Lisbon.
