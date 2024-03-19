@@ -28,6 +28,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 #url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: PeacekeeperBH
 github_username:  ACFPeacekeeper
+show_downloads: true
+google_analytics:
 
 # Build settings
 theme: minima
