@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email    = ["afonso.fernandes@tecnico.ulisboa.pt"]
 
   spec.summary  = "A custom version of the Minima Jekyll theme"
-  spec.homepage = "https://github.com/ACFPeacekeeper/github-pages-blog"
+  spec.homepage = "https://github.com/ACFPeacekeeper/github-pages"
   spec.license  = ""
 
   spec.metadata["plugin_type"] = "theme"

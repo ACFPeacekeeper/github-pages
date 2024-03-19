@@ -21,4 +21,4 @@ During my time as the Information Technology responsible for EBEC 2020, which wa
 
 #### Personal blog
 This blog was based on the [github-pages tutorial](https://github.com/skills/github-pages) and the [minima jekyll theme](https://github.com/jekyll/minima):
-- [Github Repository](https://github.com/ACFPeacekeeper/github-pages-blog)
+- [Github Repository](https://github.com/ACFPeacekeeper/github-pages)
