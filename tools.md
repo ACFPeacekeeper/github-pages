@@ -8,9 +8,10 @@ title: Tools
     1. [Programming Languages](#programming-languages)
     2. [Frameworks & Libraries](#frameworks-and-libraries)
     3. [Other Languages](#other-languages)
-    4. [Version Control & Project Setup/Management](#version-control--project-setupmanagement)
-    5. [IDEs, Text Editors and Runtime Environments](#ides-text-editors-and-runtime-environments)
-    6. [Game Development](#game-development)
+    4. [Version Control ](#version-control)
+    5. [Project Setup & Management](#project-setup--management)
+    6. [IDEs, Text Editors and Runtime Environments](#ides-text-editors-and-runtime-environments)
+    7. [Game Development](#game-development)
 2. [Art](#art)
     1. [3D Modelling](#3d-modelling)
     2. [Pixel Art](#pixel-art)
@@ -39,11 +40,13 @@ title: Tools
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
 - [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)
 
-### Version Control & Project Setup/Management
+### Version Control
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
 - [GitLab](https://gitlab.com/)
 - [BitBucket](https://bitbucket.org/)
+
+### Project Setup & Management
 - [Anaconda](https://www.anaconda.com/download/)
 - [Maven](https://maven.apache.org/)
 - [Jekyll](https://jekyllrb.com/)
