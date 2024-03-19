@@ -24,4 +24,4 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
       - name: Run tests
-        run: script/cibuild
+        run: scripts/cibuild
