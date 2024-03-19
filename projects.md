@@ -18,3 +18,7 @@ During my formation in Methodologies and Techniques of Scientific Research, I wo
 #### EBEC 2020
 During my time as the Information Technology responsible for EBEC 2020, which was organized by [BEST Lisbon](https://best.tecnico.ulisboa.pt/), I developed a website for the event with the [Mandalorian TV series](https://www.imdb.com/title/tt8111088/) as its theme:
 - [Github Repository](https://github.com/ACFPeacekeeper/ebec2020)
+
+#### Personal blog
+This blog was based on the [github-pages tutorial](https://github.com/skills/github-pages) and the [minima jekyll theme](https://github.com/jekyll/minima):
+- [Github Repository](https://github.com/ACFPeacekeeper/github-pages)
