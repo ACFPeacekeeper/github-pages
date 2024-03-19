@@ -9,7 +9,7 @@
 
 # Github Pages
 
-My own personal [github pages blog](https://acfpeacekeeper.github.io/github-pages/)
+My own personal [github pages blog](https://acfpeacekeeper.github.io/github-pages/)!
 
 </header>
 
@@ -21,7 +21,7 @@ My own personal [github pages blog](https://acfpeacekeeper.github.io/github-page
 ## Tech Stack
 - [HTML - HyperText Markup Language](https://html.com/)
 - [CSS - Cascading Style Sheets](https://www.w3.org/Style/CSS/Overview.en.html)
-- [JS - JavaScript programming language]([https://www.javascript.com/](https://developer.mozilla.org/en-US/docs/Web/javascript)
+- [JS - JavaScript programming language](https://developer.mozilla.org/en-US/docs/Web/javascript)
 - [Ruby programming language](https://www.ruby-lang.org/en/)
 - [Ruby on Rails framework](https://rubyonrails.org/)
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
