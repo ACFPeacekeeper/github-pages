@@ -49,6 +49,7 @@ header_pages:
   - index.md
   - about.md
   - projects.md
+  - tools.md
 
 # Set to `true` to show excerpts on the homepage.
 #show_excerpts: false
