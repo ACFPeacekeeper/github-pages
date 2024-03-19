@@ -46,5 +46,5 @@ During my time as a BSc and MSc student at [IST](https://tecnico.ulisboa.pt/en/)
 
 I volunteered as a Computer Science Instructor at [TreeTree2](https://www.treetree2.org/), at the [Rua com Saída](http://voxlisboa.pt/rua-com-sa%c3%adda.html) project of the [VOXLisboa Association](http://voxlisboa.pt/index.html) for the homeless and as a staff member of the team of the TORNADU debate tournament organized by [CNADU](https://debates.pt/).
 
-Beyond volunteer work, I was a debater at [SDAL](http://sdal.weebly.com/), where I participated in several debate tournaments: TORNADU 2019 (Initiate 2nd place), Open Lisbon V (Initiate 3rd place + Initiate Brake), CMDLP 2019 (Initiate 1st place + Initiate Brake), Open da Católica III (Finalist + Top 10 Speaker), Open do Tejo III (Finalist + Top 10 Speaker).
+Finally, I was a debater at [SDAL](http://sdal.weebly.com/), where I participated in several debate tournaments: TORNADU 2019 (Initiate 2nd place), Open Lisbon V (Initiate 3rd place + Initiate Brake), CMDLP 2019 (Initiate 1st place + Initiate Brake), Open da Católica III (Finalist + Top 10 Speaker), Open do Tejo III (Finalist + Top 10 Speaker).
 I was also part of the CA Team of the Open Centro Sul 2021, and worked as both a Member of the Board at IST and (later) as the Secretary General of [SDAL](http://sdal.weebly.com/).
