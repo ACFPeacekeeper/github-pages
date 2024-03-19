@@ -3,6 +3,17 @@ layout: page
 title: Projects
 ---
 ![Jinx from Arcane, a League of Legends Series, wearing soldering googles](images/Ella-Purnell-Jinx-Arcane-League-of-Legends.webp)
+# Project Index
+1. [Computer Science and Engineering (CSE)](#computer-science-and-engineering-cse)
+    1. [Artificial Intelligence Research](#artificial-intelligence-research)
+        1. [CSE Master of Science (MSc) Dissertation](#cse-master-of-science-msc-dissertation)
+        2. [WSmart Route+](#wsmart-route)
+    2. [Web Development](#web-development)
+        1. [EBEC 2020](#ebec-2020)
+        2. [Personal Blog](#personal-blog)
+    3. [Game Development](#game-development)
+        1. [Project Emerald](#project-emerald)
+        2. [Project Fishes](#project-fishes)
 ## Computer Science and Engineering (CSE)
 ### Artificial Intelligence Research
 #### CSE Master of Science (MSc) Dissertation
