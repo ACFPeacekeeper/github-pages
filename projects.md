@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Projects
-permalink: /projects/
 ---
 ![Jinx from Arcane, a League of Legends Series, wearing soldering googles](images/Ella-Purnell-Jinx-Arcane-League-of-Legends.webp)
 ## Computer Science and Engineering (CSE)
