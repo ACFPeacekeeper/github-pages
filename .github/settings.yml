@@ -19,13 +19,13 @@ labels:
   - name: good first issue
     color: "5319e7"
 
-# Not currently implemented by probot/settings, but manually implemented in script/deploy
+# Not currently implemented by probot/settings, but manually implemented in scripts/deploy
 branch_protection:
   restrictions: null
   enforce_admins: false
   required_status_checks:
     strict: true
     contexts:
-      - "script/cibuild" # GitHub Actions CI workflow
+      - "scripts/cibuild" # GitHub Actions CI workflow
   required_pull_request_reviews:
     require_code_owner_reviews: true

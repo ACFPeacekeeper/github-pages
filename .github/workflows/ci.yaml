@@ -5,7 +5,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: script/cibuild
+    name: scripts/cibuild
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -13,6 +13,6 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
       - name: build
-        run: script/bootstrap
+        run: scripts/bootstrap
       - name: test
-        run: script/cibuild
+        run: scripts/cibuild
