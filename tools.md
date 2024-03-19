@@ -27,7 +27,7 @@ title: Tools
 
 ### Frameworks & Libraries
 - [Bootstrap - HTML, CSS and JS Library](https://getbootstrap.com/)
-- [Ruby on Rails framework](https://rubyonrails.org/)
+- [Ruby on Rails Framework](https://rubyonrails.org/)
 - [PyTorch - Python Framework](https://pytorch.org/)
 - [DJango - Python Framework](https://www.djangoproject.com/)
 - [Spring - Java Framework](https://spring.io/)
@@ -46,9 +46,9 @@ title: Tools
 - [npm](https://www.npmjs.com/package/npm)
 
 ### IDEs, Text Editors and Runtime Environments
-- [Visual Studio IDE](https://visualstudio.microsoft.com/)
-- [VS Code IDE](https://code.visualstudio.com/Download)
-- [Node.js - JavaScript runtime environment](https://nodejs.org/en)
+- [Visual Studio - IDE](https://visualstudio.microsoft.com/)
+- [VS Code - IDE](https://code.visualstudio.com/Download)
+- [Node.js - JavaScript Runtime Environment](https://nodejs.org/en)
 - [Obsidian - Editor](https://obsidian.md/)
 
 ### Game Development
