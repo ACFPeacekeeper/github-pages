@@ -15,7 +15,6 @@ title: Projects
         1. [Project Emerald](#project-emerald)
         2. [Project Fishes](#project-fishes)
 
-
 ## Computer Science and Engineering (CSE)
 ### Artificial Intelligence Research
 #### CSE Master of Science (MSc) Dissertation
