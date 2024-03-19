@@ -40,6 +40,10 @@ title: Tools
 - [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)
 
 ### Version Control & Project Setup/Management
+- [Git](https://git-scm.com/)
+- [GitHub](https://github.com/)
+- [GitLab](https://gitlab.com/)
+- [BitBucket](https://bitbucket.org/)
 - [Anaconda](https://www.anaconda.com/download/)
 - [Maven](https://maven.apache.org/)
 - [Jekyll](https://jekyllrb.com/)
