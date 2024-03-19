@@ -6,19 +6,28 @@ title: About Me
     <img alt="Jinx from Arcane, a League of Legends Series, holding a hextech crystal" src="http://acfpeacekeeper.github.io/github-pages/images/steamuserimages-a.akamaihd.jpeg" onerror="this.src='http://localhost:4000/images/steamuserimages-a.akamaihd.jpeg';">
 </p>
 
-# Current Work
+# About Me Index
+1. [Current Work](#current-work)
+2. [Previous Work](#previous-work)
+3. [Academia](#academia)
+    1. [Massive Open Online Courses (MOOCs)](#massive-open-online-courses-moocs)
+4. [Hobbies & Personal Projects](#hobbies--personal-projects)
+5. [Other Interests & Activities](#other-interests--activities)
+
+## Current Work
 I'm currently a Artificial Intelligence Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/), where I teach courses about [Distributed Systems](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1408903891910867), [Cloud Computing and Virtualization](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/disciplina-curricular/1127428915200223) and [Computer Organization](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1971853845332781).
 I am also co-founding a Game Development studio called [Retsam Entertainment](https://twitter.com/RetsamGames) with [@jfperodrigues](https://github.com/jfperodrigues) and [@fafpinheiro](https://github.com/fafpinheiro).
 
-# Previous Work
+## Previous Work
 Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) and a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I developed new Multimodal Deep Learning architectures and frameworks.
 
-# Academia
+## Academia
 I studied for my [Bachelor of Science (BSc)](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/curriculo?year=1972768673366017) and [Master of Science (MSc)](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/curriculo?year=1128343743234050) degrees in Computer Science and Engineering (CSE) at [IST](https://tecnico.ulisboa.pt/en/). During my BSc, I learned about core concepts in Computer Science, Mathematics, Computer Hardware and Physics (along with some minor courses about HASS and Management) and I also participated in a [Athens Network](http://athensnetwork.eu/) exchange program at [Mines Paris - PSL](https://tecnico.ulisboa.pt/en/), where I learned about Extreme Value Statistics. During my MSc, I did a double major in Artificial Intelligence and Cyber-Security (and also did some courses about Game Development) and I participated in a semester exchange program at [POSTECH](https://international.postech.ac.kr/), where I studied both CSE and Mathematics.
 
 I'm currently taking a Advanced Formation Diploma in [Methodologies and Techniques of Scientific Research](https://fenix.tecnico.ulisboa.pt/disciplinas/MTIC/2021-2022/1-semestre/programa) and attending the [Mathematics for Machine Learning course](https://fenix.tecnico.ulisboa.pt/disciplinas/MAAut3/2023-2024/2-semestre/programa), both at [IST](https://tecnico.ulisboa.pt/en/).
 
-Beyond this, I also took MOOCs from several different universities to complement my academic knowledge or to learn more about subjects I'm interested in:
+### Massive Open Online Courses (MOOCs)
+Beyond formal academia, I also took MOOCs from several different universities to complement my academic knowledge or to learn more about subjects I'm interested in:
 - From [IST](https://tecnico.ulisboa.pt/en/):
     - [Eigenvalues - vapX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+vapX+2021/about);
     - [Machine Learning, Maths & Ethics: Hands-on - lematecX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+lematecX+2021/about);
@@ -31,12 +40,12 @@ Beyond this, I also took MOOCs from several different universities to complement
 - From [Cornell](https://www.cornell.edu/):
     - [Advanced Compilers - CS6120](https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/).
 
-# Hobbies & Personal Projects
+## Hobbies & Personal Projects
 During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
 Beyond this, I develop and code some personal projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
 Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
 
-# Other Interests & Activities
+## Other Interests & Activities
 When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, technology and innovation, education and economics, and held positions as: 
 - Vice-President of: my parish.
 - Member of the secretariat of: my highschool, my parish of residence, my university, the Secondary and Higher Education committee of Lisbon, and the county of Lisbon;
