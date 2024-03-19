@@ -38,7 +38,8 @@ title: Tools
 - [HTML - HyperText Markup Language](https://html.com/)
 - [CSS - Cascading Style Sheets](https://www.w3.org/Style/CSS/Overview.en.html)
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
-- [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)
+- [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)'
+- [SQL - Structured Query Language](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
 ### Version Control
 - [Git](https://git-scm.com/)
