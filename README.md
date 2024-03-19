@@ -7,7 +7,7 @@
   Add your open source license, GitHub uses MIT license.
 -->
 
-# Github Pages Blog
+# Github Pages
 
 My own personal github pages blog!
 
@@ -17,7 +17,7 @@ My own personal github pages blog!
   <<< Author notes: Finish >>>
   Review what we learned, ask for feedback, provide next steps.
 -->
-[Blog URL](https://acfpeacekeeper.github.io/github-pages-blog/)
+[Blog URL](https://acfpeacekeeper.github.io/github-pages/)
 
 <footer>
 
