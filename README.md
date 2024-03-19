@@ -18,3 +18,15 @@ My own personal github pages blog!
   Review what we learned, ask for feedback, provide next steps.
 -->
 [Blog URL](https://acfpeacekeeper.github.io/github-pages/)
+
+<footer>
+
+<!--
+  <<< Author notes: Footer >>>
+  Add a link to get support, GitHub status page, code of conduct, license link.
+-->
+
+---
+
+Get help: [Post in github's discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+</footer>
