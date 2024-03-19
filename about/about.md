@@ -32,12 +32,20 @@ Beyond this, I also took MOOCs from several different universities to complement
 - From [Cornell](https://www.cornell.edu/):
     - [Advanced Compilers - CS6120](https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/).
 
-# Extracurriculars and Volunteering
-I volunteered as a Computer Science Instructor at [TreeTree2](https://www.treetree2.org/), 
-
-as a developer at [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), as a Marketing Assistant at [LabJogos](https://labjogos.tecnico.ulisboa.pt/en) and as the EBEC Information Technology Responsible for [BEST Lisbon](https://best.tecnico.ulisboa.pt/).
-
 # Hobbies & Personal Projects
 During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
 Beyond this, I develop and code some personal projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
 Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
+
+# Other Interests & Activities
+When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, technology and innovation, education and economics. I also held positions as: 
+- Vice-President of: my parish.
+- Member of the secretariat of: my highschool, my parish of residence, my university, the Secondary and Higher Education committee of Lisbon, and the county of Lisbon;
+- Member of the political comission of: the county of Lisbon, and the district of Lisbon.
+
+During my time as a BSc and MSc student at [IST](https://tecnico.ulisboa.pt/en/), I participated in several clubs related to the university: as a developer at [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), as a marketing assistant at [LabJogos](https://labjogos.tecnico.ulisboa.pt/en), as the EBEC Information Technology responsible for [BEST Lisbon](https://best.tecnico.ulisboa.pt/), and as a member of the student newspaper [Diferencial](https://diferencial.tecnico.ulisboa.pt/).
+
+I volunteered as a Computer Science Instructor at [TreeTree2](https://www.treetree2.org/), at the [Rua com Saída](http://voxlisboa.pt/rua-com-sa%c3%adda.html) project of the [VOXLisboa Association](http://voxlisboa.pt/index.html) for the homeless and as a staff member of the team of the TORNADU debate tournament organized by [CNADU](https://debates.pt/).
+
+Beyond volunteer work, I was a debater at [SDAL](http://sdal.weebly.com/), where I participated in several debate tournaments: TORNADU 2019 (Initiate 2nd place), Open Lisbon V (Initiate 3rd place + Initiate Brake), CMDLP 2019 (Initiate 1st place + Initiate Brake), Open da Católica III (Finalist + Top 10 Speaker), Open do Tejo III (Finalist + Top 10 Speaker).
+I was also part of the CA Team of the Open Centro Sul 2021, and worked as both a Member of the Board at IST and (later) as the Secretary General of [SDAL](http://sdal.weebly.com/).
