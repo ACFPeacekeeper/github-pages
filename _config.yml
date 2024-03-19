@@ -21,7 +21,7 @@ author: ACF
 email: afonso.fernandes@tecnico.ulisboa.pt
 description: >- # this means to ignore newlines until "baseurl:"
   I mostly write about subjects I work on, such as Artificial Intelligence research - with a focus on Reinforcement Learning - and Game Development.
-  Occasionally, I may also write about other subjects I am interested in, be it Gaming, Anime, Cinema, Music, History, Politics, Science or Economics.
+  Occasionally, I may also write about other subjects I am interested in, be it Gaming, Anime, Cinema, Music, History, Politics or Science.
 #baseurl: "" # the subpath of your site, e.g. /blog
 #url: "" # the base hostname & protocol for your site, e.g. http://example.com
 show_downloads: true
