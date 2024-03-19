@@ -25,8 +25,8 @@ My own personal [github pages blog]((https://acfpeacekeeper.github.io/github-pag
 - [Ruby programming language](https://www.ruby-lang.org/en/)
 - [Ruby on Rails framework](https://rubyonrails.org/)
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
-- [Liquid - Template Language](https://shopify.github.io/liquid/)
-- [Jekyll static site generator](https://jekyllrb.com/)
+- [Liquid - Template language](https://shopify.github.io/liquid/)
+- [Jekyll - Static site generator](https://jekyllrb.com/)
 
 <footer>
 
