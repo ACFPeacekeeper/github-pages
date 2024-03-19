@@ -44,6 +44,16 @@ _site
 .jekyll-metadata
 vendor
 
+# Bundler generated files #
+###########################
+#.bundle/
+#vendor/
+#Gemfile.lock
+
+# Gems #
+########
+#*.gem
+
 # Other #
 #########
 tmp
