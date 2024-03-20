@@ -40,7 +40,7 @@ This blog was based on the [github-pages tutorial](https://github.com/skills/git
 
 ### Software & Hardware Engineering
 #### Hacker Entertainment System (HES)
-Before joining [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), I participated in a FabLab workshop hosted by them, where I go to learn about things such as soldering, laser cutting and 3D printing. During this workshop, I built the HES, a game controller inspired by the classic NES game controller:
+I participated in a FabLab workshop hosted by [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), where I got to learn about things such as soldering, laser cutting and 3D printing. During this workshop, I built the HES, a game controller inspired by the classic NES game controller:
 - [Workshop Repository](https://github.com/ACFPeacekeeper/HES)
 - [HES Image](images/hes.jpeg)
 
