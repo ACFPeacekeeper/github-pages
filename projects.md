@@ -33,7 +33,17 @@ During my time as the Information Technology responsible for EBEC 2020, which wa
 
 #### Personal blog
 This blog was based on the [github-pages tutorial](https://github.com/skills/github-pages) and the [minima jekyll theme](https://github.com/jekyll/minima):
-- [Github Repository](https://github.com/ACFPeacekeeper/github-pages)
+- [Blog Repository](https://github.com/ACFPeacekeeper/github-pages)
+
+### Software & Hardware Engineering
+#### Hacker Entertainment System (HES)
+Before joining [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), I participated in a FabLab workshop hosted by them, where I go to learn about things such as soldering, laser cutting and 3D printing. During this workshop, I built the HES, a game controller inspired by the classic NES game controller:
+- [Workshop Repository](https://github.com/ACFPeacekeeper/HES)
+- [HES Image](images/hes.jpeg)
+
+#### Hacker School Robot (HS-Robot)
+As a [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/) developer, I participated in the (incomplete) development of the HS-Robot, a robot capable of traversing the world and retrieve items (e.g., a can of coke):
+- [Robot Controller Repository](https://github.com/ACFPeacekeeper/HS-Robot-Controller)
 
 ### Game Development
 #### Project Emerald
