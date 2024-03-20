@@ -11,7 +11,10 @@ title: Projects
     2. [Web Development](#web-development)
         1. [EBEC 2020](#ebec-2020)
         2. [Personal Blog](#personal-blog)
-    3. [Game Development](#game-development)
+    3. [Software & Hardware Engineering](#software--hardware-engineering)
+        1. [Hacker Entertainment System (HES)](#hacker-entertainment-system-hes)
+        2. [HackerSchool Robot (HS-Robot)](#hackerschool-robot-hs-robot)
+    4. [Game Development](#game-development)
         1. [Project Emerald](#project-emerald)
         2. [Project Fishes](#project-fishes)
 
@@ -41,8 +44,8 @@ Before joining [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/), I parti
 - [Workshop Repository](https://github.com/ACFPeacekeeper/HES)
 - [HES Image](images/hes.jpeg)
 
-#### Hacker School Robot (HS-Robot)
-As a [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/) developer, I participated in the (incomplete) development of the HS-Robot, a robot capable of traversing the world and retrieve items (e.g., a can of coke):
+#### HackerSchool Robot (HS-Robot)
+As a [HackerSchool](https://hackerschool.tecnico.ulisboa.pt/) developer, I participated in the (incomplete) development of the HS-Robot, a robot made to traverse the world and retrieve items (e.g., a can of coke):
 - [Robot Controller Repository](https://github.com/ACFPeacekeeper/HS-Robot-Controller)
 
 ### Game Development
