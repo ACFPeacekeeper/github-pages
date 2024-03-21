@@ -30,9 +30,11 @@ title: Tools
 - [Bootstrap - HTML, CSS and JS Library](https://getbootstrap.com/)
 - [Ruby on Rails Framework](https://rubyonrails.org/)
 - [PyTorch - Python Framework](https://pytorch.org/)
+- [Pytorch Lightning - Python Framework](https://lightning.ai/docs/pytorch/stable/)
 - [DJango - Python Framework](https://www.djangoproject.com/)
 - [Spring - Java Framework](https://spring.io/)
 - [JUnit - Java Framework](https://junit.org/junit5/)
+- [Jupyter - Python Framework](https://jupyter.org/)
 
 ### Other Languages
 - [HTML - HyperText Markup Language](https://html.com/)

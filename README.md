@@ -27,6 +27,8 @@ My own personal [github pages blog](https://acfpeacekeeper.github.io/github-page
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
 - [Liquid - Template Language](https://shopify.github.io/liquid/)
 - [Jekyll - Static Site Generator](https://jekyllrb.com/)
+- [Node.js - Open-source JavaScript Runtime Environment](https://nodejs.org/en)
+- [npm - Package Manager for JavaScript](https://www.npmjs.com/package/npm)
 
 <footer>
 
