@@ -34,7 +34,7 @@ Mathematical Optimization deals with problems from many categories, depending on
 Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $$X$$ and constraints $$C$$, searches for the maxima or minima of an objective function $$f(x)$$.
 
 
-## References
+## Bibliography
 - [Introduction: Combinatorial Problems & Search by UBC](https://www.cs.ubc.ca/labs/algorithms/Courses/CPSC532D-05/Slides/ch1-slides.pdf)
 - [Introduction to Mathematical Optimization by Stanford](https://web.stanford.edu/group/sisl/k12/optimization/MO-unit1-pdfs/1.1optimization.pdf)
 - [Mathematical Optimization by DeepAI](https://deepai.org/machine-learning-glossary-and-terms/mathematical-optimization)
