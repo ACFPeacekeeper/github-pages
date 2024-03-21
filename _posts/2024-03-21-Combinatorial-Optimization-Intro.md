@@ -42,3 +42,7 @@ Now knowing the meaning of both Combinatorial (problems) and (mathematical) Opti
 - [Combinatorial Optimization by CMU](https://www.cs.cmu.edu/afs/cs.cmu.edu/project/learn-43/lib/photoz/.g/web/glossary/comb.html)
 - [Combinatorial Optimization by UT Dallas](https://personal.utdallas.edu/~dxd056000/cs6363/LectureNotes.pdf)
 - [Introduction to Mathematical Optimization with Python by indrag49](https://indrag49.github.io/Numerical-Optimization/)
+- [Combinatorial Optimization enriched Machine Learning to solve the Dynamic Vehicle Routing Problem with Time Windows](https://arxiv.org/abs/2304.00789)
+- [Combinatorial Optimization and Machine Learning for Dynamic Inventory Routing](https://arxiv.org/abs/2402.04463)
+- [Neural Networks for Combinatorial Optimization: A Review](file:///home/pkhunter/Repositories/github-pages/docs/wsmart_route_rw/Neural_Networks_for_Combinatorial_Optimization_Review.pdf)
+- [Neural Computation of Decisions in Optimization Problems](file:///home/pkhunter/Downloads/1985tsp.pdf)
