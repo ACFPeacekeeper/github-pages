@@ -23,7 +23,7 @@ Formally, an optimization problem consists of:
 
 #### Mathematical Optimization
 Mathematical Optimization is the branch of applied mathematics and numerical analysis that aims to develop and analyse algorithms that, given a objective function and a set of variables, seek to find the optimal solution(s) from the set containing all feasible solutions.
-Mathematical Optimization deals with problems from many categories, depending on:
+Mathematical Optimization deals with problems that can be categorized according to:
 - Whether the set of constraints is empty or not: Unlimited vs. Limited;
 - What values the variables can take: Discrete vs. Continuous;
 - Whether the problem state changes or not over time: Dynamic vs. Static;
