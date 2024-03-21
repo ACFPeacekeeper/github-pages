@@ -3,6 +3,7 @@ layout: post
 title: "Combinatorial Optimization: An Introduction"
 date: 2024-03-21
 categories: CO
+usemathjax: true
 ---
 ## Introduction
 To understand what exactly Combinatorial Optimization means, we can start by understanding each term of the expression: Combinatorial and Optimization.  
@@ -16,9 +17,9 @@ One of the most well known combinatorial problems is the *Traveling Salesman Pro
 ### Optimization
 Colloquially, optimization refers to the process of optimizing something, i.e., making it the best. What that means can vary, depending on the task at hand. For example, if we want to optimize the path to a location, then we may want to minimize the distance travelled or the travel time. However, if we want to optimize our wealth, than that may involve both maximizing our income and minimizing our expenses.
 Formally, an optimization problem consists of:
-- Objective function $f(x): X -> Y$, which gives us the output we are trying to optimize;
-- Variable set $X = {x_1, ..., x_n}$, which are the inputs to $f(x)$;
-- A set of constraints, which are (equality $h_n(x)$ and inequality $g_n(x)$) equations that place limits on the values that some variables may take.
+- Objective function $$f(x): X \rightarrow Y$$, which gives us the output we are trying to optimize;
+- Variable set $$X = \{x_1, ..., x_n\}$$, which are the inputs to $$f(x)$$;
+- A set of constraints, which are (equality $$h_n(x)$$ and inequality $$g_n(x)$$) equations that place limits on the values that some variables may take.
 
 #### Mathematical Optimization
 Mathematical Optimization is the branch of applied mathematics and numerical analysis that aims to develop and analyse algorithms that, given a objective function and a set of variables, seek to find the optimal solution(s) from the set containing all feasible solutions.
@@ -30,7 +31,7 @@ Mathematical Optimization deals with problems from many categories, depending on
 - Whether equations map graphs to lines or to curves: Linear vs. Non-Linear.
 
 ### Combinatorial Optimization (CO)
-Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $X$ and constraints, searches for the maxima or minima of an objective function $f(x)$.
+Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $X$ and constraints, searches for the maxima or minima of an objective function $$f(x)$$.
 
 
 ## References
