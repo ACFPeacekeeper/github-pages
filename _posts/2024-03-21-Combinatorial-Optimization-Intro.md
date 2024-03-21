@@ -34,6 +34,7 @@ Now knowing the meaning of both Combinatorial (problems) and (mathematical) Opti
 
 
 ## References
+- [Introduction: Combinatorial Problems & Search by UBC](https://www.cs.ubc.ca/labs/algorithms/Courses/CPSC532D-05/Slides/ch1-slides.pdf)
 - [Introduction to Mathematical Optimization by Stanford](https://web.stanford.edu/group/sisl/k12/optimization/MO-unit1-pdfs/1.1optimization.pdf)
 - [Mathematical Optimization by DeepAI](https://deepai.org/machine-learning-glossary-and-terms/mathematical-optimization)
 - [Discrete Optimization Elsevier](https://www.sciencedirect.com/topics/computer-science/discrete-optimization)
