@@ -11,7 +11,7 @@ To understand what exactly Combinatorial Optimization means, we can start by und
 #### Combinatorial Problems
 CO deals with a class of problems called combinatorial problems. These are a particular case of discrete problems - which are problems where the variables are assumed to take discrete values - that involve finding a ordered or unordered grouping which, given a finite (and usually large) set of objects, satisfy a given set of conditions.
 Combinations of elements from the set that may be encountered when trying to formulate a solution to a instance of this class of problems are called *candidate* or *feasible* solutions. Then, the **solutions** to this kind of problem are the feasible solutions that satisfy all required conditions.
-One of the most well known combinatorial problems is the *Traveling Salesman Problem* (TSP), where, given a graph $$G(N, E): N = \{v_1, ..., v_n\} \wedge E \subseteq \{(u, v): u, v \in N\}$$, the objective is to find shortest path possible along the $$E$$ edges that visits each of the $$N$$ nodes once and only once.
+One of the most well known combinatorial problems is the *Traveling Salesman Problem* (TSP), where, given a graph $$G(N, E): N = \{v_1, ..., v_n\} \wedge E \subseteq \{(u, v): u, v \in N\}$$, the objective is to find shortest path possible $$s^* = \{\bar{s} \subseteq E: \forall s \subseteq E, \ \text{dist}(\bar{s}) \leq \text{dist}(s)\}$$ that visits each of the nodes $$v \in N$$ once and only once.
 
 
 ### Optimization
