@@ -5,7 +5,7 @@ date: 2024-03-21
 categories: CO
 ---
 ## Introduction
-To understand what exactly Combinatorial Optimization (CO) means, we can start by understanding each term of the expression: Combinatorial and Optimization.  
+To understand what exactly Combinatorial Optimization means, we can start by understanding each term of the expression: Combinatorial and Optimization.  
 
 #### Combinatorial Problems
 CO deals with a class of problems called combinatorial problems. These are a particular case of discrete problems - which are problems where the variables are assumed to take discrete values - that involve finding a ordered or unordered grouping which, given a finite (and usually large) set of objects, satisfy a given set of conditions.
@@ -29,8 +29,8 @@ Mathematical Optimization deals with problems from many categories, depending on
 - Whether randomness is involved or not: Stochastic vs. Deterministic;
 - Whether equations map graphs to lines or to curves: Linear vs. Non-Linear.
 
-### Combinatorial Optimization
-Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define Combinatorial Optimization as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $X$ and constraints, searches for the maxima or minima of an objective function $f(x)$.
+### Combinatorial Optimization (CO)
+Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $X$ and constraints, searches for the maxima or minima of an objective function $f(x)$.
 
 
 ## References
