@@ -43,13 +43,13 @@ $on-large:         $on-laptop !default;
 
 // Import pre-styling-overrides hook and style-partials.
 @import
-  "vendor/breakpoint/breakpoint",
-  "minima/custom-variables", // Hook to override predefined variables.
+  //"vendor/breakpoint/breakpoint",
+  //"minima/custom-variables", // Hook to override predefined variables.
   "minima/base",             // Defines element resets.
   "minima/layout",           // Defines structure and style based on CSS selectors.
-  "minima/custom-styles",    // Hook to override existing styles.
-  "minima/mixins",
-  "vendor/susy/susy",
-  "minima/page",
-  "minima/sidebar"
+  "minima/custom-styles"    // Hook to override existing styles.
+  //"minima/mixins",
+  //"vendor/susy/susy",
+  //"minima/page",
+  //"minima/sidebar"
 ;
