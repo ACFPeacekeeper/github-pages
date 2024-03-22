@@ -39,7 +39,7 @@ During my time as the Information Technology responsible for EBEC 2020, which wa
 - [Github Repository](https://github.com/ACFPeacekeeper/ebec2020)
 
 #### Personal blog
-This blog was based on the [github-pages tutorial](https://github.com/skills/github-pages) and the [minima jekyll theme](https://github.com/jekyll/minima):
+This blog was based on the [github-pages tutorial](https://github.com/skills/github-pages), the [academic github-pages template](https://github.com/academicpages/academicpages.github.io) and the [minima jekyll theme](https://github.com/jekyll/minima):
 - [Blog Repository](https://github.com/ACFPeacekeeper/github-pages)
 
 ### Software & Hardware Engineering
