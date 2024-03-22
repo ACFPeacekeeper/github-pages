@@ -55,14 +55,14 @@ title: Tools
 - [Jekyll](https://jekyllrb.com/)
 - [npm](https://www.npmjs.com/package/npm)
 
-### IDEs, Text Editors and Runtime Environments
+### IDEs & Text Editors
 - [Visual Studio - IDE](https://visualstudio.microsoft.com/)
 - [VS Code - IDE](https://code.visualstudio.com/Download)
-- [Node.js - JavaScript Runtime Environment](https://nodejs.org/en)
 - [Obsidian - Editor](https://obsidian.md/)
 
-### Game Development
-- [Unity Engine](https://unity.com/)
+### Game Engines & Runtime Environments
+- [Unity Game Engine](https://unity.com/)
+- [Node.js - JavaScript Runtime Environment](https://nodejs.org/en)
 
 ## Art
 ### 3D Modelling
