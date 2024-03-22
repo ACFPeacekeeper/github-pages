@@ -91,6 +91,10 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-scholar
+
+scholar:
+  source: ./docs/literature/references
 
 # Theme-specific settings
 
