@@ -6,7 +6,7 @@ title: About Me
     <img alt="Jinx from Arcane, a League of Legends Series, holding a hextech crystal" src="http://acfpeacekeeper.github.io/github-pages/images/steamuserimages-a.akamaihd.jpeg" onerror="this.src='http://localhost:4000/images/steamuserimages-a.akamaihd.jpeg';">
 </p>
 
-# About Me Index
+# About Index
 1. [Current Work](#current-work)
 2. [Previous Work](#previous-work)
 3. [Hobbies & Personal Projects](#hobbies--personal-projects)
