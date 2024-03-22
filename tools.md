@@ -41,7 +41,7 @@ title: Tools
 - [CSS - Cascading Style Sheets](https://www.w3.org/Style/CSS/Overview.en.html)
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
 - [SQL - Structured Query Language](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-- [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)'
+- [Bash Shell](https://www.gnu.org/software/bash/manual/bash.html)
 
 ### Version Control
 - [Git](https://git-scm.com/)
