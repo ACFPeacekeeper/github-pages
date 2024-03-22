@@ -9,9 +9,9 @@ title: About Me
 # About Me Index
 1. [Current Work](#current-work)
 2. [Previous Work](#previous-work)
-3. [Academia](#academia)
+3. [Hobbies & Personal Projects](#hobbies--personal-projects)
+4. [Academia](#academia)
     1. [Massive Open Online Courses (MOOCs)](#massive-open-online-courses-moocs)
-4. [Hobbies & Personal Projects](#hobbies--personal-projects)
 5. [Other Interests & Activities](#other-interests--activities)
 
 ## Current Work
@@ -20,6 +20,11 @@ I am also co-founding a Game Development studio called [Retsam Entertainment](ht
 
 ## Previous Work
 Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) and a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I developed new Multimodal Deep Learning architectures and frameworks.
+
+## Hobbies & Personal Projects
+During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
+Beyond this, I develop and code some personal projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
+Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
 
 ## Academia
 I studied for my [Bachelor of Science (BSc)](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/curriculo?year=1972768673366017) and [Master of Science (MSc)](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/curriculo?year=1128343743234050) degrees in Computer Science and Engineering (CSE) at [IST](https://tecnico.ulisboa.pt/en/). During my BSc, I learned about core concepts in Computer Science, Mathematics, Computer Hardware and Physics (along with some minor courses about HASS and Management) and I also participated in a [Athens Network](http://athensnetwork.eu/) exchange program at [Mines Paris - PSL](https://tecnico.ulisboa.pt/en/), where I learned about Extreme Value Statistics. During my MSc, I did a double major in Artificial Intelligence and Cyber-Security (and also did some courses about Game Development) and I participated in a semester exchange program at [POSTECH](https://international.postech.ac.kr/), where I studied both CSE and Mathematics.
@@ -39,11 +44,6 @@ Beyond formal academia, I also took MOOCs from several different universities to
     - [Machine Learning - XCS229](https://online.stanford.edu/courses/xcs229-machine-learning).
 - From [Cornell](https://www.cornell.edu/):
     - [Advanced Compilers - CS6120](https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/).
-
-## Hobbies & Personal Projects
-During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
-Beyond this, I develop and code some personal projects, which are mostly in the realms of Cyber-Security, Artificial Intelligence and Game Development.
-Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
 
 ## Other Interests & Activities
 When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, technology and innovation, education and economics, and held positions as: 
