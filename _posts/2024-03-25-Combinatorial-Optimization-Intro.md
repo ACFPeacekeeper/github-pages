@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Combinatorial Optimization: An Introduction"
-date: 2024-03-28
+date: 2024-03-25
 categories: CO
 usemathjax: true
 ---
@@ -19,7 +19,7 @@ Colloquially, optimization refers to the process of optimizing something, i.e., 
 Formally, an optimization problem consists of:
 - Objective function $$f(x): X \rightarrow Y$$, which gives us the output we are trying to optimize;
 - Variable set $$X = \{x_1, ..., x_n\}$$, which are the inputs to $$f(x)$$;
-- A set of constraints $$C = \{h_1(x), ..., h_n(x), g_1(x), ..., g_n(x)\}$$, which are (equality $$h_n(x)$$ and inequality $$g_n(x)$$) equations that place limits on the values that some variables may take.
+- A set of constraints $$C = \{h_1(x), ..., h_n(x), g_1(x), ..., g_n(x)\}$$, which are (equality $$h_k(x)$$ and inequality $$g_k(x)$$) equations that place limits on the values that some variables may take.
 
 #### Mathematical Optimization
 Mathematical Optimization is the branch of applied mathematics and numerical analysis that aims to develop and analyse algorithms that, given a objective function and a set of variables, seek to find the optimal solution(s) from the set containing all feasible solutions.
@@ -31,7 +31,7 @@ Mathematical Optimization deals with problems that can be categorized according 
 - Whether equations map graphs to lines or to curves: Linear vs. Non-Linear.
 
 ### Combinatorial Optimization (CO)
-Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of variables $$X$$ and constraints $$C$$, searches for the maxima or minima of an objective function $$f(x)$$.
+Now knowing the meaning of both Combinatorial (problems) and (mathematical) Optimization, we can define CO as a subfield of Discrete Optimization with the aim of developing algorithms that, given a finite set of discrete variables $$X$$ and constraints $$C$$, searches for the maxima or minima of an objective function $$f(x)$$.
 
 
 ## Bibliography
