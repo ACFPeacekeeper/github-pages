@@ -7,7 +7,7 @@ title: Projects
 1. [Computer Science and Engineering (CSE)](#computer-science-and-engineering-cse)
     1. [Artificial Intelligence (AI) Research](#artificial-intelligence-ai-research)
         1. [Contrastive Learning Transformer for Label Efficient Semantic Segmentation](#contrastive-learning-transformer-for-label-efficient-semantic-segmentation)
-        2. [Multimodal Graph Neural Network for Automatic Generation of Coherent Image Descriptions](#multimodal-graph-neural-network-for-automatic-generation-of-coherent-image-descriptions)
+        2. [Multimodal Graph Neural Network for Generation of Coherent Image Descriptions](#multimodal-graph-neural-network-for-generation-of-coherent-image-descriptions)
         3. [CSE Master of Science (MSc) Dissertation](#cse-master-of-science-msc-dissertation)
         4. [WSmart Route+](#wsmart-route)
     2. [Web Development](#web-development)
