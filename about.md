@@ -15,7 +15,7 @@ title: About Me
 5. [Other Interests & Activities](#other-interests--activities)
 
 ## Current Work
-I'm currently a Artificial Intelligence Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/), where I teach courses about [Distributed Systems](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1408903891910867), [Cloud Computing and Virtualization](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/disciplina-curricular/1127428915200223) and [Computer Organization](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1971853845332781).
+I'm currently a First Stage Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/), where I teach courses about [Distributed Systems](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1408903891910867), [Cloud Computing and Virtualization](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/disciplina-curricular/1127428915200223) and [Computer Organization](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1971853845332781).
 I am also co-founding a Game Development studio called [Retsam Entertainment](https://twitter.com/RetsamGames) with [@jfperodrigues](https://github.com/jfperodrigues) and [@fafpinheiro](https://github.com/fafpinheiro).
 
 ## Previous Work
