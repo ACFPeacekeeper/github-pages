@@ -19,7 +19,7 @@ I'm currently a First Stage Researcher at [INESC-ID](https://www.inesc-id.pt/) -
 I am also co-founding a Game Development studio called [Retsam Entertainment](https://twitter.com/RetsamGames) with [@jfperodrigues](https://github.com/jfperodrigues) and [@fafpinheiro](https://github.com/fafpinheiro).
 
 ## Previous Work
-Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) - where I developed a Java application to integrate several Git-based version control services, as well as a microservice and a set of cryptographic tools to allow clients to securely manage several keystore files spread across multiple servers - and a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I developed new Multimodal Deep Learning architectures and frameworks.
+Previously, I was a Computer Programmer Analyst at the Research & Development department of [qubIT](http://www.qub-it.com/) - where I developed a Java application to integrate several Git-based version control services, as well as a microservice and a set of cryptographic tools to allow clients to securely manage several keystore files spread across multiple servers - and a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I developed new Multimodal Deep Learning architectures and frameworks with a focus towards increased robustness against noisy data and adversarial attacks.
 
 ## Hobbies & Personal Projects
 During my spare time, I enjoy reading books (Non-Fiction such as History and Politics, SciFi and Fantasy), playing games (RPGs, Action-Adventure, FPS, Strategy and Table Tops), listening to music and watching movies, anime and TV series.
