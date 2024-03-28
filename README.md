@@ -23,7 +23,6 @@ My own personal [github pages blog](https://acfpeacekeeper.github.io/github-page
 - [CSS - Cascading Style Sheets](https://www.w3.org/Style/CSS/Overview.en.html)
 - [JS - JavaScript Programming Language](https://developer.mozilla.org/en-US/docs/Web/javascript)
 - [Ruby Programming Language](https://www.ruby-lang.org/en/)
-- [Ruby on Rails Framework](https://rubyonrails.org/)
 - [SASS - Syntactically Awesome Style Sheets](https://sass-lang.com/)
 - [Liquid - Template Language](https://shopify.github.io/liquid/)
 - [Jekyll - Static Site Generator](https://jekyllrb.com/)
