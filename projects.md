@@ -6,8 +6,10 @@ title: Projects
 # Project Index
 1. [Computer Science and Engineering (CSE)](#computer-science-and-engineering-cse)
     1. [Artificial Intelligence (AI) Research](#artificial-intelligence-ai-research)
-        1. [CSE Master of Science (MSc) Dissertation](#cse-master-of-science-msc-dissertation)
-        2. [WSmart Route+](#wsmart-route)
+        1. [Contrastive Learning Transformer for Label Efficient Semantic Segmentation](#contrastive-learning-transformer-for-label-efficient-semantic-segmentation)
+        2. [Multimodal Graph Neural Network for Automatic Generation of Coherent Image Descriptions](#multimodal-graph-neural-network-for-automatic-generation-of-coherent-image-descriptions)
+        3. [CSE Master of Science (MSc) Dissertation](#cse-master-of-science-msc-dissertation)
+        4. [WSmart Route+](#wsmart-route)
     2. [Web Development](#web-development)
         1. [EBEC 2020](#ebec-2020)
         2. [Personal Blog](#personal-blog)
@@ -24,6 +26,10 @@ title: Projects
 
 ## Computer Science and Engineering (CSE)
 ### Artificial Intelligence (AI) Research
+#### Contrastive Learning Transformer for Label Efficient Semantic Segmentation
+TBA
+#### Multimodal Graph Neural Network for Automatic Generation of Coherent Image Descriptions
+TBA
 #### CSE Master of Science (MSc) Dissertation
 Towards the completion of my CSE MSc degree at [IST](https://tecnico.ulisboa.pt/en/), I worked as a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I wrote a Dissertation titled ['Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations'](docs/IST_UL___MEIC_Thesis___Dissertacao_final__Copy_.pdf). For this Dissertation, I developed three new Multimodal Deep Unsupervised Models - which combined principles from [Denoising Auto-Encoders](docs/literature/papers/autoencoders.pdf), [Geometric Multimodal Contrastive Learning](docs/literature/papers/geometric_multimodal_cl.pdf) and [Odd-One-Out Networks](docs/literature/papers/ssl_video_ooo_nets.pdf) - and compared their robustness against missing modalities, noisy data and adversarial examples with other deep multimodal models such as the [MVAE](docs/literature/papers/multimodal_gen_models_scalable_wsl.pdf). The final document and the respective code are the following (I also wrote a paper, but I still want to improve it before posting it to ARXIV):
 - [Dissertation](docs/IST_UL___MEIC_Thesis___Dissertacao_final__Copy_.pdf)
