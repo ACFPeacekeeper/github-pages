@@ -522,7 +522,9 @@ Another approach to balance exploration and exploitation in $$k$$-armed bandit p
 - Policy's parameter vector: $$\theta \in \mathbb{R}^{d'}$$;
 - Learned value function's weight vector: $$w \in \mathbb{R}^d$$;
 - Scalar performance measure w.r.t. the policy parameter: $$J(\theta)$$;
-- Probability that action $$a$$ is taken at time $$t$$, given that the environment is in state $$s$$ at time $$t$$: $$\pi (a \vert s, \theta) = P (A_t = a|S_t = s,\theta_t = \theta)$$.
+- Probability that action $$a$$ is taken at time $$t$$, given that the environment is in state $$s$$ at time $$t$$: $$
+\pi (a \vert s, \theta) = P (A_t = a|S_t = s,\theta_t = \theta)
+$$.
 
 **Policy gradient** methods seek to learn an approximation to the policy by maximizing performance. Their updates approximate gradient ascent such as:
 
