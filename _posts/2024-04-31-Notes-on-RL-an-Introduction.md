@@ -720,7 +720,7 @@ def episodic_actor_critic_with_eligibility_traces(
 
 	env = gym.make(gym_environment)
 	scores = []
-	for episode_id in range(NUM_EPISODES):
+	for _ in range(NUM_EPISODES):
 		z_theta = 0.
 		z_w = 0.
 		score = 0.
