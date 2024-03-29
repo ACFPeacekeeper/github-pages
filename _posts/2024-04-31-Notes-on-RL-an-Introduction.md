@@ -267,10 +267,12 @@ This selection method never performs exploration. A simple alternative that does
 
 **Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time.
 
-Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q_{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q_{*}(A_t), \ \sigma^2 = 1$$. 
+Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q_{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q_{*}(A_t), \ \sigma^2 = 1$$.
+
 The performance of the learning methods is measured as it improves with experience over 1000 time steps of the bandit problem, which makes up a single run. To obtain an accurate measure of the learning algorithms' behavior, 2000 runs are performed and the results for the bandit problems are averaged.
 
 A greedy action selection method is compared against 2 $$\epsilon$$-greedy methods (with $$\epsilon = 0.01 \lor \epsilon = 0.1$$). All methods begin with initial action-value estimates of zero and update these estimates using the sample-average technique.
+
 While the greedy method improved slightly faster than the other 2, it converged to a reward-per-step of 1, which is lower than the best value of around 1.54 achieved by the $$\epsilon$$-greedy method (with $$\epsilon = 0.1$$). The method with $$\epsilon = 0.1$$ improved faster than the method with $$\epsilon = 0.01$$, since it explored more earlier. However, the method with $$\epsilon = 0.01$$ converges to a higher reward-per-step in the long run, since the method with $$\epsilon = 0.1$$ never selects the optimal action more than 91% of the time. 
 It is possible to perform $$\epsilon$$ annealing to try to get fast learning at the start combined with convergence to a higher reward average.
 
@@ -346,15 +348,20 @@ $$
 $$
 
 where the first condition is required to guarantee that the steps are big enough to overcome any initial conditions or random fluctuations that would otherwise result in getting stuck at saddle points, and the second condition guarantees that the steps will eventually become small enough to assure convergence.
+
 The second condition is not met for the constant step-size parameter case, i.e., $$\alpha_n (a) = \alpha$$. This means that the estimates will never completely converge, which is actually a desirable property for non-stationary problems (the most common type of problem in RL), since the estimates continue to vary in response to the most recently received rewards, accounting for the changes in reward probabilities over time. Also, the sequences of step-size parameters that meet both of the above conditions often lead to slow convergence rates, meaning that these are seldomly used in applications and empirical research.
 
 ### Ch 2.6: Optimistic Initial Values
 
-All previous methods are somewhat dependent on the initial action-value estimates $$Q_1 (a)$$, i.e., they are *biased* by their initial estimates. This bias decreases over time as various actions are selected. However, while for sample-average methods the bias eventually disappear after all actions have been taken at least once, the bias is permanent for methods with a constant $$\alpha$$. This property means that, when using methods with a constant $$\alpha$$, the user must select the values for the initial estimates, which provides a way to supply some prior knowledge about the expected rewards, at the possible cost of being harder to tune.
+All previous methods are somewhat dependent on the initial action-value estimates $$Q_1 (a)$$, i.e., they are *biased* by their initial estimates. This bias decreases over time as various actions are selected. However, while for sample-average methods the bias eventually disappear after all actions have been taken at least once, the bias is permanent for methods with a constant $$\alpha$$. 
+
+This property means that, when using methods with a constant $$\alpha$$, the user must select the values for the initial estimates, which provides a way to supply some prior knowledge about the expected rewards, at the possible cost of being harder to tune.
 
 By selecting optimistic initial action-values, i.e., $$Q_1 (a) >> R_1 (a), \forall a$$, the agent will always be disappointed since the rewards will always be far less than the first estimates, regardless of which actions are selected. This encourages exploration, as the agent will select all possible actions before the value estimates converge, even if greedy actions are selected at every single time step.
 
-This technique for encouraging exploration is named *optimistic initial values* and is a simple, yet effective trick when used on stationary problems (e.g., with $$Q_1(a) = 5$$ it outperforms a $$\epsilon$$-greedy method with $$Q_1(a) = 0$$ and $$\epsilon = 0.1$$). However, since the drive for exploration is dependent on the initials conditions and disappears after a certain time, it cannot adequately deal with non-stationary problems, where exploration is always required due to the dynamic nature of the reward probabilities. This drawback is present in all methods that treat the beginning of time as a special event (e.g., the sample-average methods).
+This technique for encouraging exploration is named *optimistic initial values* and is a simple, yet effective trick when used on stationary problems (e.g., with $$Q_1(a) = 5$$ it outperforms a $$\epsilon$$-greedy method with $$Q_1(a) = 0$$ and $$\epsilon = 0.1$$). 
+
+An important caveat is that, since the drive for exploration in the previous technique is dependent on the initials conditions and disappears after a certain time, it cannot adequately deal with non-stationary problems, where exploration is always required due to the dynamic nature of the reward probabilities. This drawback is present in all methods that treat the beginning of time as a special event (e.g., the sample-average methods).
 
 ### Ch 2.7: Upper-Confidence-Bound Action Selection
 
@@ -368,7 +375,9 @@ $$
 
 where $$N_t(a)$$ denotes the number of times the action $$a$$ has been selected prior to time $$t$$ and the number $$c > 0$$ controls the degree of exploration. If $$N_t(a) = 0$$, then $$a$$ is considered to be a maximizing action.
 
-This **upper confidence bound (UCB)** action selection is based on the idea that the square-root term is a measure of the uncertainty or variance of action $$a$$ value's estimate. As such, the max'ed over quantity becomes a sort of upper bound on the possible true value of action $$a$$ with $$c$$ determining the confidence level, and thus the uncertainty is reduced each time the action $$a$$ is selected. The natural logarithm results in smaller increases over time, meaning that actions with lower value estimates or that have been frequently selected, will be selected with decreasing frequency.
+This **upper confidence bound (UCB)** action selection is based on the idea that the square-root term is a measure of the uncertainty or variance of action $$a$$ value's estimate. As such, the max'ed over quantity becomes a sort of upper bound on the possible true value of action $$a$$ with $$c$$ determining the confidence level, and thus the uncertainty is reduced each time the action $$a$$ is selected. 
+
+The natural logarithm results in smaller increases over time, meaning that actions with lower value estimates or that have been frequently selected, will be selected with decreasing frequency.
 
 UCB often performs better than $$\epsilon$$-greedy action selection (except in the first $$k$$ steps), but it is harder to extend beyond bandits into the general RL settings. This is due to its difficulties in dealing with more advanced settings, such as non-stationary problems and (function approximation) with large state spaces.
 
@@ -528,7 +537,7 @@ $$
 
 This kind of policy parameterization is called *softmax in action preferences*.
 
-The action preferences can be parameterized arbitrarily, e.g., as the output of a Deep Neural Network (DNN) with parameters $\theta$. They can also be linear in features:
+The action preferences can be parameterized arbitrarily, e.g., as the output of a Deep Neural Network (DNN) with parameters $$\theta$$. They can also be linear in features:
 
 $$
 \begin{equation}
@@ -537,6 +546,74 @@ h(s,a,\theta) = \theta^T \cdot x(s, a), \ x(s, a) \in \mathbb{R}^{d'}.
 $$
 
 The *choice of policy parameterization* can be a good way of *injecting prior knowledge* about the desired form of the policy into the RL system. Beyond this, parameterizing policies according to the softmax in action preferences has several advantages:
-- Allows the approximate policy to approach a deterministic policy, unlike with $\epsilon$-greedy action selection (due to the $\epsilon$ probability of selecting a random action);
+- Allows the approximate policy to approach a deterministic policy, unlike with $$\epsilon$$-greedy action selection (due to the $$\epsilon$$ probability of selecting a random action);
 - Enables the selection of actions with arbitrary probabilities (useful if the optimal policy is a stochastic policy, e.g., in a game of chance such as poker);
 - If the policy is easier to approximate then the action-value function, then policy-based methods learn faster and yield a superior asymptotic policy.
+
+### Ch 13.2: The Policy Gradient Theorem
+
+Policy parameterization has an important theoretical advantage over $$\epsilon$$-greedy action selection: the continuity of the policy dependence on the parameters that enables policy gradient methods to approximate gradient ascent. 
+
+Due to the continuous policy parameterization the action probabilities change smoothly as a function of the learned parameters, unlike with $$\epsilon$$-greedy selection, where the action probabilities may change dramatically if an update changes which action has the maximal value.
+
+In the episodic case, the performance measure is defined as the value of the start state of the episode. Taking a (non-random) state $$s_0$$ as the start state of the episode and $$v_{\pi_{\theta}}$$ as the true value function for the policy $$\pi_{\theta}$$, the performance can be defined as:
+
+$$
+\begin{equation}
+J(\theta) \doteq v_{\pi_{\theta}} (s_0).
+\end{equation}
+$$
+
+Since the policy parameters affect both the action selections and the distribution of states in which those selections are made, and performance also depends on both, it may be challenging to to change the policy parameters such that improvement is ensured, particularly since the effect of the policy on the state distribution is a function of the environment, and thus is typically unknown.
+
+The **policy gradient theorem** provides a solution towards this challenge in the manner of an analytic expression for the gradient of performance w.r.t. the policy parameters, without the need for the derivative of the state distribution. The equation for episodic case of the policy gradient theorem is given by:
+
+$$
+\begin{equation}
+\nabla J(\theta) \propto \sum_s \mu (s) \sum_a q_{\pi}(s, a) \cdot \nabla \pi(a|s, \theta),
+\end{equation}
+$$
+
+where $$\mu$$ is the on-policy distribution under $$\pi$$. For the episodic case, the constant of proportionality is the average length of an episode, and for the continuing case it is 1.
+
+### Ch 13.3: REINFORCE: Monte Carlo Policy Gradient
+
+Since any constant of proportionality can be absorbed into the step size $$\alpha$$, all that is required is a way of sampling that approximates the policy gradient theorem. As the r.h.s. of the theorem is a sum over states weighted by their probability of occurring under the target policy $$\pi$$, w.h.t.:
+$$
+\begin{align}
+	\nabla J(\theta) &\propto \sum_s \sum_a q_{\pi}(s, a) \cdot \nabla \pi (a|s, \theta) \nonumber\\
+	&= \mathbb{E}_{\pi} [\sum_a q_{\pi}(S_t, a) \cdot \nabla \pi(a|S_t, \theta)].
+\end{align}
+$$
+Thus, we can instantiate the stochastic gradient ascent algorithm (known as the *all-actions* method, due to its update involving all of the actions) as:
+
+$$
+\begin{equation}
+\theta_{t + 1} \doteq \theta_t + \alpha \sum_a \hat{q}(S_t, a, w) \cdot \nabla \pi (a|S_t, \theta),
+\end{equation}
+$$
+
+where $$\hat{q}$$ is a learned approximation of $$q_{\pi}$$.
+Unlike the previous method, the update step at time $$t$$ of the **REINFORCE** algorithm involves only $$A_t$$ (the action taken at time $$t$$). By multiplying and then dividing the summed terms by $$\pi (a\vert S_t, \theta)$$, we can introduce the weighting needed for an expectation under $$\pi$$., then, given that $$G_t$$ is the return, w.h.t.:
+
+$$
+\begin{align}
+	\nabla J(\theta) &\propto \mathbb{E}_{\pi} [\sum_a \pi(a|S_t, \theta) \cdot q_{\pi} (S_t,a) \cdot \frac{\nabla \pi(s|S_t, \theta)}{\pi(a|S_t, \theta)}] \nonumber\\
+	&= \mathbb{E}_{\pi} [q_{\pi}(S_t, A_t) \cdot \frac{\nabla \pi(A_t|S_t, \theta)}{\pi(A_t|S_t, \theta)}] \nonumber\\
+	&= \mathbb{E}_{\pi} [G_t \cdot \frac{\nabla \pi(A_t|S_t, \theta)}{\pi(A_t|S_t, \theta)}].
+\end{align}
+$$
+
+Since the final (in brackets) expression is a quantity that can be sampled on each time step with expectation proportional to the gradient, such a sample can be used to instantiate the generic stochastic gradient ascent algorithm, yielding the REINFORCE update:
+
+$$
+\begin{align}
+	\theta_{t + 1} &\doteq \theta_t + \alpha \cdot \gamma^t \cdot G_t \cdot \frac{\nabla \pi(A_t|S_t, \theta_t)}{\pi(A_t|S_t, \theta_t)} \nonumber\\
+	&= \theta_t + \alpha \cdot \gamma^t \cdot G_t \cdot \nabla \ln \pi(A_t| S_t, \theta_t), 
+\end{align}
+$$\\
+where $$\gamma$$ is the discount factor and $$\ln \pi(A_t|S_t, \theta_t)$$ is the *eligibility* vector. In this update, each increment is proportional to the return - causing the parameters to move most in the directions of the actions that yield the highest return - and is inversely proportional to the action probability - since the most frequent selected actions would have an advantage otherwise. 
+
+Since REINFORCE uses the complete return from time $$t$$ (including all future rewards until the end of an episode), it is considered a Monte Carlo algorithm and is only well defined in the episodic case with all updates made in retrospect after the episode's completion.
+
+As a stochastic gradient method, REINFORCE assures an improvement in the expected performance (given a small enough $$\alpha$$) and convergence to a local optimum (under standard stochastic approximation conditions for decreasing $$\alpha$$). However, as a Monte Carlo method, REINFORCE may have high variance and subsequently produce slow learning.
