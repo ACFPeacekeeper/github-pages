@@ -11,7 +11,7 @@ $$
 $$
 
 Here are some notes I took when reading the second edition of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.\\
-If you want to get into Reinforcement Learning, or are just interested in Artificial Intelligence in general, I highly recommend that you read this book! It does require some mathematical background to read and understand everything (mostly Linear Algebra, Probabilities, Statistics, and some Calculus), but it is overall one of the best and most exhaustive introductory books about Reinforcement Learning out there.
+If you want to get into Reinforcement Learning, or are just interested in Artificial Intelligence in general, I highly recommend that you read this book! It does require some mathematical background to read and understand everything (mostly Linear Algebra, Probabilities, Statistics, and some Calculus), but it is overall one of the best - and most exhaustive - introductory books about Reinforcement Learning out there.
 # Chapter Index
 1. [Introduction](#chapter-1-introduction)
 2. [Multi-armed Bandits](#chapter-2-multi-armed-bandits)
@@ -266,19 +266,6 @@ This selection method never performs exploration. A simple alternative that does
 ### Ch 2.3: The 10-armed Test-bed
 
 **Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time.
-
-Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q_{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q_{*}(A_t), \ \sigma^2 = 1$$. 
-The performance of the learning methods is measured as it improves with experience over 1000 time steps of the bandit problem, which makes up a single run. To obtain an accurate measure of the learning algorithms' behavior, 2000 runs are performed and the results for the bandit problems are averaged.
-
-A greedy action selection method is compared against 2 $$\epsilon$$-greedy methods (with $$\epsilon = 0.01 \lor \epsilon = 0.1$$). All methods begin with initial action-value estimates of zero and update these estimates using the sample-average technique.
-While the greedy method improved slightly faster than the other 2, it converged to a reward-per-step of 1, which is lower than the best value of around 1.54 achieved by the $$\epsilon$$-greedy method (with $$\epsilon = 0.1$$). The method with $$\epsilon = 0.1$$ improved faster than the method with $$\epsilon = 0.01$$, since it explored more earlier. However, the method with $$\epsilon = 0.01$$ converges to a higher reward-per-step in the long run, since the method with $$\epsilon = 0.1$$ never selects the optimal action more than 91% of the time. 
-It is possible to perform $$\epsilon$$ annealing to try to get fast learning at the start combined with convergence to a higher reward average.
-
-It takes more exploration to find the optimal actions in cases with noisy rewards (i.e., high reward variance), meaning that $$\epsilon$$-greedy methods perform even better in those cases, when compared to the greedy method. Also, although the greedy method is theoretically optimal in the deterministic case (i.e., with $$\sigma^2 = 0$$), this property does not hold in non-stationary bandit problems, making exploration a necessity even in deterministic settings.
-
-### Ch 2.3: The 10-armed Test-bed
-
-**Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time
 
 Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q_{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q_{*}(A_t), \ \sigma^2 = 1$$. 
 The performance of the learning methods is measured as it improves with experience over 1000 time steps of the bandit problem, which makes up a single run. To obtain an accurate measure of the learning algorithms' behavior, 2000 runs are performed and the results for the bandit problems are averaged.
