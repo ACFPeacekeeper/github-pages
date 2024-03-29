@@ -226,7 +226,9 @@ Setting of the $$k$$-armed bandit learning problem (analogous to a slot machine 
 
 Letting $$A_t$$ be the action taken at time step $$t$$ and $$R_t$$ the corresponding reward, then the value $$q_{*}(a)$$ of an arbitrary action $$a$$ is given by:
 $$
+\begin{equation}
     q_{*} (a) \doteq \mathbb{E} [R_t | A_t = a].
+\end{equation}
 $$
 
 Since we do not know the true value of each action, we need to estimate them in such a way that the estimates are close to the real values. The estimated value of an action $$a$$ at time step $$t$$ is denoted by $$Q_t (a)$$.
