@@ -784,6 +784,33 @@ def episodic_actor_critic_with_eligibility_traces(
 
 ### Ch 13.6: Policy Gradient for Continuing Problems
 
+For continuing problems without episode boundaries, the performance must be defined in terms of the average rate of reward per time step:
+
+$$
+\begin{align}
+J(\theta) \doteq r(\pi) &\doteq \lim_{h \rightarrow \infty} \frac{1}{h} \sum_{t = 1}^h \mathbb{E}[R_t \vert S_0, A_{0:t - 1} \sim \pi] \nonumber\\
+	&= \lim_{t \rightarrow \infty} \mathbb{E}[R_t \vert S_0, A_{0:t - 1} \sim \pi] \nonumber\\
+	&= \sum_s \mu(s) \sum_a \pi (a \vert s) \sum_{s', r} p(s', r \vert s, a) \cdot r, 
+\end{align}
+$$
+
+where $$\mu$$ is the steady-state distribution under $$\pi$$, $$\mu(s) \doteq \lim_{t \rightarrow \infty} P(S_t = s \vert A_{0:t} \sim \pi)$$,
+which is assumed to exist and - due to the ergodicity assumption - to be independent of $$S_0$$. This is a special distribution under where, if you select actions according to $$\pi$$, you remain in the same distribution, as follows:
+
+$$
+\begin{equation}
+\sum_s \mu(s) \sum_a \pi(a \vert s, \theta) \cdot p(s' \vert s, a) = \mu(s'), \ \forall s' \in S.
+\end{equation}
+$$
+
+In the continuing case, we define values: $$v_{\pi} (s) \doteq \mathbb{E}_{\pi} (G_t \vert S_t = s)$$ and $$q_{\pi}(s, a) \doteq \mathbb{E} [G_t \vert S_t = s, A_t = a]$$, w.r.t. the differential return (s.t. the policy gradient theorem holds true for the continuing case):
+
+$$
+\begin{equation}
+G_t \doteq R_{t+1} - r(\pi) + R_{t+2} - r(\pi) + R_{t+3} - r(\pi) + \dots \ .
+\end{equation}
+$$
+
 {% highlight python %}
 def continuing_actor_critic_with_eligibility_traces(
 	lambda_theta: float,
