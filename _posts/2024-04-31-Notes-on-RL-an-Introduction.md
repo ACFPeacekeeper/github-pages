@@ -728,7 +728,7 @@ def episodic_actor_critic_with_eligibility_traces(
 		score = 0.
 		I = 1.
 		state = env.reset()
-		for step in range(MAX_STEPS):
+		for step_id in range(MAX_STEPS):
 			# Get action and log probabilities
 			a_probs = policy(state)
 			prob_dist = Categorical(a_probs)
