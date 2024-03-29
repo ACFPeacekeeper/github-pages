@@ -748,7 +748,7 @@ def episodic_actor_critic_with_eligibility_traces(
 			new_state_value = [0.] if done else state_value_func(new_state)
 
 			# Calculate value function loss with MSE
-			z_w = gamma * lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value)
+			z_w = gamma * lambda_w * z_w + I * F.mse_loss(R + gamma * new_state_value, state_value)
 
 			# Calculate policy loss
 			delta = R + gamma * new_state_value.item() - state_value.item()
