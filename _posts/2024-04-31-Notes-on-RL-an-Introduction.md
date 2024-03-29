@@ -290,11 +290,11 @@ Instead of maintaining a record of all the rewards and performing the computatio
 
 $$
 \begin{align}
-	Q_{n + 1} &= \frac{1}{n} \sum_{i = 1}^n R_i \\
-	&= \frac{1}{n}(R_n + \sum_{i = 1}^{n - 1} R_i) \\
-	&= \frac{1}{n}(R_n + (n - 1) \cdot \frac{1}{n - 1} \cdot \sum_{i = 1}^{n - 1} R_i) \\
-	&= \frac{1}{n} (R_n + (n - 1) \cdot Q_n) \\
-	&= \frac{1}{n} (R_n + n \cdot Q_n - Q_n) \\
+	Q_{n + 1} &= \frac{1}{n} \sum_{i = 1}^n R_i \nonumber\\
+	&= \frac{1}{n}(R_n + \sum_{i = 1}^{n - 1} R_i) \nonumber\\
+	&= \frac{1}{n}(R_n + (n - 1) \cdot \frac{1}{n - 1} \cdot \sum_{i = 1}^{n - 1} R_i) \nonumber\\
+	&= \frac{1}{n} (R_n + (n - 1) \cdot Q_n) \nonumber\\
+	&= \frac{1}{n} (R_n + n \cdot Q_n - Q_n) \nonumber\\
 	&= Q_n + \frac{1}{n} [R_n - Q_n], \ n > 1 \\
 	Q_2 &= R_1, \ Q_1 \in \mathbb{R}.
 \end{align}
@@ -326,11 +326,11 @@ where the step-size parameter $$\alpha \in \  ]0, 1]$$ is constant. Given this, 
 
 $$
 \begin{align}
-	Q_{n + 1} &= Q_n + \alpha [R_n - Q_n] \\
-	&= \alpha \cdot R_n + (1- \alpha) Q_n \\
-	&= \alpha \cdot R_n + (1 - \alpha) [\alpha \cdot R_{n - 1} + (1 - \alpha)Q_{n - 1}] \\
-	&= \alpha \cdot R_n + (1 - \alpha) \cdot \alpha \cdot R_{n - 1} + (1 - \alpha)^2 Q_{n - 1} \\
-	&= \alpha \cdot R_n + (1 - \alpha) \cdot \alpha \cdot R_{n - 1} + \dots + (1 - \alpha)^{n - 1} \cdot \alpha \cdot R_1 + (1 - \alpha)^n \cdot Q_1 \\
+	Q_{n + 1} &= Q_n + \alpha [R_n - Q_n] \nonumber\\
+	&= \alpha \cdot R_n + (1- \alpha) Q_n \nonumber\\
+	&= \alpha \cdot R_n + (1 - \alpha) [\alpha \cdot R_{n - 1} + (1 - \alpha)Q_{n - 1}] \nonumber\\
+	&= \alpha \cdot R_n + (1 - \alpha) \cdot \alpha \cdot R_{n - 1} + (1 - \alpha)^2 Q_{n - 1} \nonumber\\
+	&= \alpha \cdot R_n + (1 - \alpha) \cdot \alpha \cdot R_{n - 1} + \dots + (1 - \alpha)^{n - 1} \cdot \alpha \cdot R_1 + (1 - \alpha)^n \cdot Q_1 \nonumber\\
 	&= (1 - \alpha)^n \cdot Q_1 + \sum_{i = 1}^n \alpha \cdot (1 - \alpha)^{n - i} \cdot R_i.
 \end{align}
 $$
@@ -388,7 +388,7 @@ There exists a natural learning algorithm for softmax action preferences based o
 
 $$
 \begin{align}
-	H_{t + 1}(A_t) &\doteq H_t(A_t) + \alpha (R_t - \bar{R_t}) (1 - \pi_t(A_t)), &\text{and} \\
+	H_{t + 1}(A_t) &\doteq H_t(A_t) + \alpha (R_t - \bar{R_t}) (1 - \pi_t(A_t)), &\text{and} \nonumber\\
 	H_{t + 1}(a) &\doteq H_t(a) - \alpha (R_t \bar{R_t}) \pi_t(a), &\forall a \neq A_t,
 \end{align}
 $$
@@ -430,10 +430,10 @@ We continue by multiplying each term of the sum by $$\pi_t(x)/\pi_t(x)$$, as fol
 
 $$
 \begin{align}
-	\frac{\partial \mathbb{E}[R_t]}{\partial H_t(a)} &= \sum_x \pi_t(x) \cdot (q_{*}(x) - B_t) \cdot \frac{\partial \pi_t (x)}{\partial H_t(x)} / \pi_t(x) \\
-	&= \mathbb{E} [(q_{*}(A_t) - B_t) \cdot \frac{\partial \pi_t (A_t)}{\partial H_t(a)}/\pi_t(A_t)] \\
-	&= \mathbb{E}[(R_t - \bar{R_t}) \cdot \frac{\partial \pi_t(A_t)}{\partial H_t(a)}/\pi_t(A_t)] \\
-	&= \mathbb{E} [(R_t - \bar{R}_t) \cdot \pi_t(A_t) \cdot (\mathbb{1}_{a = A_t} - \pi_t(a))/\pi_t(A_t)] \\
+	\frac{\partial \mathbb{E}[R_t]}{\partial H_t(a)} &= \sum_x \pi_t(x) \cdot (q_{*}(x) - B_t) \cdot \frac{\partial \pi_t (x)}{\partial H_t(x)} / \pi_t(x) \nonumber\\
+	&= \mathbb{E} [(q_{*}(A_t) - B_t) \cdot \frac{\partial \pi_t (A_t)}{\partial H_t(a)}/\pi_t(A_t)] \nonumber\\
+	&= \mathbb{E}[(R_t - \bar{R_t}) \cdot \frac{\partial \pi_t(A_t)}{\partial H_t(a)}/\pi_t(A_t)] \nonumber\\
+	&= \mathbb{E} [(R_t - \bar{R}_t) \cdot \pi_t(A_t) \cdot (\mathbb{1}_{a = A_t} - \pi_t(a))/\pi_t(A_t)] \nonumber\\
 	&= \mathbb{E}[(R_t - \bar{R}_t) \cdot (\mathbb{1}_{a = A_t} - \pi_t(a))],
 \end{align}
 $$
@@ -460,12 +460,12 @@ we can then write
 
 $$
 \begin{align}
-	\frac{\partial \pi_t(x)}{\partial H_t(a)} &= \frac{\partial}{\partial H_t(a)} \pi_t(x) \\
-	&= \frac{\partial}{\partial H_t(a)} [\frac{\exp(H_t(x))}{\sum_{y=1}^k \exp(H_t(y))}] \\
-	&= \frac{\frac{\partial \exp(H_t(x))}{\partial H_t(a)} \sum_{y=1}^k \exp(H_t(y)) - \exp(H_t(x)) \cdot \exp (H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \\
-	&= \frac{\mathbb{1}_{a=x \exp(H_t(x))} \sum_{y=1}^k \exp(H_t(y)) - \exp(H_t(x)) \exp(H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \\
-	&= \frac{\mathbb{1}_{a = x \exp(H_t(x))}}{\sum_{y=1}^k \exp(H_t(y))} - \frac{\exp(H_t(y)) \exp(H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \\
-	&= \mathbb{1}_{a = x} \pi_t(x) - \pi_t(x) \pi_t(a) \\
+	\frac{\partial \pi_t(x)}{\partial H_t(a)} &= \frac{\partial}{\partial H_t(a)} \pi_t(x) \nonumber\\
+	&= \frac{\partial}{\partial H_t(a)} [\frac{\exp(H_t(x))}{\sum_{y=1}^k \exp(H_t(y))}] \nonumber\\
+	&= \frac{\frac{\partial \exp(H_t(x))}{\partial H_t(a)} \sum_{y=1}^k \exp(H_t(y)) - \exp(H_t(x)) \cdot \exp (H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \nonumber\\
+	&= \frac{\mathbb{1}_{a=x \exp(H_t(x))} \sum_{y=1}^k \exp(H_t(y)) - \exp(H_t(x)) \exp(H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \nonumber\\
+	&= \frac{\mathbb{1}_{a = x \exp(H_t(x))}}{\sum_{y=1}^k \exp(H_t(y))} - \frac{\exp(H_t(y)) \exp(H_t(a))}{(\sum_{y=1}^k \exp(H_t(y)))^2} \nonumber\\
+	&= \mathbb{1}_{a = x} \pi_t(x) - \pi_t(x) \pi_t(a) \nonumber\\
 	&= \pi_t(x) (\mathbb{1}_{a=x} - \pi_t(a)),
 \end{align}
 $$
