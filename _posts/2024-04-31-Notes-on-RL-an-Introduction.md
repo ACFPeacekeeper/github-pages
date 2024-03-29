@@ -618,3 +618,163 @@ where $$\gamma$$ is the discount factor and $$\ln \pi(A_t|S_t, \theta_t)$$ is th
 Since REINFORCE uses the complete return from time $$t$$ (including all future rewards until the end of an episode), it is considered a Monte Carlo algorithm and is only well defined in the episodic case with all updates made in retrospect after the episode's completion.
 
 As a stochastic gradient method, REINFORCE assures an improvement in the expected performance (given a small enough $$\alpha$$) and convergence to a local optimum (under standard stochastic approximation conditions for decreasing $$\alpha$$). However, as a Monte Carlo method, REINFORCE may have high variance and subsequently produce slow learning.
+
+### Ch 13.4: REINFORCE with Baseline
+
+Generalizing the policy gradient theorem to include a comparison of the action value to an arbitrary baseline $$b(s)$$ gives the following expression:
+
+$$
+\begin{equation}
+\nabla J(\theta) = \sum_s \mu (s) \sum_a (q_{\pi}(s, a) - b(s)) \cdot \nabla \pi (a|s, \theta).
+\end{equation}
+$$
+
+The baseline can be any arbitrary function (as long as it doesn't vary with $$a$$), since the equation will remain valid as the subtracted quantity is zero:
+
+$$
+\begin{equation}
+\sum_a b(s)\cdot \nabla \pi(a|s, \theta) = b(s) \cdot \nabla \sum_a \pi(a|s, \theta) = b(s) \cdot \nabla 1 = 0.
+\end{equation}
+$$
+
+The theorem can then be used to derive an update rule similar to the previous version of REINFORCE, but which includes a general baseline:
+
+$$
+\begin{equation}
+\theta_{t + 1} \doteq \theta_t + \alpha \cdot \gamma^t \cdot (G_t - b(S_t)) \cdot \frac{\nabla \pi(A_t|S_t, \theta_t)}{\pi(A_t|S_t, \theta_t)}.
+\end{equation}
+$$
+
+While the baseline generally leaves the expected value of the update unchanged, it can have a significant effect on its variance and thus the learning speed. 
+
+The value of the baseline should follow that of the actions, i.e., if all actions have high/low values, then the baseline must also have high/low value, so as to differentiate the higher valued actions from the lower valued ones. A common choice for the baseline is an estimate of state value $$\hat{v}(S_t, w)$$, with $$w \in \mathbb{R}^d$$ being a learned weight vector.
+
+The algorithm has two step sizes, $$\alpha_{\theta}$$ (which is the same as the step size $$\alpha$$ in previous equations) and $$\alpha_{w}$$. A good rule of thumb for setting the step size for values in the linear case is 
+
+$$
+\begin{equation}
+\alpha_w = 0.1/\mathbb{E}[||\nabla \hat{v}(S_t, w)]||_{\mu}^2.
+\end{equation}
+$$
+
+The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the range of variation of the rewards and on the policy parameterization.
+
+### Ch 13.5: Actor-Critic Methods
+
+In actor-critic methods, the state-value function is applied to the second state of the transition, unlike in REINFORCE, where the learned state-value function only estimates the value of the first state of each state transition and thus can´t be used to assess that action. After discount and adding the estimated value of the second state to the reward, it constitutes the 1-step return $$G_{t:t+1}$$, which can be used to assess the action.
+
+Even though the 1-step return introduces bias, it is often superior to the actual return in terms of its variance and computational congeniality. The bias can also be flexibly modulated through $n$-step returns and eligibility traces.
+
+1-step actor-critic methods are analogs of the TD methods such as TD(0), Sarsa(0) and Q-learning. Such methods are appealing since they function in fully online and incremental manner, while avoiding the complexities of eligibility traces. In these methods, the full return of REINFORCE is replaced with the 1-step return (with a state-value function as the baseline) as follows:
+
+$$
+\begin{align}
+	\theta_{t+1} &\doteq \theta_t + \alpha (G_{t:t+1} - \hat{v}(S_t, w)) \frac{\nabla \pi (A_t|S_t, \theta_t)}{\pi(A_t|S_t, \theta_t)} \nonumber\\
+	&= \theta_t + \alpha (R_{t+1} + \gamma \cdot \hat{v}(S_{t+1}, w) - \hat{v}(S_t, w)) \frac{\nabla \pi (A_t|S_t, \theta_t)}{\pi(A_t|S_t, \theta_t)} \nonumber\\
+	&= \theta_t + \alpha \cdot \delta_t \cdot \frac{\nabla \pi (A_t|S_t, \theta_t)}{\pi(A_t|S_t, \theta_t)}.
+\end{align}
+$$
+
+A usual state value function learning method to pair with this is semi-gradient TD(0). 
+To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-return, one only needs to replace the on-step return in the previous equation by $$G_{t:t+1}$$ or $$G_t^{\lambda}$$, respectively. The backward view of the $$\lambda$$-return algorithm is also simple, only requiring using separate eligibility traces for the actor and critic.
+
+{% highlight python %}
+import gym
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+def episodic_actor_critic_with_eligibility_traces(
+	lambda_theta: float,
+	lambda_w: float,
+	alpha_theta: float,
+	alpha_w: float,
+	gamma: float,
+	NUM_EPISODES: int,
+	MAX_STEPS: int,
+	gym_environment: str
+):
+	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
+	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
+	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
+	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
+	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
+	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+
+	# Initialize policy parameters
+	policy = Policy(env.observation_space.shape[0], env.action_space.n)
+	for module in policy.modules():
+		if isinstance(module, nn.Linear):
+			nn.init.xavier_uniform(module.weight)
+			module.bias.data.fill_(0.01)
+
+	# Initialize state-value function parameters
+	state_value_func = StateValueFunction(env.observation_space.shape[0])
+	for module in state_value_func.modules():
+		if isinstance(module, nn.Linear):
+			module.weight.data.fill_(0.0)
+			module.bias.data.fill_(0.01)
+
+	# Initialize optimizers
+	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
+	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+
+	env = gym.make(gym_environment)
+	scores = []
+	for episode_id in range(NUM_EPISODES):
+		z_theta = 0.
+		z_w = 0.
+		score = 0.
+		I = 1.
+		state = env.reset()
+		for step in range(MAX_STEPS):
+			# Get action and log probabilities
+			a_probs = policy(state)
+			prob_dist = Categorical(a_probs)
+			a = prob_dist.sample()
+			action = a.item()
+			log_probs = prob_dist.log_prob(action)
+
+			# Step with action
+			new_state, R, done, _ = env.step(action)
+
+			# Update episode score
+			score += R
+
+			# Get state value of current state
+			state_value = state_value_func(state)
+
+			# Get state value of next state
+			# If terminal state, next state value is 0
+			new_state_value = [0.] if done else state_value_func(new_state)
+
+			# Calculate value function loss with MSE
+			z_w = gamma * lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value)
+
+			# Calculate policy loss
+			delta = R + gamma * new_state_value.item() - state_value.item()
+			z_theta = gamma * lambda_theta * z_theta + I * (-log_probs * delta)
+
+			# Backpropagate value
+			stateval_optimizer.zero_grad()
+			z_w.backward()
+			stateval_optimizer.step()
+
+			# Backpropagate policy
+			policy_optimizer.zero_grad()
+			z_theta.backward(retain_graph=True)
+			policy_optimizer.step()
+
+			if done:
+				break
+
+			# Move into new state, discount I
+			I *= gamma
+			state = new_state
+
+	# Append episode score
+	scores.append(score)
+
+	return scores, policy, state_value_func
+{% endhighlight %}
