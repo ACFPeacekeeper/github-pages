@@ -388,7 +388,7 @@ There exists a natural learning algorithm for softmax action preferences based o
 
 $$
 \begin{align}
-	H_{t + 1}(A_t) &\doteq H_t(A_t) + \alpha (R_t - \bar{R_t}) (1 - \pi_t(A_t)), &\text{and} \nonumber\\
+	H_{t + 1}(A_t) &\doteq H_t(A_t) + \alpha (R_t - \bar{R_t}) (1 - \pi_t(A_t)), &\text{and}\\
 	H_{t + 1}(a) &\doteq H_t(a) - \alpha (R_t \bar{R_t}) \pi_t(a), &\forall a \neq A_t,
 \end{align}
 $$
