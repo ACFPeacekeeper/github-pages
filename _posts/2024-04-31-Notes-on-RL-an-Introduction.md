@@ -811,103 +811,47 @@ G_t \doteq R_{t+1} - r(\pi) + R_{t+2} - r(\pi) + R_{t+3} - r(\pi) + \dots \ .
 \end{equation}
 $$
 
-{% highlight python %}
-def continuing_actor_critic_with_eligibility_traces(
-	lambda_theta: float,
-	lambda_w: float,
-	alpha_theta: float,
-	alpha_w: float,
-	alpha_R: float,
-	gamma: float,
-	NUM_EPISODES: int,
-	MAX_STEPS: int,
-	gym_environment: str
-):
-	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
-	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
-	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
-	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
-	assert alpha_R > 0, "alpha_R must be a float value greater than 0"
-	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
-	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
-	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
-	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+### Ch 13.7: Policy Parameterization for Continuous Actions
 
-	# Initialize policy parameters
-	policy = Policy(env.observation_space.shape[0], env.action_space.n)
-	for module in policy.modules():
-		if isinstance(module, nn.Linear):
-			nn.init.xavier_uniform(module.weight)
-			module.bias.data.fill_(0.01)
+In policy-based methods, instead of computing learned probabilities for each and every action, instead we learn statistics of the probability distribution, e.g., the action set might be $$\mathbb{R}$$, with actions chosen from a normal (Gaussian) distribution.
+The *Probability Density Function* (PDF) for this (normal) distribution can be written as
 
-	# Initialize state-value function parameters
-	state_value_func = StateValueFunction(env.observation_space.shape[0])
-	for module in state_value_func.modules():
-		if isinstance(module, nn.Linear):
-			module.weight.data.fill_(0.0)
-			module.bias.data.fill_(0.01)
+$$
+\begin{equation}
+p(x) \doteq \frac{1}{\sigma \sqrt{2 \pi}} \exp(-\frac{(x - \mu)^2}{2 \sigma^2}),
+\end{equation}
+$$
 
-	# Initialize optimizers
-	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
-	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+where $$\mu$$ is the mean and $$\sigma$$ the standard deviation of the normal distribution, and $$\pi \approx 3.14159$$. 
 
-	env = gym.make(gym_environment)
-	scores = []
-	for _ in range(NUM_EPISODES):
-		z_theta = 0.
-		z_w = 0.
-		score = 0.
-		avg_R = 0.
-		state = env.reset()
-		for _ in range(MAX_STEPS):
-			# Get action and log probabilities
-			a_probs = policy(state)
-			prob_dist = Categorical(a_probs)
-			a = prob_dist.sample()
-			action = a.item()
-			log_probs = prob_dist.log_prob(action)
+In order to make a policy parameterization, the policy may be defined as the normal probability density over a real-valued scalar action, with $$\mu$$ and $$\sigma$$ given by the parametric function approximators that depend on the state, i.e.,
 
-			# Step with action
-			new_state, R, done, _ = env.step(action)
+$$
+\begin{equation}
+\pi (a \vert s, \theta) \doteq \frac{1}{\sigma(s, \theta)\sqrt{2 \pi}} \exp \bigg(-\frac{(a - \mu(s, \theta))^2}{2 \sigma(s, \theta)^2} \bigg),
+\end{equation}
+$$
 
-			# Update episode score
-			score += R
+where $$\mu: \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}$$ and $$\sigma : \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}^+$$ are two parameterized function approximators. Now, we just need to give a form for these approximators. To do this, we divide the policy's parameters into two parts, i.e., $$\theta = [\theta_{\mu}, \theta_{\sigma}]$$, one part will be used to approximate $\mu$ and the other to approximate $$\sigma > 0$$, the latter of which is better approximated as the exponential of a linear function. Thus
 
-			# Get state value of current state
-			state_value = state_value_func(state)
+$$
+\begin{equation}
+\mu (s, \theta) \doteq \theta_{\mu}^T x_{\mu} \wedge \sigma(s, \theta) \doteq \exp \bigg(\theta_{\sigma}^T x_{\sigma}(s) \bigg),
+\end{equation}
+$$
 
-			# Get state value of next state
-			# If terminal state, next state value is 0
-			new_state_value = [0.] if done else state_value_func(new_state)
+where $$x_{\mu}(s)$$ and $$x_{\sigma}(s)$$ are state feature vectors. With these additional definitions, all previously described algorithms can be applied to learn to select real-valued actions.
+### Ch 13.8: Summary
 
-			# Calculate average reward
-			delta = R - avg_R + new_state_value - state_value
-			avg_R = avg_R + alpha_R * delta
+Prior to this chapter: focus on *action-value methods* - which are methods that learn action values and then use them to select actions.
 
-			# Calculate value function loss with MSE
-			z_w = lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value)
+During this chapter: describes methods that learn parameterized policies that enable actions to be taken without consulting action-value estimates, with a focus on *policy-gradient methods* - which are methods that, on each step, update the policy parameter in the direction of an estimate of the gradient of the performance w.r.t. the policy parameter.
 
-			# Calculate policy loss
-			z_theta = lambda_theta * z_theta + (-log_probs * delta)
+Advantages of methods that learn and store a policy parameter:
+- They can learn specific probabilities for taking actions;
+- They can learn appropriate levels of exploration and approach deterministic policies asymptotically;
+- They can inherently handle continuous action spaces;
+- The policy may be simpler to represent parametrically than the value function on some problems;
+- The *policy gradient theorem* provides an exact formula (that doesn't involve derivatives of the state distribution) for how performance is affected by the policy parameter.
 
-			# Backpropagate value
-			stateval_optimizer.zero_grad()
-			z_w.backward()
-			stateval_optimizer.step()
-
-			# Backpropagate policy
-			policy_optimizer.zero_grad()
-			z_theta.backward(retain_graph=True)
-			policy_optimizer.step()
-
-			if done:
-				break
-
-			# Move into new state
-			state = new_state
-
-	# Append episode score
-	scores.append(score)
-
-	return scores, policy, state_value_func
-{% endhighlight %}
+A state-value function baseline reduces the variance of the REINFORCE method without introducing bias. If the state-value function is (also) used to assess the policy's action selections, then it is called a *critic*, the policy is called an *actor*, and the overall algorithm is called an *actor-critic method*. The critic introduces bias into the actor’s gradient estimates, but this is often desirable since it substantially reduces variance (similar to the advantage bootstrapping TD methods have over Monte Carlo methods).
