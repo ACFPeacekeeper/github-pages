@@ -488,9 +488,9 @@ Another approach to balance exploration and exploitation in $$k$$-armed bandit p
 
 **Notation** relevant for this chapter:
 - Policy's parameter vector: $$\theta \in \mathbb{R}^{d'}$$;
-- Probability that action $$a$$ is taken at time $$t$$, given that the environment is in state $$s$$ at time $$t$$: $$\pi (a |s, \theta) = \text{Pr} \{A_t = a|S_t = s,\theta_t = \theta\}$$;
 - Learned value function's weight vector: $$w \in \mathbb{R}^d$$;
-- Scalar performance measure w.r.t. the policy parameter: $$J(\theta)$$.
+- Scalar performance measure w.r.t. the policy parameter: $$J(\theta)$$;
+- Probability that action $$a$$ is taken at time $$t$$, given that the environment is in state $$s$$ at time $$t$$: $$\pi (a \vert s, \theta) = \text{Pr} \{A_t = a: S_t = s,\theta_t = \theta\}$$.
 
 **Policy gradient** methods seek to learn an approximation to the policy by maximizing performance. Their updates approximate gradient ascent such as:
 
@@ -504,9 +504,19 @@ Methods that learn an approximation of both policy and value functions are calle
 
 ### Ch 13.1: Policy Approximation and its Advantages
 
-The policy can be parameterized in any way, as long as 2 conditions are met:
-- $$\forall s \in S \ \forall a \in A(s) \ \exists \ \nabla \pi (a|s, \theta) : |\nabla \pi (a|s, \theta)| < \infty \ \wedge \theta \in \mathbb{R}^{d'}$$;
-- To ensure exploration (avoid deterministic policy): $$\pi (a|s, \theta) \ \in \  ]0, 1[$$.
+The policy can be parameterized in any way, as long as 2 conditions are met
+
+- As long as $$\pi(a\vert s, \theta)$$ is differentiable w.r.t. its parameters:
+
+$$
+\forall s \in S \ \forall a \in A(s) \ \exists \ \nabla \pi (a|s, \theta) : |\nabla \pi (a|s, \theta)| < \infty \ \wedge \theta \in \mathbb{R}^{d'};
+$$
+
+- As long as it continues to perform exploration (to avoid a deterministic policy): 
+
+$$
+\pi (a|s, \theta) \ \in \  ]0, 1[.
+$$
 
 For small-to-medium discrete action spaces, it is common to form parameterized numerical preferences $$h(s, a, \theta) \in \mathbb{R}$$ for each $$(s, a)$$ pair. The probabilities of each action being selected can be calculated with, e.g., an exponential softmax distribution:
 
