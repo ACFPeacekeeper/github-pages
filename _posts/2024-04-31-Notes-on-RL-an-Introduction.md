@@ -679,10 +679,10 @@ A usual state value function learning method to pair with this is semi-gradient 
 To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-return, one only needs to replace the on-step return in the previous equation by $$G_{t:t+1}$$ or $$G_t^{\lambda}$$, respectively. The backward view of the $$\lambda$$-return algorithm is also simple, only requiring using separate eligibility traces for the actor and critic.
 
 {% highlight python %}
-import gym
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import gymnasium as gym
 
 def episodic_actor_critic_with_eligibility_traces(
 	lambda_theta: float,
