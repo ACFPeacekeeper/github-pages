@@ -691,6 +691,7 @@ def episodic_actor_critic_with_eligibility_traces(
 	alpha_w: float,
 	gamma: float,
 	NUM_EPISODES: int,
+	MAX_STEPS: int,
 	gym_environment: str
 ):
 	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
@@ -699,6 +700,7 @@ def episodic_actor_critic_with_eligibility_traces(
 	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
 	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
 	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
+	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
 	# Initialize policy parameters
 	policy = Policy(env.observation_space.shape[0], env.action_space.n)
@@ -726,7 +728,7 @@ def episodic_actor_critic_with_eligibility_traces(
 		score = 0.
 		I = 1.
 		state = env.reset()
-		while True:
+		for _ in range(MAX_STEPS):
 			# Get action and log probabilities
 			a_probs = policy(state)
 			prob_dist = Categorical(a_probs)
