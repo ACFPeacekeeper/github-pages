@@ -1,0 +1,112 @@
+---
+layout: post
+title: "Actor-Critic Methods: PyTorch Examples"
+date: 2024-03-28
+categories: RL ML DL
+usemathjax: true
+---
+Here are some example implementations of actor-critic methods, to go along with the <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods'">review of Chapter 13</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
+
+{% highlight python %}
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+import gymnasium as gym
+
+from torch.distributions import Categorical
+
+def episodic_actor_critic_with_eligibility_traces(
+	lambda_theta: float,
+	lambda_w: float,
+	alpha_theta: float,
+	alpha_w: float,
+	gamma: float,
+	NUM_EPISODES: int,
+	MAX_STEPS: int,
+	gym_environment: str
+):
+	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
+	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
+	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
+	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
+	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
+	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+
+	# Initialize policy parameters
+	policy = Policy(env.observation_space.shape[0], env.action_space.n)
+	for module in policy.modules():
+		if isinstance(module, nn.Linear):
+			nn.init.xavier_uniform(module.weight)
+			module.bias.data.fill_(0.01)
+
+	# Initialize state-value function parameters
+	state_value_func = StateValueFunction(env.observation_space.shape[0])
+	for module in state_value_func.modules():
+		if isinstance(module, nn.Linear):
+			module.weight.data.fill_(0.0)
+			module.bias.data.fill_(0.01)
+
+	# Initialize optimizers
+	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
+	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+
+	env = gym.make(gym_environment)
+	scores = []
+	for _ in range(NUM_EPISODES):
+		z_theta = 0.
+		z_w = 0.
+		score = 0.
+		I = 1.
+		state = env.reset()
+		for _ in range(MAX_STEPS):
+			# Get action and log probabilities
+			a_probs = policy(state)
+			prob_dist = Categorical(a_probs)
+			a = prob_dist.sample()
+			action = a.item()
+			log_probs = prob_dist.log_prob(action)
+
+			# Step with action
+			new_state, R, done, _ = env.step(action)
+
+			# Update episode score
+			score += R
+
+			# Get state value of current state
+			state_value = state_value_func(state)
+
+			# Get state value of next state
+			# If terminal state, next state value is 0
+			new_state_value = [0.] if done else state_value_func(new_state)
+
+			# Calculate value function loss with MSE
+			z_w = gamma * lambda_w * z_w + I * F.mse_loss(R + gamma * new_state_value, state_value)
+
+			# Calculate policy loss
+			delta = R + gamma * new_state_value.item() - state_value.item()
+			z_theta = gamma * lambda_theta * z_theta + I * (-log_probs * delta)
+
+			# Backpropagate value
+			stateval_optimizer.zero_grad()
+			z_w.backward()
+			stateval_optimizer.step()
+
+			# Backpropagate policy
+			policy_optimizer.zero_grad()
+			z_theta.backward(retain_graph=True)
+			policy_optimizer.step()
+
+			if done:
+				break
+
+			# Move into new state, discount I
+			I *= gamma
+			state = new_state
+
+	# Append episode score
+	scores.append(score)
+
+	return scores, policy, state_value_func
+{% endhighlight %}
