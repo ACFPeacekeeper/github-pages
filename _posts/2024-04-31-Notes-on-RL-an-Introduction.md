@@ -494,6 +494,28 @@ W.r.t. performance (average reward) in the $$k$$-bandit problem, with $$k = 10$$
 
 Another approach to balance exploration and exploitation in $$k$$-armed bandit problems is the Bayesian method known as *Gittins* index. It assumes a known prior distribution over the actions values and then updates the distribution after each step (assuming that the true action values are stationary).
 
+## Chapter 3: Finite Markov Decision Processes
+
+## Chapter 4: Dynamic Programming
+
+## Chapter 5: Monte Carlo Methods
+
+## Chapter 6: Temporal-Difference Learning
+
+## Chapter 7: $$n$$-step Bootstrapping
+
+## Chapter 8: Planning and Learning with Tabular Methods
+
+# Part II: Approximate Solution Methods
+
+## Chapter 9: On-policy Prediction with Approximation
+
+## Chapter 10: On-policy Control with Approximation
+
+## Chapter 11: \*Off-policy Methods with Approximation
+
+## Chapter 12: Eligibility Traces
+
 ## Chapter 13: Policy Gradient Methods
 
 **Notation** relevant for this chapter:
@@ -855,3 +877,13 @@ Advantages of methods that learn and store a policy parameter:
 - The *policy gradient theorem* provides an exact formula (that doesn't involve derivatives of the state distribution) for how performance is affected by the policy parameter.
 
 A state-value function baseline reduces the variance of the REINFORCE method without introducing bias. If the state-value function is (also) used to assess the policy's action selections, then it is called a *critic*, the policy is called an *actor*, and the overall algorithm is called an *actor-critic method*. The critic introduces bias into the actor’s gradient estimates, but this is often desirable since it substantially reduces variance (similar to the advantage bootstrapping TD methods have over Monte Carlo methods).
+
+# Part III: Looking Deeper
+
+## Chapter 14: Psychology
+
+## Chapter 15: Neuroscience
+
+## Chapter 16: Applications and Case Studies
+
+## Chapter 17: Frontiers
