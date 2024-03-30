@@ -591,9 +591,40 @@ $$
 
 where $$T$$ is a final time step. This approach makes sense in applications where the agent-environment interaction can be naturally broken down into sub-sequences, called **episodes,** like the plays of a game or trips to a maze. Each episode ends in a special state, called the *terminal* state, and the resets to a starting state or a sample from standard distribution of starting states. Since the next episode begins independently of how the previous one ended, episodes can all be considered to end in the same terminal state, just with different rewards for different outcomes.
 
-**Episodic task**: tasks that have independent episodes, i.e., where the outcome of the ending of an episode doesn't effect the start state of the next episode.
+**Episodic task**: tasks that have discrete independent episodes, i.e., where the outcome of the ending of an episode doesn't effect the start state of the next episode.
 - We sometimes distinguish the set of all non-terminal states $$\mathcal{S}$$ from the set of all states plus the terminal state $$\mathcal{S}^+$$;
 - The time of termination $$T$$ is a random variable that can vary from episode to episode.
+
+**Continuing task**: tasks where the agent-environment interaction cannot be naturally broken down into identifiable episodes, and goes on continually without limit.
+- With the current formulation, the final time step for these tasks would be $$T = \infty$$ and thus, the total return we are trying to maximize could easily be infinite;
+- To deal with this, we add the concept of *discounting* to the formulation. Now, the agent must try to select actions that maximize the sum of discounted rewards received.
+
+Following this formulation, the agent must then chose $$A_t$$ s.t. the expected *discounted return* is maximal:
+
+$$
+\begin{equation}
+G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots = \sum_{k = 0}^{\infty} \gamma^k \cdot R_{t+k+1},
+\end{equation}
+$$
+
+where $$\gamma \in [0, 1]$$ is a parameter called the *discount rate*. This parameter determines the current value of future rewards, i.e., a reward received $k$ time steps in future is only worth $$\gamma^{k+1}$$ times what it would be worth if it were received now. If $$\gamma < 1$$ and the reward sequence $$\{R_k\}$$ is bounded, then the infinite sum of discounted rewards has a finite value.  If $$\gamma = 0,$$ the agent is only concerned with maximizing its immediate reward, i.e., its objective is to learn how to select $A_t$ s.t. it maximizes only $$R_{t+1}.$$ As $$\gamma \rightarrow 1,$$ the return objective takes future rewards more strongly into account, i.e., the agent becomes more farsighted. The returns at successive time steps are related to each other s.t.
+
+$$
+\begin{align}
+G_t &\doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \dots \nonumber\\
+	&= R_{t+1} + \gamma (R_{t+2} + \gamma R_{t+3} + \gamma^2 R_{t+4} + \dots) \nonumber\\
+	&= R_{t+1} + \gamma G_{t+1}.
+\end{align}
+$$
+
+This works for all time steps $$t < T,$$ even if the termination occurs at $$t + 1,$$ provided we define $$G_T = 0$$. 
+If the reward is a constant $$+1,$$ then the return is
+
+$$
+\begin{equation}
+G_t = \sum_{k = 0}^{\infty} \gamma^k = \frac{1}{1 - \gamma}.
+\end{equation}
+$$
 
 ## Chapter 4: Dynamic Programming
 
