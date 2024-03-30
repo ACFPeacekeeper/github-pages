@@ -699,7 +699,27 @@ The last equation, called the *Bellman equation for $$v_{\pi}$$,* expresses a re
 
 ### Section 3.6: Optimal Policies and Optimal Value Functions
 
+Solving a RL task roughly means finding a policy that maximizes the total reward over the long run. For finite MDPs, we can precisely define an *optimal policy $$\pi^*$$* as follows:
+- Value function define a partial ordering over policies;
+- A policy $$\pi$$ is defined to be better than or equal to a policy $$\pi'$$, i.e., $$\pi \geq \pi'$$, iff $$v_{\pi}(s) \geq v_{\pi'}(s), \ \forall s \in \mathcal{S}$$;
+- $$\exists \pi^*: \pi^* \geq \pi, \ \forall \pi \in \mathcal{S}$$.
 
+Although there may be more than one optimal policy, we denote them all by $$\pi^*$$. They share the same state-value function, called the *optimal state-value function*, denoted $$v^*$$, and defined as
+
+$$
+\begin{equation}
+v^*(s) \doteq \max_{\pi} v_{\pi}(s), \quad \forall s \in \mathcal{S}.
+\end{equation}
+$$
+
+Optimal policies also share the same *optimal action-value function*, denoted $$q^*$$. For the state-action pair $$(s, a)$$, this function gives the expected return for taking action $$a$$ in state $$s$$ and following an optimal policy afterwards. This function can defined as
+
+$$
+\begin{align}
+q^*(s, a) &\doteq \max_{\pi} q_{\pi}(s, a), \quad \forall s \in \mathcal{S}, \forall a \in \mathcal{A}(s),\\
+	&= \mathbb{E}[R_{t+1} + \gamma v^*(S_{t+1}) \vert S_t = s, A_t = a].
+\end{align}
+$$
 
 ## Chapter 4: Dynamic Programming
 
