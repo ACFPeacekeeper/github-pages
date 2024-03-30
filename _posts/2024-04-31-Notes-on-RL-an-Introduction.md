@@ -639,7 +639,7 @@ We can unify the finite sum of terms for the total return in the episodic case a
 <figure align='center'>
 <img alt="Example of an MDP with a absorbing state." src="http://acfpeacekeeper.github.io/github-pages/images/literature/absorbing_state.png" onerror="this.src='http://localhost:4000/images/literature/absorbing_state.png';">
 
-<figcaption>Figure 2: Example of an MDP with a absorbing state.</figcaption>
+<figcaption>Figure 2: Example of an MDP with an absorbing state.</figcaption>
 </figure>
 
 Including the possibility that $$T = \infty \oplus \gamma = 1$$ (where $$\oplus$$ is the XOR operator), we can write
