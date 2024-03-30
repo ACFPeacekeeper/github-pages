@@ -5,7 +5,7 @@ date: 2024-03-28
 categories: RL ML DL
 usemathjax: true
 ---
-Here are some example implementations of actor-critic methods, to go along with <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods'">my review of Chapter 13</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
+Here are some example implementations of actor-critic methods, to go along with <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-135-actor-critic-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-135-actor-critic-methods'">my review of Chapter 13.5</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
 
 ## Auxiliar Classes
 ### Policy Parameterization
