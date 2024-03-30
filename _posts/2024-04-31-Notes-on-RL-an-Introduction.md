@@ -212,13 +212,13 @@ A RL system has four main elements beyond the interactive **agent** and the **en
 
 # Part I: Tabular Solution Methods
 
-# Chapter 2: Multi-armed Bandits
+## Chapter 2: Multi-armed Bandits
 
 *Non-associative* setting: a problem setting that involves learning to act in only 1 situation.
 
 *Associative* setting: a problem setting where the best action depends on the situation.
 
-## Section 2.1: A $$k$$-armed Bandit Problem
+### Section 2.1: A $$k$$-armed Bandit Problem
 
 Setting of the $$k$$-armed bandit learning problem (analogous to a slot machine with $$k$$ levers):
 1. Choose 1 action from among $$k$$ different options;
@@ -242,7 +242,7 @@ Since we do not know the true value of each action, we need to estimate them in 
 - Selecting 1 of the non-greedy actions enables the agent to improve his estimates of the non-greedy action's value, i.e., **exploration**;
 - Exploitation maximizes the reward on 1 step, but it needs to be intercalated with exploration steps so as to maximize the greater total reward in the long term.
 
-## Section 2.2: Action-value Methods
+### Section 2.2: Action-value Methods
 
 Def. **Action-value Methods**: methods used to estimate the values of actions and to use those estimates to select an action to take at a given time step.
 
@@ -266,7 +266,7 @@ $$
 
 This selection method never performs exploration. A simple alternative that does so is to select the greedy action most of the time (probability $$1 - \epsilon$$) and (with probability $$\epsilon$$) to randomly select any possible action with equal probability. Methods that use this near-greedy action selection rule are dubbed $$\epsilon$$-greedy methods.
 
-## Section 2.3: The 10-armed Test-bed
+### Section 2.3: The 10-armed Test-bed
 
 **Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time.
 
@@ -281,7 +281,7 @@ It is possible to perform $$\epsilon$$ annealing to try to get fast learning at 
 
 It takes more exploration to find the optimal actions in cases with noisy rewards (i.e., high reward variance), meaning that $$\epsilon$$-greedy methods perform even better in those cases, when compared to the greedy method. Also, although the greedy method is theoretically optimal in the deterministic case (i.e., with $$\sigma^2 = 0$$), this property does not hold in non-stationary bandit problems, making exploration a necessity even in deterministic settings.
 
-## Section 2.4: Incremental Implementation
+### Section 2.4: Incremental Implementation
 
 For a single action, let $$R_i$$ denote the reward received after the $$i^{th}$$ selection of *this action* and $$Q_n$$ the estimate of its action value after it has been selected $$n - 1$$ times, written as:
 
@@ -317,7 +317,9 @@ $$
 where $$[Target - OldEstimate]$$ is an *error* in the estimate, which is reduced by taking a step towards the (possibly noisy) target value.
 The step-size parameter is generally denoted by $$\alpha$$ or $$\alpha_t (a)$$.
 
-## Section 2.5: Tracking a Non-stationary Problem
+For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
+
+### Section 2.5: Tracking a Non-stationary Problem
 
 When reward probabilities change over time, it makes sense to give more weight to recent rewards than to those receive long ago. This can be done by using a constant step-size parameter, e.g., for updating an average $$Q_n$$ of the $$n - 1$$ past rewards w.h.t.:
 
@@ -354,9 +356,7 @@ where the first condition is required to guarantee that the steps are big enough
 
 The second condition is not met for the constant step-size parameter case, i.e., $$\alpha_n (a) = \alpha$$. This means that the estimates will never completely converge, which is actually a desirable property for non-stationary problems (the most common type of problem in RL), since the estimates continue to vary in response to the most recently received rewards, accounting for the changes in reward probabilities over time. Also, the sequences of step-size parameters that meet both of the above conditions often lead to slow convergence rates, meaning that these are seldomly used in applications and empirical research.
 
-For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
-
-## Section 2.6: Optimistic Initial Values
+### Section 2.6: Optimistic Initial Values
 
 All previous methods are somewhat dependent on the initial action-value estimates $$Q_1 (a)$$, i.e., they are *biased* by their initial estimates. This bias decreases over time as various actions are selected. However, while for sample-average methods the bias eventually disappear after all actions have been taken at least once, the bias is permanent for methods with a constant $$\alpha$$. 
 
@@ -368,7 +368,7 @@ This technique for encouraging exploration is named *optimistic initial values* 
 
 An important caveat is that, since the drive for exploration in the previous technique is dependent on the initials conditions and disappears after a certain time, it cannot adequately deal with non-stationary problems, where exploration is always required due to the dynamic nature of the reward probabilities. This drawback is present in all methods that treat the beginning of time as a special event (e.g., the sample-average methods).
 
-## Section 2.7: Upper-Confidence-Bound Action Selection
+### Section 2.7: Upper-Confidence-Bound Action Selection
 
 While $$\epsilon$$-greedy methods encourage exploration, they do so equally, without any preference for whether the action selected is nearly greedy or particularly uncertain. However, it is possible to select the non-greedy actions while taking into account both how close their value estimates are to the maximal action-value and the estimation uncertainty. An effective way of doing this is to select actions according to the following equation:
 
@@ -386,7 +386,7 @@ The natural logarithm results in smaller increases over time, meaning that actio
 
 UCB often performs better than $$\epsilon$$-greedy action selection (except in the first $$k$$ steps), but it is harder to extend beyond bandits into the general RL settings. This is due to its difficulties in dealing with more advanced settings, such as non-stationary problems and (function approximation) with large state spaces.
 
-## Section 2.8: Gradient Bandit Algorithms
+### Section 2.8: Gradient Bandit Algorithms
 
 Beyond using action-value estimates to select actions, it is also possible to learn a numerical *preference* for each action $$a$$, denoted $$H_t(a) \in \mathbb{R}$$, which has no interpretation w.r.t. reward. As such, only the relative preference of 1 action over another is important. The action probabilities are determined according to a softmax distribution as follows:
 
@@ -411,7 +411,7 @@ where $$\alpha > 0$$ is a step-size parameter and $$\bar{R}_t \in \mathbb{R}$$ -
 
 Since only the relative preferences are taken into account, adding an arbitrary constant value to all the action preferences has no effect on the action probabilities. Also, since the reward baseline term instantaneously adapts to new values of the mean, shifting the mean (e.g., $$\mu_{new} = \mu_{old} + 4$$) of the distribution (while keeping the unit variance) has no effect on the gradient bandit algorithm. However, omitting the baseline term results in a significantly degraded performance.
 
-### The Bandit Gradient Algorithm as SGA
+#### The Bandit Gradient Algorithm as SGA
 
 In exact **Gradient Ascent (GA)**, each action preference $$H_t(a)$$ would be incremented in proportion to the increment's effect on performance, given by:
 
@@ -486,23 +486,23 @@ $$
 
 thus showing that the expected updated of the gradient bandit algorithm is equivalent to the gradient of the expected reward, making the the algorithm a instance of SGA.
 
-## Section 2.9: Associative Search (Contextual Bandits)
+### Section 2.9: Associative Search (Contextual Bandits)
 
 *Associative search* tasks - which involve learning about which actions are the best through trial-and-error and associating these actions with which situations they work the best in - are often called *contextual bandits*. These tasks serve as an intermediate between the $$k$$-armed bandit problem and the full RL problem, since each action affects only the immediate reward - like the former - and also involves learning a policy, like the latter.
 
 An example of an associative task is a one composed of several $$k$$-armed bandit problems, each identified by a given color, where at each step you are confronted with one of the $$k$$-armed bandit problems at random. If the action values change as the color changes, you can then learn a policy that maps a color to the best associated actions.
 
-## Section 2.10: Summary
+### Section 2.10: Summary
 
 W.r.t. performance (average reward) in the $$k$$-bandit problem, with $$k = 10$$ and taking into account the first 1000 steps, w.h.t. UCB $$\geq$$ Greedy with optimistic initialization $$\alpha = 0.1 \ \geq$$ Gradient bandit $$\geq$$ $$\epsilon$$-greedy. 
 
 Another approach to balance exploration and exploitation in $$k$$-armed bandit problems is the Bayesian method known as *Gittins* index. It assumes a known prior distribution over the actions values and then updates the distribution after each step (assuming that the true action values are stationary).
 
-# Chapter 3: Finite Markov Decision Processes
+## Chapter 3: Finite Markov Decision Processes
 
 Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $$q^{*}(a), \ \forall a \in \mathcal{A},$$ in an MDP, we estimate the value $$q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$$ or the value $$v^{*}(s), \forall s \in \mathcal{S}$$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
 
-## Section 3.1: The Agent-Environment Interface
+### Section 3.1: The Agent-Environment Interface
 An MDP involves a learner and decision maker (i.e., the *agent*) that interacts with its surroundings (i.e., the *environment*) by continually selecting actions and having the environment respond by presenting new situations (or states) to the agent and giving rise to rewards, which the agent seeks to maximize over time. This process is illustrated in Figure 1.
 
 <figure align='center'>
@@ -572,7 +572,7 @@ The MDP framework proposes that any detail of whatever objective (of a problem o
 - State: signal that represents the basis on which the choices are made;
 - Reward: signal that defines the agent's goal.
 
-## Section 3.2: Goals and Rewards
+### Section 3.2: Goals and Rewards
 
 In RL, the purpose of the agent is formalized in terms of a simple number, the *reward* (at each time step $$R_t \in \mathbb{R}$$), which passes from the environment to the agent. The agent's goal is to maximize the total cumulative reward, something stated in the *reward hypothesis*:
 ```
@@ -583,7 +583,7 @@ scalar signal (called reward).
 
 In order for the agent to achieve our goals, it is critical that the reward signals defined truly indicate what we want accomplished. Of particular importance, one must not use the reward signal to impart prior knowledge to the agent. Using chess as an example, we should naturally define the reward as $$+1$$ for winning, $$-1$$ for losing and $$0$$ for draws and all non-terminal positions. We should **NOT** give rewards for sub-goals like taking an opponent's chess piece, otherwise the agent might find a way to maximize its reward, even at the cost of losing the game. The reward signal defines **what** you want the agent to achieve, not *how* you want the agent to achieve it.
 
-## Section 3.3: Returns and Episodes
+### Section 3.3: Returns and Episodes
 
 We seek to maximize the *expected return*, where the return $$G_t$$ is defined as some specific function of the reward sequence. In the simplest case the return is the sum of the rewards:
 
@@ -630,7 +630,7 @@ G_t = \sum_{k = 0}^{\infty} \gamma^k = \frac{1}{1 - \gamma}.
 \end{equation}
 $$
 
-## Section 3.4: Unified Notation for Episodic and Continuing Tasks
+### Section 3.4: Unified Notation for Episodic and Continuing Tasks
 
 To be precise about episodic tasks, instead of considering one long sequence of time steps, we need to consider a series of episodes, where each episode consists of a finite sequence of time steps. As such, we refer to $$S_{t, i}$$ as the state representation at time step $t$ of episode $i$ (the same for $$A_{t, i}, R_{t, i}, \pi_{t, i}, T_i, \dots$$). In practice however, since we are almost always considering a particular episode or stating a fact that is true for all episodes, we can drop the explicit reference to the episode number.
 
@@ -650,31 +650,31 @@ G_t \doteq \sum_{k = t + 1}^T \gamma^{k - t - 1} R_k.
 \end{equation}
 $$
 
-## Section 3.5: Policies and Value Functions
+### Section 3.5: Policies and Value Functions
 
 
 
-# Chapter 4: Dynamic Programming
+## Chapter 4: Dynamic Programming
 
-# Chapter 5: Monte Carlo Methods
+## Chapter 5: Monte Carlo Methods
 
-# Chapter 6: Temporal-Difference Learning
+## Chapter 6: Temporal-Difference Learning
 
-# Chapter 7: $$n$$-step Bootstrapping
+## Chapter 7: $$n$$-step Bootstrapping
 
-# Chapter 8: Planning and Learning with Tabular Methods
+## Chapter 8: Planning and Learning with Tabular Methods
 
 # Part II: Approximate Solution Methods
 
-# Chapter 9: On-policy Prediction with Approximation
+## Chapter 9: On-policy Prediction with Approximation
 
-# Chapter 10: On-policy Control with Approximation
+## Chapter 10: On-policy Control with Approximation
 
-# Chapter 11: \*Off-policy Methods with Approximation
+## Chapter 11: \*Off-policy Methods with Approximation
 
-# Chapter 12: Eligibility Traces
+## Chapter 12: Eligibility Traces
 
-# Chapter 13: Policy Gradient Methods
+## Chapter 13: Policy Gradient Methods
 
 **Notation** relevant for this chapter:
 - Policy's parameter vector: $$\theta \in \mathbb{R}^{d'}$$;
@@ -733,7 +733,7 @@ The *choice of policy parameterization* can be a good way of *injecting prior kn
 - Enables the selection of actions with arbitrary probabilities (useful if the optimal policy is a stochastic policy, e.g., in a game of chance such as poker);
 - If the policy is easier to approximate then the action-value function, then policy-based methods learn faster and yield a superior asymptotic policy.
 
-## Section 13.2: The Policy Gradient Theorem
+### Section 13.2: The Policy Gradient Theorem
 
 Policy parameterization has an important theoretical advantage over $$\epsilon$$-greedy action selection: the continuity of the policy dependence on the parameters that enables policy gradient methods to approximate gradient ascent. 
 
@@ -759,7 +759,7 @@ $$
 
 where $$\mu$$ is the on-policy distribution under $$\pi$$. For the episodic case, the constant of proportionality is the average length of an episode, and for the continuing case it is 1.
 
-## Section 13.3: REINFORCE: Monte Carlo Policy Gradient
+### Section 13.3: REINFORCE: Monte Carlo Policy Gradient
 
 Since any constant of proportionality can be absorbed into the step size $$\alpha$$, all that is required is a way of sampling that approximates the policy gradient theorem. As the r.h.s. of the theorem is a sum over states weighted by their probability of occurring under the target policy $$\pi$$, w.h.t.:
 $$
@@ -803,7 +803,7 @@ As a stochastic gradient method, REINFORCE assures an improvement in the expecte
 
 For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html'">see here</a>.
 
-## Section 13.4: REINFORCE with Baseline
+### Section 13.4: REINFORCE with Baseline
 
 Generalizing the policy gradient theorem to include a comparison of the action value to an arbitrary baseline $$b(s)$$ gives the following expression:
 
@@ -845,7 +845,7 @@ The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the r
 
 You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline'">here</a>.
 
-## Section 13.5: Actor-Critic Methods
+### Section 13.5: Actor-Critic Methods
 
 In actor-critic methods, the state-value function is applied to the second state of the transition, unlike in REINFORCE, where the learned state-value function only estimates the value of the first state of each state transition and thus can´t be used to assess that action. After discount and adding the estimated value of the second state to the reward, it constitutes the 1-step return $$G_{t:t+1}$$, which can be used to assess the action.
 
@@ -866,7 +866,7 @@ To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-re
 
 For some examples of Python implementations of actor-critic methods, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html'">see here</a>.
 
-## Section 13.6: Policy Gradient for Continuing Problems
+### Section 13.6: Policy Gradient for Continuing Problems
 
 For continuing problems without episode boundaries, the performance must be defined in terms of the average rate of reward per time step:
 
@@ -897,7 +897,7 @@ $$
 
 You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
 
-## Section 13.7: Policy Parameterization for Continuous Actions
+### Section 13.7: Policy Parameterization for Continuous Actions
 
 In policy-based methods, instead of computing learned probabilities for each and every action, instead we learn statistics of the probability distribution, e.g., the action set might be $$\mathbb{R}$$, with actions chosen from a normal (Gaussian) distribution.
 The *Probability Density Function* (PDF) for this (normal) distribution can be written as
@@ -928,7 +928,7 @@ $$
 
 where $$x_{\mu}(s)$$ and $$x_{\sigma}(s)$$ are state feature vectors. With these additional definitions, all previously described algorithms can be applied to learn to select real-valued actions.
 
-## Section 13.8: Summary
+### Section 13.8: Summary
 
 Prior to this chapter: focus on *action-value methods* - which are methods that learn action values and then use them to select actions.
 
@@ -945,10 +945,10 @@ A state-value function baseline reduces the variance of the REINFORCE method wit
 
 # Part III: Looking Deeper
 
-# Chapter 14: Psychology
+## Chapter 14: Psychology
 
-# Chapter 15: Neuroscience
+## Chapter 15: Neuroscience
 
-# Chapter 16: Applications and Case Studies
+## Chapter 16: Applications and Case Studies
 
-# Chapter 17: Frontiers
+## Chapter 17: Frontiers
