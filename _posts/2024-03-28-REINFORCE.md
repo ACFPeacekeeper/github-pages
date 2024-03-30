@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Python Examples: REINFORCE Algorithm"
-date: 2024-03-29
+date: 2024-03-28
 categories: RL ML DL
 usemathjax: true
 ---
