@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "k-armed Bandit Problems: Python Examples"
-date: 2024-03-28
+title: "Python Examples: k-armed Bandit Problems"
+date: 2024-03-27
 categories: RL
 usemathjax: true
 ---

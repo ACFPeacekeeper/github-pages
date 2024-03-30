@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Actor-Critic Methods: PyTorch Examples"
+title: "Python Examples: Actor-Critic Methods"
 date: 2024-03-28
 categories: RL ML DL
 usemathjax: true

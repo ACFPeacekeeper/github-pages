@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Notes on the 2nd edition of Reinforcement Learning: An Introduction"
-date: 2024-03-28
+date: 2024-03-30
 categories: RL ML DL
 usemathjax: true
 ---
@@ -647,6 +647,8 @@ G_t \doteq \sum_{k = t + 1}^T \gamma^{k - t - 1} R_k.
 $$
 
 ### Ch 3.5: Policies and Value Functions
+
+
 
 ## Chapter 4: Dynamic Programming
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "REINFORCE Algorithm: PyTorch Examples"
+title: "Python Examples: REINFORCE Algorithm"
 date: 2024-03-29
 categories: RL ML DL
 usemathjax: true
