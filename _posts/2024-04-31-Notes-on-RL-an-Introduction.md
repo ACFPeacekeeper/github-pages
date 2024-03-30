@@ -611,7 +611,7 @@ G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots = \sum_{k = 0}^{\
 \end{equation}
 $$
 
-where $$\gamma \in [0, 1]$$ is a parameter called the *discount rate*. This parameter determines the current value of future rewards, i.e., a reward received $k$ time steps in future is only worth $$\gamma^{k+1}$$ times what it would be worth if it were received now. If $$\gamma < 1$$ and the reward sequence $$\{R_k\}$$ is bounded, then the infinite sum of discounted rewards has a finite value.  If $$\gamma = 0,$$ the agent is only concerned with maximizing its immediate reward, i.e., its objective is to learn how to select $A_t$ s.t. it maximizes only $$R_{t+1}.$$ As $$\gamma \rightarrow 1,$$ the return objective takes future rewards more strongly into account, i.e., the agent becomes more farsighted. The returns at successive time steps are related to each other s.t.
+where $$\gamma \in [0, 1]$$ is a parameter called the *discount rate*. This parameter determines the current value of future rewards, i.e., a reward received $$k$$ time steps in future is only worth $$\gamma^{k+1}$$ times what it would be worth if it were received now. If $$\gamma < 1$$ and the reward sequence $$\{R_k\}$$ is bounded, then the infinite sum of discounted rewards has a finite value.  If $$\gamma = 0,$$ the agent is only concerned with maximizing its immediate reward, i.e., its objective is to learn how to select $$A_t$$ s.t. it maximizes only $$R_{t+1}.$$ As $$\gamma \rightarrow 1,$$ the return objective takes future rewards more strongly into account, i.e., the agent becomes more farsighted. The returns at successive time steps are related to each other s.t.
 
 $$
 \begin{align}
@@ -632,7 +632,7 @@ $$
 
 ### Section 3.4: Unified Notation for Episodic and Continuing Tasks
 
-To be precise about episodic tasks, instead of considering one long sequence of time steps, we need to consider a series of episodes, where each episode consists of a finite sequence of time steps. As such, we refer to $$S_{t, i}$$ as the state representation at time step $t$ of episode $i$ (the same for $$A_{t, i}, R_{t, i}, \pi_{t, i}, T_i, \dots$$). In practice however, since we are almost always considering a particular episode or stating a fact that is true for all episodes, we can drop the explicit reference to the episode number.
+To be precise about episodic tasks, instead of considering one long sequence of time steps, we need to consider a series of episodes, where each episode consists of a finite sequence of time steps. As such, we refer to $$S_{t, i}$$ as the state representation at time step $$t$$ of episode $$i$$ (the same for $$A_{t, i}, R_{t, i}, \pi_{t, i}, T_i, \dots$$). In practice however, since we are almost always considering a particular episode or stating a fact that is true for all episodes, we can drop the explicit reference to the episode number.
 
 We can unify the finite sum of terms for the total return in the episodic case and the infinite sum for the total reward in the continuing case by considering episode termination to be the entering of a special *absorbing state* that transitions only to itself and generates only rewards of zero, as exemplified in Figure 2.
 
@@ -658,7 +658,7 @@ $$
 **Policy**: a mapping from states to probabilities of selecting each possible action, i.e., if the agent is following policy $$\pi$$ at time $$t,$$ then $$\pi(a \vert s)$$ is the probability that $$A_t = a$$ if $$S_t = s.$$ 
 - It is a function that defines a probability distribution over $$a \in \mathcal{A}(s)$$ for each $$s \in \mathcal{S}.$$ 
 
-The *value function* of a state $s$ under a policy $$\pi,$$ denoted $$v_{\pi}(s),$$ is the expected return when starting in $$s$$ and following $$\pi$$ thereafter. For MDPs, $$v_{\pi}$$ can be formally defined as
+The *value function* of a state $$s$$ under a policy $$\pi,$$ denoted $$v_{\pi}(s),$$ is the expected return when starting in $$s$$ and following $$\pi$$ thereafter. For MDPs, $$v_{\pi}$$ can be formally defined as
 
 $$
 \begin{equation}
@@ -668,7 +668,7 @@ $$
 
 where $$\mathbb{E}_{\pi}[\cdot]$$ denotes the expected value of random variable given that the agent follows policy $$\pi,$$ and $$t$$ is any time step (the value of the terminal state is always zero). The function $$v_{\pi}$$ is called the *state-value function for policy $$\pi$$.* 
 
-We can also define the value of taking action $a$ in state $s$ while following a policy $$\pi,$$ denoted $$q_{\pi}(s, a),$$ as the expected return starting from $s,$ taking the action $$a,$$ and following policy $$\pi$$ afterwards:
+We can also define the value of taking action $$a$$ in state $$s$$ while following a policy $$\pi,$$ denoted $$q_{\pi}(s, a),$$ as the expected return starting from $$s,$$ taking the action $$a,$$ and following policy $$\pi$$ afterwards:
 
 $$
 \begin{equation}
@@ -693,7 +693,7 @@ v_{\pi}(s) &\doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] \nonumber\\
 \end{align}
 $$
 
-where it is implicit that the actions $$a$$ are taken from the set $$\mathcal{A},$$ that the next state $s'$ are taken from the set $$\mathcal{S}$$ (or from $$\mathcal{S}^+$$ in the case of an episodic problem), and that the rewards $$r$$ are taken from the set $$\mathcal{R}.$$ The final expression, which is a sum over all values of the three variables $$a$$, $$s'$$, and $$r$$, can be read as an expected value. For each triple, we compute its probability $$\pi(a \vert s) p(s', r \vert s, a),$$ weight the quantity in brackets by that probability and then sum over all possibilities to get an expected value.
+where it is implicit that the actions $$a$$ are taken from the set $$\mathcal{A},$$ that the next state $$s'$$ are taken from the set $$\mathcal{S}$$ (or from $$\mathcal{S}^+$$ in the case of an episodic problem), and that the rewards $$r$$ are taken from the set $$\mathcal{R}.$$ The final expression, which is a sum over all values of the three variables $$a$$, $$s'$$, and $$r$$, can be read as an expected value. For each triple, we compute its probability $$\pi(a \vert s) p(s', r \vert s, a),$$ weight the quantity in brackets by that probability and then sum over all possibilities to get an expected value.
 
 The last equation, called the *Bellman equation for $$v_{\pi}$$,* expresses a relationship between the value of a state and the values of its successor states (similar to a look-ahead).  The Bellman equation averages over all the possibilities, weighting each by its probability of occurring, and it states that the value of the start state must equal the discounted value of the expected next state, plus the reward expected along the way. The value function $$v_{\pi}$$ is the unique solution to this equation.
 
@@ -927,7 +927,7 @@ You can find an example of a Python implementation of REINFORCE with baseline <a
 
 In actor-critic methods, the state-value function is applied to the second state of the transition, unlike in REINFORCE, where the learned state-value function only estimates the value of the first state of each state transition and thus can´t be used to assess that action. After discount and adding the estimated value of the second state to the reward, it constitutes the 1-step return $$G_{t:t+1}$$, which can be used to assess the action.
 
-Even though the 1-step return introduces bias, it is often superior to the actual return in terms of its variance and computational congeniality. The bias can also be flexibly modulated through $n$-step returns and eligibility traces.
+Even though the 1-step return introduces bias, it is often superior to the actual return in terms of its variance and computational congeniality. The bias can also be flexibly modulated through $$n$$-step returns and eligibility traces.
 
 1-step actor-critic methods are analogs of the TD methods such as TD(0), Sarsa(0) and Q-learning. Such methods are appealing since they function in fully online and incremental manner, while avoiding the complexities of eligibility traces. In these methods, the full return of REINFORCE is replaced with the 1-step return (with a state-value function as the baseline) as follows:
 
@@ -996,7 +996,7 @@ $$
 \end{equation}
 $$
 
-where $$\mu: \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}$$ and $$\sigma : \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}^+$$ are two parameterized function approximators. Now, we just need to give a form for these approximators. To do this, we divide the policy's parameters into two parts, i.e., $$\theta = [\theta_{\mu}, \theta_{\sigma}]$$, one part will be used to approximate $\mu$ and the other to approximate $$\sigma > 0$$, the latter of which is better approximated as the exponential of a linear function. Thus
+where $$\mu: \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}$$ and $$\sigma : \mathcal{S} \times \mathbb{R}^{d'} \rightarrow \mathbb{R}^+$$ are two parameterized function approximators. Now, we just need to give a form for these approximators. To do this, we divide the policy's parameters into two parts, i.e., $$\theta = [\theta_{\mu}, \theta_{\sigma}]$$, one part will be used to approximate $$\mu$$ and the other to approximate $$\sigma > 0$$, the latter of which is better approximated as the exponential of a linear function. Thus
 
 $$
 \begin{equation}
