@@ -683,6 +683,8 @@ $$
 
 The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the range of variation of the rewards and on the policy parameterization.
 
+For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/REINFORCE.html'">see here</a>.
+
 ### Ch 13.5: Actor-Critic Methods
 
 In actor-critic methods, the state-value function is applied to the second state of the transition, unlike in REINFORCE, where the learned state-value function only estimates the value of the first state of each state transition and thus can´t be used to assess that action. After discount and adding the estimated value of the second state to the reward, it constitutes the 1-step return $$G_{t:t+1}$$, which can be used to assess the action.

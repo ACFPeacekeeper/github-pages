@@ -32,7 +32,6 @@ class PolicyParameterization(nn.Module):
 
     def forward(self, x):
         return self.policy(x)
-
 {%endhighlight %}
 
 ## Baseline State-Value Function
@@ -50,7 +49,6 @@ class Baseline(nn.Module):
 
     def forward(self, x):
         return self.baseline(x)
-
 {% endhighlight %}
 
 # REINFORCE Algorithm

@@ -33,7 +33,6 @@ class PolicyParameterization(nn.Module):
 
     def forward(self, x):
         return self.policy(x)
-
 {%endhighlight %}
 
 ## State-Value Function
