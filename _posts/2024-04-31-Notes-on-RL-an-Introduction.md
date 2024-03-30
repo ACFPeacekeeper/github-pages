@@ -499,8 +499,74 @@ Another approach to balance exploration and exploitation in $$k$$-armed bandit p
 Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $$q^{*}(a), \ \forall a \in \mathcal{A},$$ in an MDP, we estimate the value $$q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$$ or the value $$v^{*}(s), \forall s \in \mathcal{S}$$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
 
 ### Ch 3.1: The Agent-Environment Interface
+An MDP involves a learner and decision maker (i.e., the *agent*) that interacts with its surroundings (i.e., the *environment*) by continually selecting actions and having the environment respond by presenting new situations (or states) to the agent and giving rise to rewards, which the agent seeks to maximize over time. This process is illustrated in Figure 1.
 
+<figure align='center'>
+    <img alt="The agent-environment interaction in a Markov decision process." src="http://acfpeacekeeper.github.io/github-pages/images/literature/rl_mdp.png" onerror="this.src='http://localhost:4000/images/literature/rl_mdp.png';">
+	<figcaption>Figure 1: The agent-environment interaction in a MDP.</figcaption>
+</figure>
 
+The agent and environment interact with each other in a sequence of discrete time steps $$t = 0, 1, \dots, n.$$ At each time step $$t$$, the agent receives a representation of the environment's *state* $$S_t \in \mathcal{S},$$ and on that basis selects an *action* $$A_t \in \mathcal{A}(s).$$ At the next time step $$t + 1$$, the agent receives a reward $$R_{t + 1} \in \mathcal{R} \subset \mathbb{R}$$ and finds itself in another state $$s_{t+1}.$$  Then, the MDP and agent give rise to a sequence or *trajectory* like this:
+
+$$
+\begin{equation}
+S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, \dots
+\end{equation}
+$$
+
+In a *finite* MDP, the random variables $R_t$ and $S_t$ have well defined discrete probability distributions that depend only on the previous state and action, i.e., for particular values of these random variables $$s' \in \mathcal{A}, \ r \in \mathcal{R},$$ there is a probability of those values occurring at time step $$t,$$ given particular values of the previous state and action:
+
+$$
+\begin{equation}
+p(s', r \vert s, a) \doteq P(S_t = s', R_t \vert S_{t-1} = s, A_{t-1} = a), \ \forall s', s \in \mathcal{S}, \forall r \in \mathcal{R}, \forall a \in \mathcal{A}(s).
+\end{equation}
+$$
+
+The function $$p: \mathcal{S} \times \mathcal{R} \times \mathcal{S} \times \mathcal{A} \rightarrow [0,1]$$, which completely characterizes the MDP environment's *dynamics*, is an ordinary deterministic function with four arguments. This function $$p$$ specifies a probability distribution for each choice of $$s$$ and $$a$$, i.e., 
+
+$$
+\begin{equation}
+\sum_{s' \in \mathcal{S}} \sum_{r \in \mathcal{R}} p(s', r \vert s, a) = 1, \ \forall s \in \mathcal{S}, \forall a \in \mathcal{A}(s).
+\end{equation}
+$$
+
+**Markov property**: the state must include information about all aspects of the past agent-environment interaction that make a difference for the future. In practice, this means that the probability of each possible value for $$S_t$$ and $$R_t$$ depends only on the previous state $$S_{t-1}$$ and action $$A_{t-1}$$.
+	- While most methods in this book assume this property to be true, there are methods that don't rely on it. [Chapter 17](#chapter-17-frontiers) considers how to efficiently learn a Markov state from non-Markov observations.
+
+From the dynamics function $p,$ we can compute the *state-transition probabilities* $$p: \mathcal{S} \times \mathcal{S} \times \mathcal{A} \rightarrow [0,1],$$
+
+$$
+\begin{equation}
+p(s' \vert s, a) \doteq P(S_t = s' \vert S_{t-1} = s, A_{t-1} = a) = \sum_{r \in \mathcal{R}} p(s', r \vert s, a).
+\end{equation}
+$$
+
+We can also compute the expected rewards for state-action pairs as a two-argument function $$r : \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$$:
+
+$$
+\begin{equation}
+r(s, a) \doteq \mathbb{E} [R_t \vert S_{t-1} = s, A_{t-1} = a] = \sum_{r \in \mathcal{R}} r \sum_{s' \in \mathcal{S}} p(s', r \vert s, a),
+\end{equation}
+$$
+
+and the expected rewards for the state-action-new_state triples as a three-argument function $$r: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \rightarrow \mathbb{R},$$ 
+
+$$
+\begin{equation}
+r(s, a, s') \doteq \mathbb{E} [R_t \vert S_{t-1} = s, A_{t-1} = a, S_t = s'] = \sum_{r \in \mathcal{R}} r \frac{p(s', r \vert s, a)}{p(s' \vert s, a)}.
+\end{equation}
+$$
+
+The MDP framework is flexible and can be applied to problems in many different ways, e.g., time steps don't need to refer to fixed intervals of real time; they can refer to arbitrary sequential stages of decision making and acting. In general, actions can be any decision we want to learn how to make, and states can be anything we can know that might useful in making them.
+
+The boundary between agent and environment is usually drawn closer to the agent than the physical boundary of a robot or an animal's body, e.g., the motors and mechanical linkages of a robot and its sensing hardware should normally be considered parts of the environment, rather than of the agent. In a similar sense, rewards, which are usually computed inside the physical bodies of natural and artificial learning systems, are considered external to the agent. In general, anything that cannot be changed arbitrarily by the agent is considered to be outside of it and thus part of its environment.
+
+We don't assume that everything in the environment is unknown to the agent, e.g., the agent often knows quite a bit about how its rewards are computed as a function of its actions and the states in which they are taken. However, the reward computation is considered to be external to the agent, because it defines the task facing the agent and must thus be beyond its ability to arbitrarily change.
+
+The MDP framework proposes that any detail of whatever objective (of a problem of learning goal-directed behavior) one is trying to achieve can be reduced to three signal passing back and forth between an agent and its environment:
+- Action: signal that represents the choices made by the agent;
+- State: signal that represents the basis on which the choices are made;
+- Reward: signal that defines the agent's goal.
 
 ## Chapter 4: Dynamic Programming
 
