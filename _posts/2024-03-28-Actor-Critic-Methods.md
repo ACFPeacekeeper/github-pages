@@ -47,6 +47,12 @@ class StateValueFunction(nn.Module):
 ## Actor-Critic Methods
 ### Episodic One-step Actor-Critic
 {% highlight python %}
+import torch.nn as nn
+import torch.optim as optim
+import gymnasium as gym
+
+from torch.distributions import Categorical
+
 def episodic_one_step_actor_critic(
     alpha_theta: float,
 	alpha_w: float,
@@ -138,10 +144,8 @@ def episodic_one_step_actor_critic(
 
 ### Episodic Actor-Critic with Eligibility Traces
 {% highlight python %}
-import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
 import gymnasium as gym
 
 from torch.distributions import Categorical
@@ -243,10 +247,8 @@ def episodic_actor_critic_with_eligibility_traces(
 
 ### Continuing Actor-Critic with Eligibility Traces
 {% highlight python %}
-import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
 import gymnasium as gym
 
 from torch.distributions import Categorical
