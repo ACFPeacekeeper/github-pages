@@ -202,11 +202,11 @@ Besides RL, other **Machine Learning (ML)** paradigms include *Supervised Learni
 
 A challenge unique to the RL paradigm is that of the trade-off between **exploration versus exploitation**. This challenge arises due to the fact that an agent prefers to take the actions that have previously given the highest rewards (*exploitation*), but it must also try out other actions in order to have more knowledge about which actions it should select (*exploration*).
 
-A RL system has four main sub-elements beyond the interactive agent and the environment, which are:
-- A policy $$\pi_t: s \rightarrow a$$, which in stochastic cases specifies a probability for each action;
-- A reward $$r(s, a)$$, an immediate signal that specifies how good it is for an agent to have chosen a certain action in a given state (may also be stochastic);
-- A value function $$v(s)$$ that specifies the total reward an agent is expected to accumulate in the future if he starts at a given state, i.e., predicted long-term reward;
-- A (optional) model of the environment used by model-based methods (opposed to purely trial-and-error model-free methods) for planning.
+A RL system has four main elements beyond the interactive **agent** and the **environment**, which are:
+- A **policy** $$\pi_t: s \rightarrow a$$, which in stochastic cases specifies a probability for each action;
+- A **reward** $$r(s, a)$$, an immediate signal that specifies how good it is for an agent to have chosen a certain action in a given state (may also be stochastic);
+- A **value function** $$v(s)$$ that specifies the total reward an agent is expected to accumulate in the future if he starts at a given state, i.e., predicted long-term reward;
+- A (optional) **world model** used by model-based methods (opposed to purely trial-and-error model-free methods) for planning.
 
 # Part I: Tabular Solution Methods
 
@@ -495,6 +495,12 @@ W.r.t. performance (average reward) in the $$k$$-bandit problem, with $$k = 10$$
 Another approach to balance exploration and exploitation in $$k$$-armed bandit problems is the Bayesian method known as *Gittins* index. It assumes a known prior distribution over the actions values and then updates the distribution after each step (assuming that the true action values are stationary).
 
 ## Chapter 3: Finite Markov Decision Processes
+
+Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $q^{*}(a), \ \forall a \in \mathcal{A},$ in an MDP, we estimate the value $q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$ or the value $v^{*}(s), \forall s \in \mathcal{S}$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
+
+### Ch 3.1: The Agent-Environment Interface
+
+
 
 ## Chapter 4: Dynamic Programming
 
