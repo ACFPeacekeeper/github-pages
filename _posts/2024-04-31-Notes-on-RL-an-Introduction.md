@@ -721,6 +721,16 @@ q^*(s, a) &\doteq \max_{\pi} q_{\pi}(s, a), \quad \forall s \in \mathcal{S}, \fo
 \end{align}
 $$
 
+### Section 3.7: Optimality and Approximation
+
+Even if we have a complete and accurate model of the environment's dynamics, it is usually not possible to compute an optimal policy by solving the Bellman optimality equation. An important aspect of the problem is the amount of computational power available to the agent, in particular, the amount of computation it can perform in a single time step. Another important constraint is the memory available, specially since a large amount of memory is often required to build up approximations of value functions, policies, and models.
+
+*tabular case*: task with small, finite state sets, which allow one to form approximations using arrays or tables with one entry for each state (or state-action pair), i.e., tabular methods. 
+- In tasks that have state sets too large to use tabular methods, we must instead rely on approximation using compact parameterized function representations;
+- The online nature of RL makes it possible to approximate optimal policies in ways that put more effort into learning to make good decisions for frequently encountered states, at the expense of less effort for infrequently encountered states.
+
+### Section 3.8: Summary
+
 ## Chapter 4: Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
