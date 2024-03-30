@@ -5,7 +5,7 @@ date: 2024-03-28
 categories: RL ML DL
 usemathjax: true
 ---
-Here are some example implementations of the REINFORCE algorithm, to go along with my review of Sections 3 and 4 of <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods'">Chapter 13</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
+Here are some example implementations of the REINFORCE algorithm, to go along with my review of <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-133-reinforce-monte-carlo-policy-gradient" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-133-reinforce-monte-carlo-policy-gradient'">Section 13.3</a> and <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-134-reinforce-with-baseline" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-134-reinforce-with-baseline'">Section 13.4</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
 
 # Post Index
 1. [Auxiliar Classes](#auxiliar-classes)
