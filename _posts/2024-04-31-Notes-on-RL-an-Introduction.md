@@ -733,6 +733,8 @@ G_t \doteq R_{t+1} - r(\pi) + R_{t+2} - r(\pi) + R_{t+3} - r(\pi) + \dots \ .
 \end{equation}
 $$
 
+You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
+
 ### Ch 13.7: Policy Parameterization for Continuous Actions
 
 In policy-based methods, instead of computing learned probabilities for each and every action, instead we learn statistics of the probability distribution, e.g., the action set might be $$\mathbb{R}$$, with actions chosen from a normal (Gaussian) distribution.

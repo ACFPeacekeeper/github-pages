@@ -7,6 +7,15 @@ usemathjax: true
 ---
 Here are some example implementations of actor-critic methods, to go along with my review of <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-135-actor-critic-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-135-actor-critic-methods'">Section 13.5</a> and <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-136-policy-gradient-for-continuing-problems" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#ch-136-policy-gradient-for-continuing-problems'">Section 13.6</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
 
+# Post Index
+1. [Auxiliar Classes](#auxiliar-classes)
+    1. [Policy Parameterization](#policy-parameterization)
+    2. [State-Value Function](#state-value-function)
+2. [Actor-Critic Methods](#actor-critic-methods)
+    1. [Episodic One-step Actor-Critic](#episodic-one-step-actor-critic)
+    2. [Episodic Actor-Critic with Eligibility Traces](#episodic-actor-critic-with-eligibility-traces)
+    3. [Continuing Actor-Critic with Eligibility Traces](#continuing-actor-critic-with-eligibility-traces)
+
 ## Auxiliar Classes
 ### Policy Parameterization
 {% highlight python %}
