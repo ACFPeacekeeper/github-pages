@@ -235,8 +235,8 @@ def episodic_actor_critic_with_eligibility_traces(
 			I *= gamma
 			state = new_state
 
-	    # Append episode score
-	    scores.append(score)
+        # Append episode score
+        scores.append(score)
 
 	return scores, policy, state_value_func
 {% endhighlight %}
@@ -256,8 +256,8 @@ def episodic_actor_critic_with_eligibility_traces(
 	lambda_w: float,
 	alpha_theta: float,
 	alpha_w: float,
+    alpha_R: float,
 	gamma: float,
-	NUM_EPISODES: int,
 	MAX_STEPS: int,
 	gym_environment: str
 ):
@@ -265,8 +265,8 @@ def episodic_actor_critic_with_eligibility_traces(
 	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
 	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
 	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+    assert alpha_R > 0, "alpha_R must be a float value greater than 0"
 	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
-	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
 	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
 	# Initialize policy parameters
@@ -288,5 +288,54 @@ def episodic_actor_critic_with_eligibility_traces(
 	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
 
 	env = gym.make(gym_environment)
-	scores = []
+    avg_R = 0.
+    score = 0.
+    state = env.reset()
+    z_theta = 0.
+	z_w = 0.
+    for _ in range(MAX_STEPS):
+        # Get action and log probabilities
+        a_probs = policy(state)
+        prob_dist = Categorical(a_probs)
+        a = prob_dist.sample()
+        action = a.item()
+        log_probs = prob_dist.log_prob(action)
+
+        # Step with action
+        new_state, R, _, _ = env.step(action)
+
+        # Update episode score
+        score += R
+
+        # Get state value of current state
+        state_value = state_value_func(state)
+
+        # Get state value of next state
+        # If terminal state, next state value is 0
+        new_state_value = state_value_func(new_state)
+
+        # Update reward values
+        delta = R - avg_R + new_state_value - state_value
+        avg_R += alpha_R * delta
+
+        # Calculate value function loss with MSE
+        z_w = lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value)
+
+        # Calculate policy loss
+        z_theta = lambda_theta * z_theta + log_probs
+
+        # Backpropagate value
+        stateval_optimizer.zero_grad()
+        z_w.backward()
+        stateval_optimizer.step()
+
+        # Backpropagate policy
+        policy_optimizer.zero_grad()
+        z_theta.backward(retain_graph=True)
+        policy_optimizer.step()
+
+        # Move into new state
+        state = new_state
+
+	return score, policy, state_value_func
 {% endhighlight %}
