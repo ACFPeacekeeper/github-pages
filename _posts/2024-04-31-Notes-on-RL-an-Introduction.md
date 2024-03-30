@@ -652,6 +652,53 @@ $$
 
 ### Section 3.5: Policies and Value Functions
 
+**Value function**: a function of states (or state-action pairs) that estimates how good it it is for the agent to be in a given state, defined in terms of future rewards that can be expected.
+- Since the rewards the agent can expect to receive depend on what actions it takes, value functions are defined w.r.t. a particular way of acting, called a policy.
+
+**Policy**: a mapping from states to probabilities of selecting each possible action, i.e., if the agent is following policy $$\pi$$ at time $$t,$$ then $$\pi(a \vert s)$$ is the probability that $$A_t = a$$ if $$S_t = s.$$ 
+- It is a function that defines a probability distribution over $$a \in \mathcal{A}(s)$$ for each $$s \in \mathcal{S}.$$ 
+
+The *value function* of a state $s$ under a policy $$\pi,$$ denoted $$v_{\pi}(s),$$ is the expected return when starting in $$s$$ and following $$\pi$$ thereafter. For MDPs, $$v_{\pi}$$ can be formally defined as
+
+$$
+\begin{equation}
+v_{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] = \mathbb{E}_{\pi} \bigg[ \sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s \bigg], \ \forall s \in \mathcal{S},
+\end{equation}
+$$
+
+where $$\mathbb{E}_{\pi}[\cdot]$$ denotes the expected value of random variable given that the agent follows policy $$\pi,$$ and $$t$$ is any time step (the value of the terminal state is always zero). The function $$v_{\pi}$$ is called the *state-value function for policy $$\pi$$.* 
+
+We can also define the value of taking action $a$ in state $s$ while following a policy $$\pi,$$ denoted $$q_{\pi}(s, a),$$ as the expected return starting from $s,$ taking the action $$a,$$ and following policy $$\pi$$ afterwards:
+
+$$
+\begin{equation}
+q_{\pi}(s, a) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s, A_t = a] = \mathbb{E}_{\pi} \bigg[\sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s, A_t =a \bigg].
+\end{equation}
+$$
+
+The function $$q_{\pi}$$ is called the *action-value function for policy $$\pi$$*. Both $$q_{\pi}$$ and $$v_{\pi}$$ can be estimated from experience, e.g., using *Monte Carlo methods*.
+
+**Monte Carlo methods**: estimation methods that involve averaging over many random samples of a random variable.
+- For examples, if an agent follows policy $$\pi$$ and maintains an average, for each state encountered, of the actual returns that have followed that state, then the average will converge to the state's actual value $$v_{\pi}(s),$$ as the number of times that state is encountered approaches infinity.  If separate averages are kept for each action taken in each state, these averages will also converge to the action values $$q_{\pi}(s, a)$$;
+- Since keeping an average for each state and state-action pair is usually not practical, the agent can instead maintain $$v_{\pi}$$ and $$q_{\pi}$$ as parameterized functions.
+
+A fundamental property of commonly used value functions is that they satisfy recursive relationships similar to that of the return. For any policy $$\pi$$ and state $$s,$$ the following consistency condition holds between the value of $$s$$ and the value of its possible successor states:
+
+$$
+\begin{align}
+v_{\pi}(s) &\doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] \nonumber\\
+	&= \mathbb{E}_{\pi} [R_{t+1} + \gamma G_{t+1} \vert S_t = s] \nonumber\\
+	&= \sum_a \pi(a \vert s) \sum_{s'} \sum_r p(s', r \vert s, a) \bigg[r + \gamma \mathbb{E}_{\pi} [G_{t+1} \vert S_{t+1} = s']\bigg] \nonumber\\
+	&= \sum_a \pi(a \vert s) \sum_{s', r} p(s', r \vert s, a) [r + \gamma v_{\pi}(s')], \quad \forall s \in \mathcal{S},
+\end{align}
+$$
+
+where it is implicit that the actions $$a$$ are taken from the set $$\mathcal{A},$$ that the next state $s'$ are taken from the set $$\mathcal{S}$$ (or from $$\mathcal{S}^+$$ in the case of an episodic problem), and that the rewards $$r$$ are taken from the set $$\mathcal{R}.$$ The final expression, which is a sum over all values of the three variables $$a$$, $$s'$$, and $$r$$, can be read as an expected value. For each triple, we compute its probability $$\pi(a \vert s) p(s', r \vert s, a),$$ weight the quantity in brackets by that probability and then sum over all possibilities to get an expected value.
+
+The last equation, called the *Bellman equation for $$v_{\pi}$$,* expresses a relationship between the value of a state and the values of its successor states (similar to a look-ahead).  The Bellman equation averages over all the possibilities, weighting each by its probability of occurring, and it states that the value of the start state must equal the discounted value of the expected next state, plus the reward expected along the way. The value function $$v_{\pi}$$ is the unique solution to this equation.
+
+### Section 3.6: Optimal Policies and Optimal Value Functions
+
 
 
 ## Chapter 4: Dynamic Programming
