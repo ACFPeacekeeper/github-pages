@@ -16,8 +16,8 @@ Here are some example implementations of actor-critic methods, to go along with 
     2. [Episodic Actor-Critic with Eligibility Traces](#episodic-actor-critic-with-eligibility-traces)
     3. [Continuing Actor-Critic with Eligibility Traces](#continuing-actor-critic-with-eligibility-traces)
 
-## Auxiliar Classes
-### Policy Parameterization
+# Auxiliar Classes
+## Policy Parameterization
 {% highlight python %}
 import torch.nn as nn
 
@@ -36,7 +36,7 @@ class PolicyParameterization(nn.Module):
 
 {%endhighlight %}
 
-### State-Value Function
+## State-Value Function
 {% highlight python %}
 import torch.nn as nn
 
@@ -53,8 +53,8 @@ class StateValueFunction(nn.Module):
         return self.stateval_func(x)
 {% endhighlight %}
 
-## Actor-Critic Methods
-### Episodic One-step Actor-Critic
+# Actor-Critic Methods
+## Episodic One-step Actor-Critic
 {% highlight python %}
 import torch.nn as nn
 import torch.optim as optim
@@ -151,7 +151,7 @@ def episodic_one_step_actor_critic(
     return scores, policy, state_value_func
 {% endhighlight %}
 
-### Episodic Actor-Critic with Eligibility Traces
+## Episodic Actor-Critic with Eligibility Traces
 {% highlight python %}
 import torch.nn as nn
 import torch.optim as optim
@@ -254,7 +254,7 @@ def episodic_actor_critic_with_eligibility_traces(
     return scores, policy, state_value_func
 {% endhighlight %}
 
-### Continuing Actor-Critic with Eligibility Traces
+## Continuing Actor-Critic with Eligibility Traces
 {% highlight python %}
 import torch.nn as nn
 import torch.optim as optim
