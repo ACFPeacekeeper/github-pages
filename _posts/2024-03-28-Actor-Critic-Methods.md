@@ -8,13 +8,13 @@ usemathjax: true
 Here are some example implementations of actor-critic methods, to go along with <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/Notes-on-RL-an-Introduction.html#chapter-13-policy-gradient-methods'">my review of Chapter 13</a> of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
 
 ## Auxiliar Classes
-### Policy
+### Policy Parameterization
 {% highlight python %}
 import torch.nn as nn
 
-class Policy(nn.Module):
+class PolicyParameterization(nn.Module):
     def __init__(self, dim_observations, dim_actions):
-        super(Policy, self).__init__()
+        super(PolicyParameterization, self).__init__()
         self.policy = nn.Sequential(
             nn.Linear(dim_observations, 128),
             nn.ReLU(),
@@ -68,7 +68,7 @@ def episodic_one_step_actor_critic(
     assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
     # Initialize policy parameters
-    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    policy = PolicyParameterization(env.observation_space.shape[0], env.action_space.n)
     for module in policy.modules():
         if isinstance(module, nn.Linear):
             nn.init.xavier_uniform(module.weight)
@@ -169,7 +169,7 @@ def episodic_actor_critic_with_eligibility_traces(
     assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
     # Initialize policy parameters
-    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    policy = PolicyParameterization(env.observation_space.shape[0], env.action_space.n)
     for module in policy.modules():
         if isinstance(module, nn.Linear):
             nn.init.xavier_uniform(module.weight)
@@ -272,7 +272,7 @@ def episodic_actor_critic_with_eligibility_traces(
     assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
     # Initialize policy parameters
-    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    policy = PolicyParameterization(env.observation_space.shape[0], env.action_space.n)
     for module in policy.modules():
         if isinstance(module, nn.Linear):
             nn.init.xavier_uniform(module.weight)
