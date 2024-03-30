@@ -579,6 +579,22 @@ scalar signal (called reward).
 
 In order for the agent to achieve our goals, it is critical that the reward signals defined truly indicate what we want accomplished. Of particular importance, one must not use the reward signal to impart prior knowledge to the agent. Using chess as an example, we should naturally define the reward as $$+1$$ for winning, $$-1$$ for losing and $$0$$ for draws and all non-terminal positions. We should **NOT** give rewards for sub-goals like taking an opponent's chess piece, otherwise the agent might find a way to maximize its reward, even at the cost of losing the game. The reward signal defines **what** you want the agent to achieve, not *how* you want the agent to achieve it.
 
+### Ch 3.3: Returns and Episodes
+
+We seek to maximize the *expected return*, where the return $$G_t$$ is defined as some specific function of the reward sequence. In the simplest case the return is the sum of the rewards:
+
+$$
+\begin{equation}
+G_t \doteq R_{t+1} + R_{t+2} + R_{t+3} + \dots + R_T,
+\end{equation}
+$$
+
+where $$T$$ is a final time step. This approach makes sense in applications where the agent-environment interaction can be naturally broken down into sub-sequences, called **episodes,** like the plays of a game or trips to a maze. Each episode ends in a special state, called the *terminal* state, and the resets to a starting state or a sample from standard distribution of starting states. Since the next episode begins independently of how the previous one ended, episodes can all be considered to end in the same terminal state, just with different rewards for different outcomes.
+
+**Episodic task**: tasks that have independent episodes, i.e., where the outcome of the ending of an episode doesn't effect the start state of the next episode.
+- We sometimes distinguish the set of all non-terminal states $$\mathcal{S}$$ from the set of all states plus the terminal state $$\mathcal{S}^+$$;
+- The time of termination $$T$$ is a random variable that can vary from episode to episode.
+
 ## Chapter 4: Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
@@ -802,7 +818,7 @@ J(\theta) \doteq r(\pi) &\doteq \lim_{h \rightarrow \infty} \frac{1}{h} \sum_{t 
 $$
 
 where $$\mu$$ is the steady-state distribution under $$\pi$$, $$\mu(s) \doteq \lim_{t \rightarrow \infty} P(S_t = s \vert A_{0:t} \sim \pi)$$,
-which is assumed to exist and - due to the ergodicity assumption - to be independent of $$S_0$$. This is a special distribution under where, if you select actions according to $$\pi$$, you remain in the same distribution, as follows:
+which is assumed to exist and - due to the ergodicity assumption - to be independent of $$S_0.$$ This is a special distribution under where, if you select actions according to $$\pi$$, you remain in the same distribution, as follows:
 
 $$
 \begin{equation}
