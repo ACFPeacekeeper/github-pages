@@ -22,12 +22,12 @@ Here are some example implementations of actor-critic methods, to go along with 
 import torch.nn as nn
 
 class PolicyParameterization(nn.Module):
-    def __init__(self, dim_observations, dim_actions):
+    def __init__(self, dim_observations, dim_actions, hidden_dim=128):
         super(PolicyParameterization, self).__init__()
         self.policy = nn.Sequential(
-            nn.Linear(dim_observations, 128),
+            nn.Linear(dim_observations, hidden_dim),
             nn.ReLU(),
-            nn.Linear(128, dim_actions),
+            nn.Linear(hidden_dim, dim_actions),
             nn.Softmax(dim=1)
         )
 
@@ -41,12 +41,12 @@ class PolicyParameterization(nn.Module):
 import torch.nn as nn
 
 class StateValueFunction(nn.Module):
-    def __init__(self, dim_observations):
+    def __init__(self, dim_observations, hidden_dim=128):
         super(StateValueFunction, self).__init__()
         self.stateval_func = nn.Sequential(
-            nn.Linear(dim_observations, 128),
+            nn.Linear(dim_observations, hidden_dim),
             nn.ReLU(),
-            nn.Linear(128, 1)
+            nn.Linear(hidden_dim, 1)
         )
 
     def forward(self, x):
