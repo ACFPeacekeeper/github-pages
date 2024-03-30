@@ -496,7 +496,7 @@ Another approach to balance exploration and exploitation in $$k$$-armed bandit p
 
 ## Chapter 3: Finite Markov Decision Processes
 
-Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $q^{*}(a), \ \forall a \in \mathcal{A},$ in an MDP, we estimate the value $q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$ or the value $v^{*}(s), \forall s \in \mathcal{S}$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
+Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $$q^{*}(a), \ \forall a \in \mathcal{A},$$ in an MDP, we estimate the value $$q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$$ or the value $$v^{*}(s), \forall s \in \mathcal{S}$$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
 
 ### Ch 3.1: The Agent-Environment Interface
 
