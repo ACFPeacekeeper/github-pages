@@ -246,7 +246,7 @@ Since we do not know the true value of each action, we need to estimate them in 
 
 Def. **Action-value Methods**: methods used to estimate the values of actions and to use those estimates to select an action to take at a given time step.
 
-Letting $$\mathbb{1}_{predicate}$$ be the random variable which equals 1 if the $predicate$ is true and 0 otherwise, the value of an action can be estimated by averaging the rewards received: <!-- TODO: check if equations inside text inside equations need double $ signs-->
+Letting $$\mathbb{1}_{predicate}$$ be the random variable which equals $$1$$ if the $$predicate$$ is true and $$0$$ otherwise, the value of an action can be estimated by averaging the rewards received: <!-- TODO: check if equations inside text inside equations need double $ signs-->
 
 $$
 \begin{equation}
@@ -518,7 +518,7 @@ S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, \dots
 \end{equation}
 $$
 
-In a *finite* MDP, the random variables $R_t$ and $S_t$ have well defined discrete probability distributions that depend only on the previous state and action, i.e., for particular values of these random variables $$s' \in \mathcal{A}, \ r \in \mathcal{R},$$ there is a probability of those values occurring at time step $$t,$$ given particular values of the previous state and action:
+In a *finite* MDP, the random variables $$R_t$$ and $$S_t$$ have well defined discrete probability distributions that depend only on the previous state and action, i.e., for particular values of these random variables $$s' \in \mathcal{A}, \ r \in \mathcal{R},$$ there is a probability of those values occurring at time step $$t,$$ given particular values of the previous state and action:
 
 $$
 \begin{equation}
@@ -537,7 +537,7 @@ $$
 **Markov property**: the state must include information about all aspects of the past agent-environment interaction that make a difference for the future. In practice, this means that the probability of each possible value for $$S_t$$ and $$R_t$$ depends only on the previous state $$S_{t-1}$$ and action $$A_{t-1}$$.
 	- While most methods in this book assume this property to be true, there are methods that don't rely on it. [Chapter 17](#chapter-17-frontiers) considers how to efficiently learn a Markov state from non-Markov observations.
 
-From the dynamics function $p,$ we can compute the *state-transition probabilities* $$p: \mathcal{S} \times \mathcal{S} \times \mathcal{A} \rightarrow [0,1],$$
+From the dynamics function $$p,$$ we can compute the *state-transition probabilities* $$p: \mathcal{S} \times \mathcal{S} \times \mathcal{A} \rightarrow [0,1],$$
 
 $$
 \begin{equation}
@@ -726,8 +726,9 @@ $$
 Even if we have a complete and accurate model of the environment's dynamics, it is usually not possible to compute an optimal policy by solving the Bellman optimality equation. An important aspect of the problem is the amount of computational power available to the agent, in particular, the amount of computation it can perform in a single time step. Another important constraint is the memory available, specially since a large amount of memory is often required to build up approximations of value functions, policies, and models.
 
 *tabular case*: task with small, finite state sets, which allow one to form approximations using arrays or tables with one entry for each state (or state-action pair), i.e., tabular methods. 
-- In tasks that have state sets too large to use tabular methods, we must instead rely on approximation using compact parameterized function representations;
-- The online nature of RL makes it possible to approximate optimal policies in ways that put more effort into learning to make good decisions for frequently encountered states, at the expense of less effort for infrequently encountered states.
+- In tasks that have state sets too large to use tabular methods, we must instead rely on approximation using compact parameterized function representations.
+
+The online nature of RL makes it possible to approximate optimal policies in ways that put more effort into learning to make good decisions for frequently encountered states, at the expense of less effort for infrequently encountered states.
 
 ### Section 3.8: Summary
 
