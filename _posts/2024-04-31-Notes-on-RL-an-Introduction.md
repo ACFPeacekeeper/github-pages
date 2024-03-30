@@ -568,6 +568,17 @@ The MDP framework proposes that any detail of whatever objective (of a problem o
 - State: signal that represents the basis on which the choices are made;
 - Reward: signal that defines the agent's goal.
 
+### Ch 3.2: Goals and Rewards
+
+In RL, the purpose of the agent is formalized in terms of a simple number, the *reward* (at each time step $$R_t \in \mathbb{R}$$), which passes from the environment to the agent. The agent's goal is to maximize the total cumulative reward, something stated in the *reward hypothesis*:
+```
+That all of what we mean by goals and purposes can be well thought of as
+the maximization of the expected value of the cumulative sum of a received
+scalar signal (called reward).
+```
+
+In order for the agent to achieve our goals, it is critical that the reward signals defined truly indicate what we want accomplished. Of particular importance, one must not use the reward signal to impart prior knowledge to the agent. Using chess as an example, we should naturally define the reward as $$+1$$ for winning, $$-1$$ for losing and $$0$$ for draws and all non-terminal positions. We should **NOT** give rewards for sub-goals like taking an opponent's chess piece, otherwise the agent might find a way to maximize its reward, even at the cost of losing the game. The reward signal defines **what** you want the agent to achieve, not *how* you want the agent to achieve it.
+
 ## Chapter 4: Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
