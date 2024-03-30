@@ -14,185 +14,187 @@ Here are some notes I took when reading the second edition of the <a href="http:
 If you want to get into Reinforcement Learning, or are just interested in Artificial Intelligence in general, I highly recommend that you read this book!\\
 It does require some mathematical background to read and understand everything (mostly Linear Algebra, Probabilities, Statistics, and some Calculus), but it is overall one of the best - and most exhaustive - introductory books about Reinforcement Learning out there.
 # Chapter Index
-1. [Introduction](#chapter-1-introduction)
-2. [Multi-armed Bandits](#chapter-2-multi-armed-bandits)
-	1. [A k-armed Bandit Problem](#ch-21-a--armed-bandit-problem)
-	2. [Action-value Methods](#ch-22-action-value-methods)
-	3. [The 10-armed Test-bed](#ch-23-the-10-armed-test-bed)
-	4. [Incremental Implementation](#ch-24-incremental-implementation)
-	5. [Tracking a Non-stationary Problem](#ch-25-tracking-a-non-stationary-problem)
-	6. [Optimistic Initial Values](#ch-26-optimistic-initial-values)
-	7. [Upper-Confidence-Bound Action Selection](#ch-27-upper-confidence-bound-action-selection)
-	8. [Gradient Bandit Algorithms](#ch-28-gradient-bandit-algorithms)
-	9. [Associative Search (Contextual Bandits)](#ch-29-associative-search-contextual-bandits)
-	10. [Summary](#ch-210-summary)
-3. [Finite Markov Decision Processes](#chapter-3-finite-markov-decision-processes)
-	1. [The Agent-Environment Interface](#ch-31-the-agent-environment-interface)
-	2. [Goals and Rewards](#ch-32-goals-and-rewards)
-	3. [Returns and Episodes](#ch-33-returns-and-episodes)
-	4. [Unified Notation for Episodic and Continuing Tasks](#ch-34-unified-notation-for-episodic-and-continuing-tasks)
-	5. [Policies and Value Functions](#ch-35-policies-and-value-functions)
-	6. [Optimal Policies and Optimal Value Functions](#ch-36-optimal-policies-and-optimal-value-functions)
-	7. [Optimality and Approximation](#ch-37-optimality-and-approximation)
-	8. [Summary](#ch-38-summary)
-4. [Dynamic Programming](#chapter-4-dynamic-programming)
-	1. [Policy Evaluation (Prediction)](#ch-41-policy-evaluation-prediction)
-	2. [Policy Improvement](#ch-42-policy-improvement)
-	3. [Policy Iteration](#ch-43-policy-iteration)
-	4. [Value Iteration](#ch-44-value-iteration)
-	5. [Asynchronous Dynamic Programming](#ch-45-asynchronous-dynamic-programming)
-	6. [Generalized Policy Iteration](#ch-46-generalized-policy-iteration)
-	7. [Efficiency of Dynamic Programming](#ch-47-efficiency-of-dynamic-programming)
-	8. [Summary](#ch-48-summary)
-5. [Monte Carlo Methods](#chapter-5-monte-carlo-methods)
-	1. [Monte Carlo Prediction](#ch-51-monte-carlo-prediction)
-	2. [Monte Carlo Estimation of Action Values](#ch-52-monte-carlo-estimation-of-action-values)
-	3. [Monte Carlo Control](#ch-53-monte-carlo-control)
-	4. [Monte Carlo Control without Exploring Starts](#ch-54-monte-carlo-control-without-exploring-starts)
-	5. [Off-policy Prediction via Importance Sampling](#ch-55-off-policy-prediction-via-importance-sampling)
-	6. [Incremental Implementation](#ch-56-incremental-implementation)
-	7. [Off-policy Monte Carlo Control](#ch-57-off-policy-monte-carlo-control)
-	8. [*Discounting-aware Importance Sampling](#ch-58-discounting-aware-importance-sampling)
-	9. [*Per-decision Importance Sampling](#ch-59-per-decision-importance-sampling)
-	10. [Summary](#ch-510-summary)
-6. [Temporal-Difference Learning](#chapter-6-temporal-difference-learning)
-	1. [TD Prediction](#ch-61-td-prediction)
-	2. [Advantages of TD Prediction Methods](#ch-62-advantages-of-td-prediction-methods)
-	3. [Optimality of TD(0)](#ch-63-optimality-of-td0)
-	4. [Sarsa: On-policy TD Control](#ch-64-sarsa-on-policy-td-control)
-	5. [Q-learning: Off-policy TD Control](#ch-65-q-learning-off-policy-td-control)
-	6. [Expected Sarsa](#ch-66-expected-sarsa)
-	7. [Maximization Bias and Double Learning](#ch-67-maximization-bias-and-double-learning)
-	8. [Games, Afterstates, and Other Special Cases](#ch-68-games-afterstates-and-other-special-cases)
-	9. [Summary](#ch-69-summary)
-7. [n-step Bootstrapping](#chapter-7--step-bootstrapping)
-	1. [n-step TD Prediction](#ch-71--step-td-prediction)
-	2. [n-step Sarsa](#ch-72--step-sarsa)
-	3. [n-step Off-policy Learning](#ch-73--step-off-policy-learning)
-	4. [*Per-decision Methods with Control Variates](#ch-74-per-decision-methods-with-control-variates)
-	5. [Off-policy Learning Without Importance Sampling: The $n$-step Tree Backup Algorithm](#ch-75-off-policy-learning-without-importance-sampling-the--step-tree-backup-algorithm)
-	6. [*A Unifying Algorithm: n-step Q(sigma)](#ch-76-a-unifying-algorithm--step)
-	7. [Summary](#ch-77-summary)
-8. [Planning and Learning with Tabular Methods](#chapter-8-planning-and-learning-with-tabula-methods)
-	1. [Models and Planning](#ch-81-models-and-planning)
-	2. [Dyna: Integrated Planning, Acting, and Learning](#ch-82-dyna-integrated-planning-acting-and-learning)
-	3. [When the Model Is Wrong](#ch-83-when-the-model-is-wrong)
-	4. [Prioritized Sweeping](#ch-84-prioritized-sweeping)
-	5. [Expected vs. Sample Updates](#ch-85-expected-vs-sample-updates)
-	6. [Trajectory Sampling](#ch-86-trajectory-sampling)
-	7. [Real-Time Dynamic Programming](#ch-87-real-time-dynamic-programming)
-	8. [Planning at Decision Time](#ch-88-planning-at-decision-time)
-	9. [Heuristic Search](#ch-89-heuristic-search)
-	10. [Rollout Algorithms](#ch-810-rollout-algorithms)
-	11. [Monte Carlo Tree Search](#ch-811-monte-carlo-tree-search)
-	12. [Summary of the Chapter](#ch-812-summary-of-the-chapter)
-	13. [Summary of Part I: Dimensions](#ch-813-summary-of-part-i-dimensions)
-9. [On-policy Prediction with Approximation](#chapter-9-on-policy-prediction-with-approximation)
-	1. [Value-function Approximation](#ch-91-value-function-approximation)
-	2. [The Prediction Objective (VE)](#ch-92-the-prediction-objective)
-	3. [Stochastic-gradient and Semi-gradient Methods](#ch-93-stochastic-gradient-and-semi-gradient-methods)
-	4. [Linear Methods](#ch-94-linear-methods)
-	5. [Feature Construction for Linear Methods](#ch-95-feature-construction-for-linear-methods)
-		1. [Polynomials](#ch-951-polynomials)
-		2. [Fourier Basis](#ch-952-fourier-basis)
-		3. [Coarse Coding](#ch-953-coarse-coding)
-		4. [Tile Coding](#ch-954-tile-coding)
-		5. [Radial Basis Functions](#ch-955-radial-basis-functions)
-	6. [Selecting Step-Size Parameters Manually](#ch-96-selecting-step-size-parameters-manually)
-	7. [Non-linear Function Approximation: Artificial Neural Networks](#ch-97-non-linear-function-approximation-artificial-neural-networks)
-	8. [Least-Squares TD](#ch-98-least-squares-td)
-	9. [Memory-based Function Approximation](#ch-99-memory-based-function-approximation)
-	10. [Kernel-based Function Approximation](#ch-910-kernel-based-function-approximation)
-	11. [Looking Deeper at On-policy Learning: Interests and Emphasis](#ch-911-looking-deeper-at-on-policy-learning-interests-and-emphasis)
-	12. [Summary](#ch-912-summary)
-10. [On-policy Control with Approximation](#chapter-10-on-policy-control-with-approximation)
-	1. [Episodic Semi-gradient Control](#ch-101-episodic-semi-gradient-control)
-	2. [Semi-gradient $n$-step Sarsa](#ch-102-semi-gradient--step-sarsa)
-	3. [Average Reward: A New Problem Setting for Continuing Tasks](#ch-103-average-reward-a-new-problem-setting-for-continuing-tasks)
-	4. [Deprecating the Discounted Setting](#ch-104-deprecating-the-discounted-setting)
-	5. [Differential Semi-gradient n-step Sarsa](#ch-105-differential-semi-gradient--step-sarsa)
-	6. [Summary](#ch-106-summary)
-11. [*Off-policy Methods with Approximation](#chapter-11-off-policy-methods-with-approximation)
-	1. [Semi-gradient Methods](#ch-111-semi-gradient-methods)
-	2. [Examples of Off-policy Divergence](#ch-112-examples-of-off-policy-divergence)
-	3. [The Deadly Triad](#ch-113-the-deadly-triad)
-	4. [Linear Value-function Geometry](#ch-114-linear-value-function-geometry)
-	5. [Gradient Descent in the Bellman Error](#ch-115-gradient-descent-in-the-bellman-error)
-	6. [The Bellman Error is Not Learnable](#ch-116-the-bellman-error-is-not-learnable)
-	7. [Gradient-TD Methods](#ch-117-gradient-td-methods)
-	8. [Emphatic-TD Methods](#ch-118-emphatic-td-methods)
-	9. [Reducing Variance](#ch-119-reducing-variance)
-	10. [Summary](#ch-1110-summary)
-12. [Eligibility Traces](#chapter-12-eligibility-traces)
-	1. [The lambda-return](#ch-121-the--return)
-	2. [TD(lambda)](#ch-122-td)
-	3. [n-step Truncated lambda-return Methods](#ch-123--step-truncated--return-methods)
-	4. [Redoing Updates: Online lambda-return Algorithm](#ch-124-redoing-updates-online--return-algorithm)
-	5. [True Online TD(lambda)](#ch-125-true-online-td)
-	6. [*Dutch Traces in Monte Carlo Learning](#ch-126-dutch-traces-in-monte-carlo-learning)
-	7. [Sarsa(lambda)](#ch-127-sarsa)
-	8. [Variable lambda and gamma](#ch-128-variable-and)
-	9. [Off-policy Traces with Control Variates](#ch-129-off-policy-traces-with-control-variates)
-	10. [Watkin's Q(lambda) to Tree-Backup(lambda)](#ch-1210-watkins-q-to-tree-backup)
-	11. [Stable Off-policy Methods with Traces](#ch-1211-stable-off-policy-methods-with-traces)
-	12. [Implementation Issues](#ch-1212-implementation-issues)
-	13. [Conclusions](#ch-1213-conclusions)
-13. [Policy Gradient Methods](#chapter-13-policy-gradient-methods)
-	1. [Policy Approximation and its Advantages](#ch-131-policy-approximation-and-its-advantages)
-	2. [The Policy Gradient Theorem](#ch-132-the-policy-gradient-theorem)
-	3. [REINFORCE: Monte Carlo Policy Gradient](#ch-133-reinforce-monte-carlo-policy-gradient)
-	4. [REINFORCE with Baseline](#ch-134-reinforce-with-baseline)
-	5. [Actor-Critic Methods](#ch-135-actor-critic-methods)
-	6. [Policy Gradient for Continuing Problems](#ch-136-policy-gradient-for-continuing-problems)
-	7. [Policy Parameterization for Continuous Actions](#ch-137-policy-parameterization-for-continuous-actions)
-	8. [Summary](#ch-138-summary)
-14. [Psychology](#chapter-14-psychology)
-	1. [Prediction and Control](#ch-141-prediction-and-control)
-	2. [Classical Conditioning](#ch-142-classical-conditioning)
-		1. [Blocking and Higher-order Conditioning](#ch-1421-blocking-and-higher-order-conditioning)
-		2. [The Rescorla-Wagner Model](#ch-1422-the-rescorla-wagner-model)
-		3. [The TD Model](#ch-1423-the-td-model)
-		4. [TD Model Simulations](#ch-1424-td-model-simulations)
-	3. [Instrumental Conditioning](#ch-143-instrumental-conditioning)
-	4. [Delayed Reinforcement](#ch-144-delayed-reinforcement)
-	5. [Cognitive Maps](#ch-145-cognitive-maps)
-	6. [Habitual and Goal-directed Behavior](#ch-146-habitual-and-goal-directed-behavior)
-	7. [Summary](#ch-147-summary)
-15. [Neuroscience](#chapter-15-neuroscience)
-	1. [Neuroscience Basics](#ch-151-neuroscience-basics)
-	2. [Reward Signals, Reinforcement Signals, Values, and Prediction Errors](#ch-152-reward-signals-reinforcement-signals-values-and-prediction-errors)
-	3. [The Reward Prediction Error Hypothesis](#ch-153-the-reward-prediction-error-hypothesis)
-	4. [Dopamine](#ch-154-dopamine)
-	5. [Experimental Support for the Reward Prediction Error Hypothesis](#ch-155-experimental-support-for-the-reward-prediction-error-hypothesis)
-	6. [TD Error/Dopamine Correspondence](#ch-156-td-errordopamine-correspondence)
-	7. [Neural Actor–Critic](#ch-157-neural-actor–critic)
-	8. [Actor and Critic Learning Rules](#ch-158-actor-and-critic-learning-rules)
-	9. [Hedonistic Neurons](#ch-159-hedonistic-neurons)
-	10. [Collective Reinforcement Learning](#ch-1510-collective-reinforcement-learning)
-	11. [Model-based Methods in the Brain](#ch-1511-model-based-methods-in-the-brain)
-	12. [Addiction](#ch-1512-addiction)
-	13. [Summary](#ch-1513-summary)
-16. [Applications and Case Studies](#chapter-16-applications-and-case-studies)
-	1. [TD-Gammon](#ch-161-td-gammon)
-	2. [Samuel's Checkers Player](#ch-162-samuels-checkers-player)
-	3. [Watson's Daily-Double Wagering](#ch-163-watsons-daily-double-wagering)
-	4. [Optimizing Memory Control](#ch-164-optimizing-memory-control)
-	5. [Human-level Video Game Play](#ch-165-human-level-video-game-play)
-	6. [Mastering the Game of Go](#ch-166-mastering-the-game-of-go)
-		1. [AlphaGo](#ch-1661-alphago)
-		2. [AlphaGo Zero](#ch-1662-alphago-zero)
-	7. [Personalized Web Services](#ch-167-personalized-web-services)
-	8. [Thermal Soaring](#ch-168-thermal-soaring)
-17. [Frontiers](#chapter-17-frontiers)
-	1. [General Value Functions and Auxiliary Tasks](#ch-171-general-value-functions-and-auxiliary-tasks)
-	2. [Temporal Abstraction via Options](#ch-172-temporal-abstraction-via-options)
-	3. [Observations and State](#ch-173-observations-and-state)
-	4. [Designing Reward Signals](#ch-174-designing-reward-signals)
-	5. [Remaining Issues](#ch-175-remaining-issues)
-	6. [Reinforcement Learning and the Future of Artificial Intelligence](#ch-176-reinforcement-learning-and-the-future-of-artificial-intelligence)
+1. [Chapter 1: Introduction](#chapter-1-introduction)
+2. [Part I: Tabular Solution Methods](#part-i-tabular-solution-methods)
+	1. [Chapter 2: Multi-armed Bandits](#chapter-2-multi-armed-bandits)
+		1. [Section 2.1: A k-armed Bandit Problem](#section-21-a--armed-bandit-problem)
+		2. [Section 2.2: Action-value Methods](#section-22-action-value-methods)
+		3. [Section 2.3: The 10-armed Test-bed](#section-23-the-10-armed-test-bed)
+		4. [Section 2.4: Incremental Implementation](#section-24-incremental-implementation)
+		5. [Section 2.5: Tracking a Non-stationary Problem](#section-25-tracking-a-non-stationary-problem)
+		6. [Section 2.6: Optimistic Initial Values](#section-26-optimistic-initial-values)
+		7. [Section 2.7: Upper-Confidence-Bound Action Selection](#section-27-upper-confidence-bound-action-selection)
+		8. [Section 2.8: Gradient Bandit Algorithms](#section-28-gradient-bandit-algorithms)
+		9. [Section 2.9: Associative Search (Contextual Bandits)](#section-29-associative-search-contextual-bandits)
+		10. [Section 2.10: Summary](#section-210-summary)
+	2. [Chapter 3: Finite Markov Decision Processes](#chapter-3-finite-markov-decision-processes)
+		1. [Section 3.1: The Agent-Environment Interface](#section-31-the-agent-environment-interface)
+		2. [Section 3.2: Goals and Rewards](#section-32-goals-and-rewards)
+		3. [Section 3.3: Returns and Episodes](#section-33-returns-and-episodes)
+		4. [Section 3.4: Unified Notation for Episodic and Continuing Tasks](#section-34-unified-notation-for-episodic-and-continuing-tasks)
+		5. [Section 3.5: Policies and Value Functions](#section-35-policies-and-value-functions)
+		6. [Section 3.6: Optimal Policies and Optimal Value Functions](#section-36-optimal-policies-and-optimal-value-functions)
+		7. [Section 3.7: Optimality and Approximation](#section-37-optimality-and-approximation)
+		8. [Section 3.8: Summary](#section-38-summary)
+	3. [Chapter 4: Dynamic Programming](#chapter-4-dynamic-programming)
+		1. [Section 4.1: Policy Evaluation (Prediction)](#section-41-policy-evaluation-prediction)
+		2. [Section 4.2: Policy Improvement](#section-42-policy-improvement)
+		3. [Section 4.3: Policy Iteration](#section-43-policy-iteration)
+		4. [Section 4.4: Value Iteration](#section-44-value-iteration)
+		5. [Section 4.5: Asynchronous Dynamic Programming](#section-45-asynchronous-dynamic-programming)
+		6. [Section 4.6: Generalized Policy Iteration](#section-46-generalized-policy-iteration)
+		7. [Section 4.7: Efficiency of Dynamic Programming](#section-47-efficiency-of-dynamic-programming)
+		8. [Section 4.8: Summary](#section-48-summary)
+	4. [Chapter 5: Monte Carlo Methods](#chapter-5-monte-carlo-methods)
+		1. [Section 5.1: Monte Carlo Prediction](#section-51-monte-carlo-prediction)
+		2. [Section 5.2: Monte Carlo Estimation of Action Values](#section-52-monte-carlo-estimation-of-action-values)
+		3. [Section 5.3: Monte Carlo Control](#section-53-monte-carlo-control)
+		4. [Section 5.4: Monte Carlo Control without Exploring Starts](#section-54-monte-carlo-control-without-exploring-starts)
+		5. [Section 5.5: Off-policy Prediction via Importance Sampling](#section-55-off-policy-prediction-via-importance-sampling)
+		6. [Section 5.6: Incremental Implementation](#section-56-incremental-implementation)
+		7. [Section 5.7: Off-policy Monte Carlo Control](#section-57-off-policy-monte-carlo-control)
+		8. [Section 5.8: *Discounting-aware Importance Sampling](#section-58-discounting-aware-importance-sampling)
+		9. [Section 5.9: *Per-decision Importance Sampling](#section-59-per-decision-importance-sampling)
+		10. [Section 5.10: Summary](#section-510-summary)
+	5. [Chapter  6: Temporal-Difference Learning](#chapter-6-temporal-difference-learning)
+		1. [Section 6.1: TD Prediction](#section-61-td-prediction)
+		2. [Section 6.2: Advantages of TD Prediction Methods](#section-62-advantages-of-td-prediction-methods)
+		3. [Section 6.3: Optimality of TD(0)](#section-63-optimality-of-td0)
+		4. [Section 6.4: Sarsa: On-policy TD Control](#section-64-sarsa-on-policy-td-control)
+		5. [Section 6.5: Q-learning: Off-policy TD Control](#section-65-q-learning-off-policy-td-control)
+		6. [Section 6.6: Expected Sarsa](#section-66-expected-sarsa)
+		7. [Section 6.7: Maximization Bias and Double Learning](#section-67-maximization-bias-and-double-learning)
+		8. [Section 6.8: Games, Afterstates, and Other Special Cases](#section-68-games-afterstates-and-other-special-cases)
+		9. [Section 6.9: Summary](#section-69-summary)
+	6. [Chapter 7: n-step Bootstrapping](#chapter-7--step-bootstrapping)
+		1. [Section 7.1: n-step TD Prediction](#section-71--step-td-prediction)
+		2. [Section 7.2: n-step Sarsa](#section-72--step-sarsa)
+		3. [Section 7.3: n-step Off-policy Learning](#section-73--step-off-policy-learning)
+		4. [Section 7.4: *Per-decision Methods with Control Variates](#section-74-per-decision-methods-with-control-variates)
+		5. [Section 7.5: Off-policy Learning Without Importance Sampling: The n-step Tree Backup Algorithm](#section-75-off-policy-learning-without-importance-sampling-the--step-tree-backup-algorithm)
+		6. [Section 7.6: *A Unifying Algorithm: n-step Q(sigma)](#section-76-a-unifying-algorithm--step)
+		7. [Section 7.7: Summary](#section-77-summary)
+	7. [Chapter 8: Planning and Learning with Tabular Methods](#chapter-8-planning-and-learning-with-tabula-methods)
+		1. [Section 8.1: Models and Planning](#section-81-models-and-planning)
+		2. [Section 8.2: Dyna: Integrated Planning, Acting, and Learning](#section-82-dyna-integrated-planning-acting-and-learning)
+		3. [Section 8.3: When the Model Is Wrong](#section-83-when-the-model-is-wrong)
+		4. [Section 8.4: Prioritized Sweeping](#section-84-prioritized-sweeping)
+		5. [Section 8.5: Expected vs. Sample Updates](#section-85-expected-vs-sample-updates)
+		6. [Section 8.6: Trajectory Sampling](#section-86-trajectory-sampling)
+		7. [Section 8.7: Real-Time Dynamic Programming](#section-87-real-time-dynamic-programming)
+		8. [Section 8.8: Planning at Decision Time](#section-88-planning-at-decision-time)
+		9. [Section 8.9: Heuristic Search](#section-89-heuristic-search)
+		10. [Section 8.10: Rollout Algorithms](#section-810-rollout-algorithms)
+		11. [Section 8.11: Monte Carlo Tree Search](#section-811-monte-carlo-tree-search)
+		12. [Section 8.12: Summary of the Chapter](#section-812-summary-of-the-chapter)
+		13. [Section 8.13: Summary of Part I: Dimensions](#section-813-summary-of-part-i-dimensions)
+3. [Part II: Approximate Solution Methods](#part-ii-approximate-solution-methods)
+	1. [Chapter 9: On-policy Prediction with Approximation](#chapter-9-on-policy-prediction-with-approximation)
+		1. [Section 9.1: Value-function Approximation](#section-91-value-function-approximation)
+		2. [Section 9.2: The Prediction Objective (VE)](#section-92-the-prediction-objective)
+		3. [Section 9.3: Stochastic-gradient and Semi-gradient Methods](#section-93-stochastic-gradient-and-semi-gradient-methods)
+		4. [Section 9.4: Linear Methods](#section-94-linear-methods)
+		5. [Section 9.5: Feature Construction for Linear Methods](#section-95-feature-construction-for-linear-methods)
+			1. [Section 9.5.1: Polynomials](#section-951-polynomials)
+			2. [Section 9.5.2: Fourier Basis](#section-952-fourier-basis)
+			3. [Section 9.5.3: Coarse Coding](#section-953-coarse-coding)
+			4. [Section 9.5.4: Tile Coding](#section-954-tile-coding)
+			5. [Section 9.5.5: Radial Basis Functions](#section-955-radial-basis-functions)
+		6. [Section 9.6: Selecting Step-Size Parameters Manually](#section-96-selecting-step-size-parameters-manually)
+		7. [Section 9.7: Non-linear Function Approximation: Artificial Neural Networks](#section-97-non-linear-function-approximation-artificial-neural-networks)
+		8. [Section 9.8: Least-Squares TD](#section-98-least-squares-td)
+		9. [Section 9.9: Memory-based Function Approximation](#section-99-memory-based-function-approximation)
+		10. [Section 9.10: Kernel-based Function Approximation](#section-910-kernel-based-function-approximation)
+		11. [Section 9.11: Looking Deeper at On-policy Learning: Interests and Emphasis](#section-911-looking-deeper-at-on-policy-learning-interests-and-emphasis)
+		12. [Section 9.12: Summary](#section-912-summary)
+	2. [Chapter 10: On-policy Control with Approximation](#chapter-10-on-policy-control-with-approximation)
+		1. [Section 10.1: Episodic Semi-gradient Control](#section-101-episodic-semi-gradient-control)
+		2. [Section 10.2: Semi-gradient n-step Sarsa](#section-102-semi-gradient--step-sarsa)
+		3. [Section 10.3: Average Reward: A New Problem Setting for Continuing Tasks](#section-103-average-reward-a-new-problem-setting-for-continuing-tasks)
+		4. [Section 10.4: Deprecating the Discounted Setting](#section-104-deprecating-the-discounted-setting)
+		5. [Section 10.5: Differential Semi-gradient n-step Sarsa](#section-105-differential-semi-gradient--step-sarsa)
+		6. [Section 10.6: Summary](#section-106-summary)
+	3. [Chapter 11: *Off-policy Methods with Approximation](#chapter-11-off-policy-methods-with-approximation)
+		1. [Section 11.1: Semi-gradient Methods](#section-111-semi-gradient-methods)
+		2. [Section 11.2: Examples of Off-policy Divergence](#section-112-examples-of-off-policy-divergence)
+		3. [Section 11.3: The Deadly Triad](#section-113-the-deadly-triad)
+		4. [Section 11.4: Linear Value-function Geometry](#section-114-linear-value-function-geometry)
+		5. [Section 11.5: Gradient Descent in the Bellman Error](#section-115-gradient-descent-in-the-bellman-error)
+		6. [Section 11.6: The Bellman Error is Not Learnable](#section-116-the-bellman-error-is-not-learnable)
+		7. [Section 11.7: Gradient-TD Methods](#section-117-gradient-td-methods)
+		8. [Section 11.8: Emphatic-TD Methods](#section-118-emphatic-td-methods)
+		9. [Section 11.9: Reducing Variance](#section-119-reducing-variance)
+		10. [Section 11.10: Summary](#section-1110-summary)
+	4. [Chapter 12: Eligibility Traces](#chapter-12-eligibility-traces)
+		1. [Section 12.1: The lambda-return](#section-121-the--return)
+		2. [Section 12.2: TD(lambda)](#section-122-td)
+		3. [Section 12.3: n-step Truncated lambda-return Methods](#section-123--step-truncated--return-methods)
+		4. [Section 12.4: Redoing Updates: Online lambda-return Algorithm](#section-124-redoing-updates-online--return-algorithm)
+		5. [Section 12.5: True Online TD(lambda)](#section-125-true-online-td)
+		6. [Section 12.6: *Dutch Traces in Monte Carlo Learning](#section-126-dutch-traces-in-monte-carlo-learning)
+		7. [Section 12.7: Sarsa(lambda)](#section-127-sarsa)
+		8. [Section 12.8: Variable lambda and gamma](#section-128-variable-and)
+		9. [Section 12.9: Off-policy Traces with Control Variates](#section-129-off-policy-traces-with-control-variates)
+		10. [Section 12.10: Watkin's Q(lambda) to Tree-Backup(lambda)](#section-1210-watkins-q-to-tree-backup)
+		11. [Section 12.11: Stable Off-policy Methods with Traces](#section-1211-stable-off-policy-methods-with-traces)
+		12. [Section 12.12: Implementation Issues](#section-1212-implementation-issues)
+		13. [Section 12.13: Conclusions](#section-1213-conclusions)
+	5. [Chapter 13: Policy Gradient Methods](#chapter-13-policy-gradient-methods)
+		1. [Section 13.1: Policy Approximation and its Advantages](#section-131-policy-approximation-and-its-advantages)
+		2. [Section 13.2: The Policy Gradient Theorem](#section-132-the-policy-gradient-theorem)
+		3. [Section 13.3: REINFORCE: Monte Carlo Policy Gradient](#section-133-reinforce-monte-carlo-policy-gradient)
+		4. [Section 13.4: REINFORCE with Baseline](#section-134-reinforce-with-baseline)
+		5. [Section 13.5: Actor-Critic Methods](#section-135-actor-critic-methods)
+		6. [Section 13.6: Policy Gradient for Continuing Problems](#section-136-policy-gradient-for-continuing-problems)
+		7. [Section 13.7: Policy Parameterization for Continuous Actions](#section-137-policy-parameterization-for-continuous-actions)
+		8. [Section 13.8: Summary](#section-138-summary)
+4. [Part III: Looking Deeper](#part-iii-looking-deeper)
+	1. [Chapter 14: Psychology](#chapter-14-psychology)
+		1. [Section 14.1: Prediction and Control](#section-141-prediction-and-control)
+		2. [Section 14.2: Classical Conditioning](#section-142-classical-conditioning)
+			1. [Section 14.2.1: Blocking and Higher-order Conditioning](#section-1421-blocking-and-higher-order-conditioning)
+			2. [Section 14.2.2: The Rescorla-Wagner Model](#section-1422-the-rescorla-wagner-model)
+			3. [Section 14.2.3: The TD Model](#section-1423-the-td-model)
+			4. [Section 14.2.4: TD Model Simulations](#section-1424-td-model-simulations)
+		3. [Section 14.3: Instrumental Conditioning](#section-143-instrumental-conditioning)
+		4. [Section 14.4: Delayed Reinforcement](#section-144-delayed-reinforcement)
+		5. [Section 14.5: Cognitive Maps](#section-145-cognitive-maps)
+		6. [Section 14.6: Habitual and Goal-directed Behavior](#section-146-habitual-and-goal-directed-behavior)
+		7. [Section 14.7: Summary](#section-147-summary)
+	2. [Chapter 15: Neuroscience](#chapter-15-neuroscience)
+		1. [Section 15.1: Neuroscience Basics](#section-151-neuroscience-basics)
+		2. [Section 15.2: Reward Signals, Reinforcement Signals, Values, and Prediction Errors](#section-152-reward-signals-reinforcement-signals-values-and-prediction-errors)
+		3. [Section 15.3: The Reward Prediction Error Hypothesis](#section-153-the-reward-prediction-error-hypothesis)
+		4. [Section 15.4: Dopamine](#section-154-dopamine)
+		5. [Section 15.5: Experimental Support for the Reward Prediction Error Hypothesis](#section-155-experimental-support-for-the-reward-prediction-error-hypothesis)
+		6. [Section 15.6: TD Error/Dopamine Correspondence](#section-156-td-errordopamine-correspondence)
+		7. [Section 15.7: Neural Actor–Critic](#section-157-neural-actor–critic)
+		8. [Section 15.8: Actor and Critic Learning Rules](#section-158-actor-and-critic-learning-rules)
+		9. [Section 15.9: Hedonistic Neurons](#section-159-hedonistic-neurons)
+		10. [Section 15.10: Collective Reinforcement Learning](#section-1510-collective-reinforcement-learning)
+		11. [Section 15.11: Model-based Methods in the Brain](#section-1511-model-based-methods-in-the-brain)
+		12. [Section 15.12: Addiction](#section-1512-addiction)
+		13. [Section 15.13: Summary](#section-1513-summary)
+	3. [Chapter 16: Applications and Case Studies](#chapter-16-applications-and-case-studies)
+		1. [Section 16.1: TD-Gammon](#section-161-td-gammon)
+		2. [Section 16.2: Samuel's Checkers Player](#section-162-samuels-checkers-player)
+		3. [Section 16.3: Watson's Daily-Double Wagering](#section-163-watsons-daily-double-wagering)
+		4. [Section 16.4: Optimizing Memory Control](#section-164-optimizing-memory-control)
+		5. [Section 16.5: Human-level Video Game Play](#section-165-human-level-video-game-play)
+		6. [Section 16.6: Mastering the Game of Go](#section-166-mastering-the-game-of-go)
+			1. [Section 16.6.1: AlphaGo](#section-1661-alphago)
+			2. [Section 16.6.2: AlphaGo Zero](#section-1662-alphago-zero)
+		7. [Section 16.7: Personalized Web Services](#section-167-personalized-web-services)
+		8. [Section 16.8: Thermal Soaring](#section-168-thermal-soaring)
+	4. [Chapter 17: Frontiers](#chapter-17-frontiers)
+		1. [Section 17.1: General Value Functions and Auxiliary Tasks](#section-171-general-value-functions-and-auxiliary-tasks)
+		2. [Section 17.2: Temporal Abstraction via Options](#section-172-temporal-abstraction-via-options)
+		3. [Section 17.3: Observations and State](#section-173-observations-and-state)
+		4. [Section 17.4: Designing Reward Signals](#section-174-designing-reward-signals)
+		5. [Section 17.5: Remaining Issues](#section-175-remaining-issues)
+		6. [Section 17.6: Reinforcement Learning and the Future of Artificial Intelligence](#section-176-reinforcement-learning-and-the-future-of-artificial-intelligence)
 
-# Notes on the Book
-## Chapter 1: Introduction
+# Chapter 1: Introduction
 
 Def. **Reinforcement Learning (RL)**: an agent learns how to map situations to actions through *trial-and-error* or *planned* interaction with a (possibly) uncertain environment, so as to maximize a numerical reward value (i.e., achieve his goal or goals).
 - *Delayed reward* is another important characteristic of RL, since any action taken may influence (not only the immediate reward value, but also) any subsequent rewards;
@@ -210,13 +212,13 @@ A RL system has four main elements beyond the interactive **agent** and the **en
 
 # Part I: Tabular Solution Methods
 
-## Chapter 2: Multi-armed Bandits
+# Chapter 2: Multi-armed Bandits
 
 *Non-associative* setting: a problem setting that involves learning to act in only 1 situation.
 
 *Associative* setting: a problem setting where the best action depends on the situation.
 
-### Ch 2.1: A $$k$$-armed Bandit Problem
+## Section 2.1: A $$k$$-armed Bandit Problem
 
 Setting of the $$k$$-armed bandit learning problem (analogous to a slot machine with $$k$$ levers):
 1. Choose 1 action from among $$k$$ different options;
@@ -240,7 +242,7 @@ Since we do not know the true value of each action, we need to estimate them in 
 - Selecting 1 of the non-greedy actions enables the agent to improve his estimates of the non-greedy action's value, i.e., **exploration**;
 - Exploitation maximizes the reward on 1 step, but it needs to be intercalated with exploration steps so as to maximize the greater total reward in the long term.
 
-### Ch 2.2: Action-value Methods
+## Section 2.2: Action-value Methods
 
 Def. **Action-value Methods**: methods used to estimate the values of actions and to use those estimates to select an action to take at a given time step.
 
@@ -264,7 +266,7 @@ $$
 
 This selection method never performs exploration. A simple alternative that does so is to select the greedy action most of the time (probability $$1 - \epsilon$$) and (with probability $$\epsilon$$) to randomly select any possible action with equal probability. Methods that use this near-greedy action selection rule are dubbed $$\epsilon$$-greedy methods.
 
-### Ch 2.3: The 10-armed Test-bed
+## Section 2.3: The 10-armed Test-bed
 
 **Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time.
 
@@ -279,7 +281,7 @@ It is possible to perform $$\epsilon$$ annealing to try to get fast learning at 
 
 It takes more exploration to find the optimal actions in cases with noisy rewards (i.e., high reward variance), meaning that $$\epsilon$$-greedy methods perform even better in those cases, when compared to the greedy method. Also, although the greedy method is theoretically optimal in the deterministic case (i.e., with $$\sigma^2 = 0$$), this property does not hold in non-stationary bandit problems, making exploration a necessity even in deterministic settings.
 
-### Ch 2.4: Incremental Implementation
+## Section 2.4: Incremental Implementation
 
 For a single action, let $$R_i$$ denote the reward received after the $$i^{th}$$ selection of *this action* and $$Q_n$$ the estimate of its action value after it has been selected $$n - 1$$ times, written as:
 
@@ -315,7 +317,7 @@ $$
 where $$[Target - OldEstimate]$$ is an *error* in the estimate, which is reduced by taking a step towards the (possibly noisy) target value.
 The step-size parameter is generally denoted by $$\alpha$$ or $$\alpha_t (a)$$.
 
-### Ch 2.5: Tracking a Non-stationary Problem
+## Section 2.5: Tracking a Non-stationary Problem
 
 When reward probabilities change over time, it makes sense to give more weight to recent rewards than to those receive long ago. This can be done by using a constant step-size parameter, e.g., for updating an average $$Q_n$$ of the $$n - 1$$ past rewards w.h.t.:
 
@@ -354,7 +356,7 @@ The second condition is not met for the constant step-size parameter case, i.e.,
 
 For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
 
-### Ch 2.6: Optimistic Initial Values
+## Section 2.6: Optimistic Initial Values
 
 All previous methods are somewhat dependent on the initial action-value estimates $$Q_1 (a)$$, i.e., they are *biased* by their initial estimates. This bias decreases over time as various actions are selected. However, while for sample-average methods the bias eventually disappear after all actions have been taken at least once, the bias is permanent for methods with a constant $$\alpha$$. 
 
@@ -366,7 +368,7 @@ This technique for encouraging exploration is named *optimistic initial values* 
 
 An important caveat is that, since the drive for exploration in the previous technique is dependent on the initials conditions and disappears after a certain time, it cannot adequately deal with non-stationary problems, where exploration is always required due to the dynamic nature of the reward probabilities. This drawback is present in all methods that treat the beginning of time as a special event (e.g., the sample-average methods).
 
-### Ch 2.7: Upper-Confidence-Bound Action Selection
+## Section 2.7: Upper-Confidence-Bound Action Selection
 
 While $$\epsilon$$-greedy methods encourage exploration, they do so equally, without any preference for whether the action selected is nearly greedy or particularly uncertain. However, it is possible to select the non-greedy actions while taking into account both how close their value estimates are to the maximal action-value and the estimation uncertainty. An effective way of doing this is to select actions according to the following equation:
 
@@ -384,7 +386,7 @@ The natural logarithm results in smaller increases over time, meaning that actio
 
 UCB often performs better than $$\epsilon$$-greedy action selection (except in the first $$k$$ steps), but it is harder to extend beyond bandits into the general RL settings. This is due to its difficulties in dealing with more advanced settings, such as non-stationary problems and (function approximation) with large state spaces.
 
-### Ch 2.8: Gradient Bandit Algorithms
+## Section 2.8: Gradient Bandit Algorithms
 
 Beyond using action-value estimates to select actions, it is also possible to learn a numerical *preference* for each action $$a$$, denoted $$H_t(a) \in \mathbb{R}$$, which has no interpretation w.r.t. reward. As such, only the relative preference of 1 action over another is important. The action probabilities are determined according to a softmax distribution as follows:
 
@@ -409,7 +411,7 @@ where $$\alpha > 0$$ is a step-size parameter and $$\bar{R}_t \in \mathbb{R}$$ -
 
 Since only the relative preferences are taken into account, adding an arbitrary constant value to all the action preferences has no effect on the action probabilities. Also, since the reward baseline term instantaneously adapts to new values of the mean, shifting the mean (e.g., $$\mu_{new} = \mu_{old} + 4$$) of the distribution (while keeping the unit variance) has no effect on the gradient bandit algorithm. However, omitting the baseline term results in a significantly degraded performance.
 
-#### The Bandit Gradient Algorithm as SGA
+### The Bandit Gradient Algorithm as SGA
 
 In exact **Gradient Ascent (GA)**, each action preference $$H_t(a)$$ would be incremented in proportion to the increment's effect on performance, given by:
 
@@ -484,23 +486,23 @@ $$
 
 thus showing that the expected updated of the gradient bandit algorithm is equivalent to the gradient of the expected reward, making the the algorithm a instance of SGA.
 
-### Ch 2.9: Associative Search (Contextual Bandits)
+## Section 2.9: Associative Search (Contextual Bandits)
 
 *Associative search* tasks - which involve learning about which actions are the best through trial-and-error and associating these actions with which situations they work the best in - are often called *contextual bandits*. These tasks serve as an intermediate between the $$k$$-armed bandit problem and the full RL problem, since each action affects only the immediate reward - like the former - and also involves learning a policy, like the latter.
 
 An example of an associative task is a one composed of several $$k$$-armed bandit problems, each identified by a given color, where at each step you are confronted with one of the $$k$$-armed bandit problems at random. If the action values change as the color changes, you can then learn a policy that maps a color to the best associated actions.
 
-### Ch 2.10: Summary
+## Section 2.10: Summary
 
 W.r.t. performance (average reward) in the $$k$$-bandit problem, with $$k = 10$$ and taking into account the first 1000 steps, w.h.t. UCB $$\geq$$ Greedy with optimistic initialization $$\alpha = 0.1 \ \geq$$ Gradient bandit $$\geq$$ $$\epsilon$$-greedy. 
 
 Another approach to balance exploration and exploitation in $$k$$-armed bandit problems is the Bayesian method known as *Gittins* index. It assumes a known prior distribution over the actions values and then updates the distribution after each step (assuming that the true action values are stationary).
 
-## Chapter 3: Finite Markov Decision Processes
+# Chapter 3: Finite Markov Decision Processes
 
 Markov Decision Processes (MDPs) are a formalization of sequential decision making where actions influence not only the immediate reward, but also future rewards. As such, this is an associative problem that takes into account the need to trade-off immediate and delayed reward. While in bandit problems we estimated the value $$q^{*}(a), \ \forall a \in \mathcal{A},$$ in an MDP, we estimate the value $$q^{*}(s, a), \ \forall a \in \mathcal{A}, \forall s \in \mathcal{S},$$ or the value $$v^{*}(s), \forall s \in \mathcal{S}$$ given optimal action selections. Such state-dependent values are important to assign credit for long-term rewards to individual action selections.
 
-### Ch 3.1: The Agent-Environment Interface
+## Section 3.1: The Agent-Environment Interface
 An MDP involves a learner and decision maker (i.e., the *agent*) that interacts with its surroundings (i.e., the *environment*) by continually selecting actions and having the environment respond by presenting new situations (or states) to the agent and giving rise to rewards, which the agent seeks to maximize over time. This process is illustrated in Figure 1.
 
 <figure align='center'>
@@ -570,7 +572,7 @@ The MDP framework proposes that any detail of whatever objective (of a problem o
 - State: signal that represents the basis on which the choices are made;
 - Reward: signal that defines the agent's goal.
 
-### Ch 3.2: Goals and Rewards
+## Section 3.2: Goals and Rewards
 
 In RL, the purpose of the agent is formalized in terms of a simple number, the *reward* (at each time step $$R_t \in \mathbb{R}$$), which passes from the environment to the agent. The agent's goal is to maximize the total cumulative reward, something stated in the *reward hypothesis*:
 ```
@@ -581,7 +583,7 @@ scalar signal (called reward).
 
 In order for the agent to achieve our goals, it is critical that the reward signals defined truly indicate what we want accomplished. Of particular importance, one must not use the reward signal to impart prior knowledge to the agent. Using chess as an example, we should naturally define the reward as $$+1$$ for winning, $$-1$$ for losing and $$0$$ for draws and all non-terminal positions. We should **NOT** give rewards for sub-goals like taking an opponent's chess piece, otherwise the agent might find a way to maximize its reward, even at the cost of losing the game. The reward signal defines **what** you want the agent to achieve, not *how* you want the agent to achieve it.
 
-### Ch 3.3: Returns and Episodes
+## Section 3.3: Returns and Episodes
 
 We seek to maximize the *expected return*, where the return $$G_t$$ is defined as some specific function of the reward sequence. In the simplest case the return is the sum of the rewards:
 
@@ -628,7 +630,7 @@ G_t = \sum_{k = 0}^{\infty} \gamma^k = \frac{1}{1 - \gamma}.
 \end{equation}
 $$
 
-### Ch 3.4: Unified Notation for Episodic and Continuing Tasks
+## Section 3.4: Unified Notation for Episodic and Continuing Tasks
 
 To be precise about episodic tasks, instead of considering one long sequence of time steps, we need to consider a series of episodes, where each episode consists of a finite sequence of time steps. As such, we refer to $$S_{t, i}$$ as the state representation at time step $t$ of episode $i$ (the same for $$A_{t, i}, R_{t, i}, \pi_{t, i}, T_i, \dots$$). In practice however, since we are almost always considering a particular episode or stating a fact that is true for all episodes, we can drop the explicit reference to the episode number.
 
@@ -648,31 +650,31 @@ G_t \doteq \sum_{k = t + 1}^T \gamma^{k - t - 1} R_k.
 \end{equation}
 $$
 
-### Ch 3.5: Policies and Value Functions
+## Section 3.5: Policies and Value Functions
 
 
 
-## Chapter 4: Dynamic Programming
+# Chapter 4: Dynamic Programming
 
-## Chapter 5: Monte Carlo Methods
+# Chapter 5: Monte Carlo Methods
 
-## Chapter 6: Temporal-Difference Learning
+# Chapter 6: Temporal-Difference Learning
 
-## Chapter 7: $$n$$-step Bootstrapping
+# Chapter 7: $$n$$-step Bootstrapping
 
-## Chapter 8: Planning and Learning with Tabular Methods
+# Chapter 8: Planning and Learning with Tabular Methods
 
 # Part II: Approximate Solution Methods
 
-## Chapter 9: On-policy Prediction with Approximation
+# Chapter 9: On-policy Prediction with Approximation
 
-## Chapter 10: On-policy Control with Approximation
+# Chapter 10: On-policy Control with Approximation
 
-## Chapter 11: \*Off-policy Methods with Approximation
+# Chapter 11: \*Off-policy Methods with Approximation
 
-## Chapter 12: Eligibility Traces
+# Chapter 12: Eligibility Traces
 
-## Chapter 13: Policy Gradient Methods
+# Chapter 13: Policy Gradient Methods
 
 **Notation** relevant for this chapter:
 - Policy's parameter vector: $$\theta \in \mathbb{R}^{d'}$$;
@@ -692,7 +694,7 @@ $$
 
 Methods that learn an approximation of both policy and value functions are called **actor-critic** methods. The *actor* is a reference to the learned policy and *critic* a reference to the learned (state-)value function. 
 
-### Ch 13.1: Policy Approximation and its Advantages
+### Section 13.1: Policy Approximation and its Advantages
 
 The policy can be parameterized in any way, as long as 2 conditions are met
 
@@ -731,7 +733,7 @@ The *choice of policy parameterization* can be a good way of *injecting prior kn
 - Enables the selection of actions with arbitrary probabilities (useful if the optimal policy is a stochastic policy, e.g., in a game of chance such as poker);
 - If the policy is easier to approximate then the action-value function, then policy-based methods learn faster and yield a superior asymptotic policy.
 
-### Ch 13.2: The Policy Gradient Theorem
+## Section 13.2: The Policy Gradient Theorem
 
 Policy parameterization has an important theoretical advantage over $$\epsilon$$-greedy action selection: the continuity of the policy dependence on the parameters that enables policy gradient methods to approximate gradient ascent. 
 
@@ -757,7 +759,7 @@ $$
 
 where $$\mu$$ is the on-policy distribution under $$\pi$$. For the episodic case, the constant of proportionality is the average length of an episode, and for the continuing case it is 1.
 
-### Ch 13.3: REINFORCE: Monte Carlo Policy Gradient
+## Section 13.3: REINFORCE: Monte Carlo Policy Gradient
 
 Since any constant of proportionality can be absorbed into the step size $$\alpha$$, all that is required is a way of sampling that approximates the policy gradient theorem. As the r.h.s. of the theorem is a sum over states weighted by their probability of occurring under the target policy $$\pi$$, w.h.t.:
 $$
@@ -801,7 +803,7 @@ As a stochastic gradient method, REINFORCE assures an improvement in the expecte
 
 For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html'">see here</a>.
 
-### Ch 13.4: REINFORCE with Baseline
+## Section 13.4: REINFORCE with Baseline
 
 Generalizing the policy gradient theorem to include a comparison of the action value to an arbitrary baseline $$b(s)$$ gives the following expression:
 
@@ -843,7 +845,7 @@ The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the r
 
 You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline'">here</a>.
 
-### Ch 13.5: Actor-Critic Methods
+## Section 13.5: Actor-Critic Methods
 
 In actor-critic methods, the state-value function is applied to the second state of the transition, unlike in REINFORCE, where the learned state-value function only estimates the value of the first state of each state transition and thus can´t be used to assess that action. After discount and adding the estimated value of the second state to the reward, it constitutes the 1-step return $$G_{t:t+1}$$, which can be used to assess the action.
 
@@ -864,7 +866,7 @@ To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-re
 
 For some examples of Python implementations of actor-critic methods, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html'">see here</a>.
 
-### Ch 13.6: Policy Gradient for Continuing Problems
+## Section 13.6: Policy Gradient for Continuing Problems
 
 For continuing problems without episode boundaries, the performance must be defined in terms of the average rate of reward per time step:
 
@@ -895,7 +897,7 @@ $$
 
 You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
 
-### Ch 13.7: Policy Parameterization for Continuous Actions
+## Section 13.7: Policy Parameterization for Continuous Actions
 
 In policy-based methods, instead of computing learned probabilities for each and every action, instead we learn statistics of the probability distribution, e.g., the action set might be $$\mathbb{R}$$, with actions chosen from a normal (Gaussian) distribution.
 The *Probability Density Function* (PDF) for this (normal) distribution can be written as
@@ -925,7 +927,8 @@ $$
 $$
 
 where $$x_{\mu}(s)$$ and $$x_{\sigma}(s)$$ are state feature vectors. With these additional definitions, all previously described algorithms can be applied to learn to select real-valued actions.
-### Ch 13.8: Summary
+
+## Section 13.8: Summary
 
 Prior to this chapter: focus on *action-value methods* - which are methods that learn action values and then use them to select actions.
 
@@ -942,10 +945,10 @@ A state-value function baseline reduces the variance of the REINFORCE method wit
 
 # Part III: Looking Deeper
 
-## Chapter 14: Psychology
+# Chapter 14: Psychology
 
-## Chapter 15: Neuroscience
+# Chapter 15: Neuroscience
 
-## Chapter 16: Applications and Case Studies
+# Chapter 16: Applications and Case Studies
 
-## Chapter 17: Frontiers
+# Chapter 17: Frontiers
