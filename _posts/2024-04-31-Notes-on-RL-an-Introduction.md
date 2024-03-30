@@ -732,6 +732,17 @@ The online nature of RL makes it possible to approximate optimal policies in way
 
 ### Section 3.8: Summary
 
+RL is about an *agent* learning how to behave in order to achieve a goal by interacting with its *environment* over a sequence of discrete time steps. The specification of their interface defines a particular task:
+- *Actions*: choices made by the agent;
+- *States*: the basis for making the choices;
+- *Rewards*: the basis for evaluating the choices.
+
+A *policy* is a stochastic rule by which the agent selects the actions as function of states. The *optimal policy* is that which best achieves the agent's objective, maximizing the amount of reward it receives over time.
+
+The *return* is the function of future rewards that the agent seeks to maximize (in expected value). Its definition depends on the nature of the task and whether one wishes to *discount* delayed reward. The undiscounted formulation is appropriate for *episodic tasks*, and the discounted formulation is appropriate for tabular *continuing tasks*.
+
+A policy's *value functions* ($$v^*$$ and $$q^*$$) assign to each state, or state–action pair, the largest expected return achievable by any policy. Whereas the optimal value functions are unique for a given MDP, there can be many optimal policies. In most cases, we seek approximations of the optimal value functions and policies, not their exact values.
+
 ## Chapter 4: Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
