@@ -626,6 +626,28 @@ G_t = \sum_{k = 0}^{\infty} \gamma^k = \frac{1}{1 - \gamma}.
 \end{equation}
 $$
 
+### Ch 3.4: Unified Notation for Episodic and Continuing Tasks
+
+To be precise about episodic tasks, instead of considering one long sequence of time steps, we need to consider a series of episodes, where each episode consists of a finite sequence of time steps. As such, we refer to $$S_{t, i}$$ as the state representation at time step $t$ of episode $i$ (the same for $$A_{t, i}, R_{t, i}, \pi_{t, i}, T_i, \dots$$). In practice however, since we are almost always considering a particular episode or stating a fact that is true for all episodes, we can drop the explicit reference to the episode number.
+
+We can unify the finite sum of terms for the total return in the episodic case and the infinite sum for the total reward in the continuing case by considering episode termination to be the entering of a special *absorbing state* that transitions only to itself and generates only rewards of zero, as exemplified in Figure 2.
+
+<figure align='center'>
+<img alt="Example of an MDP with a absorbing state." src="http://acfpeacekeeper.github.io/github-pages/images/literature/absorbing_state.png" onerror="this.src='http://localhost:4000/images/literature/absorbing_state.png';">
+
+<figcaption>Figure 2: Example of an MDP with a absorbing state.</figcaption>
+</figure>
+
+Including the possibility that $$T = \infty \oplus \gamma = 1$$ (where $$\oplus$$ is the XOR operator), we can write
+
+$$
+\begin{equation}
+G_t \doteq \sum_{k = t + 1}^T \gamma^{k - t - 1} R_k.
+\end{equation}
+$$
+
+### Ch 3.5: Policies and Value Functions
+
 ## Chapter 4: Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
@@ -773,6 +795,8 @@ Since REINFORCE uses the complete return from time $$t$$ (including all future r
 
 As a stochastic gradient method, REINFORCE assures an improvement in the expected performance (given a small enough $$\alpha$$) and convergence to a local optimum (under standard stochastic approximation conditions for decreasing $$\alpha$$). However, as a Monte Carlo method, REINFORCE may have high variance and subsequently produce slow learning.
 
+For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/REINFORCE.html'">see here</a>.
+
 ### Ch 13.4: REINFORCE with Baseline
 
 Generalizing the policy gradient theorem to include a comparison of the action value to an arbitrary baseline $$b(s)$$ gives the following expression:
@@ -813,7 +837,7 @@ $$
 
 The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the range of variation of the rewards and on the policy parameterization.
 
-For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/REINFORCE.html'">see here</a>.
+You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/REINFORCE.html#reinforce-with-baseline'">here</a>.
 
 ### Ch 13.5: Actor-Critic Methods
 
