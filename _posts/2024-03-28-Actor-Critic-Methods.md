@@ -68,49 +68,49 @@ def episodic_one_step_actor_critic(
     assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
     # Initialize policy parameters
-	policy = Policy(env.observation_space.shape[0], env.action_space.n)
-	for module in policy.modules():
-		if isinstance(module, nn.Linear):
-			nn.init.xavier_uniform(module.weight)
-			module.bias.data.fill_(0.01)
+    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    for module in policy.modules():
+        if isinstance(module, nn.Linear):
+            nn.init.xavier_uniform(module.weight)
+            module.bias.data.fill_(0.01)
 
-	# Initialize state-value function parameters
-	state_value_func = StateValueFunction(env.observation_space.shape[0])
-	for module in state_value_func.modules():
-		if isinstance(module, nn.Linear):
-			module.weight.data.fill_(0.0)
-			module.bias.data.fill_(0.01)
+    # Initialize state-value function parameters
+    state_value_func = StateValueFunction(env.observation_space.shape[0])
+    for module in state_value_func.modules():
+        if isinstance(module, nn.Linear):
+            module.weight.data.fill_(0.0)
+            module.bias.data.fill_(0.01)
 
-	# Initialize optimizers
-	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
-	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+    # Initialize optimizers
+    policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
+    stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
 
-	env = gym.make(gym_environment)
-	scores = []
+    env = gym.make(gym_environment)
+    scores = []
     for _ in range(NUM_EPISODES):
-		score = 0.
-		I = 1.
-		state = env.reset()
+        score = 0.
+        I = 1.
+        state = env.reset()
         for _ in range(MAX_STEPS):
             # Get action and log probabilities
-			a_probs = policy(state)
-			prob_dist = Categorical(a_probs)
-			a = prob_dist.sample()
-			action = a.item()
-			log_probs = prob_dist.log_prob(action)
+            a_probs = policy(state)
+            prob_dist = Categorical(a_probs)
+            a = prob_dist.sample()
+            action = a.item()
+            log_probs = prob_dist.log_prob(action)
 
-			# Step with action
-			new_state, R, done, _ = env.step(action)
+            # Step with action
+            new_state, R, done, _ = env.step(action)
 
-			# Update episode score
-			score += R
+            # Update episode score
+            score += R
 
-			# Get state value of current state
-			state_value = state_value_func(state)
+            # Get state value of current state
+            state_value = state_value_func(state)
 
-			# Get state value of next state
-			# If terminal state, next state value is 0
-			new_state_value = [0.] if done else state_value_func(new_state)
+            # Get state value of next state
+            # If terminal state, next state value is 0
+            new_state_value = [0.] if done else state_value_func(new_state)
 
             # Calculate value function loss with MSE
             delta = R + gamma * new_state_value.item() - state_value.item()
@@ -120,26 +120,26 @@ def episodic_one_step_actor_critic(
             policy_loss = I * delta * log_probs
 
             # Backpropagate value
-			stateval_optimizer.zero_grad()
-			val_loss.backward()
-			stateval_optimizer.step()
+            stateval_optimizer.zero_grad()
+            val_loss.backward()
+            stateval_optimizer.step()
 
-			# Backpropagate policy
-			policy_optimizer.zero_grad()
-			policy_loss.backward(retain_graph=True)
-			policy_optimizer.step()
+            # Backpropagate policy
+            policy_optimizer.zero_grad()
+            policy_loss.backward(retain_graph=True)
+            policy_optimizer.step()
 
-			if done:
-				break
+            if done:
+                break
 
-			# Move into new state, discount I
-			I *= gamma
-			state = new_state
+            # Move into new state, discount I
+            I *= gamma
+            state = new_state
 
         # Append episode score
-	    scores.append(score)
+        scores.append(score)
 
-	return scores, policy, state_value_func
+    return scores, policy, state_value_func
 {% endhighlight %}
 
 ### Episodic Actor-Critic with Eligibility Traces
@@ -160,89 +160,89 @@ def episodic_actor_critic_with_eligibility_traces(
 	MAX_STEPS: int,
 	gym_environment: str
 ):
-	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
-	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
-	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
-	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
-	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
-	assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
-	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+    assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
+    assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
+    assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
+    assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+    assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
+    assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
+    assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
-	# Initialize policy parameters
-	policy = Policy(env.observation_space.shape[0], env.action_space.n)
-	for module in policy.modules():
-		if isinstance(module, nn.Linear):
-			nn.init.xavier_uniform(module.weight)
-			module.bias.data.fill_(0.01)
+    # Initialize policy parameters
+    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    for module in policy.modules():
+        if isinstance(module, nn.Linear):
+            nn.init.xavier_uniform(module.weight)
+            module.bias.data.fill_(0.01)
 
-	# Initialize state-value function parameters
-	state_value_func = StateValueFunction(env.observation_space.shape[0])
-	for module in state_value_func.modules():
-		if isinstance(module, nn.Linear):
-			module.weight.data.fill_(0.0)
-			module.bias.data.fill_(0.01)
+    # Initialize state-value function parameters
+    state_value_func = StateValueFunction(env.observation_space.shape[0])
+    for module in state_value_func.modules():
+        if isinstance(module, nn.Linear):
+            module.weight.data.fill_(0.0)
+            module.bias.data.fill_(0.01)
 
-	# Initialize optimizers
-	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
-	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+    # Initialize optimizers
+    policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
+    stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
 
-	env = gym.make(gym_environment)
-	scores = []
-	for _ in range(NUM_EPISODES):
-		z_theta = 0.
-		z_w = 0.
-		score = 0.
-		I = 1.
-		state = env.reset()
-		for _ in range(MAX_STEPS):
-			# Get action and log probabilities
-			a_probs = policy(state)
-			prob_dist = Categorical(a_probs)
-			a = prob_dist.sample()
-			action = a.item()
-			log_probs = prob_dist.log_prob(action)
+    env = gym.make(gym_environment)
+    scores = []
+    for _ in range(NUM_EPISODES):
+        z_theta = 0.
+        z_w = 0.
+        score = 0.
+        I = 1.
+        state = env.reset()
+        for _ in range(MAX_STEPS):
+            # Get action and log probabilities
+            a_probs = policy(state)
+            prob_dist = Categorical(a_probs)
+            a = prob_dist.sample()
+            action = a.item()
+            log_probs = prob_dist.log_prob(action)
 
-			# Step with action
-			new_state, R, done, _ = env.step(action)
+            # Step with action
+            new_state, R, done, _ = env.step(action)
 
-			# Update episode score
-			score += R
+            # Update episode score
+            score += R
 
-			# Get state value of current state
-			state_value = state_value_func(state)
+            # Get state value of current state
+            state_value = state_value_func(state)
 
-			# Get state value of next state
-			# If terminal state, next state value is 0
-			new_state_value = [0.] if done else state_value_func(new_state)
+            # Get state value of next state
+            # If terminal state, next state value is 0
+            new_state_value = [0.] if done else state_value_func(new_state)
 
-			# Calculate value function loss with MSE
+            # Calculate value function loss with MSE
             delta = R + gamma * new_state_value.item() - state_value.item()
-			z_w = delta * (gamma * lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value))
+            z_w = delta * (gamma * lambda_w * z_w + F.mse_loss(R + gamma * new_state_value, state_value))
 
-			# Calculate policy loss
-			z_theta = delta * (gamma * lambda_theta * z_theta + I * log_probs)
+            # Calculate policy loss
+            z_theta = delta * (gamma * lambda_theta * z_theta + I * log_probs)
 
-			# Backpropagate value
-			stateval_optimizer.zero_grad()
-			z_w.backward()
-			stateval_optimizer.step()
+            # Backpropagate value
+            stateval_optimizer.zero_grad()
+            z_w.backward()
+            stateval_optimizer.step()
 
-			# Backpropagate policy
-			policy_optimizer.zero_grad()
-			z_theta.backward(retain_graph=True)
-			policy_optimizer.step()
+            # Backpropagate policy
+            policy_optimizer.zero_grad()
+            z_theta.backward(retain_graph=True)
+            policy_optimizer.step()
 
-			if done:
-				break
+            if done:
+                break
 
-			# Move into new state, discount I
-			I *= gamma
-			state = new_state
+            # Move into new state, discount I
+            I *= gamma
+            state = new_state
 
         # Append episode score
         scores.append(score)
 
-	return scores, policy, state_value_func
+    return scores, policy, state_value_func
 {% endhighlight %}
 
 ### Continuing Actor-Critic with Eligibility Traces
@@ -271,30 +271,30 @@ def episodic_actor_critic_with_eligibility_traces(
     assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
     assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
-	# Initialize policy parameters
-	policy = Policy(env.observation_space.shape[0], env.action_space.n)
-	for module in policy.modules():
-		if isinstance(module, nn.Linear):
-			nn.init.xavier_uniform(module.weight)
-			module.bias.data.fill_(0.01)
+    # Initialize policy parameters
+    policy = Policy(env.observation_space.shape[0], env.action_space.n)
+    for module in policy.modules():
+        if isinstance(module, nn.Linear):
+            nn.init.xavier_uniform(module.weight)
+            module.bias.data.fill_(0.01)
 
-	# Initialize state-value function parameters
-	state_value_func = StateValueFunction(env.observation_space.shape[0])
-	for module in state_value_func.modules():
-		if isinstance(module, nn.Linear):
-			module.weight.data.fill_(0.0)
-			module.bias.data.fill_(0.01)
+    # Initialize state-value function parameters
+    state_value_func = StateValueFunction(env.observation_space.shape[0])
+    for module in state_value_func.modules():
+        if isinstance(module, nn.Linear):
+            module.weight.data.fill_(0.0)
+            module.bias.data.fill_(0.01)
 
-	# Initialize optimizers
-	policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
-	stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
+    # Initialize optimizers
+    policy_optimizer = optim.SGD(policy.parameters(), lr=alpha_theta)
+    stateval_optimizer = optim.SGD(state_value_func.parameters(), lr=alpha_w)
 
-	env = gym.make(gym_environment)
+    env = gym.make(gym_environment)
     avg_R = 0.
     score = 0.
     state = env.reset()
     z_theta = 0.
-	z_w = 0.
+    z_w = 0.
     for _ in range(MAX_STEPS):
         # Get action and log probabilities
         a_probs = policy(state)
@@ -339,5 +339,5 @@ def episodic_actor_critic_with_eligibility_traces(
         # Move into new state
         state = new_state
 
-	return score, policy, state_value_func
+    return score, policy, state_value_func
 {% endhighlight %}
