@@ -55,17 +55,17 @@ from torch.distributions import Categorical
 
 def episodic_one_step_actor_critic(
     alpha_theta: float,
-	alpha_w: float,
+    alpha_w: float,
     gamma: float,
     NUM_EPISODES: int,
-	MAX_STEPS: int,
-	gym_environment: str
+    MAX_STEPS: int,
+    gym_environment: str
 ):
     assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
-	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
-	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
+    assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+    assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
     assert NUM_EPISODES > 0, "NUM_EPISODES must be an int value greater than 0"
-	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+    assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
     # Initialize policy parameters
 	policy = Policy(env.observation_space.shape[0], env.action_space.n)
@@ -254,22 +254,22 @@ import gymnasium as gym
 from torch.distributions import Categorical
 
 def episodic_actor_critic_with_eligibility_traces(
-	lambda_theta: float,
-	lambda_w: float,
-	alpha_theta: float,
-	alpha_w: float,
+    lambda_theta: float,
+    lambda_w: float,
+    alpha_theta: float,
+    alpha_w: float,
     alpha_R: float,
-	gamma: float,
-	MAX_STEPS: int,
-	gym_environment: str
+    gamma: float,
+    MAX_STEPS: int,
+    gym_environment: str
 ):
-	assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
-	assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
-	assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
-	assert alpha_w > 0, "alpha_w must be a float value greater than 0"
+    assert lambda_theta >= 0 and lambda_theta =< 1, "lambda_theta must be a float value between 0 and 1"
+    assert lambda_w >= 0 and lambda_w =< 1, "lambda_w must be a float value between 0 and 1"
+    assert alpha_theta > 0, "alpha_theta must be a float value greater than 0"
+    assert alpha_w > 0, "alpha_w must be a float value greater than 0"
     assert alpha_R > 0, "alpha_R must be a float value greater than 0"
-	assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
-	assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
+    assert gamma > 0 and gamma < 1, "gamma must be a float value greater than 0 and smaller than 1"
+    assert MAX_STEPS > 0, "MAX_STEPS must be an int value greater than 0"
 
 	# Initialize policy parameters
 	policy = Policy(env.observation_space.shape[0], env.action_space.n)
