@@ -5,7 +5,7 @@ date: 2024-03-27
 categories: ML RL
 usemathjax: true
 ---
-Here are some example implementations of bandit problems, to go along with my review of <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-24-incremental-implementation" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-24-incremental-implementation'">Section 4.2</a>  of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
+Here are some example implementations of bandit problems, to go along with my review of <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-24-incremental-implementation" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/30/Notes-on-RL-an-Introduction.html#section-24-incremental-implementation'">Section 4.2</a>  of the <a href="http://acfpeacekeeper.github.io/github-pages/docs/literature/books/RLbook2020.pdf" onerror="this.href='http://localhost:4000/docs/literature/books/RLbook2020.pdf'">Reinforcement Learning: An Introduction</a> book.
 
 # Post Index
 1. [Auxiliar Classes](#auxiliar-classes)

@@ -317,7 +317,7 @@ $$
 where $$[Target - OldEstimate]$$ is an *error* in the estimate, which is reduced by taking a step towards the (possibly noisy) target value.
 The step-size parameter is generally denoted by $$\alpha$$ or $$\alpha_t (a)$$.
 
-For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
+For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/ml/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
 
 ### Section 2.5: Tracking a Non-stationary Problem
 
@@ -890,7 +890,7 @@ Since REINFORCE uses the complete return from time $$t$$ (including all future r
 
 As a stochastic gradient method, REINFORCE assures an improvement in the expected performance (given a small enough $$\alpha$$) and convergence to a local optimum (under standard stochastic approximation conditions for decreasing $$\alpha$$). However, as a Monte Carlo method, REINFORCE may have high variance and subsequently produce slow learning.
 
-For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html'">see here</a>.
+For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/28/REINFORCE.html" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/28/REINFORCE.html'">see here</a>.
 
 ### Section 13.4: REINFORCE with Baseline
 
@@ -932,7 +932,7 @@ $$
 
 The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the range of variation of the rewards and on the policy parameterization.
 
-You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline'">here</a>.
+You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline'">here</a>.
 
 ### Section 13.5: Actor-Critic Methods
 
@@ -953,7 +953,7 @@ $$
 A usual state value function learning method to pair with this is semi-gradient TD(0). 
 To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-return, one only needs to replace the on-step return in the previous equation by $$G_{t:t+1}$$ or $$G_t^{\lambda}$$, respectively. The backward view of the $$\lambda$$-return algorithm is also simple, only requiring using separate eligibility traces for the actor and critic.
 
-For some examples of Python implementations of actor-critic methods, <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html'">see here</a>.
+For some examples of Python implementations of actor-critic methods, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html'">see here</a>.
 
 ### Section 13.6: Policy Gradient for Continuing Problems
 
@@ -984,7 +984,7 @@ G_t \doteq R_{t+1} - r(\pi) + R_{t+2} - r(\pi) + R_{t+3} - r(\pi) + \dots \ .
 \end{equation}
 $$
 
-You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/rl/ml/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
+You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
 
 ### Section 13.7: Policy Parameterization for Continuous Actions
 
