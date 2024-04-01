@@ -58,7 +58,9 @@ title: Tools
 ### IDEs & Text Editors
 - [Visual Studio - IDE](https://visualstudio.microsoft.com/)
 - [VS Code - IDE](https://code.visualstudio.com/Download)
+- [Vim - Editor](https://www.vim.org/)
 - [Obsidian - Editor](https://obsidian.md/)
+- [Nano - Editor](https://www.nano-editor.org/)
 
 ### Game Engines & Runtime Environments
 - [Unity Game Engine](https://unity.com/)
