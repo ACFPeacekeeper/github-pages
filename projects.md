@@ -6,8 +6,8 @@ title: Projects
 # Project Index
 1. [Computer Science and Engineering (CSE)](#computer-science-and-engineering-cse)
     1. [Artificial Intelligence (AI) Research](#artificial-intelligence-ai-research)
-        1. [Contrastive Learning Transformer for Label Efficient Semantic Segmentation](#contrastive-learning-transformer-for-label-efficient-semantic-segmentation)
-        2. [Multimodal Graph Neural Network for Generation of Coherent Image Descriptions](#multimodal-graph-neural-network-for-generation-of-coherent-image-descriptions)
+        1. [Contrastive Learning Transformer (CLT) for Label Efficient Semantic Segmentation](#contrastive-learning-transformer-clt-for-label-efficient-semantic-segmentation)
+        2. [Multimodal Graph Neural Network (MGNN) for Generation of Coherent Image Descriptions](#multimodal-graph-neural-network-mgnn-for-automatic-generation-of-coherent-image-descriptions)
         3. [CSE Master of Science (MSc) Dissertation](#cse-master-of-science-msc-dissertation)
         4. [WSmart Route+](#wsmart-route)
     2. [Web Development](#web-development)
@@ -21,8 +21,10 @@ title: Projects
         2. [Project Fishes](#project-fishes)
 2. [Bibliography](#bibliography)
     1. [AI Research Literature](#ai-research-literature)
-        1. [CSE MSc Dissertation References](#cse-msc-dissertation-references)
-        2. [WSmart Route+ References](#wsmart-route-references)
+        1. [CLT for Label Efficient Semantic Segmentation](#clt-for-label-efficient-semantic-segmentation)
+        2. [MGNN for Automatic Generation of Coherent Image Descriptions](#mgnn-for-automatic-generation-of-coherent-image-descriptions)
+        3. [CSE MSc Dissertation References](#cse-msc-dissertation-references)
+        4. [WSmart Route+ References](#wsmart-route-references)
 
 ## Computer Science and Engineering (CSE)
 ### Artificial Intelligence (AI) Research
@@ -67,6 +69,12 @@ TBA
 
 ## Bibliography
 ### AI Research Literature
+#### CLT for Label Efficient Semantic Segmentation
+TBA
+
+#### MGNN for Automatic Generation of Coherent Image Descriptions
+TBA
+
 #### CSE MSc Dissertation References
 - Bank, D., Koenigstein, N., & Giryes, R. (2021). [Autoencoders](docs/literature/papers/autoencoders.pdf). arXiv [Cs.LG]. Retrieved from http://arxiv.org/abs/2003.05991
 
