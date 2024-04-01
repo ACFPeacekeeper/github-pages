@@ -28,7 +28,7 @@ title: Projects
 ### Artificial Intelligence (AI) Research
 #### Contrastive Learning Transformer (CLT) for Label Efficient Semantic Segmentation
 TBA
-#### Multimodal Graph Neural Network (MGNN) for Generation of Coherent Image Descriptions
+#### Multimodal Graph Neural Network (MGNN) for Automatic Generation of Coherent Image Descriptions
 TBA
 #### CSE Master of Science (MSc) Dissertation
 Towards the completion of my CSE MSc degree at [IST](https://tecnico.ulisboa.pt/en/), I worked as a Graduate Student Researcher at [GAIPS](https://gaips.inesc-id.pt/), where I wrote a Dissertation titled ['Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations'](docs/IST_UL___MEIC_Thesis___Dissertacao_final__Copy_.pdf). For this Dissertation, I developed three new Multimodal Deep Unsupervised Models - which combined principles from [Denoising Auto-Encoders](docs/literature/papers/autoencoders.pdf), [Geometric Multimodal Contrastive Learning](docs/literature/papers/geometric_multimodal_cl.pdf) and [Odd-One-Out Networks](docs/literature/papers/ssl_video_ooo_nets.pdf) - and compared their robustness against missing modalities, noisy data and adversarial examples with other deep multimodal models such as the [MVAE](docs/literature/papers/multimodal_gen_models_scalable_wsl.pdf). The final document and the respective code are the following (I also wrote a paper, but I still want to improve it before posting it to ARXIV):
