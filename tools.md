@@ -21,6 +21,7 @@ title: Tools
 - [Python](https://www.python.org/)
 - [Java](https://www.java.com/en/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Ruby](https://www.ruby-lang.org/en/)
 - [C](https://devdocs.io/c/)
 - [C++](https://cplusplus.com/doc/tutorial/)
