@@ -1047,6 +1047,18 @@ While DP methods may seem of limited applicability due to the *curse of dimensio
 
 ### Section 4.8: Summary
 
+*Policy evaluation* refers to the (usually) iterative computation of the value functions for a given policy. In turn, *policy improvement* refers to the computation of an improved policy given the value function for that policy. Putting these two together forms the backbone of the two most popular DP methods, *policy iteration* and *value iteration*.
+
+Classical DP methods involve sweeps of *expected update* operations over each state of the state set. They are little more than the Bellman operations turned into assignment statements. Convergence occurs once the updates no longer result in changes in value. 
+
+Almost all RL methods can be viewed as a form of GPI: one process takes the policy as given and performs some form of policy evaluation, changing the value function to be more like the true value function for the policy; and the other process takes the value function as given (assuming its the policy's value function) and performs some form of policy improvement, changing the policy to make it better.
+
+*Asynchronous* DP methods are iterative methods that updates states in an arbitrary order, possibly stochastic and using out-of-date information.
+
+**Bootstrapping**: general idea of updating estimates based on other estimates.
+- DP methods perform this as they update the estimates of the values of states based on the estimates of the values of successor states;
+- Many RL methods also perform this, even those that - unlike DP methods - do not require a complete and accurate model of the environment.
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
