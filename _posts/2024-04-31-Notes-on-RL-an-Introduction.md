@@ -812,11 +812,11 @@ def iterative_policy_evaluation(policy, mdp, theta, gamma):
 	gradient;
 	do {
 		gradient = 0;
-		for each s in mdp.states:
+		for s in mdp.states:
 			v = state_values[s.id];
 			state_values[s.id] = 0;
-			for each tmp_s in mdp.state:
-				for each a in mdp.actions:
+			for tmp_s in mdp.state:
+				for a in mdp.actions:
 					state_values[s.id] += policy[s.id][a.id] * mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
 			
 			gradient = max(gradient, absolute_value(v - state_values[s.id]));
@@ -917,10 +917,10 @@ def policy_evaluation(policy, mdp, state_values, theta, gamma):
 	gradient;
 	do {
 		gradient = 0;
-		for each s in mdp.states:
+		for s in mdp.states:
 			value = state_values[s.id];
 			state_values[s.id] = 0;
-			for each tmp_s in mdp.states:
+			for tmp_s in mdp.states:
 				state_values[s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=argmax(policy[tmp_s.id])) * (mdp.reward + gamma * state_values[tmp_s.id]);
 				
 			gradient = max(gradient, absolute_value(value - state_values[s.id]))
@@ -931,7 +931,7 @@ def policy_evaluation(policy, mdp, state_values, theta, gamma):
 def policy_improvement(policy, mdp, gamma):
 	policy_stable = True;
 	
-	for each s in mdp.states:
+	for s in mdp.states:
 		old_action = argmax(policy[s.id]);
 		for tmp_s in mdp.states:
 			policy[s.id] = mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=) * (mdp.reward + gamma * state_values[tmp_s.id]);
@@ -993,21 +993,21 @@ def value_iteration(mdp, theta, gamma):
 	gradient;
 	do {
 		gradient = 0;
-		for each s in mdp.states:
+		for s in mdp.states:
 			old_value = state_values[s.id];
 			tmp_value[len(mdp.states)];
-			for each tmp_s in mdp.state:
-				for each a in mdp.actions:
+			for tmp_s in mdp.state:
+				for a in mdp.actions:
 					tmp_value[tmp_s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
 
 			state_values[s.id] = max(tmp_value);
 			gradient = max(gradient, absolute_value(old_value - state_values[s.id]));
 	} while(gradient >= theta);
 
-	for each s in mdp.states:
+	for s in mdp.states:
 		tmp_value[len(mdp.states)];
-		for each tmp_s in mdp.state:
-			for each a in mdp.actions:
+		for tmp_s in mdp.state:
+			for a in mdp.actions:
 				tmp_value[tmp_s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
 
 		policy[s.id] = argmax(tmp_value);
@@ -1100,7 +1100,7 @@ def first_visit_monte_carlo_prediction(policy, gamma, mdp):
 	while(True):
 		episode = generate_episode_following_policy(policy, mdp);
 		G = 0;
-		for each step in episode[:0:-1]:
+		for step in episode[:0:-1]:
 			G = gamma * G + step.reward;
 			if step.state not in episode[:-1]:
 				returns[step.state.id].append(G);
@@ -1264,7 +1264,16 @@ Since REINFORCE uses the complete return from time $$t$$ (including all future r
 
 As a stochastic gradient method, REINFORCE assures an improvement in the expected performance (given a small enough $$\alpha$$) and convergence to a local optimum (under standard stochastic approximation conditions for decreasing $$\alpha$$). However, as a Monte Carlo method, REINFORCE may have high variance and subsequently produce slow learning.
 
-For some examples of Python implementations of the REINFORCE algorithm, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/28/REINFORCE.html" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/28/REINFORCE.html'">see here</a>.
+```
+def episodic_reinforce(policy, environment, alpha, gamma):
+	assert alpha > 0;
+	policy.theta = initialize_policy_parameters();
+	while(True):
+		episode = environment.generate_episode();
+		for step in episode:
+			G = sum([R_k * gamma**(k-step.t-1) for k, R_k in enumerate(episode.rewards]));
+			policy.theta += alpha * gamma**step.t * G * compute_gradient(log(policy[step.state][step.action]));
+```
 
 ### Section 13.4: REINFORCE with Baseline
 
@@ -1306,7 +1315,20 @@ $$
 
 The step size for the policy parameters $$\alpha_{\theta}$$ will depend on the range of variation of the rewards and on the policy parameterization.
 
-You can find an example of a Python implementation of REINFORCE with baseline <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/28/REINFORCE.html#reinforce-with-baseline'">here</a>.
+```
+def episodic_reinforce_wbaseline(policy, state_value_function, environment, alpha_theta, alpha_w, gamma):
+	assert alpha_theta > 0;
+	assert alpha_w > 0;
+	policy.theta = initialize_policy_parameters();
+	state_value_function.w = initialize_state_value_parameters();
+	while(True):
+		episode = environment.generate_episode();
+		for step in episode:
+			G = sum([R_k * gamma**(k-step.t-1) for k, R_k in enumerate(episode.rewards]));
+			delta = G - state_value_function(step.state);
+			state_value_function.w += alpha_w * delta * compute_gradient(state_value_function(step.state));
+			policy.theta += alpha_theta * gamma**step.t * delta * compute_gradient(log(policy[step.state][step.action]);)
+```
 
 ### Section 13.5: Actor-Critic Methods
 
@@ -1327,7 +1349,55 @@ $$
 A usual state value function learning method to pair with this is semi-gradient TD(0). 
 To generalize to the forward view of $$n$$-steps methods and to a $$\lambda$$-return, one only needs to replace the on-step return in the previous equation by $$G_{t:t+1}$$ or $$G_t^{\lambda}$$, respectively. The backward view of the $$\lambda$$-return algorithm is also simple, only requiring using separate eligibility traces for the actor and critic.
 
-For some examples of Python implementations of actor-critic methods, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html'">see here</a>.
+```
+def episodic_one_step_actor_critic(policy, state_value_function, environment, alpha_theta, alpha_w, gamma):
+	assert alpha_theta > 0;
+	assert alpha_w > 0;
+	policy.theta = initialize_policy_parameters();
+	state_value_function.w = initialize_state_value_parameters();
+	while(True):
+		s = environment.initialize();
+		I = 1;
+		while s.not_terminal():
+			a = policy[s];
+			next_state = environment.get_next_state(s, a);
+			if next_state.is_terminal():
+				value = 0;
+			else:
+				value = state_value_function[next_state];
+			delta = environment.get_reward(s, a) + gamma * value;
+			state_value_function.w += alpha_w * delta * compute_gradient(state_value_function[step.state]);
+			policy.theta += alpha_theta * I * delta * compute_gradient(log(policy[step.state][step.action]));
+			I = gamma * I;
+			s = next_state;
+
+def episodic_actor_critic_with_traces(policy, state_value_function, environment, lambda_theta, lambda_w, alpha_theta, alpha_w, gamma):
+	assert 1 >= lambda_theta >= 0;
+	assert 1 >= lambda_w >+ 0;
+	assert alpha_theta > 0;
+	assert alpha_w > 0;
+	policy.theta = initialize_policy_parameters();
+	state_value_function.w = initialize_state_value_parameters();
+	while(True):
+		s = environment.initialize();
+		z_theta = 0;
+		z_w = 0;
+		I = 1;
+		while s.not_terminal():
+			a = policy[s];
+			next_state = environment.get_next_state(s, a);
+			if next_state.is_terminal():
+				value = 0;
+			else:
+				value = state_value_function[next_state];
+			delta = environment.get_reward(s, a) + gamma * value - state_value_function[s];
+			z_w = gamma * lambda_w * z_w + compute_gradient(state_value_function[step.state]);
+			z_theta = gamma * lambda_theta * z_theta + I * compute_gradient(log(policy[step.state][step.action]));
+			state_value_function.w += alpha_w * delta * z_w;
+			policy.theta += alpha_theta * delta * z_theta;
+			I = gamma * I;
+			s = next_state;
+```
 
 ### Section 13.6: Policy Gradient for Continuing Problems
 
@@ -1358,7 +1428,30 @@ G_t \doteq R_{t+1} - r(\pi) + R_{t+2} - r(\pi) + R_{t+3} - r(\pi) + \dots \ .
 \end{equation}
 $$
 
-You can find an example implementation of a policy gradient method for continuing problems <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces" onerror="this.href='http://localhost:4000/ml/rl/dl/2024/03/29/Actor-Critic-Methods.html#continuing-actor-critic-with-eligibility-traces'">here</a>.
+```
+def continuing_actor_critic_with_traces(policy, state_value_function, environment, lambda_theta, lambda_w, alpha_theta, alpha_w, alpha_R):
+	assert 1 >= lambda_theta >= 0;
+	assert 1 >= lambda_w >+ 0;
+	assert 1 >= lambda_R >+ 0;
+	assert alpha_theta > 0;
+	assert alpha_w > 0;
+	R_bar = random_value();
+	policy.theta = initialize_policy_parameters();
+	state_value_function.w = initialize_state_value_parameters();
+	s = environment.initialize();
+	z_theta = 0;
+	z_w = 0;
+	while(True):
+		a = policy[s];
+		next_state = environment.get_next_state(s, a);
+		delta = environment.get_reward(s, a) - R_bar + state_value_function[next_state] - state_value_function[s];
+		R_bar += alpha_R * delta;
+		z_w = lambda_w * z_w + compute_gradient(state_value_function[s]);
+		z_theta = lambda_theta * z_theta + compute_gradient(log(policy[step.state][step.action]));
+		state_value_function.w += alpha_w * delta * z_w;
+		policy.theta += alpha_theta * delta * z_theta;
+		s = next_state;
+```
 
 ### Section 13.7: Policy Parameterization for Continuous Actions
 
