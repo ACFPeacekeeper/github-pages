@@ -763,6 +763,65 @@ $$
 
 ### Section 4.1: Policy Evaluation (Prediction)
 
+**Policy evaluation:** computing the state-value function $$v^{\pi}$$ for an arbitrary policy $$\pi$$. This is also referred to as the *prediction problem*. Recall from [Chapter 3](#chapter-3-finite-markov-decision-processes) that, $$\forall s \in \mathcal{S}$$,
+
+$$
+\begin{align}
+v^{\pi}(s) &\doteq \mathbb{E}_{\pi}[G_t \vert S_t = s], \nonumber\\
+	&= \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1} \vert S_t = s], \nonumber\\
+	&= \mathbb{E}_{\pi}[R_{t+1} + \gamma v^{\pi} (S_{t+1} \vert S_t = s)], \\
+	&= \sum_a \pi(a \vert s) \sum_{s', r} p(s', r \vert s, a)[r + \gamma v^{\pi}(s')],
+\end{align}
+$$
+
+where $$\pi(a\vert s)$$ is the probability of taking action $$a$$ in state $$s$$ under policy $$\pi$$, and the expectations are subscripted by $$\pi$$ to indicate that they are conditional on following policy $$\pi$$. If $$\gamma < 1$$ or eventual termination is guaranteed from all states under the policy $$\pi$$, then w.h.t. that $$v^{\pi}$$ exists and is unique.
+
+If the environment's dynamics are completely known, then the previous equation is a system of $$|\mathcal{S}|$$ simultaneous linear equations in $$|\mathcal{S}|$$ unknowns (the $$v^{\pi}(s), s \in \mathcal{S}$$). Consider a sequence of approximate value functions $$v_0, v_1, \dots,$$ each mapping $$S^+ \rightarrow \mathbb{R}$$. The initial approximation $$v_0$$ is chosen arbitrarily (except the terminal state, which, if it exists, must have value $0$), and, $$\forall s \in \mathcal{S},$$ each successive approximation is obtained by using the Bellman equation for $$v^{\pi}$$ as an update rule:
+
+$$
+\begin{align}
+v_{k+1}(s) &\doteq \mathbb{E}_{\pi}[R_{t+1} + \gamma \cdot v_k (S_{t+1}) \vert S_t = s] \nonumber\\
+	&= \sum_a \pi(a \vert s)\sum_{s', r} p(s', r \vert s,a )[r + \gamma \cdot v_k(s')].
+\end{align}
+$$
+
+Since the Bellman equation for $$v^{\pi}$$ assures us of the equality in the case that $$v_k = v^{\pi},$$ this is a fixed point for this update rule. Then, when under the same conditions that guarantee the existence of $$v^{\pi},$$ w.h.t. $$\lim_{k \rightarrow \infty} \{v_k\} = v^{\pi}$$. This algorithm, called **iterative policy evaluation**, produces each successive approximation $$v_{k+1}$$ from $$v_k$$, which we call an *expected update* (since they are based on an expectation over all possible states), by applying the same operation to each state $$s$$: replacing the old value of $$s$$ with a new value obtained from the old values of the successor states of $$s$$, and the expected immediate rewards, along all the one-step transitions possible under the policy being evaluated.
+
+```
+def get_new_value(policy, gamma, mdp, cur_state, state_values):
+	new_val = 0;
+	for a in mdp.actions:
+		tmp = 0;
+		take_a_in_s_prob = policy[cur_state][a];
+		for state in mdp.states:
+			tmp += mdp.probabilities[state][state.reward] * (state.reward + gamma * state_values[state.id]);
+		
+		new_val += take_a_in_s_prob * tmp;
+
+	return new_value;
+		
+
+def iterative_policy_evaluation(policy, theta, gamma, mdp):
+	assert theta > 0;
+	
+	state_values[len(mdp.states)];
+	state_values[len(mdp.states)] = 0;
+	for x in range(len(mdp.states) - 1):
+		state_values[x] = random_value();
+		
+	do {
+		gradient = 0;
+		for s in mdp.states:
+			v = state_values[s.id];
+			state_values[s.id] = get_new_value(policy, gamma, s, state_values)
+			gradient = max(gradient, absolute_value(v - state_values[s.id]));
+	} while(gradient > theta);
+
+	return state_values;
+```
+
+### Section 4.2: Policy Improvement
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
