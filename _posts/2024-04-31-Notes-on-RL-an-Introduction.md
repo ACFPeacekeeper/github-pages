@@ -1085,6 +1085,30 @@ MC methods sample and average *returns* for each state-action pair, similarly to
 
 ### Section 5.1: Monte Carlo Prediction
 
+Recall that the value of a state is the expected return - expected cumulative future discounted reward - starting from that state. The idea of estimating the expected return by averaging the returns observed after visits to that state underlies all MC methods. Each occurrence of a state $s$ in an episode is called a *visit* to $s$, and the first time it is visited in an episode is called the *first visit* to $s$. 
+
+The *first-visit* MC method estimates $v^{\pi}(s)$ as the average of the returns following first visits to $s$, whereas the *every-visit* MC method averages the returns following all visits to $s$. By the law of large numbers, both methods converge to $v^{\pi}(s)$ as the number of (first-)visits to $s$ goes to infinity. The two methods are similar, but have slightly different theoretical properties. Every-visit MC extends more naturally to function approximation and eligibility traces.
+
+```
+def first_visit_monte_carlo_prediction(policy, gamma, mdp):
+	returns[len(mdp.states)] = [];
+	state_values[len(mdp.states)];
+    state_values[len(mdp.states)] = 0;
+    for x in range(len(mdp.states) - 1):
+        state_values[x] = random_value();
+
+	while(True):
+		episode = generate_episode_following_policy(policy, mdp);
+		G = 0;
+		for each step in episode[:0:-1]:
+			G = gamma * G + step.reward;
+			if step.state not in episode[:-1]:
+				returns[step.state.id].append(G);
+				state_value[step.state.id] = mean(returns)
+```
+
+
+
 ## Chapter 6: Temporal-Difference Learning
 
 ## Chapter 7: $$n$$-step Bootstrapping
