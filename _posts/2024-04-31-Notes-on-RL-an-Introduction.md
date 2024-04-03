@@ -1004,6 +1004,23 @@ def value_iteration(mdp, theta, gamma):
 
 In each of its sweeps, value iteration combines one sweep of policy evaluation and one of policy improvement. Faster convergence is often achieved by interposing multiple policy evaluation sweeps between each policy improvement sweep. Since the max operation is the only difference between these updates, this just means that the max operation is added to some sweeps of policy evaluation. All of these algorithms converge to an optimal policy for discounted finite MDPs.
 
+### Section 4.5: Asynchronous Dynamic Programming
+
+A significant drawback to the previously discussed DP methods is the fact that they involve operations over the entire state set of the MDP, i.e., they require sweeps of the state set. As such, a single sweep can become prohibitively expensive, e.g., in the game of backgammon (that has $10^{20}$ states), even if we could perform the value iteration update on a million states per second, it would still take $$1000+$$ years to complete a single sweep.
+
+*Asynchronous* DP algorithm:  in-place iterative DP algorithm that is not organized in terms of systematic sweeps of the state set, i.e., the values of some states may be updated several times before the values of others are updated even once.
+- To convergence correctly, such an algorithm must continue to update the values of all the state, i.e., it can't ignore any state after some point in the computation;
+- Doesn't need to get locked into any hopelessly long sweep before making progress improving a policy, allowing one to order the updates s.t. value information efficiently propagates from state to state (some ideas for this are introduced in [Chapter 8](#chapter-8-planning-and-learning-with-tabula-methods));
+- Can be run *at the same time that an agent is actually experience the MDP*, meaning that the agent's experience can be used to determine which states to update and the value and policy information can guide the agent's decision making.
+	- Ex: apply updates to states as the agents visits them, thus focusing the algorithm's updates onto the parts state set parts most relevant to the agent.
+
+Example (sweepless DP) algorithm: update the value, in place, of only one state $s_k$ on each step $k$, using the value iteration update.
+- If $$0 \leq \gamma < 1$$, asymptotic convergence to $v^*$ is guaranteed given only that all states occur in the sequence $$\{s_k\}$$ an infinite number of times;
+- It is possible to intermix policy evaluation and value iteration updates to produce a kind of asynchronous truncated policy iteration.
+
+### Section 4.6: Generalized Policy Iteration
+
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
