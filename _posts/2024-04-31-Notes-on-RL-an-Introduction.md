@@ -317,7 +317,20 @@ $$
 where $$[Target - OldEstimate]$$ is an *error* in the estimate, which is reduced by taking a step towards the (possibly noisy) target value.
 The step-size parameter is generally denoted by $$\alpha$$ or $$\alpha_t (a)$$.
 
-For some examples of Python implementations of Bandit Problems, <a href="https://acfpeacekeeper.github.io/github-pages/ml/rl/2024/03/27/k-armed-Bandit-Problems.html" onerror="this.href='http://localhost:4000/ml/rl/2024/03/27/k-armed-Bandit-Problems.html'">see here</a>.
+```
+def bandit_problem(int k, float epsilon, bandits):
+	Q_a = [0]*k;
+	N_a = [0]*k;
+
+	while(True):
+		if random_float(0, 1) <= epsilon:
+			A = random_int(0, k)
+		else:
+			A = argmax(Q_a)
+		R = bandits[A].get_reward()
+		N_a[A]++;
+		Q_a[A] += (1/N_a[A]) * (R - Q_a[A]);
+```
 
 ### Section 2.5: Tracking a Non-stationary Problem
 
@@ -1060,6 +1073,17 @@ Almost all RL methods can be viewed as a form of GPI: one process takes the poli
 - Many RL methods also perform this, even those that - unlike DP methods - do not require a complete and accurate model of the environment.
 
 ## Chapter 5: Monte Carlo Methods
+
+**Monte Carlo** (MC) method: an estimation method that obtain results by computing the average of repeated random samples. For RL, this means computing the average of complete returns (as opposed to methods that learn from partial returns).
+- Requires only experience, i.e., sample sequences of states, actions, and rewards from an actual or simulated interaction with an environment;
+- Value estimates and policy changes are only computed when an episode terminates;
+- To ensure that well-defined returns are available, here we define MC methods only for episodic tasks (i.e., experience is divided into episodes that eventually terminate).
+
+Learning from *actual* experience is a very powerful tool, since it requires no prior knowledge of the environment's dynamics, yet can still achieve optimal behavior. Learning from *simulated* experience is also powerful, although a model is required to generate sample transitions (unlike in DP, which requires a complete probability distribution of all possible transitions).
+
+MC methods sample and average *returns* for each state-action pair, similarly to the bandit methods of [Chapter 2](#chapter-2-multi-armed-bandits). The main difference is that there are now multiple different bandit problems which are all interrelated, i.e., the return after taking an action is one state depends on the actions taken in later states of the same episode (making the problem non-stationary from the P.o.V. of the earlier state). We adapt the idea of GPI to handle the non-stationarity, where instead of *computing* value function from knowledge of the MDP, we *learn* value functions from sample return with the MDP.
+
+### Section 5.1: Monte Carlo Prediction
 
 ## Chapter 6: Temporal-Difference Learning
 
