@@ -227,11 +227,11 @@ Setting of the $$k$$-armed bandit learning problem (analogous to a slot machine 
 
 **Value** of an action: the expected or mean reward received if that action is selected
 
-Letting $$A_t$$ be the action taken at time step $$t$$ and $$R_t$$ the corresponding reward, then the value $$q_{*}(a)$$ of an arbitrary action $$a$$ is given by:
+Letting $$A_t$$ be the action taken at time step $$t$$ and $$R_t$$ the corresponding reward, then the value $$q^{*}(a)$$ of an arbitrary action $$a$$ is given by:
 
 $$
 \begin{equation}
-    q_{*} (a) \doteq \mathbb{E} [R_t | A_t = a].
+    q^{*} (a) \doteq \mathbb{E} [R_t | A_t = a].
 \end{equation}
 $$
 
@@ -254,7 +254,7 @@ Q_t (a) \doteq \frac{\text{sum of rewards when $a$ taken prior to $t$}}{\text{nu
 \end{equation}
 $$
 
-If the denominator is zero (action has never been taken), then $$Q_t(a)$$ is defined as an arbitrary default value (e.g., zero). By the law of large numbers, as the denominator goes to infinity, $$Q_t(a)$$ converges to $$q_{*}(a)$$. This is called the *sample-average* method for estimating action values.
+If the denominator is zero (action has never been taken), then $$Q_t(a)$$ is defined as an arbitrary default value (e.g., zero). By the law of large numbers, as the denominator goes to infinity, $$Q_t(a)$$ converges to $$q^{*}(a)$$. This is called the *sample-average* method for estimating action values.
 
 The simplest action selection rule is to always select a greedy action and - if there is more than 1 action with the same highest value - to break ties in some arbitrary way (e.g., randomly). This action selection method can be written as:
 
@@ -270,7 +270,7 @@ This selection method never performs exploration. A simple alternative that does
 
 **Non-stationary** setting: problem setting where the true values of the actions (or the reward probabilities) change over time.
 
-Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q_{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q_{*}(A_t), \ \sigma^2 = 1$$.
+Given a set of 2000 randomly generated $$k$$-armed bandit problems (with $$k = 10$$), for each problem in the set, the action values $$q^{*}(a), \ a = \{1, 2, \dots, 10\},$$ were selected from a normal (Gaussian) distribution with $$\mu = 0, \  \sigma^2 = 1$$. When a learning method is applied to this problem selects action $$A_t$$ at time step $$t$$, the actual reward ($$R_t$$) was drawn from a normal distribution with $$\mu = q^{*}(A_t), \ \sigma^2 = 1$$.
 
 The performance of the learning methods is measured as it improves with experience over 1000 time steps of the bandit problem, which makes up a single run. To obtain an accurate measure of the learning algorithms' behavior, 2000 runs are performed and the results for the bandit problems are averaged.
 
@@ -425,17 +425,17 @@ where the measure of performance is the expected reward:
 
 $$
 \begin{equation}
-\mathbb{E}[R_t] = \sum_x \pi_t (x) \cdot q_{*} (x),
+\mathbb{E}[R_t] = \sum_x \pi_t (x) \cdot q^{*} (x),
 \end{equation}
 $$
 
-and the measure of the increment's effect is the *partial derivative* of this performance measure w.r.t. the action preference. Since $$q_{*}(x)$$ is not known, it is impossible to use exact GA. As such, the updates will instead take the form of those used in SGA.
+and the measure of the increment's effect is the *partial derivative* of this performance measure w.r.t. the action preference. Since $$q^{*}(x)$$ is not known, it is impossible to use exact GA. As such, the updates will instead take the form of those used in SGA.
 
 The exact performance gradient can be written as:
 
 $$
 \begin{equation}
-\frac{\partial \mathbb{E} [R_t]}{\partial H_t(a)} = \frac{\partial [\sum_x \pi_t(x) \cdot q_{*}(x)]}{\partial H_t(a)} = \sum_x q_{*}(x) \frac{\partial \pi_t(x)}{\partial H_t(a)} = \sum_x (q_{*}(x) - B_t) \frac{\partial \pi_t(x)}{\partial H_t(a)},
+\frac{\partial \mathbb{E} [R_t]}{\partial H_t(a)} = \frac{\partial [\sum_x \pi_t(x) \cdot q^{*}(x)]}{\partial H_t(a)} = \sum_x q^{*}(x) \frac{\partial \pi_t(x)}{\partial H_t(a)} = \sum_x (q^{*}(x) - B_t) \frac{\partial \pi_t(x)}{\partial H_t(a)},
 \end{equation}
 $$
 
@@ -444,15 +444,15 @@ We continue by multiplying each term of the sum by $$\pi_t(x)/\pi_t(x)$$, as fol
 
 $$
 \begin{align}
-	\frac{\partial \mathbb{E}[R_t]}{\partial H_t(a)} &= \sum_x \pi_t(x) \cdot (q_{*}(x) - B_t) \cdot \frac{\partial \pi_t (x)}{\partial H_t(x)} / \pi_t(x) \nonumber\\
-	&= \mathbb{E} [(q_{*}(A_t) - B_t) \cdot \frac{\partial \pi_t (A_t)}{\partial H_t(a)}/\pi_t(A_t)] \nonumber\\
+	\frac{\partial \mathbb{E}[R_t]}{\partial H_t(a)} &= \sum_x \pi_t(x) \cdot (q^{*}(x) - B_t) \cdot \frac{\partial \pi_t (x)}{\partial H_t(x)} / \pi_t(x) \nonumber\\
+	&= \mathbb{E} [(q^{*}(A_t) - B_t) \cdot \frac{\partial \pi_t (A_t)}{\partial H_t(a)}/\pi_t(A_t)] \nonumber\\
 	&= \mathbb{E}[(R_t - \bar{R_t}) \cdot \frac{\partial \pi_t(A_t)}{\partial H_t(a)}/\pi_t(A_t)] \nonumber\\
 	&= \mathbb{E} [(R_t - \bar{R}_t) \cdot \pi_t(A_t) \cdot (\mathbb{1}_{a = A_t} - \pi_t(a))/\pi_t(A_t)] \nonumber\\
 	&= \mathbb{E}[(R_t - \bar{R}_t) \cdot (\mathbb{1}_{a = A_t} - \pi_t(a))],
 \end{align}
 $$
 
-where the chosen baseline is $$B_t = \bar{R_t}$$ and $$R_t$$ is substituted for $$q_{*}(A_t)$$, which is allowed since $$\mathbb{E}[R_t|A_t] = q_{*}(A_t)$$. 
+where the chosen baseline is $$B_t = \bar{R_t}$$ and $$R_t$$ is substituted for $$q^{*}(A_t)$$, which is allowed since $$\mathbb{E}[R_t|A_t] = q^{*}(A_t)$$. 
 By substituting a sample of the expectation above for the performance gradient, w.h.t.:
 
 $$
@@ -658,57 +658,57 @@ $$
 **Policy**: a mapping from states to probabilities of selecting each possible action, i.e., if the agent is following policy $$\pi$$ at time $$t,$$ then $$\pi(a \vert s)$$ is the probability that $$A_t = a$$ if $$S_t = s.$$ 
 - It is a function that defines a probability distribution over $$a \in \mathcal{A}(s)$$ for each $$s \in \mathcal{S}.$$ 
 
-The *value function* of a state $$s$$ under a policy $$\pi,$$ denoted $$v_{\pi}(s),$$ is the expected return when starting in $$s$$ and following $$\pi$$ thereafter. For MDPs, $$v_{\pi}$$ can be formally defined as
+The *value function* of a state $$s$$ under a policy $$\pi,$$ denoted $$^{\pi}(s),$$ is the expected return when starting in $$s$$ and following $$\pi$$ thereafter. For MDPs, $$v^{\pi}$$ can be formally defined as
 
 $$
 \begin{equation}
-v_{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] = \mathbb{E}_{\pi} \bigg[ \sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s \bigg], \ \forall s \in \mathcal{S},
+v^{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] = \mathbb{E}_{\pi} \bigg[ \sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s \bigg], \ \forall s \in \mathcal{S},
 \end{equation}
 $$
 
-where $$\mathbb{E}_{\pi}[\cdot]$$ denotes the expected value of random variable given that the agent follows policy $$\pi,$$ and $$t$$ is any time step (the value of the terminal state is always zero). The function $$v_{\pi}$$ is called the *state-value function for policy $$\pi$$.* 
+where $$\mathbb{E}_{\pi}[\cdot]$$ denotes the expected value of random variable given that the agent follows policy $$\pi,$$ and $$t$$ is any time step (the value of the terminal state is always zero). The function $$v^{\pi}$$ is called the *state-value function for policy $$\pi$$.* 
 
-We can also define the value of taking action $$a$$ in state $$s$$ while following a policy $$\pi,$$ denoted $$q_{\pi}(s, a),$$ as the expected return starting from $$s,$$ taking the action $$a,$$ and following policy $$\pi$$ afterwards:
+We can also define the value of taking action $$a$$ in state $$s$$ while following a policy $$\pi,$$ denoted $$q^{\pi}(s, a),$$ as the expected return starting from $$s,$$ taking the action $$a,$$ and following policy $$\pi$$ afterwards:
 
 $$
 \begin{equation}
-q_{\pi}(s, a) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s, A_t = a] = \mathbb{E}_{\pi} \bigg[\sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s, A_t =a \bigg].
+q^{\pi}(s, a) \doteq \mathbb{E}_{\pi} [G_t \vert S_t = s, A_t = a] = \mathbb{E}_{\pi} \bigg[\sum_{k=0}^{\infty} \gamma^k R_{t + k + 1} \vert S_t = s, A_t =a \bigg].
 \end{equation}
 $$
 
-The function $$q_{\pi}$$ is called the *action-value function for policy $$\pi$$*. Both $$q_{\pi}$$ and $$v_{\pi}$$ can be estimated from experience, e.g., using *Monte Carlo methods*.
+The function $$q^{\pi}$$ is called the *action-value function for policy $$\pi$$*. Both $$q^{\pi}$$ and $$v^{\pi}$$ can be estimated from experience, e.g., using *Monte Carlo methods*.
 
 **Monte Carlo methods**: estimation methods that involve averaging over many random samples of a random variable.
-- For examples, if an agent follows policy $$\pi$$ and maintains an average, for each state encountered, of the actual returns that have followed that state, then the average will converge to the state's actual value $$v_{\pi}(s),$$ as the number of times that state is encountered approaches infinity.  If separate averages are kept for each action taken in each state, these averages will also converge to the action values $$q_{\pi}(s, a)$$;
-- Since keeping an average for each state and state-action pair is usually not practical, the agent can instead maintain $$v_{\pi}$$ and $$q_{\pi}$$ as parameterized functions.
+- For examples, if an agent follows policy $$\pi$$ and maintains an average, for each state encountered, of the actual returns that have followed that state, then the average will converge to the state's actual value $$v^{\pi}(s),$$ as the number of times that state is encountered approaches infinity.  If separate averages are kept for each action taken in each state, these averages will also converge to the action values $$q^{\pi}(s, a)$$;
+- Since keeping an average for each state and state-action pair is usually not practical, the agent can instead maintain $$v^{\pi}$$ and $$q^{\pi}$$ as parameterized functions.
 
 A fundamental property of commonly used value functions is that they satisfy recursive relationships similar to that of the return. For any policy $$\pi$$ and state $$s,$$ the following consistency condition holds between the value of $$s$$ and the value of its possible successor states:
 
 $$
 \begin{align}
-v_{\pi}(s) &\doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] \nonumber\\
+v^{\pi}(s) &\doteq \mathbb{E}_{\pi} [G_t \vert S_t = s] \nonumber\\
 	&= \mathbb{E}_{\pi} [R_{t+1} + \gamma G_{t+1} \vert S_t = s] \nonumber\\
 	&= \sum_a \pi(a \vert s) \sum_{s'} \sum_r p(s', r \vert s, a) \bigg[r + \gamma \mathbb{E}_{\pi} [G_{t+1} \vert S_{t+1} = s']\bigg] \nonumber\\
-	&= \sum_a \pi(a \vert s) \sum_{s', r} p(s', r \vert s, a) [r + \gamma v_{\pi}(s')], \quad \forall s \in \mathcal{S},
+	&= \sum_a \pi(a \vert s) \sum_{s', r} p(s', r \vert s, a) [r + \gamma v^{\pi}(s')], \quad \forall s \in \mathcal{S},
 \end{align}
 $$
 
 where it is implicit that the actions $$a$$ are taken from the set $$\mathcal{A},$$ that the next state $$s'$$ are taken from the set $$\mathcal{S}$$ (or from $$\mathcal{S}^+$$ in the case of an episodic problem), and that the rewards $$r$$ are taken from the set $$\mathcal{R}.$$ The final expression, which is a sum over all values of the three variables $$a$$, $$s'$$, and $$r$$, can be read as an expected value. For each triple, we compute its probability $$\pi(a \vert s) p(s', r \vert s, a),$$ weight the quantity in brackets by that probability and then sum over all possibilities to get an expected value.
 
-The last equation, called the *Bellman equation for $$v_{\pi}$$,* expresses a relationship between the value of a state and the values of its successor states (similar to a look-ahead).  The Bellman equation averages over all the possibilities, weighting each by its probability of occurring, and it states that the value of the start state must equal the discounted value of the expected next state, plus the reward expected along the way. The value function $$v_{\pi}$$ is the unique solution to this equation.
+The last equation, called the *Bellman equation for $$v^{\pi}$$,* expresses a relationship between the value of a state and the values of its successor states (similar to a look-ahead).  The Bellman equation averages over all the possibilities, weighting each by its probability of occurring, and it states that the value of the start state must equal the discounted value of the expected next state, plus the reward expected along the way. The value function $$v^{\pi}$$ is the unique solution to this equation.
 
 ### Section 3.6: Optimal Policies and Optimal Value Functions
 
 Solving a RL task roughly means finding a policy that maximizes the total reward over the long run. For finite MDPs, we can precisely define an *optimal policy $$\pi^*$$* as follows:
 - Value function define a partial ordering over policies;
-- A policy $$\pi$$ is defined to be better than or equal to a policy $$\pi'$$, i.e., $$\pi \geq \pi'$$, iff $$v_{\pi}(s) \geq v_{\pi'}(s), \ \forall s \in \mathcal{S}$$;
+- A policy $$\pi$$ is defined to be better than or equal to a policy $$\pi'$$, i.e., $$\pi \geq \pi'$$, iff $$v^{\pi}(s) \geq v_{\pi'}(s), \ \forall s \in \mathcal{S}$$;
 - $$\exists \pi^*: \pi^* \geq \pi, \ \forall \pi \in \mathcal{S}$$.
 
 Although there may be more than one optimal policy, we denote them all by $$\pi^*$$. They share the same state-value function, called the *optimal state-value function*, denoted $$v^*$$, and defined as
 
 $$
 \begin{equation}
-v^*(s) \doteq \max_{\pi} v_{\pi}(s), \quad \forall s \in \mathcal{S}.
+v^*(s) \doteq \max_{\pi} v^{\pi}(s), \quad \forall s \in \mathcal{S}.
 \end{equation}
 $$
 
@@ -716,7 +716,7 @@ Optimal policies also share the same *optimal action-value function*, denoted $$
 
 $$
 \begin{align}
-q^*(s, a) &\doteq \max_{\pi} q_{\pi}(s, a), \quad \forall s \in \mathcal{S}, \forall a \in \mathcal{A}(s),\\
+q^*(s, a) &\doteq \max_{\pi} q^{\pi}(s, a), \quad \forall s \in \mathcal{S}, \forall a \in \mathcal{A}(s),\\
 	&= \mathbb{E}[R_{t+1} + \gamma v^*(S_{t+1}) \vert S_t = s, A_t = a].
 \end{align}
 $$
@@ -860,7 +860,7 @@ The **policy gradient theorem** provides a solution towards this challenge in th
 
 $$
 \begin{equation}
-\nabla J(\theta) \propto \sum_s \mu (s) \sum_a q_{\pi}(s, a) \cdot \nabla \pi(a|s, \theta),
+\nabla J(\theta) \propto \sum_s \mu (s) \sum_a q^{\pi}(s, a) \cdot \nabla \pi(a|s, \theta),
 \end{equation}
 $$
 
@@ -871,8 +871,8 @@ where $$\mu$$ is the on-policy distribution under $$\pi$$. For the episodic case
 Since any constant of proportionality can be absorbed into the step size $$\alpha$$, all that is required is a way of sampling that approximates the policy gradient theorem. As the r.h.s. of the theorem is a sum over states weighted by their probability of occurring under the target policy $$\pi$$, w.h.t.:
 $$
 \begin{align}
-	\nabla J(\theta) &\propto \sum_s \sum_a q_{\pi}(s, a) \cdot \nabla \pi (a|s, \theta) \nonumber\\
-	&= \mathbb{E}_{\pi} [\sum_a q_{\pi}(S_t, a) \cdot \nabla \pi(a|S_t, \theta)].
+	\nabla J(\theta) &\propto \sum_s \sum_a q^{\pi}(s, a) \cdot \nabla \pi (a|s, \theta) \nonumber\\
+	&= \mathbb{E}_{\pi} [\sum_a q^{\pi}(S_t, a) \cdot \nabla \pi(a|S_t, \theta)].
 \end{align}
 $$
 Thus, we can instantiate the stochastic gradient ascent algorithm (known as the *all-actions* method, due to its update involving all of the actions) as:
@@ -883,13 +883,13 @@ $$
 \end{equation}
 $$
 
-where $$\hat{q}$$ is a learned approximation of $$q_{\pi}$$.
+where $$\hat{q}$$ is a learned approximation of $$q^{\pi}$$.
 Unlike the previous method, the update step at time $$t$$ of the **REINFORCE** algorithm involves only $$A_t$$ (the action taken at time $$t$$). By multiplying and then dividing the summed terms by $$\pi (a\vert S_t, \theta)$$, we can introduce the weighting needed for an expectation under $$\pi$$., then, given that $$G_t$$ is the return, w.h.t.:
 
 $$
 \begin{align}
-	\nabla J(\theta) &\propto \mathbb{E}_{\pi} [\sum_a \pi(a|S_t, \theta) \cdot q_{\pi} (S_t,a) \cdot \frac{\nabla \pi(s|S_t, \theta)}{\pi(a|S_t, \theta)}] \nonumber\\
-	&= \mathbb{E}_{\pi} [q_{\pi}(S_t, A_t) \cdot \frac{\nabla \pi(A_t|S_t, \theta)}{\pi(A_t|S_t, \theta)}] \nonumber\\
+	\nabla J(\theta) &\propto \mathbb{E}_{\pi} [\sum_a \pi(a|S_t, \theta) \cdot q^{\pi} (S_t,a) \cdot \frac{\nabla \pi(s|S_t, \theta)}{\pi(a|S_t, \theta)}] \nonumber\\
+	&= \mathbb{E}_{\pi} [q^{\pi}(S_t, A_t) \cdot \frac{\nabla \pi(A_t|S_t, \theta)}{\pi(A_t|S_t, \theta)}] \nonumber\\
 	&= \mathbb{E}_{\pi} [G_t \cdot \frac{\nabla \pi(A_t|S_t, \theta)}{\pi(A_t|S_t, \theta)}].
 \end{align}
 $$
@@ -916,7 +916,7 @@ Generalizing the policy gradient theorem to include a comparison of the action v
 
 $$
 \begin{equation}
-\nabla J(\theta) = \sum_s \mu (s) \sum_a (q_{\pi}(s, a) - b(s)) \cdot \nabla \pi (a|s, \theta).
+\nabla J(\theta) = \sum_s \mu (s) \sum_a (q^{\pi}(s, a) - b(s)) \cdot \nabla \pi (a|s, \theta).
 \end{equation}
 $$
 
@@ -994,7 +994,7 @@ $$
 \end{equation}
 $$
 
-In the continuing case, we define values: $$v_{\pi} (s) \doteq \mathbb{E}_{\pi} (G_t \vert S_t = s)$$ and $$q_{\pi}(s, a) \doteq \mathbb{E} [G_t \vert S_t = s, A_t = a]$$, w.r.t. the differential return (s.t. the policy gradient theorem holds true for the continuing case):
+In the continuing case, we define values: $$v^{\pi} (s) \doteq \mathbb{E}_{\pi} (G_t \vert S_t = s)$$ and $$q^{\pi}(s, a) \doteq \mathbb{E} [G_t \vert S_t = s, A_t = a]$$, w.r.t. the differential return (s.t. the policy gradient theorem holds true for the continuing case):
 
 $$
 \begin{equation}
