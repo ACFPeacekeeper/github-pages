@@ -895,6 +895,71 @@ The policy improvement theorem carries through as stated for the stochastic case
 
 ### Section 4.3: Policy Iteration
 
+A policy $$\pi$$ can be iteratively improved to yield a better policy, thus leading to a sequence of monotonically improving policies and value functions:
+
+$$
+\begin{equation}
+\pi_0 \xrightarrow{E} v^{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v^{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} \dots \xrightarrow{I} \pi^* \xrightarrow{E} v^*, 
+\end{equation}
+$$
+
+where $$\xrightarrow{E}$$ denotes a policy *evaluation* and $$\xrightarrow{I}$$ a policy *improvement*. Each policy is guaranteed to be a strict improvement over the previous one, unless it is already an optimal policy. Since a finite MDP has a finite number of deterministic policies, this process must converge to an optimal policy and the optimal value function in a finite number of iterations.
+
+This way of finding an optimal policy is called *policy iteration*. Each policy evaluation is started with the value function for the previous policy, which usually results in a great increase in the algorithm's speed of converge (presumably due to the fact that the value function changes little from one policy to the next).
+
+```
+def policy_evaluation(policy, mdp, state_values, theta, gamma):
+	do {
+		gradient = 0;
+		for each s in mdp.states:
+			value = state_values[s.id];
+			state_values[s.id] = 0;
+			for each tmp_s in mdp.states:
+				state_values[s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=argmax(policy[tmp_s.id])) * (mdp.reward + gamma * state_values[tmp_s.id]);
+				
+			gradient = max(gradient, absolute_value(value - state_values[s.id]))
+	} while(gradient > theta);
+
+	return state_values;
+
+def policy_improvement(policy, mdp, gamma):
+	policy_stable = True;
+	
+	for each s in mdp.states:
+		old_action = argmax(policy[s.id]);
+		for tmp_s in mdp.states:
+			policy[s.id] = mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=) * (mdp.reward + gamma * state_values[tmp_s.id]);
+		
+		if old_action != argmax(policy[s]):
+			policy_stable = False;
+
+	return policy, policy_stable;
+
+def policy_iteration(mdp, theta, gamma):
+	assert theta > 0;
+	
+	state_values[len(mdp.states)];
+	state_values[len(mdp.states)] = 0;
+	policy[len(mdp.states)][len(mdp.actions)];
+	for x in range(len(mdp.states) - 1):
+		state_values[x] = random_value();
+		for y in range(len(mdp.actions)):
+			policy[x][y] = random_value();
+
+		// Since a policy is probabilities, its values must sum to 1
+		policy[x] = (policy[x] - min(policy[x]) / (max(policy[x]) - min(policy[x]))
+
+
+	policy_stable = False;
+	while (!policy_stable):
+		state_values = policy_evaluation(policy, mdp, state_values, theta, gamma)
+		policy, policy_stable = policy_improvement(policy, mdp, gamma)
+
+	return policy
+```
+
+### Section 4.4: Value Iteration
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
