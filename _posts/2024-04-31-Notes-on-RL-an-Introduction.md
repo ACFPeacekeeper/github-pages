@@ -788,20 +788,7 @@ $$
 Since the Bellman equation for $$v^{\pi}$$ assures us of the equality in the case that $$v_k = v^{\pi},$$ this is a fixed point for this update rule. Then, when under the same conditions that guarantee the existence of $$v^{\pi},$$ w.h.t. $$\lim_{k \rightarrow \infty} \{v_k\} = v^{\pi}$$. This algorithm, called **iterative policy evaluation**, produces each successive approximation $$v_{k+1}$$ from $$v_k$$, which we call an *expected update* (since they are based on an expectation over all possible states), by applying the same operation to each state $$s$$: replacing the old value of $$s$$ with a new value obtained from the old values of the successor states of $$s$$, and the expected immediate rewards, along all the one-step transitions possible under the policy being evaluated.
 
 ```
-def get_new_value(policy, gamma, mdp, cur_state, state_values):
-	new_val = 0;
-	for a in mdp.actions:
-		tmp = 0;
-		take_a_in_s_prob = policy[cur_state][a];
-		for state in mdp.states:
-			tmp += mdp.probabilities[state][state.reward] * (state.reward + gamma * state_values[state.id]);
-		
-		new_val += take_a_in_s_prob * tmp;
-
-	return new_value;
-		
-
-def iterative_policy_evaluation(policy, theta, gamma, mdp):
+def iterative_policy_evaluation(policy, mdp, theta, gamma):
 	assert theta > 0;
 	
 	state_values[len(mdp.states)];
@@ -809,13 +796,18 @@ def iterative_policy_evaluation(policy, theta, gamma, mdp):
 	for x in range(len(mdp.states) - 1):
 		state_values[x] = random_value();
 		
+	gradient;
 	do {
 		gradient = 0;
-		for s in mdp.states:
+		for each s in mdp.states:
 			v = state_values[s.id];
-			state_values[s.id] = get_new_value(policy, gamma, s, state_values)
+			state_values[s.id] = 0;
+			for each tmp_s in mdp.state:
+				for each a in mdp.actions:
+					state_values[s.id] += policy[s.id][a.id] * mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
+			
 			gradient = max(gradient, absolute_value(v - state_values[s.id]));
-	} while(gradient > theta);
+	} while(gradient >= theta);
 
 	return state_values;
 ```
@@ -909,6 +901,7 @@ This way of finding an optimal policy is called *policy iteration*. Each policy 
 
 ```
 def policy_evaluation(policy, mdp, state_values, theta, gamma):
+	gradient;
 	do {
 		gradient = 0;
 		for each s in mdp.states:
@@ -918,7 +911,7 @@ def policy_evaluation(policy, mdp, state_values, theta, gamma):
 				state_values[s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=argmax(policy[tmp_s.id])) * (mdp.reward + gamma * state_values[tmp_s.id]);
 				
 			gradient = max(gradient, absolute_value(value - state_values[s.id]))
-	} while(gradient > theta);
+	} while(gradient >= theta);
 
 	return state_values;
 
@@ -959,6 +952,57 @@ def policy_iteration(mdp, theta, gamma):
 ```
 
 ### Section 4.4: Value Iteration
+
+A drawback of policy iteration is that it may involve several policy evaluations, which can be a protracted computation in itself. If policy evaluation is done iteratively, then convergence to exactly $$v^{\pi}$$ occurs only at the limit. However, we can often truncate policy evaluation, e.g., policy evaluation iterations beyond the first three have no effect on the corresponding greedy policy.
+
+The policy evaluation step of policy iteration can be truncated in several ways without losing the algorithm's convergence guarantees. One special case is when policy evaluation is stopped after just one sweep (one update of each state). This algorithm, which is called *value iteration*, can be written as a simple update operation that combines the policy improvement and truncated policy evaluation steps:
+
+$$
+\begin{align}
+v_{k+1}(s) &\doteq \max_a \mathbb{E}[R_{t+1} + \gamma \cdot v_k(S_{t+1}) \vert S_t = s, A_t = a] \nonumber\\
+	&= \max_a \sum_{s', r} p(s', r \vert s, a)[r + \gamma \cdot v_k(s')], \forall s \in \mathcal{S}.
+\end{align}
+$$
+
+For an arbitrary $$v_0$$, the sequence $$\{v_k\}$$ can be shown to converge to $$v*$$ under the same conditions that guarantee the existence of $$v^*$$. Note that value iteration is obtained simply by turning the Bellman optimality equation into an update rule. Also, note how the value iteration update is identical to the policy evaluation update, except that it requires the maximu8m to be taken over all actions.
+
+```
+def value_iteration(mdp, theta, gamma):
+	assert theta > 0;
+
+    state_values[len(mdp.states)];
+    state_values[len(mdp.states)] = 0;
+    policy[len(mdp.states)];
+    for x in range(len(mdp.states) - 1):
+        state_values[x] = random_value();
+        policy[x] = 0;
+
+	gradient;
+	do {
+		gradient = 0;
+		for each s in mdp.states:
+			old_value = state_values[s.id];
+			tmp_value[len(mdp.states)];
+			for each tmp_s in mdp.state:
+				for each a in mdp.actions:
+					tmp_value[tmp_s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
+
+			state_values[s.id] = max(tmp_value);
+			gradient = max(gradient, absolute_value(old_value - state_values[s.id]));
+	} while(gradient >= theta);
+
+	for each s in mdp.states:
+		tmp_value[len(mdp.states)];
+		for each tmp_s in mdp.state:
+			for each a in mdp.actions:
+				tmp_value[tmp_s.id] += mdp.reward_probabilities(prev_state=s, cur_state=tmp_s, action=a) * (state.reward + gamma * state_values[state.id]);
+
+		policy[s.id] = argmax(tmp_value);
+
+	return policy;
+```
+
+In each of its sweeps, value iteration combines one sweep of policy evaluation and one of policy improvement. Faster convergence is often achieved by interposing multiple policy evaluation sweeps between each policy improvement sweep. Since the max operation is the only difference between these updates, this just means that the max operation is added to some sweeps of policy evaluation. All of these algorithms converge to an optimal policy for discounted finite MDPs.
 
 ## Chapter 5: Monte Carlo Methods
 
