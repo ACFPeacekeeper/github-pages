@@ -745,6 +745,24 @@ A policy's *value functions* ($$v^*$$ and $$q^*$$) assign to each state, or stat
 
 ## Chapter 4: Dynamic Programming
 
+In this (and future) chapters, we will usually assume that the environment is a finite MDP. This means that we assume $$|\mathcal{S}| < \infty, |\mathcal{A}| < \infty, |\mathcal{R}| < \infty,$$ and that its dynamics are given by a set of probabilities $$p(s', r \vert s, a), \forall s \in \mathcal{S}, \forall a \in \mathcal{A}, \forall r \in \mathcal{R}, s' \in \mathcal{S}^+$$. 
+
+Beyond finite MDPs, Dynamic Programming (DP) ideas can be applied to problems with a continuous state and action spaces, by exact solutions for these types of problems are only possible in special cases.
+
+The key idea of DP (and RL in general) is the use of value functions to both structure and organize the search for good policies. DP algorithms are obtained by turning Bellman equations into assignments, i.e., into update rules for improving approximations of the desired value functions. Remember that we can easily obtain optimal policies if we find the optimal value functions, $$v^* \lor q^*$$, which satisfy the Bellman optimality equations, $$\forall s \in \mathcal{S}, \forall a \in \mathcal{A}(s), s' \in \mathcal{S}^+$$:
+
+$$
+\begin{align}
+v^*(s) &= \max_a \mathbb{E}[R_{t+1} + \gamma \cdot v^*(S_{t+1} \vert S_t = s, A_t = a)] \nonumber\\
+	&= \max_a \sum_{s', r} p(s' r, \vert s, a) [r + \gamma \cdot v^*(s')],\\
+	&\lor \nonumber\\
+q^*(s, a) &= \mathbb{E}[R_{t+1} + \gamma \max_{'a} q^*(S_{t+1}, a') \vert S_t = s, S_t =a], \nonumber\\
+	&= \sum_{s', r} p(s', r \vert s, a) [r + \gamma \max_{a'} q^*(s', a')].
+\end{align}
+$$
+
+### Section 4.1: Policy Evaluation (Prediction)
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
