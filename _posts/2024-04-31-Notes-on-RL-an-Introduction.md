@@ -1039,6 +1039,14 @@ If both the evaluation process and the improvement process stabilize, then the v
 
 ### Section 4.7: Efficiency of Dynamic Programming
 
+While DP methods may not be the most practical solution for very large problems they can be quite efficient when compared with other methods for solving MDPs. If $$n$$ and $$k$$ denote the number of states and actions, respectively, a DP method takes less computational operations than some polynomial function of $$n$$ and $$k$$ to find an optimal policy, even though the total number of (deterministic) policies is $$k^n$$. 
+
+Direct search and linear programming methods can also be used to solve MDPs, and in some cases their worst-case convergence guarantees are even better than those of DP methods. However, linear programming methods become impractical at a much smaller number of states than DP methods do (by a factor of about 100).
+
+While DP methods may seem of limited applicability due to the *curse of dimensionality* (the fact that the number of states often grows exponentially with the number of state variables), in practice, such methods can be used with today's computers to solve MDPs with millions of states. Also, these methods normally converge much faster than their theoretical worst-case runtimes, specially if they are started with good initial value functions or policies. For very large state spaces, *asynchronous* DP are often preferred.
+
+### Section 4.8: Summary
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
