@@ -1020,6 +1020,24 @@ Example (sweepless DP) algorithm: update the value, in place, of only one state 
 
 ### Section 4.6: Generalized Policy Iteration
 
+### Section 4.6: Generalized Policy Iteration
+
+Policy iteration consists of two simultaneous and interacting processes:
+- Policy evaluation: makes the value function consistent with the current policy;
+- Policy improvement: makes the policy greedy w.r.t. the current value function.
+
+These two processes need not be alternate and/or completed one after the other, since, as long as both processes continue to update all states, convergence to the optimal value function and (an) optimal policy is guaranteed.
+
+*Generalized policy iteration* (GPI): the general idea of letting policy evaluation and policy improvement processes interact, independent of the details of the two processes. Almost all RL methods can be described as GPI, i.e., they have identifiable policies and value functions, with the policy always being improved w.r.t. the value function, and the value function always being driven toward the value function for the policy. 
+
+If both the evaluation process and the improvement process stabilize, then the value function and policy must be optimal. The value function only stabilizes when it is consistent with the current policy, and the policy stabilizes only when it is greedy with respect to the current value function. This implies that the Bellman optimality equation, which means that the policy and the value function are guaranteed to be optimal.
+
+<figure align='center'>
+	<img alt="Example of a policy iteration process." src="http://acfpeacekeeper.github.io/github-pages/images/literature/example_pi_process.png" onerror="this.src='http://localhost:4000/images/literature/example_pi_process.png';">
+	<figcaption>Figure 3: Example of a policy iteration process.</figcaption>
+</figure>
+
+### Section 4.7: Efficiency of Dynamic Programming
 
 ## Chapter 5: Monte Carlo Methods
 
