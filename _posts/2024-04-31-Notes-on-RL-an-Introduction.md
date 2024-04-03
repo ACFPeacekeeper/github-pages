@@ -1107,7 +1107,19 @@ def first_visit_monte_carlo_prediction(policy, gamma, mdp):
 				state_value[step.state.id] = mean(returns)
 ```
 
+### Section 5.2: Monte Carlo Estimation of Action Values
 
+Without a model, one must explicitly estimate the value of each action in order for the values to be useful in suggesting a policy. As such, one the primary goals for MC methods is to estimate $q^*$. The policy evaluation problem for action values is to estimate $q^{\pi}(s, a)$, i.e., the expected return when starting in state $s$, taking action $a$, and thereafter following policy $\pi$.
+
+A state–action pair $(s, a)$ is said to be visited in an episode if ever the state $s$ is visited and action $a$ is taken in it. The every-visit MC method estimates the value of a state–action pair as the average of the returns that have followed all the visits to it. In turn, the first-visit MC method averages the returns following the first time in each episode that the state was visited and the action was selected.
+
+If $\pi$ is a deterministic policy, then in following it one will observe returns only for one of the actions from each state, and with no returns to average, the MC estimates of the other actions will not improve with experience. This is a serious problem, since to alternatives we need to estimate the value of all the actions from each state, not just the one we currently favor.
+
+This is the general problem of maintaining *exploration*, as discussed in [Chapter 2](#chapter-2-multi-armed-bandits). For policy evaluation to work for action values, we must assure continual exploration. One way to do this is by assuming *exploring starts*, which means that the episodes *start in a state–action pair*, and that every pair has a nonzero probability of being selected as the start.
+
+The previous assumption cannot always be relied upon, particularly when learning directly from actual interaction with an environment. The most common alternative approach to assuring that all state–action pairs are encountered is to consider only policies that are stochastic with a nonzero probability of selecting all actions in each state.
+
+### Section 5.3: Monte Carlo Control
 
 ## Chapter 6: Temporal-Difference Learning
 
