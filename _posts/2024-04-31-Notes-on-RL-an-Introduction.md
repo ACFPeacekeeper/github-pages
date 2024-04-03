@@ -822,6 +822,79 @@ def iterative_policy_evaluation(policy, theta, gamma, mdp):
 
 ### Section 4.2: Policy Improvement
 
+Knowing the value function $$v^{\pi}$$ for an arbitrary deterministic policy $$\pi$$, and given some state $$s$$, how can we determine whether or not we should change the policy to deterministically choose an action $$a \neq \pi(s)$$? One possible way, is to consider selecting $a$ in $s$ and afterwards following the existing policy $$\pi$$. The value of this manner of behaving is given by
+
+$$
+\begin{align}
+q^{\pi}(s, a) &\doteq \mathbb{E}[R_{t+1} + \gamma v^{\pi}(S_{t+1} \vert S_t = s, A_t = a)] \nonumber\\
+	&= \sum_{s', r} p(s', r \vert s, a)[r + \gamma \cdot v^{\pi}(s')].
+\end{align}
+$$
+
+The key criterion is whether this is greater than or less than $$v^{\pi}$$. If it is greater, i.e., if it is better to select $$a$$ once in $$s$$ and thereafter follow $$\pi$$ than it is to always follow $$\pi$$, then one can expect that it would be better to select $$a$$ ever time $$s$$ is encountered, and that such new policy would be a better one overall. This fact is a special case of a general result called the *policy improvement theorem*. 
+
+Let $$\pi$$ and $$\pi'$$ be any pair of deterministic policies s.t.:
+
+$$
+\begin{equation}
+q^{\pi}(s, \pi'(s)) \geq v^{\pi}(s), \forall s \in \mathcal{S}.
+\end{equation}
+$$
+
+Then the policy $$\pi'$$ must be as good as, or better than, $$\pi$$, i.e., it must obtain greater or equal expected return from all states:
+
+$$
+\begin{equation}
+v^{\pi'}(s) \geq v^{\pi}(s), s \in \mathcal{S}.
+\end{equation}
+$$
+
+Additionally, if there is strict inequality of $$q^{\pi}(s, \pi'(s))$$ at any state, then there must be strict inequality of $$v^{\pi'}(s)$$ at that state. This theorem applies to the two policies considered: a deterministic policy $$\pi$$, and a changed policy $$\pi$$, identical to $$\pi$$ in everything except $$\pi'(s) = a \neq \pi(s)$$. Since $$v^{\pi'} = v^{\pi}, \forall s' \in \mathcal{S} \setminus \{s\},$$ if $$q^{\pi}(s, a) > v^{\pi}(s)$$, then the changed policy $$\pi'$$ must be better than $$\pi$$. 
+
+In order to understand the idea of the proof behind the policy improvement theorem, we can start from $$q^{\pi}(s, \pi'(s)) \geq v^{\pi}(s)$$, then keep expanding the l.h.s. with the equation for $$q^{\pi}(s, a)$$ and reapplying $$q^{\pi}(s, \pi'(s)) \geq v^{\pi}(s)$$:
+
+$$
+\begin{align}
+v^{\pi}(s) &\leq q^{\pi}(s, \pi'(s))\\
+	&= \mathbb{E}[R_{t+1} + \gamma \cdot v^{\pi}(S_{t=1}) \vert S_t = s, A_t = \pi'(s)] \nonumber\\
+	&= \mathbb{E}_{\pi'}[R_{t+1} + \gamma \cdot v^{\pi}(S_{t+1}) \vert S_t = s] \nonumber\\
+	&\leq \mathbb{E}_{\pi'}[R_{t+1} + \gamma \cdot q^{\pi}(S_{t+1}, \pi'(S_{t+1})) \vert S_t = s] \nonumber\\
+	&= \mathbb{E}_{\pi'}\bigg[R_{t+1} + \gamma \cdot \mathbb{E}[R_{t+2} + \gamma \cdot v^{\pi}(S_{t+2}) \vert S_{t+1}, A_{t+1} = \pi'(S_{t+1})] \vert S_t = s \bigg] \nonumber\\
+	&\leq \mathbb{E}_{\pi'}[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} \gamma^3 R_{t+4} + \dots \vert S_t = s] \nonumber\\
+	&\dots \nonumber\\
+	&= v^{\pi'}(s).
+\end{align}
+$$
+
+Now knowing how, given a policy policy and its value function, to evaluate a change in the policy at a single, we to extend this result to consider changes at all states - selecting at each state the action that appears best according to $$q^{\pi}(s, a)$$, i.e., to consider the new *greedy* policy $$\pi'$$, given by
+
+$$
+\begin{align}
+\pi'(s) &\doteq \argmax_a \  q^{\pi}(s, a) \nonumber\\
+	&= \argmax_a \ \mathbb{E}[R_{t+1} + \gamma \cdot v^{\pi}(S_{t+1}) \vert S_t = s, A_t = a] \nonumber\\
+	&= \argmax_a \sum_{s', r} p(s', r \vert s, a)[r + \gamma \cdot v^{\pi}(s')].
+\end{align}
+$$
+
+The greedy policy takes the action that looks best according to $$v^{\pi}$$ after a single step of lookahead. Since, by construction, the greedy policy meets the conditions of the policy improvement theorem, we know that it is as good as - or better than - the original policy.
+
+**Policy improvement**:  process of making a new policy that improves on an original policy by making it greedy w.r.t. the value function of the original policy.
+
+Supposing that the new greedy policy $$\pi'$$ is as good as, but not better than, the old policy $$\pi$$, then $$v^{\pi}(s) = v^{\pi'}$$, and, $$\forall s \in \mathcal{S}$$, it follows from the previous equation that
+
+$$
+\begin{align}
+v^{\pi'}(s) &= \max_a \mathbb{E}[R_{t+1} + \gamma \cdot v^{\pi'}(S_{t+1} \vert S_t = s, A_t = a)] \nonumber\\
+	&= \max_a \sum_{s', r} p(s', r \vert s, a)[r + \gamma \cdot v^{\pi'}(s')].
+\end{align}
+$$
+
+As this is the same as the Bellman optimality equation, $$v^{\pi'}$$ must be $$v^*$$, and both $$\pi$$ and $$\pi'$$ must be optimal policies. Thus, policy improvement must give us a strictly better policy except when the original policy is already optimal.
+
+The policy improvement theorem carries through as stated for the stochastic case. Also, if there are any ties in policy improvement steps - i.e., there are several actions at which the maximum is achieved - then we don't need to select a single action from among them, as each maximizing action can be given a portion of the probability of being selected in the new greedy policy (as long as we give zero probability to all submaximal actions).
+
+### Section 4.3: Policy Iteration
+
 ## Chapter 5: Monte Carlo Methods
 
 ## Chapter 6: Temporal-Difference Learning
