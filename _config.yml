@@ -29,9 +29,9 @@ author:
   avatar           : "profile.png"
   name             : "ACF"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Based AI Researcher & Game Developer"
+  location         : "Portugal"
+  employer         : "University of Lisbon"
   uri              : # URL
   email            : #"afonso.fernandes@tecnico.ulisboa.pt" 
 
