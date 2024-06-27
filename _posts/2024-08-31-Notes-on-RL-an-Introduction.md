@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Notes on Reinforcement Learning: An Introduction (2nd edition)"
-date: 2024-06-31
+date: 2024-08-31
 categories: ML RL DL
 usemathjax: true
 ---
