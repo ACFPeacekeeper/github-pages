@@ -11,8 +11,8 @@ title: About Me
 2. [Previous Work](#previous-work)
 3. [Hobbies & Personal Projects](#hobbies--personal-projects)
 4. [Academia](#academia)
-    1. [Massive Open Online Courses (MOOCs)](#massive-open-online-courses-moocs)
-5. [Other Interests & Activities](#other-interests--activities)
+    1. [Extracurricular Courses](#extracurricular-courses)
+5. [Other Activities](#other-activities)
 
 ## Current Work
 I'm currently a First Stage Researcher at [INESC-ID](https://www.inesc-id.pt/) - where I'm developing new Deep Reinforcement Learning methods to solve Combinatorial Optimization tasks - and a invited Assistant Professor at the Computer Science and Engineering department of [IST](https://tecnico.ulisboa.pt/en/), where I teach courses about [Distributed Systems](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1408903891910867), [Cloud Computing and Virtualization](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/disciplina-curricular/1127428915200223) and [Computer Organization](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1971853845332781).
@@ -27,16 +27,18 @@ Beyond this, I develop and code some personal projects, which are mostly in the 
 Currently, I'm also learning about Art and 3D Modelling to leverage that towards creating game assets.
 
 ## Academia
-I studied for my [Bachelor of Science (BSc)](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/curriculo?year=1972768673366017) and [Master of Science (MSc)](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/curriculo?year=1128343743234050) degrees in Computer Science and Engineering (CSE) at [IST](https://tecnico.ulisboa.pt/en/). During my BSc, I learned about core concepts in Computer Science, Mathematics, Computer Engineering and Physics (along with some minor courses about HASS and Management) and I also participated in a [Athens Network](http://athensnetwork.eu/) exchange program at [Mines Paris - PSL](https://tecnico.ulisboa.pt/en/), where I learned about Extreme Value Statistics. During my MSc, I did a double major in Artificial Intelligence and Cyber-Security (and also did some courses about Game Development) and I participated in a semester exchange program at [POSTECH](https://international.postech.ac.kr/), where I studied Machine Learning and Mathematics.
+I initially pursued a [Integrated Master's (BSc + MSc) in Computer Science](https://www.fct.unl.pt/en/education/course/integrated-master-computer-science) at [NOVA - FCT](https://www.fct.unl.pt/en), and a [Bachelor of Science (BSc) in Biochemistry](https://fenix.ciencias.ulisboa.pt/degrees/bioquimica-564500436615216) at [UL - FCUL](https://ciencias.ulisboa.pt/en), both of which I did not complete.
+Afterwards, I studied for and completed a [Bachelor of Science (BSc)](https://fenix.tecnico.ulisboa.pt/cursos/leic-t/curriculo?year=1972768673366017) and a [Master of Science (MSc)](https://fenix.tecnico.ulisboa.pt/cursos/meic-t/curriculo?year=1128343743234050) degrees in Computer Science and Engineering (CSE) at [UL - IST](https://tecnico.ulisboa.pt/en/). During my BSc, I learned about core concepts in Computer Science, Mathematics, Computer Engineering and Physics (along with some minor courses about HASS and Management) and I also participated in a [Athens Network](http://athensnetwork.eu/) exchange program at [Mines Paris - PSL](https://tecnico.ulisboa.pt/en/), where I learned about Extreme Value Statistics. During my MSc, I did a double major in Artificial Intelligence and Cyber-Security (and also did some courses about Game Development) and I participated in a semester exchange program at [POSTECH](https://international.postech.ac.kr/), where I studied Machine Learning and Mathematics.
 
-I'm currently taking a Advanced Formation Diploma in [Methodologies and Techniques of Scientific Research](https://fenix.tecnico.ulisboa.pt/disciplinas/MTIC/2021-2022/1-semestre/programa) and attending the [Mathematics for Machine Learning course](https://fenix.tecnico.ulisboa.pt/disciplinas/MAAut3/2023-2024/2-semestre/programa), both at [IST](https://tecnico.ulisboa.pt/en/).
+I'm currently taking a Advanced Formation Diploma in [Methodologies and Techniques of Scientific Research](https://fenix.tecnico.ulisboa.pt/disciplinas/MTIC/2021-2022/1-semestre/programa) at UL - IST.
 
-### Massive Open Online Courses (MOOCs)
-Beyond formal academia, I also took MOOCs from several different universities to complement my academic knowledge or to learn more about subjects I'm interested in:
-- From [IST](https://tecnico.ulisboa.pt/en/):
+### Extracurricular Courses
+Beyond formal academia, I also participated in Summer Schools and took extra courses from several different universities to complement my academic knowledge or to learn more about subjects I'm interested in:
+- From UL - IST:
     - [Eigenvalues - vapX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+vapX+2021/about);
     - [Machine Learning, Maths & Ethics: Hands-on - lematecX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+lematecX+2021/about);
-    - [Markov Matrices - mmX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+mmX+2021/about).
+    - [Markov Matrices - mmX](https://courses.elearning.tecnico.ulisboa.pt/courses/course-v1:MOOCs+mmX+2021/about);
+    - [Mathematics for Machine Learning](https://fenix.tecnico.ulisboa.pt/disciplinas/MAAut3/2023-2024/2-semestre/programa).
 - From [Harvard](https://www.harvard.edu/):
     - [Introduction to Computer Science - CS50](https://pll.harvard.edu/course/cs50-introduction-computer-science);
     - [Christianity Through Its Scriptures](https://www.edx.org/learn/christianity/harvard-university-christianity-through-its-scriptures).
@@ -45,7 +47,7 @@ Beyond formal academia, I also took MOOCs from several different universities to
 - From [Cornell](https://www.cornell.edu/):
     - [Advanced Compilers - CS6120](https://www.cs.cornell.edu/courses/cs6120/2020fa/self-guided/).
 
-## Other Interests & Activities
+## Other Activities
 When I was in highschool at [Liceu Camões](https://liceucamoes.wixsite.com/camoes), my interest in politics led me to become a member of the youth wing of the portuguese [Socialist Party](https://ps.pt/), known in portuguese as [Juventude Socialista (JS)](https://juventudesocialista.pt/). During my time at JS, I worked on policies related to the environment, education, economics, technology and innovation, and held positions as: 
 - Vice-President of: my parish.
 - Member of the secretariat of: my highschool, my parish of residence, my university, the Secondary and Higher Education committee of Lisbon, and the county of Lisbon;
