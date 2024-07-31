@@ -3,15 +3,15 @@ layout: page
 title: Media
 ---
 # Media Index
-1. [Games]()
-    1. [Video Games]()
-    2. [Tabletop Games]()
-2. [Cinema & Broadcasting]()
-    1. [Movies]()
-    2. [Television Shows]()
-3. [Print Media]()
-    1. [Books]()
-    2. [Papers]()
+1. [Games](#games)
+    1. [Video Games](#video-games)
+    2. [Tabletop Games](#tabletop-games)
+2. [Cinema & Broadcasting](#cinema--broadcasting)
+    1. [Movies](#movies)
+    2. [Television Shows](#television-shows)
+3. [Print Media](#print-media)
+    1. [Books](#books)
+    2. [Papers](#papers)
 
 ## Games
 ### Video Games
