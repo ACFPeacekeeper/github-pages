@@ -42,7 +42,7 @@ plugins:
   - jekyll-scholar
 
 scholar:
-  source: ./docs/literature/references
+  source: ./docs/bibliography
 
 # Theme-specific settings
 
