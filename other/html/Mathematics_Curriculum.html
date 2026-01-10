@@ -1,0 +1,174 @@
+<div class="flex flex-col min-h-screen">
+
+    <!-- Top Navigation Header -->
+    <header class="w-full border-b border-border bg-background/50 backdrop-blur-xl sticky top-0 z-50 p-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Branding -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-lg">M</div>
+                <h1 class="text-xl font-bold tracking-tight">Harbinger<span class="text-accent">Math</span></h1>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav class="flex items-center gap-4">
+                <button onclick="navigate('dashboard')" id="nav-dashboard"
+                    class="nav-item-active flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all text-muted-foreground hover:text-foreground">
+                    Dashboard
+                </button>
+                <button onclick="navigate('explorer')" id="nav-explorer"
+                    class="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all text-muted-foreground hover:text-foreground">
+                    Course Explorer
+                </button>
+            </nav>
+
+            <!-- Version Info (Optional, kept minimal) -->
+            <div class="hidden md:flex items-center gap-3">
+                <div class="text-right">
+                    <p class="text-xs font-semibold">Curriculum Explorer</p>
+                    <p class="text-[10px] text-muted-foreground">Version 2.5.0 ✨</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Full Width logic handled by container classes -->
+    <main class="flex-grow p-6 md:p-10 lg:p-16 w-full mx-auto space-y-12">
+
+        <!-- Header Section -->
+        <section id="header" class="space-y-4 text-center md:text-left max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Curriculum <span
+                    class="gradient-text">Architecture</span></h2>
+            <p class="text-lg text-muted-foreground max-w-3xl leading-relaxed mx-auto md:mx-0">
+                A synthesized roadmap for the Applied Mathematics and Computation degree. Powered by ✨ Gemini LLM for
+                smart insights.
+            </p>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="section-dashboard" class="space-y-8 animate-in fade-in duration-500 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Stat Card 1 -->
+                <div class="glass-card p-6 flex flex-col justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-muted-foreground">Total Curricular Units</p>
+                        <h3 class="text-3xl font-bold mt-1">32</h3>
+                    </div>
+                    <div class="mt-4 text-xs text-accent font-semibold">Updated 2026 Curriculum</div>
+                </div>
+                <!-- AI Career Strategist Card -->
+                <div class="glass-card p-6 border-accent/30 bg-accent/5 col-span-1 md:col-span-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-lg font-bold flex items-center gap-2">✨ Career Strategist</h4>
+                            <p class="text-sm text-muted-foreground mt-1">AI-generated specialized roadmap based on the
+                                curriculum.</p>
+                        </div>
+                        <button onclick="generateCareerStrategy()" id="careerBtn"
+                            class="px-4 py-2 bg-accent text-white rounded-lg text-xs font-bold hover:opacity-90 transition-all flex items-center gap-2">
+                            Generate Roadmap
+                        </button>
+                    </div>
+                    <div id="careerOutput"
+                        class="mt-4 text-sm text-muted-foreground hidden p-4 bg-background/50 rounded-lg border border-border overflow-y-auto max-h-60 leading-relaxed">
+                        <!-- AI Response goes here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Subject Distribution -->
+                <div class="glass-card p-8 flex flex-col">
+                    <h4 class="text-lg font-bold mb-6">Subject Area Weighting</h4>
+                    <div class="chart-container flex-grow">
+                        <canvas id="subjectChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Load Analysis -->
+                <div class="glass-card p-8 flex flex-col">
+                    <h4 class="text-lg font-bold mb-6">Course Load per Semester</h4>
+                    <div class="chart-container flex-grow">
+                        <canvas id="loadChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explorer Section -->
+        <section id="section-explorer" class="hidden space-y-8 animate-in fade-in duration-500 max-w-7xl mx-auto">
+            <!-- Filter Bar -->
+            <div
+                class="flex flex-col lg:flex-row items-center gap-4 bg-muted/30 p-4 rounded-xl border border-border sticky top-24 z-40 backdrop-blur-md">
+                <div class="flex flex-grow w-full gap-2">
+                    <div class="relative w-full">
+                        <input type="text" id="searchInput" placeholder="Search courses, bibliographies..."
+                            class="w-full bg-background border border-border rounded-lg py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all">
+                    </div>
+                </div>
+                <div class="flex w-full lg:w-auto gap-2">
+                    <select id="yearFilter"
+                        class="bg-background border border-border rounded-lg py-2 px-4 text-sm focus:outline-none transition-all cursor-pointer">
+                        <option value="All">All Years</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                    </select>
+                    <select id="categoryFilter"
+                        class="bg-background border border-border rounded-lg py-2 px-4 text-sm focus:outline-none transition-all cursor-pointer">
+                        <option value="All">All Areas</option>
+                        <option value="Analysis">Analysis</option>
+                        <option value="Algebra">Algebra</option>
+                        <option value="Statistics">Statistics</option>
+                        <option value="Computation">Computation</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Course Grid -->
+            <div id="courseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Courses injected by JavaScript -->
+            </div>
+
+            <div id="noResults" class="hidden text-center py-20">
+                <p class="text-muted-foreground italic">No curricular units match your filter criteria.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="pt-10 border-t border-border text-muted-foreground text-xs flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
+            <p>&copy; 2026 Mathematics Curriculum Project. All rights reserved.</p>
+            <div class="flex gap-6">
+                <span class="hover:text-foreground cursor-default transition-colors">✨ Powered by Gemini</span>
+                <span class="hover:text-foreground cursor-default transition-colors">Github Pages Style</span>
+            </div>
+        </footer>
+    </main>
+
+    <!-- AI Insight Modal -->
+    <div id="aiModal"
+        class="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-6">
+        <div class="glass-card w-full max-w-2xl p-8 space-y-6 relative border-accent/40 shadow-2xl shadow-accent/10">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
+                ✕
+            </button>
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-accent/20 rounded-lg">✨</div>
+                <div>
+                    <h3 id="modalTitle" class="text-xl font-bold">Course Briefing</h3>
+                    <p id="modalSubtitle" class="text-xs text-muted-foreground">Generated by Gemini LLM</p>
+                </div>
+            </div>
+            <div id="modalContent"
+                class="text-sm text-muted-foreground leading-relaxed min-h-[100px] max-h-[400px] overflow-y-auto pr-2 custom-scroll">
+                <!-- AI Content -->
+            </div>
+            <div class="flex justify-end pt-4">
+                <button onclick="closeModal()"
+                    class="px-6 py-2 bg-muted text-foreground rounded-lg text-sm font-semibold hover:bg-muted/80">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
