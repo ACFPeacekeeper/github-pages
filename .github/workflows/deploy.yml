@@ -16,7 +16,7 @@ jobs:
     steps:
       # 1. Checkout the repository content
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # Required to fetch history for deployment action
           fetch-depth: 0
