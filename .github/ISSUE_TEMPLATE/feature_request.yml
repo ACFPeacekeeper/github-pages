@@ -18,17 +18,18 @@ body:
       required: false
 
   - type: dropdown
-    id: module
+    id: area
     attributes:
-      label: Affected module
+      label: Affected area
       options:
-        - Python (python/)
-        - TypeScript (typescript/)
-        - Kotlin (kotlin/)
-        - Rust (rust/)
-        - Go (go/)
-        - C++ (cpp/)
-        - Build / tooling (just, docker, CI)
+        - Posts
+        - Reports
+        - Projects
+        - Tools
+        - Media
+        - About / Other
+        - Notebooks (notebooks/)
+        - Build / tooling / CI
         - Other / unknown
     validations:
       required: true

@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 📖 Documentation
-    url: https://github.com/ACFHarbinger/Tauri-App-Template/tree/main/docs
-    about: Architecture, development, testing, and troubleshooting guides.
-  - name: 🗺️ Roadmap
-    url: https://github.com/ACFHarbinger/Tauri-App-Template/tree/main/docs/moon
-    about: Master roadmap and changelog.
+  - name: 🌐 Live Site
+    url: https://acfharbinger.github.io/github-pages/
+    about: The deployed site this repository builds.
+  - name: 📖 Docs
+    url: https://github.com/ACFHarbinger/github-pages/tree/main/docs
+    about: Research notes and write-ups backing the site's reports/posts.

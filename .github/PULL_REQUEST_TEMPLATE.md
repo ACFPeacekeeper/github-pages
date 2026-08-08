@@ -2,29 +2,25 @@
 
 ## Summary
 
-<!-- What does this PR change and why? Link the roadmap item (docs/moon/ROADMAP.md or a module roadmap in docs/moon/roadmaps/). -->
+<!-- What does this PR change and why? -->
 
-## Affected Module(s)
+## Affected Area(s)
 
-- [ ] Python (`python/`)
-- [ ] TypeScript (`typescript/`)
-- [ ] Kotlin (`kotlin/`)
-- [ ] Rust (`rust/`)
-- [ ] Go (`go/`)
-- [ ] C++ (`cpp/`)
-- [ ] Tooling / docs / CI
+- [ ] Site content (`app/content/**`)
+- [ ] Components / styling (`src/`)
+- [ ] Notebooks / research (`notebooks/`, `docs/research/`)
+- [ ] Tooling / CI / docs
 
 ## Type of Change
 
 - [ ] 🐛 Bug fix
 - [ ] ✨ New feature
 - [ ] ♻️ Refactor
-- [ ] ⚡ Performance
-- [ ] 📚 Documentation
+- [ ] 📚 Content / documentation
 - [ ] 🔧 Tooling / CI
 
 ## Verification
 
-- [ ] `just lint` and `just test` pass for the affected module(s).
-- [ ] Benchmarks included for performance-sensitive changes.
-- [ ] Docs / roadmap / `docs/moon/CHANGELOG.md` updated where the public surface changed.
+- [ ] `npm run lint` and `npm test` pass.
+- [ ] `npm run build` succeeds (static export).
+- [ ] Manually checked the affected page(s) with `npm run dev`.

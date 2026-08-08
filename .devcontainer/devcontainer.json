@@ -1,5 +1,5 @@
 {
-    "name": "Tauri-App-Template Dev Environment",
+    "name": "github-pages Dev Environment",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".."
@@ -7,26 +7,16 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "charliermarsh.ruff",
-                "ms-python.mypy-type-checker",
                 "dbaeumer.vscode-eslint",
                 "esbenp.prettier-vscode",
-                "rust-lang.rust-analyzer",
-                "golang.go",
-                "fwcd.kotlin",
-                "ms-vscode.cpptools",
-                "ms-azuretools.vscode-docker"
+                "bradlc.vscode-tailwindcss",
+                "ms-python.python",
+                "charliermarsh.ruff"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "/app/python/.venv/bin/python",
-                "python.testing.pytestEnabled": true,
-                "python.testing.unittestEnabled": false,
                 "editor.formatOnSave": true,
                 "editor.codeActionsOnSave": {
-                    "source.fixAll.ruff": "explicit",
-                    "source.organizeImports.ruff": "explicit"
+                    "source.fixAll.eslint": "explicit"
                 },
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff"
@@ -34,6 +24,6 @@
             }
         }
     },
-    "postCreateCommand": "cd python && uv sync --all-extras --dev && cd .. && pre-commit install",
+    "postCreateCommand": "npm ci && (cd notebooks && uv sync --extra dev) && pre-commit install",
     "remoteUser": "vscode"
 }

@@ -6,22 +6,22 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the report. This is a polyglot template — telling us which module is
-        affected speeds up triage a lot.
+        Thanks for the report. Telling us which page or area is affected speeds up triage.
 
   - type: dropdown
-    id: module
+    id: area
     attributes:
-      label: Affected module
-      description: Which part of the codebase?
+      label: Affected area
+      description: Which part of the site?
       options:
-        - Python (python/)
-        - TypeScript (typescript/)
-        - Kotlin (kotlin/)
-        - Rust (rust/)
-        - Go (go/)
-        - C++ (cpp/)
-        - Build / tooling (just, docker, CI)
+        - Posts
+        - Reports
+        - Projects
+        - Tools
+        - Media
+        - About / Other
+        - Notebooks (notebooks/)
+        - Build / tooling / CI
         - Other / unknown
     validations:
       required: true

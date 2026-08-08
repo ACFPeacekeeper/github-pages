@@ -5,8 +5,8 @@
 # Update hooks: pre-commit autoupdate
 #
 # Gate philosophy:
-#   - Blocking: ruff, clippy, ktlint, golangci-lint, clang-format, lychee
-#   - Advisory: mypy, tsc, cargo audit
+#   - Blocking: eslint, ruff
+#   - Advisory: tsc, mypy
 
 repos:
   # ── General file hygiene ─────────────────────────────────────────────────
@@ -17,7 +17,6 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
         args: [--allow-multiple-documents]
-      - id: check-toml
       - id: check-json
       - id: check-merge-conflict
       - id: check-added-large-files
@@ -25,98 +24,40 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
 
-  # ── Python: ruff (lint + format) ─────────────────────────────────────────
+  # ── TypeScript / React: eslint (blocking) ────────────────────────────────
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint (src/, app/)
+        language: system
+        entry: npm run lint --
+        pass_filenames: false
+      - id: tsc-check
+        name: TypeScript type check (advisory)
+        language: system
+        entry: bash -c 'npx tsc --noEmit'
+        files: \.(ts|tsx)$
+        pass_filenames: false
+
+  # ── Python (notebooks/): ruff (blocking) + mypy (advisory) ───────────────
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.5.0
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
         types_or: [python, pyi]
-        files: ^python/
+        files: ^notebooks/
       - id: ruff-format
         types_or: [python, pyi]
-        files: ^python/
+        files: ^notebooks/
 
-  # ── Python: mypy (advisory) ──────────────────────────────────────────────
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.1
     hooks:
       - id: mypy
-        name: mypy (python/src)
+        name: mypy (notebooks/)
         args: [--ignore-missing-imports, --no-error-summary]
-        files: ^python/src/
-
-  # ── TypeScript: type check ───────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: tsc-check
-        name: TypeScript type check (typescript/src)
-        language: system
-        entry: bash -c 'cd typescript && npx tsc --noEmit 2>&1'
-        files: ^typescript/src/.*\.ts$
-        pass_filenames: false
-
-  # ── Rust: fmt + clippy ────────────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: cargo-fmt
-        name: cargo fmt (rust/)
-        language: system
-        entry: bash -c 'cd rust && cargo fmt -- --check'
-        files: ^rust/.*\.rs$
-        pass_filenames: false
-      - id: cargo-clippy
-        name: cargo clippy (rust/)
-        language: system
-        entry: bash -c 'cd rust && cargo clippy --all-targets -- -D warnings'
-        files: ^rust/.*\.rs$
-        pass_filenames: false
-
-  # ── Go: fmt + vet ─────────────────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: go-fmt
-        name: gofmt (go/)
-        language: system
-        entry: bash -c 'cd go && gofmt -l .'
-        files: ^go/.*\.go$
-        pass_filenames: false
-      - id: go-vet
-        name: go vet (go/)
-        language: system
-        entry: bash -c 'cd go && go vet ./...'
-        files: ^go/.*\.go$
-        pass_filenames: false
-
-  # ── Kotlin: ktlint ────────────────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: ktlint
-        name: ktlint (kotlin/)
-        language: system
-        entry: bash -c 'cd kotlin && ./gradlew ktlintCheck'
-        files: ^kotlin/.*\.kt$
-        pass_filenames: false
-
-  # ── Java: Maven compile check ────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: maven-compile
-        name: mvn compile (java/)
-        language: system
-        entry: bash -c 'cd java && mvn -q -B compile'
-        files: ^java/.*\.java$
-        pass_filenames: false
-
-  # ── C++: clang-format ─────────────────────────────────────────────────────
-  - repo: local
-    hooks:
-      - id: clang-format-cpp
-        name: clang-format (cpp/ sources)
-        language: system
-        entry: bash -c 'clang-format --dry-run --Werror "$@"' --
-        files: ^cpp/(src|include|test)/.*\.(cpp|hpp|h)$
-        pass_filenames: true
+        files: ^notebooks/.*\.py$
 
   # ── Markdown: link checker ───────────────────────────────────────────────
   - repo: https://github.com/lycheeverse/lychee
@@ -127,7 +68,6 @@ repos:
         args:
           - --verbose
           - --no-progress
-          - --exclude=https://crates.io
           - --include-verbatim
         files: \.(md|markdown)$
         pass_filenames: true
@@ -137,4 +77,4 @@ repos:
     rev: 0.7.1
     hooks:
       - id: nbstripout
-        files: ^docs/notebooks/.*\.ipynb$
+        files: ^notebooks/.*\.ipynb$
