@@ -83,7 +83,7 @@ export function GaussianSplatGallery() {
   if (!isSupported) {
     return (
       <div className="border border-slate-700 bg-slate-800 p-6 rounded-lg text-slate-300">
-        <h3 className="text-xl font-bold mb-2">IF11: Gaussian Splat Gallery</h3>
+        <h3 className="text-xl font-bold mb-2">Gaussian Splat Gallery</h3>
         <p className="text-red-400">
           Your device does not meet the strict memory requirements (4GB+ RAM) needed to render volumetric splats.
         </p>
@@ -94,7 +94,7 @@ export function GaussianSplatGallery() {
   return (
     <div className="border border-slate-700 bg-slate-900 rounded-lg overflow-hidden text-slate-200">
       <div className="p-4 border-b border-slate-800 flex justify-between items-center">
-        <h3 className="font-bold">IF11: Gaussian Splat Gallery</h3>
+        <h3 className="font-bold">Gaussian Splat Gallery</h3>
         {hasOptedIn && (
           <div className="text-xs font-mono bg-slate-800 px-2 py-1 rounded">
             LOD: {activeLOD} | Splats: {loadingProgress}%

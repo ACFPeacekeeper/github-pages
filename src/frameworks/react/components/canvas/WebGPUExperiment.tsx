@@ -142,7 +142,7 @@ export function WebGPUExperiment() {
   
   return (
     <div className="webgpu-experiment border border-slate-700 rounded-lg p-6 bg-slate-900 text-white shadow-xl max-w-2xl">
-      <h3 className="text-xl font-bold mb-2">IF10: WebGPU Renderer Experiment</h3>
+      <h3 className="text-xl font-bold mb-2">WebGPU Renderer Experiment</h3>
       <div className="flex flex-col gap-2 mb-4 text-sm text-slate-300">
         <p><strong>Status:</strong> {status}</p>
         {limits && <p><strong>Device Limits:</strong> {limits}</p>}

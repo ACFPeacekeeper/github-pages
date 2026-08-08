@@ -63,7 +63,7 @@ export function WebXRExperiment() {
   return (
     <div className="border border-indigo-900 bg-slate-900 rounded-lg overflow-hidden text-slate-200 shadow-xl">
       <div className="p-4 border-b border-indigo-900 flex justify-between items-center bg-indigo-950/30">
-        <h3 className="font-bold text-indigo-300">IF12: WebXR Viewing Mode</h3>
+        <h3 className="font-bold text-indigo-300">WebXR Viewing Mode</h3>
         <span className="text-xs font-mono bg-slate-800 px-2 py-1 rounded border border-slate-700">
           Status: {sessionActive ? 'In Headset' : 'Desktop Mode'}
         </span>
