@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { Pause, Play, RotateCcw } from 'lucide-react';
-import { createSimulationController } from '../../simulations/context/createSimulationController';
-import { getSimulationScenario, SIMULATION_SCENARIOS } from '../../simulations/scenarios/scenarios';
-import type { SimulationSnapshot } from '../../simulations/repository/types';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
-import { useAppDispatch } from '../../redux/store/hooks';
-import { setActiveSimulation } from '../../redux/actions/appActions';
+import { createSimulationController } from '../../../../simulations/context/createSimulationController';
+import { getSimulationScenario, SIMULATION_SCENARIOS } from '../../../../simulations/scenarios/scenarios';
+import type { SimulationSnapshot } from '../../../../simulations/repository/types';
+import { useReducedMotion } from '../../../../hooks/useReducedMotion';
+import { useAppDispatch } from '../../../../redux/store/hooks';
+import { setActiveSimulation } from '../../../../redux/actions/appActions';
 
 export default function ConvergenceSimulation() {
   const [scenarioId, setScenarioId] = useState('balanced');

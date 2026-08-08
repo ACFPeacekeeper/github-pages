@@ -1,8 +1,8 @@
 import React from 'react';
 import { Terminal, Palette, Box, Database, Globe, Brain } from 'lucide-react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import GlassCard from '@/src/components/ui/GlassCard';
-import Badge from '@/src/components/ui/Badge';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
+import Badge from '@/src/frameworks/react/components/ui/Badge';
 import pageImage from '@/assets/images/maxresdefault.jpg';
 
 export default function ToolsPage() {

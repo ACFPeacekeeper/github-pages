@@ -1,17 +1,17 @@
 'use client';
 
 import { ArrowUpRight, Network } from 'lucide-react';
-import { VISUAL_EXPERIENCE } from '../../configs/visualExperience';
-import { RESEARCH_GRAPH } from '../../constants/researchGraph';
-import type { ResearchDomain } from '../../interfaces/visualization';
-import { getConnectedNodeIds, getNodeById, isEdgeConnected } from '../../utils/visualization';
-import { useSelection } from '../../utils/visualization/useSelection';
-import { useKeyboardRoving } from '../../utils/visualization/useKeyboardRoving';
+import { VISUAL_EXPERIENCE } from '../../../../configs/visualExperience';
+import { RESEARCH_GRAPH } from '../../../../constants/researchGraph';
+import type { ResearchDomain } from '../../../../interfaces/visualization';
+import { getConnectedNodeIds, getNodeById, isEdgeConnected } from '../../../../utils/visualization';
+import { useSelection } from '../../../../utils/visualization/useSelection';
+import { useKeyboardRoving } from '../../../../utils/visualization/useKeyboardRoving';
 import { A11ySummary } from '../visualization/A11ySummary';
 import { A11yTable } from '../visualization/A11yTable';
 import { Legend } from '../visualization/Legend';
 import { Shape } from '../visualization/Shape';
-import { DEFAULT_DOMAIN_PALETTE } from '../../utils/visualization/encodings';
+import { DEFAULT_DOMAIN_PALETTE } from '../../../../utils/visualization/encodings';
 
 const domainClasses: Record<ResearchDomain, string> = {
   core: 'constellation-node--core',

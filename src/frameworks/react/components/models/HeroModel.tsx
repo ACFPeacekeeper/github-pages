@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pause, Play, RotateCcw } from 'lucide-react';
-import { VISUAL_EXPERIENCE } from '../../configs/visualExperience';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { VISUAL_EXPERIENCE } from '../../../../configs/visualExperience';
+import { useReducedMotion } from '../../../../hooks/useReducedMotion';
 
 type ThreeModule = typeof import('three');
 

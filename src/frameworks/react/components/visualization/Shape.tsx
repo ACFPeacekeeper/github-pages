@@ -1,5 +1,5 @@
 import React from 'react';
-import type { VisualEncoding } from '../../utils/visualization/encodings';
+import type { VisualEncoding } from '../../../../utils/visualization/encodings';
 
 interface ShapeProps extends React.SVGProps<SVGSVGElement> {
   encoding: VisualEncoding;

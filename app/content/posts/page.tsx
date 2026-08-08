@@ -1,8 +1,8 @@
 import React from 'react';
 import { PenTool, Calendar, ArrowRight } from 'lucide-react';
-import GlassCard from '@/src/components/ui/GlassCard';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import Badge from '@/src/components/ui/Badge';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import Badge from '@/src/frameworks/react/components/ui/Badge';
 import pageImage from '@/assets/images/G7HNekqXUAAueb6.jpg';
 
 

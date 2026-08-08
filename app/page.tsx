@@ -1,21 +1,21 @@
 import React from 'react';
 import { PenTool, Calendar, Star, FileText, BookOpen, Code, ArrowRight } from 'lucide-react';
-import GlassCard from '../src/components/ui/GlassCard';
-import SectionHeading from '../src/components/ui/SectionHeading';
-import Badge from '../src/components/ui/Badge';
+import GlassCard from '../src/frameworks/react/components/ui/GlassCard';
+import SectionHeading from '../src/frameworks/react/components/ui/SectionHeading';
+import Badge from '../src/frameworks/react/components/ui/Badge';
 import { BlogPost, Project } from '../src/interfaces/types';
-import HeroModel from '../src/components/models/HeroModel';
-import ResearchConstellation from '../src/components/graph/ResearchConstellation';
-import ConvergenceSimulation from '../src/components/routes/ConvergenceSimulation';
-import AudioSpectrum from '../src/components/audio/AudioSpectrum';
-import ResearchShelf from '../src/components/books/ResearchShelf';
-import FleetRouteCanvas from '../src/components/canvas/FleetRouteCanvas';
-import PrototypeCard from '../src/components/games/PrototypeCard';
-import MediaMosaic from '../src/components/image/MediaMosaic';
-import FleetRouteMap from '../src/components/maps/FleetRouteMap';
-import MediaReel from '../src/components/video/MediaReel';
-import { StarfieldWrapper } from '../src/components/frameworks/react/StarfieldWrapper';
-import { AureliaWrapper } from '../src/components/frameworks/react/AureliaWrapper';
+import HeroModel from '../src/frameworks/react/components/models/HeroModel';
+import ResearchConstellation from '../src/frameworks/react/components/graph/ResearchConstellation';
+import ConvergenceSimulation from '../src/frameworks/react/components/routes/ConvergenceSimulation';
+import AudioSpectrum from '../src/frameworks/react/components/audio/AudioSpectrum';
+import ResearchShelf from '../src/frameworks/react/components/books/ResearchShelf';
+import FleetRouteCanvas from '../src/frameworks/react/components/canvas/FleetRouteCanvas';
+import PrototypeCard from '../src/frameworks/react/components/games/PrototypeCard';
+import MediaMosaic from '../src/frameworks/react/components/image/MediaMosaic';
+import FleetRouteMap from '../src/frameworks/react/components/maps/FleetRouteMap';
+import MediaReel from '../src/frameworks/react/components/video/MediaReel';
+import { StarfieldWrapper } from '../src/frameworks/astro/StarfieldWrapper';
+import { AureliaWrapper } from '../src/frameworks/aurelia/AureliaWrapper';
 
 /**
  * Mock Data

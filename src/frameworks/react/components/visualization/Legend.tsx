@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CategoricalPalette } from '../../utils/visualization/encodings';
+import type { CategoricalPalette } from '../../../../utils/visualization/encodings';
 import { Shape } from './Shape';
 
 interface LegendProps<T extends string> {

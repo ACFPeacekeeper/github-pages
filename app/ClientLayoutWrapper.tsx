@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import Sidebar from '../src/components/layout/Sidebar';
-import Footer from '../src/components/layout/Footer';
-import Header from '../src/components/layout/Header';
+import Sidebar from '../src/frameworks/react/components/layout/Sidebar';
+import Footer from '../src/frameworks/react/components/layout/Footer';
+import Header from '../src/frameworks/react/components/layout/Header';
 import { useAppDispatch } from '../src/redux/store/hooks';
 import { setTheme } from '../src/redux/actions/appActions';
 import { persistTheme, readStoredTheme } from '../src/redux/services/persistence';
@@ -24,8 +24,8 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
   const dispatch = useAppDispatch();
 
   // --- getActiveSection Logic ---
-  const getActiveSection = (path: string) => {
-    if (path === '/') return 'home';
+  const getActiveSection = (path: string | null) => {
+    if (!path || path === '/') return 'home';
     const match = path.match(/^\/(?:content\/)?([a-z-]+)/);
     if (match) {
       return match[1];

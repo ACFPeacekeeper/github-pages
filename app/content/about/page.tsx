@@ -1,7 +1,7 @@
 import React from 'react';
 import { Briefcase, GraduationCap, Heart, User, MapPin } from 'lucide-react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import GlassCard from '@/src/components/ui/GlassCard';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import pageImage from '@/assets/images/steamuserimages-a.akamaihd.jpeg';
 
 export default function AboutPage() {

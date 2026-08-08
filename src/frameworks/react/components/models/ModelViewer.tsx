@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { VISUAL_EXPERIENCE } from '../../configs/visualExperience';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { VISUAL_EXPERIENCE } from '../../../../configs/visualExperience';
+import { useReducedMotion } from '../../../../hooks/useReducedMotion';
 import { Loader2 } from 'lucide-react';
 
 type ThreeModule = typeof import('three');

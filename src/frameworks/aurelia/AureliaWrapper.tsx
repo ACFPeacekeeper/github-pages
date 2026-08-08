@@ -12,9 +12,9 @@ export function AureliaWrapper() {
 
     async function loadAndMount() {
       if (containerRef.current) {
-        const { mountHelloAurelia } = await import('../aurelia/mount');
+        const { mountAureliaSimulation } = await import('./mount');
         if (isMounted) {
-          unmount = await mountHelloAurelia(containerRef.current);
+          unmount = await mountAureliaSimulation(containerRef.current);
           logIslandMount('Aurelia', islandId);
         }
       }
