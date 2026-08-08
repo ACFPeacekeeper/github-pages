@@ -18,7 +18,6 @@ if [[ -z "${REPO_ROOT}" ]]; then
   exit 0
 fi
 
-PYTHON_BIN="${PYTHON_BIN:-python3}"
 CHECK_SCRIPT="${REPO_ROOT}/git/scripts/check_commit_ref.py"
 COMMIT_MSG_FILE="${REPO_ROOT}/.git/COMMIT_EDITMSG"
 
@@ -27,12 +26,15 @@ if [[ ! -f "${CHECK_SCRIPT}" ]]; then
   exit 0
 fi
 
-if ! command -v "${PYTHON_BIN}" >/dev/null 2>&1; then
-  echo "post-commit: ${PYTHON_BIN} not found on PATH, skipping ticket check" >&2
+if ! command -v uv >/dev/null 2>&1; then
+  echo "post-commit: uv not found on PATH, skipping ticket check" >&2
   exit 0
 fi
 
-"${PYTHON_BIN}" "${CHECK_SCRIPT}" --commit-msg-file "${COMMIT_MSG_FILE}" || {
+# check_commit_ref.py imports agent_tools via a relative import, so it must
+# run as the `git.scripts` package (cwd at the repo root) rather than as a
+# bare script.
+(cd "${REPO_ROOT}" && uv run --project git python -m git.scripts.check_commit_ref --commit-msg-file "${COMMIT_MSG_FILE}") || {
   echo "post-commit: ticket reference check reported an issue (non-blocking)" >&2
 }
 

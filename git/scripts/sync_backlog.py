@@ -34,7 +34,13 @@ from typing import Any
 import yaml
 from google import genai
 
-import agent_tools
+from .agent_tools import (
+    initialize_ticket,
+    transition_ticket,
+    close_ticket,
+    resolve_status_field,
+    load_json_config,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("sync_backlog")
@@ -226,11 +232,11 @@ def apply_plan(
             for existing board items, used to resolve transitions/closes.
     """
     allowed_transitions = set(rules["sync"]["auto_transition_allowed"])
-    status_options = agent_tools.resolve_status_field(project_id)
+    status_options = resolve_status_field(project_id)
 
     for item in plan.creates:
         logger.info("Creating ticket: %s", item["title"])
-        agent_tools.initialize_ticket(
+        initialize_ticket(
             repo_owner=repo_owner,
             repo_name=repo_name,
             title=item["title"],
@@ -257,7 +263,7 @@ def apply_plan(
         if not option_id:
             logger.warning("No matching board option for status %s; skipping", new_status)
             continue
-        agent_tools.transition_ticket(
+        transition_ticket(
             project_id=project_id,
             item_id=target["item_id"],
             status_field_id=status_options["__field_id__"],
@@ -271,7 +277,7 @@ def apply_plan(
             logger.warning("Unknown issue #%s in close plan; skipping", item["issue_number"])
             continue
         logger.info("Closing #%s (%s)", item["issue_number"], item["reason"])
-        agent_tools.close_ticket(issue_id=target["issue_id"], reason=item["reason"])
+        close_ticket(issue_id=target["issue_id"], reason=item["reason"])
 
     for item in plan.ambiguous:
         logger.info("Ambiguous, flagged for human: %s -- %s", item["description"], item["reason"])
@@ -295,7 +301,7 @@ def main() -> None:
     """Entry point: parse docs, request a plan, validate, and apply it."""
     args = parse_args()
     rules = load_rules()
-    taxonomy = agent_tools._load_json_config("project_labels.json")
+    taxonomy = load_json_config("project_labels.json")
     source_text = load_source_documents(rules)
 
     client = genai.Client()

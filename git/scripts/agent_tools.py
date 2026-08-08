@@ -88,7 +88,7 @@ class GitHubProjectClient:
         return payload["data"]
 
 
-def _load_json_config(filename: str) -> dict[str, Any]:
+def load_json_config(filename: str) -> dict[str, Any]:
     """Load a JSON config file from ``git/config``.
 
     Args:
@@ -334,7 +334,7 @@ def _validated_labels(component: str, priority: str) -> list[str]:
     Raises:
         ValueError: If either label is not present in the taxonomy.
     """
-    taxonomy = _load_json_config("project_labels.json")
+    taxonomy = load_json_config("project_labels.json")
     known_components = {item["name"] for item in taxonomy["components"]}
     known_priorities = {item["name"] for item in taxonomy["priority"]}
     if component not in known_components:
@@ -392,7 +392,7 @@ def _create_label(client: GitHubProjectClient, repository_id: str, label_name: s
     Returns:
         The newly created label's node ID.
     """
-    taxonomy = _load_json_config("project_labels.json")
+    taxonomy = load_json_config("project_labels.json")
     all_labels = [
         entry
         for group in ("components", "priority", "status", "agent")

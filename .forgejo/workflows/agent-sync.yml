@@ -39,19 +39,16 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: "pip"
+      - uses: astral-sh/setup-uv@v5
 
       - name: Install automation dependencies
-        run: pip install pyyaml requests google-genai
+        run: uv sync
+        working-directory: git
 
       - name: Validate automation config
         run: |
-          python -c "import json,pathlib; json.loads(pathlib.Path('git/config/project_labels.json').read_text())"
-          python -c "import yaml,pathlib; yaml.safe_load(pathlib.Path('git/config/automation_rules.yaml').read_text())"
+          uv run --project git python -c "import json,pathlib; json.loads(pathlib.Path('git/config/project_labels.json').read_text())"
+          uv run --project git python -c "import yaml,pathlib; yaml.safe_load(pathlib.Path('git/config/automation_rules.yaml').read_text())"
 
       - name: Run backlog sync
         env:
@@ -65,7 +62,7 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
           fi
-          python git/scripts/sync_backlog.py $ARGS
+          uv run --project git python -m git.scripts.sync_backlog $ARGS
 
       - name: Summarize run
         if: always()

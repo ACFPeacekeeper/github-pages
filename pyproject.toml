@@ -9,7 +9,7 @@ authors = [{ name = "ACFHarbinger" }]
 dependencies = []
 
 [tool.uv.workspace]
-members = ["notebooks"]
+members = ["notebooks", "git"]
 
 [tool.uv]
 # Root has no code of its own — just a workspace pointer to middleware/.

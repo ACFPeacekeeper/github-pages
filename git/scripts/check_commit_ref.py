@@ -24,7 +24,7 @@ from pathlib import Path
 
 import yaml
 
-import agent_tools
+from .agent_tools import resolve_status_field
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger("check_commit_ref")
@@ -73,7 +73,7 @@ def update_board_best_effort(issue_number: int, project_id: str) -> None:
         project_id: ``ProjectV2`` node ID to update.
     """
     try:
-        status_options = agent_tools.resolve_status_field(project_id)
+        status_options = resolve_status_field(project_id)
         logger.info(
             "Would transition issue #%s to In Progress on project %s "
             "(item-id lookup omitted in the local-hook fast path)",

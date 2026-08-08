@@ -118,10 +118,12 @@ agent-backlog-sync:
         - "docs/moon/ROADMAP.md"
         - "docs/moon/CHANGELOG.md"
     - if: '$CI_PIPELINE_SOURCE == "web"'
+  before_script:
+    - pip install uv
+    - uv sync --project git
   script:
-    - pip install pyyaml requests google-genai
-    - python -c "import json,pathlib; json.loads(pathlib.Path('git/config/project_labels.json').read_text())"
-    - python -c "import yaml,pathlib; yaml.safe_load(pathlib.Path('git/config/automation_rules.yaml').read_text())"
-    - python git/scripts/sync_backlog.py --repo-owner ACFHarbinger --repo-name github-pages --project-id "$PROJECT_ID"
+    - uv run --project git python -c "import json,pathlib; json.loads(pathlib.Path('git/config/project_labels.json').read_text())"
+    - uv run --project git python -c "import yaml,pathlib; yaml.safe_load(pathlib.Path('git/config/automation_rules.yaml').read_text())"
+    - uv run --project git python -m git.scripts.sync_backlog --repo-owner ACFHarbinger --repo-name github-pages --project-id "$PROJECT_ID"
   variables:
     GITHUB_TOKEN: $PROJECT_AUTOMATION_TOKEN
