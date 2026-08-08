@@ -16,6 +16,7 @@ import FleetRouteMap from '../src/frameworks/react/components/maps/FleetRouteMap
 import MediaReel from '../src/frameworks/react/components/video/MediaReel';
 import { StarfieldWrapper } from '../src/frameworks/astro/components/StarfieldWrapper';
 import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrapper';
+import { WebGPUExperiment } from '../src/frameworks/react/components/canvas/WebGPUExperiment';
 
 /**
  * Mock Data
@@ -127,6 +128,9 @@ export default function Home() {
           <PrototypeCard />
           <ResearchShelf />
           <MediaMosaic />
+          <div className="lg:col-span-2">
+            <WebGPUExperiment />
+          </div>
           <div className="lg:col-span-2">
             <StarfieldWrapper />
           </div>
