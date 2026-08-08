@@ -4,7 +4,7 @@ Goal: build reproducible interactive experiments once, then present them through
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| SIM1 | Directory boundaries for `repository`, `generator`, `state`, `context`, React adapters and lazy Aurelia islands | S | — | ✅ |
+| SIM1 | Directory boundaries for `repository`, `scenarios`, `generator`, `context`, React adapters and lazy Aurelia islands | S | — | ✅ |
 | SIM2 | Framework-neutral typed simulation contract with deterministic seeds, snapshots, validation and lifecycle controller | M | SIM1 | 🚧 |
 | SIM3 | Optimization convergence demonstration with strategy presets, playback, metrics and accessible SVG chart | M | SIM2, IF3 | 🚧 |
 | SIM4 | Aurelia 2 island mount/unmount boundary consuming the same simulation core | M | SIM2 | 🚧 |
@@ -17,9 +17,9 @@ Goal: build reproducible interactive experiments once, then present them through
 
 ## Architecture boundaries
 
-- `repository/` owns immutable presets and dataset lookup; it does not import a UI framework.
+- `repository/` owns serializable contracts and dataset lookup; `scenarios/` owns immutable presets. Neither imports a UI framework.
 - `generator/` owns deterministic domain calculations. Generators accept explicit seeds/configuration and never read the DOM or clock.
-- `state/` owns serializable discriminated types. Snapshots must be safe to post to a worker and persist in a URL/file.
+- `repository/` owns serializable discriminated types. Snapshots must be safe to post to a worker and persist in a URL/file.
 - `context/` owns orchestration and lifecycle transitions. Controllers expose progress, step/reset and later cancellation without rendering.
 - React/Aurelia adapters translate user events and snapshots only. They do not reimplement algorithms.
 - `src/aurelia/` is a lazy island boundary; React/Next.js continues to own routing and the shared shell.
@@ -31,3 +31,19 @@ Goal: build reproducible interactive experiments once, then present them through
 - Every chart has a title/description, live but non-noisy metric text, keyboard controls, data-table/download equivalent and reduced-motion mode.
 - Aurelia is absent from routes without an Aurelia island. Mount errors preserve server-rendered fallback content; unmount stops the Aurelia application and releases listeners/workers.
 - Each simulation documents the concept being taught, assumptions, parameter units, validity limits and whether results are illustrative or scientifically computed.
+
+## R2 research integration
+
+RR2 and RR3 consume the deterministic controller and scenario repository for route playback, constraint toggles, comparison metrics, and Pareto explanations. RR10 adds versioned worker messages and replay export. React and Aurelia remain interchangeable: identical scenario/seed inputs produce identical snapshots, while an Aurelia mount failure preserves the static result.
+
+### Exit gates
+
+- Route replay has a table/download equivalent and URL-shareable scenario state.
+- Solver labels distinguish illustrative, best-known, and proven-optimal results.
+- Worker fixtures cover malformed messages, cancellation, stale responses, timeout, crash, and unmount.
+
+## Document history
+
+| Date | Revision | Change |
+|---|---|---|
+| 2026-08-08 | R2 | Renamed simulation boundaries and linked RR2/RR3/RR10. |

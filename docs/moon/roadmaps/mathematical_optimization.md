@@ -26,3 +26,9 @@ Goal: let visitors manipulate a small optimization problem, watch the algorithm 
 ## Backend decision threshold
 
 Preserve the static site unless representative educational instances cannot finish within 5 seconds or the required solver cannot fit the agreed asset budget. A backend proposal must include cost, abuse prevention, privacy, rate limits, WebSocket reconnect semantics, deployment ownership and a static recorded-result fallback.
+
+## R2 research integration
+
+RR2 supplies deterministic fleet playback; RR3 adds baseline/heuristic/best-known comparisons, Pareto frontiers, capacity and time-window toggles, and provenance. Google OR-Tools remains a reference implementation, not a promise of optimality: the UI must show bounds/gaps when available and say “best known” otherwise. RR10 moves long work to a cancellable worker and exports a replay.
+
+**Acceptance:** feasible and infeasible fixtures, timeout/cancellation tests, a downloadable metrics table, URL-shareable seeded scenarios, and a measured main-thread budget.

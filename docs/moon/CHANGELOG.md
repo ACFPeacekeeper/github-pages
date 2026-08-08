@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cypress e2e tests (`cypress/e2e/`) and Jest unit tests (`src/components/__tests__/`).
 - License, research, and reports content; notebooks workspace switched from Conda to `uv`.
 - Feature-themed roadmaps under `docs/moon/roadmaps/` (user interface, interactive features, mathematical optimization, machine learning, documentation).
+- Renamed simulation boundaries to `src/simulations/repository` (contracts/types) and `src/simulations/scenarios` (presets), with imports and tests updated.
+- Added the [Interactive Features and Visual Storytelling Research report](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md), covering academic, standards, geospatial, corporate, and practitioner references for fleet optimization, ML, games, media, books, 3D/360, audio, and WebGPU.
+- Added Image-Toolkit-style roadmap parity: timeline/phase gates, stable RR1–RR10 packages, acceptance evidence, risk registers, effort matrix, and document history across all moon roadmaps.
 - `test/integration/`: RTL integration tests exercising `ClientLayoutWrapper` (Header + Sidebar + Footer composed together) plus an MSW-backed network-layer test (`test/integration/mocks/`).
 - `test/cypress/smoke/`: fast Cypress smoke tests — every top-level route renders its layout shell, the homepage logs no console errors, and the theme toggle works.
 

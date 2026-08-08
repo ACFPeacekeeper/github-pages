@@ -1,57 +1,188 @@
-# github-pages Product Roadmap
+# github-pages — Immersive Research Portfolio Master Roadmap
 
-> **Vision**: turn the site into an accessible, cinematic research portfolio where visitors can explore projects, algorithms, datasets, three-dimensional artefacts, and long-form writing without sacrificing the speed and resilience of a static website.
+**Last updated:** 2026-08-08 · **Roadmap session:** R2 · **Delivery model:** static-first progressive enhancement
 
-This roadmap translates the architecture research in [`research/`](research/) into an incremental delivery plan. Detailed, issue-ready work lives in [`roadmaps/`](roadmaps/); completed work is recorded in [`CHANGELOG.md`](CHANGELOG.md).
+This is the product-level index. Each workstream file is an issue-ready implementation document with options, acceptance criteria, tests, budgets, risks, and a history of scope changes. The new evidence base is [`Interactive Features and Visual Storytelling Research.md`](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md).
 
-Status: ✅ complete · 🚧 in progress · 📋 planned · 🔬 discovery. Effort: S (days) · M (1–2 weeks) · L (multi-week).
+## Table of contents
 
-## Product principles and non-negotiable budgets
+- [Vision and operating rules](#vision-and-operating-rules)
+- [Implementation timeline](#implementation-timeline)
+- [Current state](#current-state)
+- [How to use this roadmap](#how-to-use-this-roadmap)
+- [Phase gates](#phase-gates)
+- [Workstreams](#workstreams)
+- [Research-derived feature index](#research-derived-feature-index)
+- [Dependency and risk register](#dependency-and-risk-register)
+- [Effort × impact matrix](#effort--impact-matrix)
+- [Anchor index](#anchor-index)
+- [Document history](#document-history)
 
-1. **Content first** — navigation, project summaries, charts, and calls to action remain usable without WebGL or animation.
-2. **Progressive immersion** — load interactive islands on visibility/intent; never make a 3D engine the price of reading an article.
-3. **One graphics context** — if route-spanning graphics are adopted, own one renderer at the application shell and explicitly dispose route assets.
-4. **Inclusive motion** — every effect has keyboard semantics, visible focus, a reduced-motion mode, and a static fallback.
-5. **Measured fidelity** — target LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 at the 75th percentile; target 60 fps on a representative laptop and 30 fps in constrained mode.
-6. **Bounded payloads** — initial-route JavaScript ≤ 200 kB gzip excluding framework runtime; lazy interactive chunks ≤ 300 kB each; initial 3D assets ≤ 2 MB compressed with explicit exceptions documented.
-7. **Static-export compatible** — features execute at build time or in the browser. Any backend is a separately approved architectural fork.
+## Vision and operating rules
 
-## Delivery sequence
+Turn the site into a beautiful, legible research observatory: visitors can understand waste-fleet routing, deep reinforcement learning, optimization trade-offs, game-development experiments, media references, and technical/political history through carefully staged interaction.
 
-| Milestone | Outcome | Exit criteria | Status |
-| --- | --- | --- | --- |
-| M0 Foundation | Next.js static portfolio, content routes, theme, baseline tests | Static export deploys and core routes pass unit/integration/e2e checks | ✅ |
-| M1 Visual language | Tokenized aurora/glass system, responsive bento composition, motion preferences | WCAG 2.2 AA audit, no layout shift, baseline Lighthouse captured | 🚧 |
-| M2 Interactive home | Interactive research constellation and capability-gated 3D model hero | Keyboard-operable visualization, static fallback, lazy 3D chunk, tests | 🚧 |
-| M3 Project explorer | Filterable case-study grid, detail transitions, project metrics and timelines | URL-shareable filters, accessible data table, reduced-motion transition path | 📋 |
-| M4 Spatial stories | Reusable model viewer, 360° panorama, annotations, audio-reactive report | Asset pipeline, context recovery, input alternatives, mobile quality tiers | 📋 |
-| M5 Computational lab | PCVRP visual solver and small private client-side ML demonstration | Worker/WASM isolation, progress/cancel, reproducible examples, no runtime secrets | 📋 |
-| M6 WebGPU frontier | Profile-driven WebGPU/TSL, large graphs or splats, optional XR | WebGL/static fallback and documented device matrix; budgets remain green | 🔬 |
+1. **Explain before embellishing.** The claim, data, units, source, and next action are visible before a canvas or model loads.
+2. **One fact, multiple senses.** Every visualization has DOM text, keyboard controls, a list/table or download, and a reduced-motion path.
+3. **Static export is a product constraint.** No runtime API, token, secret, or required server is assumed. Backend proposals are explicit forks.
+4. **Capability tiers are policy, not guesses.** Static, reduced, and full tiers respond to preferences, hardware, browser support, visibility, and measured performance.
+5. **Research honesty is visual.** Show assumptions, uncertainty, feasibility, incumbent/bound/gap, confidence, limitations, and provenance.
+6. **Local by default.** Local audio, notes, annotations, simulation inputs, and future inference inputs stay on-device unless a visitor explicitly opts in.
+7. **Every effect has a budget.** LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 at p75; initial route JS ≤ 200 kB gzip excluding framework runtime; optional island ≤ 300 kB gzip; initial 3D/media ≤ 2 MB.
+
+## Implementation timeline
+
+> **Legend:** node fill = work type (blue feature, violet augmentation, cyan infrastructure, amber performance, green docs, slate research); border = status (green complete, amber in progress, slate planned, red blocked). `==>` is a blocking dependency, `-->` sequential, `---` complementary.
+
+```mermaid
+flowchart LR
+  classDef feature fill:#2563eb,color:#fff
+  classDef augment fill:#7c3aed,color:#fff
+  classDef infra fill:#0891b2,color:#fff
+  classDef perf fill:#ea580c,color:#fff
+  classDef docs fill:#15803d,color:#fff
+  classDef research fill:#475569,color:#fff
+  classDef done stroke:#16a34a,stroke-width:4px
+  classDef active stroke:#d97706,stroke-width:4px
+  classDef planned stroke:#64748b,stroke-width:2px
+
+  R0["R0 Foundation\nstatic site + tests"]:::infra:::done
+  R1["R1 Visual language\ntokens + motion"]:::augment:::active
+  R2["R2 Explainable\nvisual primitives"]:::feature:::active
+  R3["R3 Fleet observatory\nmap + solver replay"]:::feature:::planned
+  R4["R4 ML lab\nmodel + audio"]:::feature:::planned
+  R5["R5 Culture room\nmedia + books + game"]:::feature:::planned
+  R6["R6 Spatial tier\n360 + WebGL"]:::augment:::planned
+  R7["R7 WebGPU frontier\nworkers + optional XR"]:::research:::planned
+  Q["Quality gates\nbudgets + a11y"]:::perf:::active
+  D["Docs + provenance\nresearch reports"]:::docs:::active
+  R0 ==> R1 ==> R2 ==> R3
+  R2 --> R4
+  R2 --> R5
+  R3 --> R6
+  R4 --> R7
+  Q ==> R2
+  Q ==> R3
+  D --- R2
+  D --- R5
+```
+
+## Current state
+
+### Shipped or partially shipped (R1)
+
+- Next.js 14 static export, content routes, theme shell, Vitest/RTL/MSW, Cypress, and notebooks workspace.
+- Tokenized observatory homepage with Three.js model fallback, graph/DOM constellation, deterministic optimization-convergence simulation, and field-note components.
+- Typed contracts under `src/interfaces`, Redux experience state under `src/redux`, domain components under `src/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}`.
+- Framework-neutral simulations with `repository/` types, `scenarios/` presets, `generator/` computation, and `context/` lifecycle; optional Aurelia boundary.
+- 51 tests passing at the last implementation gate; production static export succeeds. Existing lint warnings for legacy `<img>` usage and one ref cleanup remain tracked in infrastructure work.
+
+### Open risks
+
+- Route map and solver are currently illustrative SVG/Canvas/recorded traces; they do not claim live municipal data or optimality.
+- Three.js model is a procedural object, not yet a reusable glTF/360 asset pipeline.
+- Redux currently covers shell-level experience state; capability-tier selection and worker job state remain to be added.
+- The current home imports the field-note gallery eagerly; domain-level lazy loading is a quality-gate task.
+
+## How to use this roadmap
+
+Each workstream section follows the Image-Toolkit convention:
+
+1. Read the timeline and current-status table before starting.
+2. Read the item’s problem statement, options/trade-offs, recommendation, acceptance criteria, test plan, performance budget, and risks.
+3. Link implementation to a stable ID and GitHub issue. Mark `Partial` when only the minimum slice shipped; do not silently convert a discovery item to done.
+4. Record measured results, deviations, and residual risks in the item and changelog. Update the dependency graph when scope changes.
+
+Status vocabulary: ✅ Done · 🔄 Partial/in progress · ⬜ Planned · 🔬 Research · ⛔ Blocked. Effort: S (<2 days), M (2–7 days), L (1–3 weeks), XL (multi-week/architecture fork).
+
+## Phase gates
+
+### Gate G0 — Static contract (complete)
+
+Core routes build on GitHub Pages, semantic content survives disabled JavaScript, and unit/integration/e2e tests run deterministically.
+
+### Gate G1 — Visual system (in progress)
+
+Tokens, responsive hierarchy, reduced motion, focus visibility, contrast, and a capability policy exist before additional effects are added. Exit: Lighthouse baseline and manual keyboard/screen-reader smoke.
+
+### Gate G2 — Explainable interaction (in progress)
+
+Shared scales, palettes, legends, selection, URL state, summaries, tables, and fixture data exist. Exit: a visitor can reproduce the same conclusion from the visual and DOM representations.
+
+### Gate G3 — Computational storytelling (planned)
+
+Fleet route playback, solver comparison, model replay, and audio are worker/fixture-safe. Exit: cancellation, stale-result protection, metrics, provenance, and performance evidence.
+
+### Gate G4 — Spatial/media stories (planned)
+
+3D model/panorama assets have manifests, licenses, thumbnails, quality tiers, and disposal tests. Exit: flat/static fallback and mobile profile remain within budgets.
+
+### Gate G5 — GPU/experimental frontier (research)
+
+WebGPU, splats, WebXR, and large graphs are only promoted after a device matrix proves a user-facing benefit. Exit: WebGL/SVG fallback, privacy review, and a documented support matrix.
 
 ## Workstreams
 
-| Workstream | Scope | Detailed roadmap |
-| --- | --- | --- |
-| Visual design and UX | Design tokens, layout, typography, motion, accessibility | [`user_interface.md`](roadmaps/user_interface.md) |
-| Interactive graphics | Data visualization, 3D, 360°, audio, effects | [`interactive_features.md`](roadmaps/interactive_features.md) |
-| Simulations and Aurelia | Framework-neutral simulation engines and isolated Aurelia islands | [`simulations_and_aurelia.md`](roadmaps/simulations_and_aurelia.md) |
-| Mathematical optimization | Interactive routing and browser solvers | [`mathematical_optimization.md`](roadmaps/mathematical_optimization.md) |
-| Machine learning | Private, capability-aware browser inference | [`machine_learning.md`](roadmaps/machine_learning.md) |
-| Infrastructure and quality | CI, budgets, observability, asset pipeline, browser matrix | [`infrastructure_and_testing.md`](roadmaps/infrastructure_and_testing.md) |
-| Documentation and content | Architecture records, authoring guides, case studies | [`documentation.md`](roadmaps/documentation.md) |
+| Workstream | IDs | Detail | Current state |
+| --- | --- | --- | --- |
+| Visual design and UX | UI1–UI14 | [user_interface.md](roadmaps/user_interface.md) | 🔄 UI3–UI5/UI13–UI14 partial |
+| Interactive graphics | IF1–IF13 | [interactive_features.md](roadmaps/interactive_features.md) | 🔄 IF2–IF4/IF7/IF13 partial |
+| Simulations and Aurelia | SIM1–SIM10 | [simulations_and_aurelia.md](roadmaps/simulations_and_aurelia.md) | 🔄 SIM1–SIM4 partial |
+| Mathematical optimization | MO1–MO8 | [mathematical_optimization.md](roadmaps/mathematical_optimization.md) | ✅ MO1; ⬜ MO2+ |
+| Machine learning | ML1–ML8 | [machine_learning.md](roadmaps/machine_learning.md) | ✅ ML1; ⬜ ML2+ |
+| Infrastructure and quality | IT1–IT14 | [infrastructure_and_testing.md](roadmaps/infrastructure_and_testing.md) | ✅ IT1–IT5; ⬜ IT6+ |
+| Documentation/content | DOC1–DOC11 | [documentation.md](roadmaps/documentation.md) | 🔄 DOC3; ⬜ DOC4+ |
+| Research-derived interaction | RR1–RR10 | [research report](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md) | 🔬 research captured |
 
-## Cross-workstream dependency map
+## Research-derived feature index
 
-`UI6 capability policy` → `IF2 3D hero` → `IF5 reusable model viewer` → `IF6 panorama` → `IF10 WebGPU experiments`
+| ID | Feature | Primary workstream | Evidence and next slice |
+| --- | --- | --- | --- |
+| RR1 | Cited research/source graph and reading room | DOC/UI | Narrative visualization + accessible graph; static first |
+| RR2 | Waste-fleet route playback | MO/IF | deck.gl TripsLayer/Mapbox patterns + OR-Tools semantics |
+| RR3 | Solver/heuristic/Pareto comparison | MO/IF | incumbent, bound, gap, feasibility and export |
+| RR4 | ML training/policy replay and model card | ML/IF | interactive ML + Manifold model comparison |
+| RR5 | Local/demo audio spectrum and spectrogram | ML/IF | MDN `AnalyserNode`, explicit gesture/teardown |
+| RR6 | Media/reading timeline and argument graph | UI/DOC | narrative chapters, citations, uncertainty |
+| RR7 | Playable game mechanic and devlog | UI/IF | small island, pause/restart, storyboard fallback |
+| RR8 | Annotated 360° media room | IF | Three.js panorama, sequential hotspot alternative |
+| RR9 | WebGPU route/graph aggregation experiment | IF/IT | capability gate, WebGL/SVG fallback |
+| RR10 | Shared worker protocol and replay export | SIM/IT | versioned messages, cancellation, transferables |
 
-`IT6 performance gates` → every M2+ interactive feature. `IF3 visualization primitives` → `MO2 route explorer` and `ML4 model metrics`. `IT9 worker protocol` → `MO3 solver` and `ML3 inference`. `SIM2 simulation contracts` → React/Aurelia adapters and computational labs. `DOC5 authoring schema` → project explorer and spatial annotations.
+## Dependency and risk register
 
-## Definition of done for every feature
+| ID | Dependency/risk | Detection | Mitigation / decision |
+| --- | --- | --- | --- |
+| X1 | Shared visualization semantics drift | same data encoded differently | typed scales/palettes/legend contract under IF3 |
+| X2 | Map/vendor token or tile outage | fixture route fails to render | SVG/Canvas fixture + adapter; no client secret |
+| X3 | Solver overclaim | no proof/bound/timeout shown | feasibility/incumbent/bound/gap/status fields required |
+| X4 | WebGL context/VRAM growth | ten-navigation heap/context probe | one owner, disposal, visibility suspension, reduced tier |
+| X5 | Main-thread jank | long-task/frame profile | worker, event-driven SVG, progressive chunks |
+| X6 | Accessibility gap | hover-only or chart-only insight | DOM summary/table, keyboard tree/list, user testing |
+| X7 | ML privacy/energy | large download or upload | tiny opt-in model, local-only inputs, static trace |
+| X8 | Scope inflation | effect added without claim | item must state visitor question and exit metric |
 
-- Acceptance criteria and analytics-free success metric are documented.
-- Semantic static content and a no-WebGL/no-JavaScript fallback exist.
-- Pointer, keyboard, touch, screen-reader, reduced-motion, light, and dark paths are covered as applicable.
-- Unit tests cover public logic; component/integration tests cover interaction; a Cypress journey covers a new user-facing flow.
-- `npm run lint`, `npm test`, and `npm run build` pass; performance and bundle deltas are recorded.
-- New assets have provenance, compression settings, dimensions, and disposal/loading behavior documented.
-- The roadmap status and [`CHANGELOG.md`](CHANGELOG.md) are updated in the same change.
+## Effort × impact matrix
+
+| | High impact | Medium impact | Discovery |
+| --- | --- | --- | --- |
+| S | RR1 source cards; IT6 budget baseline | UI13 taxonomy cleanup | — |
+| M | RR5 audio; RR6 timeline; SIM5 runner | UI8 search; DOC6 embed guide | RR9 WebGPU spike |
+| L | RR2 fleet playback; RR3 comparison; RR4 ML replay | RR7 game island; RR8 panorama | RR10 worker protocol hardening |
+| XL | — | — | WebGPU splats/XR; live backend solver |
+
+## Anchor index
+
+- [RR research report](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md)
+- [UI visual system](roadmaps/user_interface.md)
+- [IF graphics](roadmaps/interactive_features.md)
+- [SIM simulations/Aurelia](roadmaps/simulations_and_aurelia.md)
+- [MO optimization](roadmaps/mathematical_optimization.md)
+- [ML browser ML](roadmaps/machine_learning.md)
+- [IT quality](roadmaps/infrastructure_and_testing.md)
+- [DOC documentation](roadmaps/documentation.md)
+
+## Document history
+
+- 2026-08-08 — R2: added research-derived RR1–RR10 index, phase gates, risk register, Image-Toolkit-style timeline/status conventions, and explicit current-state accounting.
+- 2026-08-08 — R1: established the immersive portfolio vision and initial feature workstreams.

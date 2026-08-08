@@ -26,3 +26,9 @@ Goal: demonstrate meaningful ML expertise through small, private, reproducible b
 ## Decision gate before ML6+
 
 Proceed only if ML4 remains within route budgets and adds explanatory value. Generative LLMs are out of the default roadmap because their download, memory and energy cost conflicts with progressive enhancement; any future experiment must be separately opt-in.
+
+## R2 research integration
+
+RR4 is a small deterministic training replay with a model card, reward/cost curves, latent explorer, and human correction events. RR5 may use an `AnalyserNode` only as an optional explanatory layer; audio is never presented as model evidence. Static/CPU fixtures remain first-class and all claims identify dataset, preprocessing, runtime, version, and limitations.
+
+**Acceptance:** seeded replay snapshots, accessible table/export, cancellation and unsupported-runtime messaging, and no implication that an illustrative policy is production optimal.

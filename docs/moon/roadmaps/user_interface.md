@@ -52,3 +52,7 @@ Goal: create a distinctive “research observatory” visual identity—deep-spa
 ## Design QA matrix
 
 Validate Chromium, Firefox, and WebKit at 320/768/1440 px; keyboard-only; VoiceOver/NVDA smoke paths; 200% zoom; forced colors; reduced motion; coarse pointer; slow 4G; and WebGL unavailable/context-lost states.
+
+## R2 research integration
+
+RR1 source/citation cards, RR6 reading/media timelines, and RR7 game devlogs extend the domain component taxonomy without reviving a catch-all interactive folder. Every visual has a DOM/list equivalent, explicit media provenance, deep-linkable filters where useful, and a reduced-motion path. View transitions and 3D effects are progressive enhancements, never navigation requirements.

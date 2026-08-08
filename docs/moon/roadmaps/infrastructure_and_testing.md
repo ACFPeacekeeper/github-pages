@@ -35,3 +35,7 @@ Messages are discriminated unions with version, request ID and payload. Jobs sup
 ## Profiling procedure
 
 Capture production builds on a representative integrated-GPU laptop and a throttled mobile profile. Record route bundle size, LCP/INP/CLS, time-to-first-interaction, median/1% frame time, context count, heap before/after ten navigations, and asset transfer bytes. Store the baseline in `docs/BENCHMARKS.md` and compare it for every graphics milestone.
+
+## R2 research integration
+
+RR9 requires capability matrices for WebGPU/WebGL, secure-context messaging, adapter/device failure fixtures, and an SVG/canvas fallback benchmark. RR10 requires deterministic worker replay tests, typed-array transfer accounting, stale-response rejection, and leak checks after ten mount/unmount cycles. Research demos cannot regress the static export or default route budget.

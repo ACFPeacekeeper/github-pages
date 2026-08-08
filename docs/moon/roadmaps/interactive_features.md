@@ -60,3 +60,13 @@ Goal: make research tangible through direct manipulation. Every canvas is an enh
 
 - Every catalogue component documents its input contract, data source, accessibility equivalent, loading behavior, and whether it owns a canvas/audio/video resource.
 - Components are independently importable so a future route can lazy-load only the required domain chunk; there is no growing `components/interactive` catch-all.
+
+## R2 research-derived backlog
+
+The research report turns the catalogue into evidence-led packages: RR2 fleet playback, RR3 solver/Pareto comparison, RR4 ML replay/model cards, RR5 audio explanation, RR6 media/reading timeline, RR7 game prototype, RR8 360 room, RR9 optional WebGPU aggregation, and RR10 worker replay protocol. Each package must ship a semantic/list fallback, provenance, reduced-motion mode, and performance measurements before it can be marked Done.
+
+## Document history
+
+| Date | Revision | Change |
+|---|---|---|
+| 2026-08-08 | R2 | Added research-derived interaction packages and evidence gates. |

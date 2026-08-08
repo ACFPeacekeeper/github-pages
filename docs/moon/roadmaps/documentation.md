@@ -23,3 +23,7 @@ Goal: make every visual experiment maintainable, reproducible and understandable
 - Diagrams have text alternatives; screenshots include captions; code samples are minimal, tested and compatible with the static export.
 - ADRs cover persistent versus isolated canvas, graphics library choice, state ownership, worker protocol, asset formats and any backend fork.
 - Roadmap IDs remain stable and map to GitHub issues; completion moves user-visible results to the changelog without deleting historical rationale.
+
+## R2 research integration
+
+The [research report](../research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md) is the source of truth for RR1–RR10. Each issue and feature page links its academic, standards, geospatial, or practitioner evidence; records licensing and browser support; distinguishes measured outcomes from illustrative demos; and documents the equivalent non-visual interaction. New roadmap entries use stable IDs so project status and changelog history remain auditable.
