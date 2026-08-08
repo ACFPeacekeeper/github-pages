@@ -6,14 +6,14 @@ import ResearchConstellation from '../../../../src/components/graph/ResearchCons
 describe('ResearchConstellation', () => {
   it('describes the initially selected research node', () => {
     render(<ResearchConstellation />);
-    expect(screen.getByText('The bridge between mathematical ideas and useful systems.')).toBeInTheDocument();
+    expect(screen.getAllByText('The bridge between mathematical ideas and useful systems.')[0]).toBeInTheDocument();
   });
 
   it('updates the explanation when a visitor selects a node', async () => {
     const user = userEvent.setup();
     render(<ResearchConstellation />);
     await user.click(screen.getByRole('button', { name: /Artificial intelligence:/ }));
-    expect(screen.getByText('Learning representations, policies, and useful heuristics from data.')).toBeInTheDocument();
+    expect(screen.getAllByText('Learning representations, policies, and useful heuristics from data.')[0]).toBeInTheDocument();
   });
 
   it('exposes a relevant destination for linked nodes', async () => {

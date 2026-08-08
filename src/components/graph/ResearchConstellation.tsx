@@ -1,11 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import { ArrowUpRight, Network } from 'lucide-react';
 import { VISUAL_EXPERIENCE } from '../../configs/visualExperience';
 import { RESEARCH_GRAPH } from '../../constants/researchGraph';
 import type { ResearchDomain } from '../../interfaces/visualization';
 import { getConnectedNodeIds, getNodeById, isEdgeConnected } from '../../utils/visualization';
+import { useSelection } from '../../utils/visualization/useSelection';
+import { useKeyboardRoving } from '../../utils/visualization/useKeyboardRoving';
+import { A11ySummary } from '../visualization/A11ySummary';
+import { A11yTable } from '../visualization/A11yTable';
+import { Legend } from '../visualization/Legend';
+import { Shape } from '../visualization/Shape';
+import { DEFAULT_DOMAIN_PALETTE } from '../../utils/visualization/encodings';
 
 const domainClasses: Record<ResearchDomain, string> = {
   core: 'constellation-node--core',
@@ -14,8 +20,17 @@ const domainClasses: Record<ResearchDomain, string> = {
   application: 'constellation-node--application',
 };
 
+const LEGEND_ITEMS = [
+  { key: 'core', label: 'Core' },
+  { key: 'ai', label: 'Artificial Intelligence' },
+  { key: 'optimization', label: 'Optimization' },
+  { key: 'application', label: 'Application' },
+];
+
 export default function ResearchConstellation() {
-  const [selectedId, setSelectedId] = useState<string | null>('research');
+  const [selectedId, setSelectedId] = useSelection('research', true);
+  const containerRef = useKeyboardRoving<HTMLDivElement>('.constellation-node');
+  
   const selectedNode = selectedId ? getNodeById(RESEARCH_GRAPH.nodes, selectedId) : undefined;
   const connectedIds = selectedId ? getConnectedNodeIds(RESEARCH_GRAPH.edges, selectedId) : new Set<string>();
   const { width, height } = VISUAL_EXPERIENCE.constellationViewBox;
@@ -26,6 +41,15 @@ export default function ResearchConstellation() {
         <div className="eyebrow"><Network aria-hidden="true" size={15} /> Interactive knowledge map</div>
         <h2 id="constellation-title">Research is a connected system.</h2>
         <p>Select a node to trace how learning, optimization, and real-world applications reinforce one another.</p>
+        
+        <Legend
+          title="Research Domains"
+          palette={DEFAULT_DOMAIN_PALETTE}
+          items={LEGEND_ITEMS}
+          selectedKey={selectedNode?.domain}
+          className="mt-4 mb-4"
+        />
+
         <div className="constellation-detail" aria-live="polite">
           <span>{selectedNode?.shortLabel ?? 'Explore'}</span>
           <p>{selectedNode?.description ?? 'Choose a research domain to learn more.'}</p>
@@ -33,7 +57,24 @@ export default function ResearchConstellation() {
         </div>
       </div>
 
-      <div className="constellation-map" aria-label="Interactive map of research themes">
+      <A11ySummary
+        id="constellation-a11y-summary"
+        summary="An interactive node-link diagram showing connections between research domains."
+        selectionAnnouncement={selectedNode ? `Selected: ${selectedNode.label}. ${selectedNode.description}` : 'No node selected.'}
+      />
+      
+      <A11yTable
+        id="constellation-a11y-table"
+        caption="Research nodes and their domains"
+        data={RESEARCH_GRAPH.nodes}
+        columns={[
+          { key: 'label', header: 'Topic' },
+          { key: 'domain', header: 'Domain' },
+          { key: 'description', header: 'Description' },
+        ]}
+      />
+
+      <div className="constellation-map" aria-label="Interactive map of research themes" ref={containerRef}>
         <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Connections between six research themes">
           <defs>
             <linearGradient id="constellation-line" x1="0" x2="1">
@@ -50,17 +91,19 @@ export default function ResearchConstellation() {
         </svg>
         {RESEARCH_GRAPH.nodes.map((node) => {
           const isRelated = selectedId === node.id || connectedIds.has(node.id);
+          const encoding = DEFAULT_DOMAIN_PALETTE[node.domain];
+          
           return (
             <button
               key={node.id}
               type="button"
               className={`constellation-node ${domainClasses[node.domain]} ${selectedId === node.id ? 'is-selected' : ''} ${selectedId && !isRelated ? 'is-muted' : ''}`}
-              style={{ left: `${node.x}%`, top: `${node.y}%` }}
+              style={{ left: `${node.x}%`, top: `${node.y}%`, display: 'flex', alignItems: 'center', gap: '4px' }}
               aria-pressed={selectedId === node.id}
               aria-label={`${node.label}: ${node.description}`}
               onClick={() => setSelectedId(node.id)}
             >
-              <span aria-hidden="true" />
+              <Shape encoding={encoding} size={16} />
               {node.shortLabel}
             </button>
           );
