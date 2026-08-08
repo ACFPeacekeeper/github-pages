@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Home } from 'lucide-react';
-import SidebarItem from '../site-src/components/layout/SidebarItem';
+import SidebarItem from '../../../../src/components/layout/SidebarItem';
 
 const meta = {
     title: 'Layout/SidebarItem',

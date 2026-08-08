@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import Sidebar from '../site-src/components/layout/Sidebar';
+import Sidebar from '../../../../src/components/layout/Sidebar';
 
 // Sidebar imports next/image and a static asset (@/assets/images/23041868.jpeg)
 // — both aliased to shims in .storybook/main.ts (the asset shim is a small

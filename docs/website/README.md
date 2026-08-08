@@ -31,11 +31,11 @@ See [`react/README.md`](react/README.md) for the build/preview commands and how 
 
 **API reference changes**: edit [`lib/markdown.ts`](../../lib/markdown.ts) (or add a new file there) and run `npm run gen:api` — no manual doc editing, it's fully generated. New exported functions/types show up automatically; new *files* need an entry in `react/typedoc.json`'s `entryPoints` and `react/sidebars.ts`'s `apiSidebar`.
 
-**A new component story**: add a `.stories.tsx` file under [`react/stories/`](react/stories/), importing the real component from `../site-src/components/...` (see `react/README.md`'s "Notable implementation gotchas" for why not a `@/...` alias here). No site config changes needed — Storybook discovers it automatically.
+**A new component story**: add a `.stories.tsx` file under [`react/stories/`](react/stories/), importing the real component from `../../../../src/components/...`. No site config changes needed — Storybook discovers it automatically.
 
 ## Important things to know
 
-- **Nothing here duplicates content.** Docs and guides are read directly from their real locations at build time (Docusaurus's `path`/`include` options); Storybook imports the real component sources via a symlink (`react/site-src`), not a copy. Edit the source, not the site.
+- **Nothing here duplicates content.** Docs and guides are read directly from their real locations at build time (Docusaurus's `path`/`include` options); Storybook's stories import the real component sources directly (`../../../../src/components/...`), not a copy. Edit the source, not the site.
 - **Three separate build steps, one deployable output.** `npm run build` in `react/` runs TypeDoc, then Storybook's build, then Docusaurus's build, then copies the Storybook output into Docusaurus's `build/storybook/` — see `react/package.json`'s `pre`/`post` build hooks.
 - **This site's own `docs/website/react/api-docs/` is itself inside the repo's `docs/` tree**, which is why it's registered on the *default* Docusaurus docs-plugin instance (not a separate one) — see the comment on that instance in `react/docusaurus.config.ts` for the Docusaurus quirk this works around.
 - **`README.md` here vs. `react/README.md`**: this file is about the *site* (what's on it, how to use it, how to add content); `react/README.md` is about the *app* (how the three tools are wired, local dev, build mechanics). Update the one that actually changed.

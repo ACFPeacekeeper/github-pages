@@ -2,8 +2,8 @@
 // build) needs to know the shape of static image imports, since the main
 // repo's own ambient types (next-env.d.ts) aren't part of this project.
 // Matches Next.js's StaticImageData shape (not a plain string, unlike
-// Vite's own default asset typing) since site-src/ is the real Next.js
-// component source, written against that contract.
+// Vite's own default asset typing) since stories/ imports the real Next.js
+// component sources directly, written against that contract.
 interface StaticImageData {
     src: string;
     height: number;
