@@ -34,11 +34,30 @@ export default function HeroModel() {
     const targetCanvas: HTMLCanvasElement = canvasElement;
     let disposed = false;
     let frame = 0;
+    
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+      console.warn('WebGL context lost');
+    };
+    
+    const handleContextRestored = () => {
+      console.log('WebGL context restored');
+    };
+
+    targetCanvas.addEventListener('webglcontextlost', handleContextLost, false);
+    targetCanvas.addEventListener('webglcontextrestored', handleContextRestored, false);
+
     let renderer: import('three').WebGLRenderer | undefined;
     let geometry: import('three').BufferGeometry | undefined;
     let material: import('three').Material | undefined;
     let wireGeometry: import('three').BufferGeometry | undefined;
     let wireMaterial: import('three').Material | undefined;
+    let observer: ResizeObserver | undefined;
+    let intersectionObserver: IntersectionObserver | undefined;
+
+    let frames = 0;
+    let lastTime = performance.now();
+    let isVisible = false;
 
     async function mount() {
       let THREE: ThreeModule;
@@ -77,27 +96,56 @@ export default function HeroModel() {
         camera.updateProjectionMatrix();
       };
       resize();
-      const observer = new ResizeObserver(resize);
+      observer = new ResizeObserver(resize);
       observer.observe(targetCanvas);
 
       const render = () => {
         if (disposed || !renderer) return;
-        mesh.rotation.x = rotationRef.current.x;
-        mesh.rotation.y = rotationRef.current.y;
-        if (!pausedRef.current && !reducedMotion && document.visibilityState === 'visible') rotationRef.current.y += 0.0025;
-        renderer.render(scene, camera);
+        
+        if (isVisible && document.visibilityState === 'visible') {
+            mesh.rotation.x = rotationRef.current.x;
+            mesh.rotation.y = rotationRef.current.y;
+            if (!pausedRef.current && !reducedMotion) rotationRef.current.y += 0.0025;
+            renderer.render(scene, camera);
+            
+            frames++;
+            const now = performance.now();
+            if (now - lastTime >= 1000) {
+              const fps = Math.round((frames * 1000) / (now - lastTime));
+              const memory = renderer.info.memory;
+              console.debug(`[HeroModel] FPS: ${fps} | Geometries: ${memory.geometries} | Textures: ${memory.textures}`);
+              frames = 0;
+              lastTime = now;
+            }
+        }
+        
         frame = window.requestAnimationFrame(render);
       };
       render();
 
-      return () => observer.disconnect();
+      return () => {
+        observer?.disconnect();
+      };
     }
 
     let disconnect: (() => void) | undefined;
-    mount().then((cleanup) => { disconnect = cleanup; });
+    
+    intersectionObserver = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        isVisible = entry.isIntersecting;
+        if (isVisible && !renderer && !disposed) {
+            mount().then((cleanup) => { disconnect = cleanup; });
+        }
+    }, { rootMargin: '50px' });
+    
+    intersectionObserver.observe(targetCanvas);
+
     return () => {
       disposed = true;
       disconnect?.();
+      intersectionObserver?.disconnect();
+      targetCanvas.removeEventListener('webglcontextlost', handleContextLost);
+      targetCanvas.removeEventListener('webglcontextrestored', handleContextRestored);
       window.cancelAnimationFrame(frame);
       geometry?.dispose();
       material?.dispose();
