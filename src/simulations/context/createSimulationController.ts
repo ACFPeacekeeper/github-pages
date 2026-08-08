@@ -1,5 +1,5 @@
 import { generateConvergence } from '../generator/convergence';
-import type { SimulationScenario, SimulationSnapshot } from '../state/types';
+import type { SimulationScenario, SimulationSnapshot } from '../repository/types';
 
 export interface SimulationController {
   initial: SimulationSnapshot;

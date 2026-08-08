@@ -1,4 +1,4 @@
-import type { SimulationScenario } from '../state/types';
+import type { SimulationScenario } from '../repository/types';
 
 export const SIMULATION_SCENARIOS: SimulationScenario[] = [
   { id: 'balanced', name: 'Balanced search', description: 'A steady trade-off between exploration and refinement.', seed: 17, iterations: 28, initialCost: 148, convergenceRate: 0.09 },

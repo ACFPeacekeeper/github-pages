@@ -1,4 +1,4 @@
-import type { SimulationPoint, SimulationScenario } from '../state/types';
+import type { SimulationPoint, SimulationScenario } from '../repository/types';
 
 function createRandom(seed: number): () => number {
   let state = seed >>> 0;
