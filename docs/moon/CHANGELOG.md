@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Shared typed visualization primitives (scales, palettes, legends, tooltips) with accessible summaries and keyboard roving, integrating them into the `ResearchConstellation` component (IF3).
 - Expanded interactive research constellation with nodes and edges linking core themes to specific projects (PCVRP, Audio) and publications, completing IF4.
 - Reusable glTF/GLB model viewer (`ModelViewer.tsx`) with DRACO compression support, camera presets, collision-aware DOM annotations, and loading progress indicators (IF5).
+- Equirectangular 360° panorama viewer (`PanoramaViewer.tsx`) with pointer drag, keyboard look, minimap, hotspot DOM overlays, and static image fallback (IF6).
+- Audio-reactive signal-processing exhibit (`AudioExhibit.tsx`) with FFT visualization via Web Audio API, user-gesture requirement, and non-audio demo mode (IF7).
+- Cinematic bounded effects (`Effects.tsx`) providing toggleable cursor spotlight, card tilt, particles, bloom/noise, and page distortion with reduced-motion preference awareness (IF8).
 - Research-observatory homepage foundation with semantic visual tokens, an accessible interactive research constellation, a capability-aware Three.js model, and a deterministic optimization-convergence simulation.
 - Framework-neutral simulation layers under `src/simulations/` and a lazy Aurelia 2 island boundary under `src/aurelia/` so simulation engines can be shared across frontends.
 - Unit and interaction tests for visualization utilities, constellation selection, deterministic simulation generation, lifecycle transitions, and simulation controls.

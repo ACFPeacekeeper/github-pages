@@ -9,9 +9,9 @@ Goal: make research tangible through direct manipulation. Every canvas is an enh
 | IF3 | Shared typed visualization primitives: scales, palettes, legends, tooltips, selection, keyboard roving and accessible summaries | L | UI3, IT6 | ✅ |
 | IF4 | Interactive research constellation showing relationships among AI, optimization, projects and publications | M | IF3 | ✅ |
 | IF5 | Reusable glTF/GLB model viewer with camera presets, annotations, loading progress, quality tiers and asset disposal | L | IF1, IF2, IT8 | ✅ |
-| IF6 | Equirectangular 360° panorama viewer with drag/keyboard look, hotspot DOM overlays, minimap and flat-image fallback | L | IF1, IF5 | 📋 |
-| IF7 | Audio-reactive signal-processing exhibit using Web Audio FFT, play/pause, user-selected/local media and non-audio demo mode | L | IF2, IT9 | 📋 |
-| IF8 | Cinematic but bounded effects: cursor spotlight, card tilt, particles, bloom/noise and page distortion with preference controls | M | UI6, IF2 | 📋 |
+| IF6 | Equirectangular 360° panorama viewer with drag/keyboard look, hotspot DOM overlays, minimap and flat-image fallback | L | IF1, IF5 | ✅ |
+| IF7 | Audio-reactive signal-processing exhibit using Web Audio FFT, play/pause, user-selected/local media and non-audio demo mode | L | IF2, IT9 | ✅ |
+| IF8 | Cinematic but bounded effects: cursor spotlight, card tilt, particles, bloom/noise and page distortion with preference controls | M | UI6, IF2 | ✅ |
 | IF9 | Large graph/geospatial renderer evaluation (SVG/Canvas first; Deck.gl only beyond measured thresholds) | L | IF3, IT6 | 📋 |
 | IF10 | WebGPU/TSL renderer experiment with WebGL2 and static fallback, shader warm-up and device-limit inspection | L | IF1, IT6 | 🔬 |
 | IF11 | Optional 3D Gaussian splat gallery with LOD streaming and strict memory/download gate | XL | IF10, IT8 | 🔬 |
