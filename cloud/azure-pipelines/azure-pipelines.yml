@@ -1,0 +1,33 @@
+# Builds the Next.js static export and deploys it to Azure Static Web Apps.
+#
+# Setup:
+#   1. Create an Azure Static Web App (Standard or Free tier).
+#   2. Add its deployment token as a pipeline secret variable named
+#      AZURE_STATIC_WEB_APPS_API_TOKEN.
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: "Install Node.js"
+
+  - script: npm ci
+    displayName: "Install dependencies"
+
+  - script: npm run build
+    displayName: "Build static export"
+
+  - task: AzureStaticWebApp@0
+    inputs:
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+      app_location: "out"
+      skip_app_build: true
+    displayName: "Deploy to Azure Static Web Apps"
