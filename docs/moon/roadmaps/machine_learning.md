@@ -1,11 +1,28 @@
-# Machine Learning Roadmap
+# Client-side Machine Learning Roadmap
 
-Planned ML-adjacent content and features — see [`docs/moon/ROADMAP.md`](../ROADMAP.md) for the project-level roadmap this rolls up into, and [`docs/moon/research/`](../research/) for the design research behind these items.
+Goal: demonstrate meaningful ML expertise through small, private, reproducible browser experiments—not through a heavyweight model that obscures the portfolio.
 
-| # | Item | Effort | Status |
-| --- | --- | --- | --- |
-| ML1 | Audio signal processing report, backed by a `notebooks/` analysis | M | ✅ Done |
-| ML2 | Client-side ("edge") ML inference demo (e.g. ONNX Runtime Web or TensorFlow.js) embedded in a report | L | 📋 Pending |
-| ML3 | Evaluate what's feasible entirely client-side given the static export constraint — no server to host a model behind an API | S | 📋 Pending |
+| ID | Deliverable | Effort | Depends on | Status |
+| --- | --- | --- | --- | --- |
+| ML1 | Audio signal-processing report backed by the notebooks workspace | M | — | ✅ |
+| ML2 | Feasibility matrix comparing ONNX Runtime Web, Transformers.js, TensorFlow.js, WebGPU/WASM and WebNN status | M | IT6 | 📋 |
+| ML3 | Worker-hosted inference runtime with lazy model download, cache/version policy, progress, cancellation and CPU fallback | L | IT9, ML2 | 📋 |
+| ML4 | First bounded demo: classify or embed a small supplied text/audio sample and visualize confidence/features | L | ML3, IF3 | 📋 |
+| ML5 | Interactive model card: dataset scope, architecture, latency, memory, limitations, bias and privacy | M | ML4, DOC5 | 📋 |
+| ML6 | Embedding/project semantic explorer with precomputed vectors and optional local query inference | L | ML3, UI8 | 📋 |
+| ML7 | Model optimization pipeline: quantization, graph fusion, operator compatibility and reproducible export checks | L | ML3 | 📋 |
+| ML8 | Capability benchmarking across WebGPU/WASM with anonymized, opt-in local display only | M | ML3, IT11 | 🔬 |
 
-> **TODO:** Pick a first concrete demo (e.g. a small classifier or audio feature extractor) once ML3 is answered.
+## Guardrails and acceptance criteria
+
+- The first demo model is preferably ≤ 15 MB compressed; larger downloads require explicit opt-in and a visible size estimate.
+- Input stays on-device. The interface states this plainly and does not persist samples without consent.
+- Runtime/model load happens after intent in a worker. Users can cancel; navigation terminates or safely parks work.
+- WebGPU is an acceleration path, not a requirement. WASM/CPU fallback and an example result keep the story usable.
+- Display warm/cold latency, runtime/provider, approximate memory and model version; never imply scientific validity beyond the model card.
+- Tests use a tiny deterministic fixture/model or mock only the runtime boundary; they cover unsupported operator, corrupt cache, cancellation and out-of-memory messaging.
+- Notebook/export scripts pin dependencies and reproduce preprocessing exactly; TypeScript preprocessing is checked against known Python outputs.
+
+## Decision gate before ML6+
+
+Proceed only if ML4 remains within route budgets and adds explanatory value. Generative LLMs are out of the default roadmap because their download, memory and energy cost conflicts with progressive enhancement; any future experiment must be separately opt-in.

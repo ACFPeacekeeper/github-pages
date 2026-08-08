@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A research-driven, milestone-based product roadmap for progressively delivering an accessible visual system, interactive data stories, 3D/360 experiences, browser ML, and mathematical-optimization labs.
+- Detailed acceptance criteria, dependency maps, device-quality tiers, performance budgets, fallbacks, accessibility requirements, and release gates across every feature roadmap.
 - Dark/light theme toggle in the header, with the sidebar keeping the current theme across navigation.
 - "AI" section under Tools; "Other" content section.
 - PCVRP report and the audio signal processing report/post, with dedicated styling.
