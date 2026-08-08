@@ -1,0 +1,38 @@
+[project]
+name = "github-pages-notebooks"
+version = "0.1.0"
+description = "Notebooks for my github-pages website."
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel",
+    "matplotlib",
+    "networkx",
+    "neo4j",
+    "rdflib",
+    "netgraph==4.13.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=26.5.1",
+    "cryptography>=50.0.0",
+    "git-filter-repo>=2.47.0",
+    "import-linter>=2.0",
+    "mypy>=1.18.2",
+    "numpy>=2.3.4",
+    "pip-audit>=2.9.0",
+    "pyinstaller>=6.16.0",
+    "pytest>=9.1.1",
+    "pyvis>=0.3.2",            # §5.11C module dependency graph HTML (backend/validation/visualize_module_graph.py)
+    "ruff>=0.14.3",
+]
+docs = ["mkdocs>=1.6.1", "mkdocs-material>=9.7.7"]
+
+# BUILD CONFIG
+[build-system]
+requires = ["setuptools>=83.0.0", "wheel", "cffi"]
+build-backend = "setuptools.build_meta"
+
+# Tell setuptools EXACTLY what to package
+[tool.setuptools.packages.find]
+where = ["."]

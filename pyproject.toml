@@ -1,0 +1,16 @@
+[project]
+name = "github-pages"
+version = "0.1.0"
+description = "Python environments for my github-pages website."
+readme = "README.md"
+license = { file = "LICENSE.md" }
+requires-python = ">=3.11"
+authors = [{ name = "ACFHarbinger" }]
+dependencies = []
+
+[tool.uv.workspace]
+members = ["notebooks"]
+
+[tool.uv]
+# Root has no code of its own — just a workspace pointer to middleware/.
+package = false
