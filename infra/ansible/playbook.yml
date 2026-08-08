@@ -1,0 +1,8 @@
+---
+- name: Configure application servers
+  hosts: app_servers
+  become: true
+  vars:
+    site_image: github-pages:latest
+  roles:
+    - app

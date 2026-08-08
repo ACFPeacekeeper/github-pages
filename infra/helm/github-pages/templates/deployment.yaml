@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "github-pages.name" . }}
+  labels:
+    {{- include "github-pages.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "github-pages.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "github-pages.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: site
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

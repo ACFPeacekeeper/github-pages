@@ -1,0 +1,25 @@
+---
+- name: Ensure Docker is installed
+  ansible.builtin.package:
+    name: docker.io
+    state: present
+
+- name: Ensure Docker is running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Pull the site image
+  community.docker.docker_image:
+    name: "{{ site_image }}"
+    source: pull
+
+- name: Run the site container
+  community.docker.docker_container:
+    name: github-pages
+    image: "{{ site_image }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "80:80"
