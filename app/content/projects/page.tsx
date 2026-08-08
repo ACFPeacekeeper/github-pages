@@ -58,7 +58,7 @@ export default function ProjectsPage() {
           <GlassCard className="p-6">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">CSE Master of Science (MSc) Dissertation</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              Thesis: "Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations". Developed and compared new Multimodal Deep Unsupervised Models.
+              Thesis: &ldquo;Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations&rdquo;. Developed and compared new Multimodal Deep Unsupervised Models.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
                 <div className="flex gap-2">

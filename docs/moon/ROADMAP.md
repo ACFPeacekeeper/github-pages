@@ -34,6 +34,7 @@ Status: ✅ complete · 🚧 in progress · 📋 planned · 🔬 discovery. Effo
 | --- | --- | --- |
 | Visual design and UX | Design tokens, layout, typography, motion, accessibility | [`user_interface.md`](roadmaps/user_interface.md) |
 | Interactive graphics | Data visualization, 3D, 360°, audio, effects | [`interactive_features.md`](roadmaps/interactive_features.md) |
+| Simulations and Aurelia | Framework-neutral simulation engines and isolated Aurelia islands | [`simulations_and_aurelia.md`](roadmaps/simulations_and_aurelia.md) |
 | Mathematical optimization | Interactive routing and browser solvers | [`mathematical_optimization.md`](roadmaps/mathematical_optimization.md) |
 | Machine learning | Private, capability-aware browser inference | [`machine_learning.md`](roadmaps/machine_learning.md) |
 | Infrastructure and quality | CI, budgets, observability, asset pipeline, browser matrix | [`infrastructure_and_testing.md`](roadmaps/infrastructure_and_testing.md) |
@@ -43,7 +44,7 @@ Status: ✅ complete · 🚧 in progress · 📋 planned · 🔬 discovery. Effo
 
 `UI6 capability policy` → `IF2 3D hero` → `IF5 reusable model viewer` → `IF6 panorama` → `IF10 WebGPU experiments`
 
-`IT6 performance gates` → every M2+ interactive feature. `IF3 visualization primitives` → `MO2 route explorer` and `ML4 model metrics`. `IT9 worker protocol` → `MO3 solver` and `ML3 inference`. `DOC5 authoring schema` → project explorer and spatial annotations.
+`IT6 performance gates` → every M2+ interactive feature. `IF3 visualization primitives` → `MO2 route explorer` and `ML4 model metrics`. `IT9 worker protocol` → `MO3 solver` and `ML3 inference`. `SIM2 simulation contracts` → React/Aurelia adapters and computational labs. `DOC5 authoring schema` → project explorer and spatial annotations.
 
 ## Definition of done for every feature
 

@@ -30,9 +30,9 @@ export default function AboutPage() {
         <SectionHeading title="Current Work" icon={<Briefcase className="text-blue-500" />} />
         <GlassCard className="p-6">
           <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            I'm currently a <strong>Doctoral Researcher</strong> at <a href="https://www.inesc-id.pt/" className="text-blue-600 dark:text-blue-400 hover:underline">INESC-ID</a> 
-            — where I'm developing new Deep Reinforcement Learning and Operations Research methods to solve Combinatorial Optimization tasks — and an <strong>Invited Assistant Professor</strong> at the Computer Science and Engineering 
-            department of <a href="https://tecnico.ulisboa.pt/en/" className="text-blue-600 dark:text-blue-400 hover:underline">IST</a>, where I teach courses 
+            I&apos;m currently a <strong>Doctoral Researcher</strong> at <a href="https://www.inesc-id.pt/" className="text-blue-600 dark:text-blue-400 hover:underline">INESC-ID</a>
+            — where I&apos;m developing new Deep Reinforcement Learning and Operations Research methods to solve Combinatorial Optimization tasks — and an <strong>Invited Assistant Professor</strong> at the Computer Science and Engineering
+            department of <a href="https://tecnico.ulisboa.pt/en/" className="text-blue-600 dark:text-blue-400 hover:underline">IST</a>, where I teach courses
             about <a href="https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1408903891910867" className="text-blue-600 dark:text-blue-400 hover:underline">Distributed Systems</a>
             , <a href="https://fenix.tecnico.ulisboa.pt/cursos/meic-t/disciplina-curricular/1127428915200223" className="text-blue-600 dark:text-blue-400 hover:underline">Cloud Computing and Virtualization</a>
             ,and <a href="https://fenix.tecnico.ulisboa.pt/cursos/leic-t/disciplina-curricular/1971853845332781" className="text-blue-600 dark:text-blue-400 hover:underline">Computer Organization</a>.

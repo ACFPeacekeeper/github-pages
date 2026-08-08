@@ -4,6 +4,9 @@ import GlassCard from '../src/components/ui/GlassCard';
 import SectionHeading from '../src/components/ui/SectionHeading';
 import Badge from '../src/components/ui/Badge';
 import { BlogPost, Project } from '../src/types';
+import HeroModel from '../src/components/interactive/HeroModel';
+import ResearchConstellation from '../src/components/interactive/ResearchConstellation';
+import ConvergenceSimulation from '../src/components/interactive/ConvergenceSimulation';
 
 /**
  * Mock Data
@@ -73,29 +76,38 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="mb-16 pt-8">
-        <div className="space-y-6 max-w-2xl">
+      <section className="hero-observatory mb-20" aria-labelledby="hero-title">
+        <div className="hero-observatory__copy">
           <Badge variant="default" className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-            Available for Research Collaboration
+            <span className="status-pulse" aria-hidden="true" /> Available for research collaboration
           </Badge>
-          <h1 className="text-5xl font-display font-bold text-slate-900 dark:text-white leading-tight">
-            Exploring the combination of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Artificial Intelligence</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Operations Research</span> for <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-red-600">Combinatorial Optimization</span>.
+          <p className="hero-kicker">Scientist · Engineer · Educator</p>
+          <h1 id="hero-title" className="hero-title">
+            Learning systems for <span>hard decisions.</span>
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            I'm a scientist and engineer focused on <strong>Deep Reinforcement Learning</strong> and <strong>Operations Research</strong> methods to solve <strong>Combinatorial Optimization</strong> problems.
-            Currently working as a researcher at <a href="https://www.inesc-id.pt/" className="text-blue-600 hover:underline decoration-blue-300 underline-offset-4">INESC-ID</a> and
-            teaching at <a href="https://tecnico.ulisboa.pt/" className="text-blue-600 hover:underline decoration-blue-300 underline-offset-4">IST</a>.
+          <p className="hero-summary">
+            I combine <strong>deep reinforcement learning</strong> with <strong>operations research</strong> to solve combinatorial optimization problems—and turn the results into systems people can explore.
           </p>
-          <div className="flex gap-4 pt-2">
-            <a href="/github-pages/content/about" className="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors flex items-center gap-2">
-              About Me <ArrowRight size={18} />
+          <div className="hero-actions">
+            <a href="/github-pages/content/projects" className="hero-action hero-action--primary">
+              Explore my work <ArrowRight size={18} />
             </a>
-            <a href="/github-pages/content/tools" className="px-6 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-              View Tools
+            <a href="/github-pages/content/about" className="hero-action hero-action--secondary">
+              About me
             </a>
           </div>
+          <dl className="hero-metrics" aria-label="Professional highlights">
+            <div><dt>Focus</dt><dd>AI × OR</dd></div>
+            <div><dt>Research</dt><dd>INESC-ID</dd></div>
+            <div><dt>Teaching</dt><dd>IST</dd></div>
+          </dl>
         </div>
+        <HeroModel />
       </section>
+
+      <ResearchConstellation />
+
+      <ConvergenceSimulation />
 
       {/* Latest Posts Section */}
       <section className="mb-16">
