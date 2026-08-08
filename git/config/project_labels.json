@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
+  "description": "Canonical label taxonomy for github-pages. Consumed by sync_backlog.py to validate/create labels and by agent_tools.py to route tickets to Project V2 fields.",
+  "components": [
+    { "name": "component:site",         "color": "3178C6", "description": "app/, src/, lib/ — the Next.js site" },
+    { "name": "component:content",      "color": "0E8A16", "description": "app/content/ — posts, reports, projects, tools, media, about, other" },
+    { "name": "component:notebooks",    "color": "3776AB", "description": "notebooks/ Python workspace" },
+    { "name": "component:ci-automation","color": "C5DEF5", "description": "GitHub Actions, bots, and repo automation" },
+    { "name": "component:docs",         "color": "BFD4F2", "description": "Documentation and ADRs" }
+  ],
+  "priority": [
+    { "name": "priority:p0", "color": "B60205", "description": "Drop everything; blocks release or CI" },
+    { "name": "priority:p1", "color": "D93F0B", "description": "Should land in the current sprint" },
+    { "name": "priority:p2", "color": "FBCA04", "description": "Planned, not urgent" }
+  ],
+  "status": [
+    { "name": "status:backlog",     "color": "EDEDED", "description": "Not yet assessed by agent or maintainer" },
+    { "name": "status:ready",       "color": "0E8A16", "description": "Scoped and ready for work" },
+    { "name": "status:in-progress", "color": "1D76DB", "description": "Actively being worked on" },
+    { "name": "status:in-review",   "color": "5319E7", "description": "PR open, awaiting review" },
+    { "name": "status:done",        "color": "0E8A16", "description": "Merged and verified" }
+  ],
+  "agent": [
+    { "name": "agent:generated",     "color": "E4E669", "description": "Ticket authored by sync_backlog.py from roadmap/changelog" },
+    { "name": "agent:needs-human",   "color": "D93F0B", "description": "Agent flagged ambiguity requiring maintainer input" }
+  ]
+}
