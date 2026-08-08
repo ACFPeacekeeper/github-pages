@@ -26,7 +26,7 @@ jobs:
         run: npx wait-on http://localhost:3000/github-pages
       - name: Run Lighthouse
         run: npx lighthouse http://localhost:3000/github-pages --output=json --output-path=./lighthouse-report.json --chrome-flags="--headless --no-sandbox"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: lighthouse-report
           path: lighthouse-report.json
