@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Header from '@/src/components/layout/Header';
+import Header from '@/src/frameworks/react/components/layout/Header';
 
 // Mock usePathname
 vi.mock('next/navigation', () => ({

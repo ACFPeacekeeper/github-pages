@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
-import ModelViewer from '../../../../src/components/models/ModelViewer';
+import ModelViewer from '../../../../src/frameworks/react/components/models/ModelViewer';
 
 // Mock IntersectionObserver
 const mockIntersectionObserver = vi.fn();

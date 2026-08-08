@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Sidebar from '@/src/components/layout/Sidebar';
+import Sidebar from '@/src/frameworks/react/components/layout/Sidebar';
 
 // Mock next/image since Sidebar uses import profilePic
 vi.mock('next/image', () => ({

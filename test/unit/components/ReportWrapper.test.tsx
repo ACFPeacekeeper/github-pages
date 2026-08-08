@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import ReportWrapper from '@/src/components/ReportWrapper';
+import ReportWrapper from '@/src/frameworks/react/components/ReportWrapper';
 
 // Mock MathJax global
 beforeAll(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { A11yTable } from '../../../../src/components/visualization/A11yTable';
+import { A11yTable } from '../../../../src/frameworks/react/components/visualization/A11yTable';
 
 describe('A11yTable', () => {
   const mockData = [

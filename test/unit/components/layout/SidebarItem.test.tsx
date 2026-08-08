@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import SidebarItem from '@/src/components/layout/SidebarItem';
+import SidebarItem from '@/src/frameworks/react/components/layout/SidebarItem';
 
 describe('SidebarItem', () => {
     const defaultProps = {

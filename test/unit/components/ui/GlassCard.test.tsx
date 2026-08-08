@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import GlassCard from '@/src/components/ui/GlassCard';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 
 describe('GlassCard', () => {
     it('renders children correctly', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import PostWrapper from '@/src/components/PostWrapper';
+import PostWrapper from '@/src/frameworks/react/components/PostWrapper';
 
 describe('PostWrapper', () => {
     const content = '<pre><code>def test(): pass</code></pre>';

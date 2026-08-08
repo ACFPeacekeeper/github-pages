@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Badge from '@/src/components/ui/Badge';
+import Badge from '@/src/frameworks/react/components/ui/Badge';
 
 describe('Badge', () => {
     it('renders children correctly', () => {

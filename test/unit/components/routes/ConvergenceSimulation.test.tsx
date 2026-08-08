@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import ConvergenceSimulation from '../../../../src/components/routes/ConvergenceSimulation';
+import ConvergenceSimulation from '../../../../src/frameworks/react/components/routes/ConvergenceSimulation';
 import ReduxProvider from '../../../../src/redux/store/ReduxProvider';
 
 describe('ConvergenceSimulation', () => {

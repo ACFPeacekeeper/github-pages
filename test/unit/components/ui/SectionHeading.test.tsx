@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
 
 describe('SectionHeading', () => {
     const mockIcon = <span data-testid="mock-icon">Icon</span>;

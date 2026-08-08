@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Footer from '@/src/components/layout/Footer';
+import Footer from '@/src/frameworks/react/components/layout/Footer';
 
 describe('Footer', () => {
     const mockToggleTheme = vi.fn();
