@@ -185,7 +185,7 @@ export default function ModelViewer({
       
       resize();
       observer = new ResizeObserver(resize);
-      observer.observe(canvasElement);
+      observer.observe(canvasElement as HTMLCanvasElement);
 
       const vec3 = new THREE.Vector3();
       const render = () => {
