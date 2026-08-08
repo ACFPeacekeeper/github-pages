@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Audio-reactive signal-processing exhibit (`AudioExhibit.tsx`) with FFT visualization via Web Audio API, user-gesture requirement, and non-audio demo mode (IF7).
 - Cinematic bounded effects (`Effects.tsx`) providing toggleable cursor spotlight, card tilt, particles, bloom/noise, and page distortion with reduced-motion preference awareness (IF8).
 - Astro island architecture simulation via Web Components, mirroring the Aurelia integration pattern for multi-framework rendering.
+- Architecture Decision Record (ADR 0003) and `GeospatialRenderer` component evaluating and implementing a progressive Canvas 2D / SVG hybrid rendering strategy for large graph/geospatial data (IF9).
 - Research-observatory homepage foundation with semantic visual tokens, an accessible interactive research constellation, a capability-aware Three.js model, and a deterministic optimization-convergence simulation.
 - Framework-neutral simulation layers under `src/simulations/` and a lazy Aurelia 2 island boundary under `src/aurelia/` so simulation engines can be shared across frontends.
 - Unit and interaction tests for visualization utilities, constellation selection, deterministic simulation generation, lifecycle transitions, and simulation controls.
