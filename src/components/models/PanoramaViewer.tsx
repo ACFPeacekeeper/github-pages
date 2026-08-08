@@ -192,7 +192,7 @@ export default function PanoramaViewer({
       
       resize();
       observer = new ResizeObserver(resize);
-      observer.observe(canvasElement);
+      observer.observe(canvasElement as HTMLCanvasElement);
 
       const vec3 = new THREE.Vector3();
       const render = () => {
