@@ -15,8 +15,8 @@ describe('PostWrapper', () => {
         render(<PostWrapper content={content} title="Test Post" />);
 
         // The highlighting happens in useEffect, so we wait.
-        // However, our simple mock content might not trigger complex highlighting classes 
-        // without the full logic running on specific tokens. 
+        // However, our simple mock content might not trigger complex highlighting classes
+        // without the full logic running on specific tokens.
         // We can at least verify the container exists and text is present.
         await waitFor(() => {
             expect(screen.getByText(/def/)).toBeInTheDocument();

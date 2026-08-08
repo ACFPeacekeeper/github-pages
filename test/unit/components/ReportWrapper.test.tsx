@@ -7,8 +7,8 @@ beforeAll(() => {
     window.MathJax = {
         tex: { inlineMath: [], displayMath: [] },
         svg: { fontCache: '' },
-        typeset: jest.fn(),
-        typesetClear: jest.fn(),
+        typeset: vi.fn(),
+        typesetClear: vi.fn(),
     };
 });
 

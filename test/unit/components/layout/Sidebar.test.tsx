@@ -3,25 +3,27 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Sidebar from '@/src/components/layout/Sidebar';
 
 // Mock next/image since Sidebar uses import profilePic
-jest.mock('next/image', () => ({
+vi.mock('next/image', () => ({
     __esModule: true,
     default: (props: any) => <img {...props} />,
 }));
 
 // Mock asset import
-jest.mock('@/assets/images/23041868.jpeg', () => ({
-    src: '/mock-image.jpg',
-    height: 100,
-    width: 100,
+vi.mock('@/assets/images/23041868.jpeg', () => ({
+    default: {
+        src: '/mock-image.jpg',
+        height: 100,
+        width: 100,
+    },
 }));
 
 describe('Sidebar', () => {
     const defaultProps = {
         activeSection: 'home',
         darkMode: false,
-        toggleTheme: jest.fn(),
+        toggleTheme: vi.fn(),
         isCollapsed: false,
-        toggleCollapse: jest.fn(),
+        toggleCollapse: vi.fn(),
     };
 
     it('renders navigation items', () => {

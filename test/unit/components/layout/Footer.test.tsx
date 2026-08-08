@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Footer from '@/src/components/layout/Footer';
 
 describe('Footer', () => {
-    const mockToggleTheme = jest.fn();
+    const mockToggleTheme = vi.fn();
 
     it('renders copyright and links', () => {
         render(<Footer darkMode={false} toggleTheme={mockToggleTheme} />);

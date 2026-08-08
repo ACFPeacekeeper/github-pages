@@ -3,12 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '@/src/components/layout/Header';
 
 // Mock usePathname
-jest.mock('next/navigation', () => ({
+vi.mock('next/navigation', () => ({
     usePathname: () => '/',
 }));
 
 describe('Header', () => {
-    const mockToggleTheme = jest.fn();
+    const mockToggleTheme = vi.fn();
 
     it('renders logo and navigation items', () => {
         render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
