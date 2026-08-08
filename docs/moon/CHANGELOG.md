@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Architecture Decision Record (ADR 0002) for the graphics renderer lifecycle, deciding on isolated lazy islands over a persistent singleton canvas to respect strict bundle budgets (IF1).
 - Capability-gated 3D hero model with intersection observer lazy-loading, strict resource disposal, webgl context loss recovery, and performance monitoring (IF2).
 - Shared typed visualization primitives (scales, palettes, legends, tooltips) with accessible summaries and keyboard roving, integrating them into the `ResearchConstellation` component.
 - Research-observatory homepage foundation with semantic visual tokens, an accessible interactive research constellation, a capability-aware Three.js model, and a deterministic optimization-convergence simulation.

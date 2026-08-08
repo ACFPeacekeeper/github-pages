@@ -4,7 +4,7 @@ Goal: make research tangible through direct manipulation. Every canvas is an enh
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| IF1 | Graphics feasibility spike: persistent singleton canvas versus isolated lazy islands; record ADR and memory profile | M | UI6, IT6 | 📋 |
+| IF1 | Graphics feasibility spike: persistent singleton canvas versus isolated lazy islands; record ADR and memory profile | M | UI6, IT6 | ✅ |
 | IF2 | Capability-gated 3D hero model with orbit/pointer response, pause/reset controls, static SVG fallback and context recovery | L | UI3–UI6 | ✅ |
 | IF3 | Shared typed visualization primitives: scales, palettes, legends, tooltips, selection, keyboard roving and accessible summaries | L | UI3, IT6 | ✅ |
 | IF4 | Interactive research constellation showing relationships among AI, optimization, projects and publications | M | IF3 | 🚧 |
