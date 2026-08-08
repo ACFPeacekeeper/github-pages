@@ -1,0 +1,4 @@
+# Placeholder for GraphQL schema
+type Query {
+  _empty: String
+}
