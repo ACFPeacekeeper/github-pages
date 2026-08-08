@@ -17,6 +17,7 @@ import MediaReel from '../src/frameworks/react/components/video/MediaReel';
 import { StarfieldWrapper } from '../src/frameworks/astro/components/StarfieldWrapper';
 import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrapper';
 import { WebGPUExperiment } from '../src/frameworks/react/components/canvas/WebGPUExperiment';
+import { WebXRExperiment } from '../src/frameworks/react/components/canvas/WebXRExperiment';
 import { GaussianSplatGallery } from '../src/frameworks/react/components/models/GaussianSplatGallery';
 
 /**
@@ -134,6 +135,9 @@ export default function Home() {
           </div>
           <div className="lg:col-span-2">
             <GaussianSplatGallery />
+          </div>
+          <div className="lg:col-span-2">
+            <WebXRExperiment />
           </div>
           <div className="lg:col-span-2">
             <StarfieldWrapper />
