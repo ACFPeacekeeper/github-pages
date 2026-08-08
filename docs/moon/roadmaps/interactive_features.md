@@ -16,7 +16,7 @@ Goal: make research tangible through direct manipulation. Every canvas is an enh
 | IF10 | WebGPU/TSL renderer experiment with WebGL2 and static fallback, shader warm-up and device-limit inspection | L | IF1, IT6 | 🔬 |
 | IF11 | Optional 3D Gaussian splat gallery with LOD streaming and strict memory/download gate | XL | IF10, IT8 | 🔬 |
 | IF12 | Optional WebXR viewing mode with explicit consent, session lifecycle controls and equivalent desktop navigation | XL | IF5, UI11 | 🔬 |
-| IF13 | Domain-specific interactive component catalogue for audio, canvas, graph, maps, models, routes, video, books, images and games | M | UI13 | 🚧 |
+| IF13 | Domain-specific interactive component catalogue for audio, canvas, graph, maps, models, routes, video, books, images and games | M | UI13 | ✅ |
 
 ## Rendering contract
 
