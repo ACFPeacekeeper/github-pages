@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Framework-neutral simulation layers under `src/simulations/` and a lazy Aurelia 2 island boundary under `src/aurelia/` so simulation engines can be shared across frontends.
 - Unit and interaction tests for visualization utilities, constellation selection, deterministic simulation generation, lifecycle transitions, and simulation controls.
 - A root ESLint configuration so `npm run lint` performs a non-interactive `next/core-web-vitals` check.
+- Moved shared content types to `src/interfaces/types.ts`; implemented typed Redux actions, reducers, store hooks, provider, and browser-safe theme persistence under `src/redux/`.
+- Reorganized interactive domains into `components/audio`, `books`, `canvas`, `games`, `graph`, `image`, `maps`, `models`, `routes`, and `video`; added fleet routing, ML spectrum, research shelf, game prototype, media mosaic, and storyboard elements.
 - A research-driven, milestone-based product roadmap for progressively delivering an accessible visual system, interactive data stories, 3D/360 experiences, browser ML, and mathematical-optimization labs.
 - Detailed acceptance criteria, dependency maps, device-quality tiers, performance budgets, fallbacks, accessibility requirements, and release gates across every feature roadmap.
 - Dark/light theme toggle in the header, with the sidebar keeping the current theme across navigation.

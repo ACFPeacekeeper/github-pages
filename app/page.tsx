@@ -3,10 +3,17 @@ import { PenTool, Calendar, Star, FileText, BookOpen, Code, ArrowRight } from 'l
 import GlassCard from '../src/components/ui/GlassCard';
 import SectionHeading from '../src/components/ui/SectionHeading';
 import Badge from '../src/components/ui/Badge';
-import { BlogPost, Project } from '../src/types';
-import HeroModel from '../src/components/interactive/HeroModel';
-import ResearchConstellation from '../src/components/interactive/ResearchConstellation';
-import ConvergenceSimulation from '../src/components/interactive/ConvergenceSimulation';
+import { BlogPost, Project } from '../src/interfaces/types';
+import HeroModel from '../src/components/models/HeroModel';
+import ResearchConstellation from '../src/components/graph/ResearchConstellation';
+import ConvergenceSimulation from '../src/components/routes/ConvergenceSimulation';
+import AudioSpectrum from '../src/components/audio/AudioSpectrum';
+import ResearchShelf from '../src/components/books/ResearchShelf';
+import FleetRouteCanvas from '../src/components/canvas/FleetRouteCanvas';
+import PrototypeCard from '../src/components/games/PrototypeCard';
+import MediaMosaic from '../src/components/image/MediaMosaic';
+import FleetRouteMap from '../src/components/maps/FleetRouteMap';
+import MediaReel from '../src/components/video/MediaReel';
 
 /**
  * Mock Data
@@ -108,6 +115,19 @@ export default function Home() {
       <ResearchConstellation />
 
       <ConvergenceSimulation />
+
+      <section className="mb-20" aria-labelledby="field-notes-title">
+        <div className="mb-8"><p className="hero-kicker">Field notes</p><h2 id="field-notes-title" className="mt-2 text-3xl font-black text-slate-900 dark:text-white">Research, play, and the things that keep me curious.</h2></div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <FleetRouteMap />
+          <FleetRouteCanvas />
+          <AudioSpectrum />
+          <PrototypeCard />
+          <ResearchShelf />
+          <MediaMosaic />
+          <div className="lg:col-span-2"><MediaReel /></div>
+        </div>
+      </section>
 
       {/* Latest Posts Section */}
       <section className="mb-16">

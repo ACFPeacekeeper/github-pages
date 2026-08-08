@@ -16,6 +16,8 @@ Goal: create a distinctive “research observatory” visual identity—deep-spa
 | UI10 | Case-study template with scrollytelling chapters, sticky metrics, architecture diagrams and media gallery | L | UI7, DOC5 | 📋 |
 | UI11 | Accessibility hardening: skip links, focus restoration, landmark audit, contrast modes and screen-reader announcements | M | UI3–UI10 | 📋 |
 | UI12 | Internationalization-ready content/layout primitives and locale-safe dates/numbers without requiring an immediate translation | M | DOC5 | 🔬 |
+| UI13 | Domain component taxonomy under `src/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}` with shared UI primitives and no catch-all interactive folder | M | UI3, DOC5 | 🚧 |
+| UI14 | Redux store for genuinely cross-cutting experience state: theme, quality tier, active simulation and active media; local state remains local | M | UI6, UI13 | 🚧 |
 
 ## Acceptance criteria
 
@@ -40,6 +42,12 @@ Goal: create a distinctive “research observatory” visual identity—deep-spa
 - Filter state serializes to query parameters; every visual result is represented in an accessible DOM list.
 - Case studies support problem, constraints, approach, architecture, experiment, outcome, limitations, and related-work blocks.
 - Interactive embeds reserve aspect ratio, lazy load, expose a text summary, and offer restart/pause controls.
+
+### UI13–UI14 — component and state boundaries
+
+- Each domain directory owns a focused component and tests; components import shared contracts from `src/interfaces` and shared visual primitives from `src/components/ui`.
+- `src/redux` is limited to state that crosses routes or independent interactive surfaces. Simulation cursors, hover state, and form drafts stay in the owning component/controller.
+- Redux actions are discriminated and serializable; the provider is mounted once at the client shell, and persistence is browser-guarded for static export.
 
 ## Design QA matrix
 
