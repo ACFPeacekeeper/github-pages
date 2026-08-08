@@ -16,7 +16,7 @@ npm run benchmark:build
 npm run benchmark
 ```
 
-`benchmark:build` creates the production export. `benchmark` starts a temporary local static server, requests the configured routes, and writes a timestamped JSON result plus a Markdown summary under `benchmark/results/`.
+`benchmark:build` creates the production export. `benchmark` starts a temporary local static server, requests the configured routes, and writes JSON (`latest.json`) plus a reviewable Markdown summary (`latest.md`) under `benchmark/results/`.
 
 ## What is measured
 

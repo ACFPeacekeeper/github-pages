@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved `cypress/` to `test/cypress/` (config included); CI's Cypress step and the `npm run cypress:*` scripts run from that directory since Cypress resolves spec globs relative to the current working directory, not `--config-file`.
 - `npm run build` now runs a `postbuild` step that symlinks `out/github-pages -> .`, so `npm start` (a plain static file server) answers under `/github-pages` locally the same way GitHub Pages does — needed for Cypress/Lighthouse CI jobs that serve the production build rather than `next dev`.
 - Infrastructure roadmap now includes the R3 benchmark implementation slice and documents the initial baseline's existing media and aggregate-bundle budget exceptions.
+- Fixed the master roadmap Mermaid timeline by replacing invalid chained class syntax with portable `class` assignments; benchmark output now includes a Markdown review summary alongside JSON.
 
 ## [0.2.0] — migration to Next.js
 

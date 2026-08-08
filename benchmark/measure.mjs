@@ -4,8 +4,6 @@ import { createServer } from 'node:http';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, relative, extname } from 'node:path';
-import { spawn } from 'node:child_process';
-import { setTimeout as delay } from 'node:timers/promises';
 
 const root = process.cwd();
 const output = join(root, 'out');
@@ -13,6 +11,15 @@ const results = join(root, 'benchmark', 'results');
 const port = Number(process.env.BENCHMARK_PORT ?? 4317);
 const routes = ['/', '/content/about/', '/content/projects/', '/content/reports/', '/content/posts/'];
 const budgets = { initialJs: 200_000, initialCss: 80_000, homepage: 2_000_000, route: 3_000_000, largest: 1_000_000 };
+
+const formatBytes = (bytes) => `${(bytes / 1024).toFixed(1)} KiB`;
+
+function markdown(result) {
+  const check = (value) => value ? 'PASS' : 'WARN';
+  const responseRows = result.responses.map((item) => `| \`${item.path}\` | ${item.status} | ${formatBytes(item.bytes)} | ${item.milliseconds} ms |`).join('\n');
+  const assetRows = result.largest.slice(0, 5).map((item) => `| \`${item.path}\` | ${formatBytes(item.bytes)} |`).join('\n');
+  return `# Static export benchmark\n\nGenerated: ${result.generatedAt}  \nNode: ${result.node}  \nOverall: **${result.passed ? 'PASS' : 'WARNINGS'}** (use \`BENCHMARK_STRICT=1\` to fail CI on a warning)\n\n## Totals\n\n| Metric | Value | Budget | Check |\n| --- | ---: | ---: | --- |\n| JavaScript | ${formatBytes(result.totals.javascriptBytes)} | ${formatBytes(result.budgets.initialJs)} | ${check(result.checks.initialJs)} |\n| CSS | ${formatBytes(result.totals.cssBytes)} | ${formatBytes(result.budgets.initialCss)} | ${check(result.checks.initialCss)} |\n| Export files | ${result.totals.files} | — | — |\n| Export bytes | ${formatBytes(result.totals.exportBytes)} | — | — |\n\n## Representative routes\n\n| Route | Status | Response | Time |\n| --- | ---: | ---: | ---: |\n${responseRows}\n\n## Largest assets\n\n| Path | Bytes |\n| --- | ---: |\n${assetRows}\n\n## Interpretation\n\nBudget warnings are optimization inputs, not evidence that content should be removed. Investigate eager dependencies, media derivatives, route-level chunks, and static fallback duplication. Record intentional exceptions in the infrastructure roadmap and the associated GitHub issue.\n`;
+}
 
 async function filesIn(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -69,7 +76,10 @@ async function main() {
   const homepage = responses.find((item) => item.path === '/')?.bytes ?? 0;
   const checks = { initialJs: js <= budgets.initialJs, initialCss: css <= budgets.initialCss, homepage: homepage <= budgets.homepage, routes: responses.every((item) => item.bytes <= budgets.route && item.status === 200), largest: largest[0]?.bytes <= budgets.largest };
   const result = { generatedAt: new Date().toISOString(), node: process.version, budgets, totals: { files: sizes.length, exportBytes: sizes.reduce((sum, file) => sum + file.bytes, 0), javascriptBytes: js, cssBytes: css }, responses, largest, checks, passed: Object.values(checks).every(Boolean) };
-  await import('node:fs/promises').then(({ mkdir, writeFile }) => mkdir(results, { recursive: true }).then(() => writeFile(join(results, 'latest.json'), JSON.stringify(result, null, 2))));
+  await import('node:fs/promises').then(({ mkdir, writeFile }) => mkdir(results, { recursive: true }).then(async () => {
+    await writeFile(join(results, 'latest.json'), JSON.stringify(result, null, 2));
+    await writeFile(join(results, 'latest.md'), markdown(result));
+  }));
   console.log(JSON.stringify(result, null, 2));
   if (!result.passed && process.env.BENCHMARK_STRICT === '1') process.exitCode = 2;
 }

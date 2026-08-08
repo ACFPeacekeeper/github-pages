@@ -46,16 +46,19 @@ flowchart LR
   classDef active stroke:#d97706,stroke-width:4px
   classDef planned stroke:#64748b,stroke-width:2px
 
-  R0["R0 Foundation\nstatic site + tests"]:::infra:::done
-  R1["R1 Visual language\ntokens + motion"]:::augment:::active
-  R2["R2 Explainable\nvisual primitives"]:::feature:::active
-  R3["R3 Fleet observatory\nmap + solver replay"]:::feature:::planned
-  R4["R4 ML lab\nmodel + audio"]:::feature:::planned
-  R5["R5 Culture room\nmedia + books + game"]:::feature:::planned
-  R6["R6 Spatial tier\n360 + WebGL"]:::augment:::planned
-  R7["R7 WebGPU frontier\nworkers + optional XR"]:::research:::planned
-  Q["Quality gates\nbudgets + a11y"]:::perf:::active
-  D["Docs + provenance\nresearch reports"]:::docs:::active
+  R0["R0 Foundation\nstatic site + tests"]:::infra
+  R1["R1 Visual language\ntokens + motion"]:::augment
+  R2["R2 Explainable\nvisual primitives"]:::feature
+  R3["R3 Fleet observatory\nmap + solver replay"]:::feature
+  R4["R4 ML lab\nmodel + audio"]:::feature
+  R5["R5 Culture room\nmedia + books + game"]:::feature
+  R6["R6 Spatial tier\n360 + WebGL"]:::augment
+  R7["R7 WebGPU frontier\nworkers + optional XR"]:::research
+  Q["Quality gates\nbudgets + a11y"]:::perf
+  D["Docs + provenance\nresearch reports"]:::docs
+  class R0 done
+  class R1,R2,Q,D active
+  class R3,R4,R5,R6,R7 planned
   R0 ==> R1 ==> R2 ==> R3
   R2 --> R4
   R2 --> R5

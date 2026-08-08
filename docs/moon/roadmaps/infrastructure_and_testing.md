@@ -42,7 +42,7 @@ RR9 requires capability matrices for WebGPU/WebGL, secure-context messaging, ada
 
 ## R3 benchmark implementation
 
-The root `benchmark/` harness now measures the production export without a browser. It records representative route status/bytes, export file count, JavaScript and CSS totals, largest assets, and explicit budget checks in `benchmark/results/latest.json`. Run `npm run benchmark:build && npm run benchmark`; set `BENCHMARK_STRICT=1` in CI when a budget breach should fail the job. The first baseline exposes existing oversized media and aggregate bundles; those are optimization inputs, not hidden failures.
+The root `benchmark/` harness now measures the production export without a browser. It records representative route status/bytes, export file count, JavaScript and CSS totals, largest assets, and explicit budget checks in both `benchmark/results/latest.json` and a reviewable `latest.md`. Run `npm run benchmark:build && npm run benchmark`; set `BENCHMARK_STRICT=1` in CI when a budget breach should fail the job. The first baseline exposes existing oversized media and aggregate bundles; those are optimization inputs, not hidden failures.
 
 ### Implementation approach
 
