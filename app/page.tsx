@@ -14,8 +14,8 @@ import PrototypeCard from '../src/frameworks/react/components/games/PrototypeCar
 import MediaMosaic from '../src/frameworks/react/components/image/MediaMosaic';
 import FleetRouteMap from '../src/frameworks/react/components/maps/FleetRouteMap';
 import MediaReel from '../src/frameworks/react/components/video/MediaReel';
-import { StarfieldWrapper } from '../src/frameworks/astro/StarfieldWrapper';
-import { AureliaWrapper } from '../src/frameworks/aurelia/AureliaWrapper';
+import { StarfieldWrapper } from '../src/frameworks/astro/components/StarfieldWrapper';
+import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrapper';
 
 /**
  * Mock Data

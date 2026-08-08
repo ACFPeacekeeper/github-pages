@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { logIslandMount, generateIslandId } from '../shared/utils';
+import { logIslandMount, generateIslandId } from '../../shared/utils';
 
 export function AureliaWrapper() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,7 +12,7 @@ export function AureliaWrapper() {
 
     async function loadAndMount() {
       if (containerRef.current) {
-        const { mountAureliaSimulation } = await import('./mount');
+        const { mountAureliaSimulation } = await import('../mount');
         if (isMounted) {
           unmount = await mountAureliaSimulation(containerRef.current);
           logIslandMount('Aurelia', islandId);
