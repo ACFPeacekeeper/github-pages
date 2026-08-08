@@ -28,12 +28,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Image-Toolkit-style roadmap parity: timeline/phase gates, stable RR1–RR10 packages, acceptance evidence, risk registers, effort matrix, and document history across all moon roadmaps.
 - `test/integration/`: RTL integration tests exercising `ClientLayoutWrapper` (Header + Sidebar + Footer composed together) plus an MSW-backed network-layer test (`test/integration/mocks/`).
 - `test/cypress/smoke/`: fast Cypress smoke tests — every top-level route renders its layout shell, the homepage logs no console errors, and the theme toggle works.
+- Root `benchmark/` performance harness with static-export route checks, payload totals, largest-asset reporting, configurable budgets, and reproducible JSON output.
+- Comprehensive root README documentation for launching the documentation website, navigating the new source structure, running benchmarks, authoring content, and maintaining roadmap/issue state.
+- Expanded `docs/ARCHITECTURE.md` with system/build/request Mermaid diagrams, module contracts, rendering tiers, simulation/Redux/worker boundaries, and TypeScript/React implementation excerpts.
 
 ### Changed
 
 - Replaced Jest with Vitest for unit tests; moved `src/components/__tests__/` to `test/unit/components/`, mirroring `src/components/`'s `layout/`/`ui/` split.
 - Moved `cypress/` to `test/cypress/` (config included); CI's Cypress step and the `npm run cypress:*` scripts run from that directory since Cypress resolves spec globs relative to the current working directory, not `--config-file`.
 - `npm run build` now runs a `postbuild` step that symlinks `out/github-pages -> .`, so `npm start` (a plain static file server) answers under `/github-pages` locally the same way GitHub Pages does — needed for Cypress/Lighthouse CI jobs that serve the production build rather than `next dev`.
+- Infrastructure roadmap now includes the R3 benchmark implementation slice and documents the initial baseline's existing media and aggregate-bundle budget exceptions.
 
 ## [0.2.0] — migration to Next.js
 

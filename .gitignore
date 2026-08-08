@@ -72,5 +72,6 @@ test/cypress/videos
 #########
 tmp
 .cache
+benchmark/results
 .vscode
 /**/gatsby-types.d.ts

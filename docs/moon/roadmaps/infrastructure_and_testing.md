@@ -39,3 +39,14 @@ Capture production builds on a representative integrated-GPU laptop and a thrott
 ## R2 research integration
 
 RR9 requires capability matrices for WebGPU/WebGL, secure-context messaging, adapter/device failure fixtures, and an SVG/canvas fallback benchmark. RR10 requires deterministic worker replay tests, typed-array transfer accounting, stale-response rejection, and leak checks after ten mount/unmount cycles. Research demos cannot regress the static export or default route budget.
+
+## R3 benchmark implementation
+
+The root `benchmark/` harness now measures the production export without a browser. It records representative route status/bytes, export file count, JavaScript and CSS totals, largest assets, and explicit budget checks in `benchmark/results/latest.json`. Run `npm run benchmark:build && npm run benchmark`; set `BENCHMARK_STRICT=1` in CI when a budget breach should fail the job. The first baseline exposes existing oversized media and aggregate bundles; those are optimization inputs, not hidden failures.
+
+### Implementation approach
+
+1. Keep route fixtures deterministic and local to avoid network variance.
+2. Measure aggregate payloads first, then add browser navigation timing and Web Vitals.
+3. Compare the same route set before and after every graphics or content milestone.
+4. Treat intentional exceptions as roadmap entries with a fallback and remediation owner.
