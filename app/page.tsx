@@ -14,6 +14,7 @@ import PrototypeCard from '../src/components/games/PrototypeCard';
 import MediaMosaic from '../src/components/image/MediaMosaic';
 import FleetRouteMap from '../src/components/maps/FleetRouteMap';
 import MediaReel from '../src/components/video/MediaReel';
+import { StarfieldWrapper } from '../src/astro/StarfieldWrapper';
 
 /**
  * Mock Data
@@ -125,6 +126,9 @@ export default function Home() {
           <PrototypeCard />
           <ResearchShelf />
           <MediaMosaic />
+          <div className="lg:col-span-2">
+            <StarfieldWrapper />
+          </div>
           <div className="lg:col-span-2"><MediaReel /></div>
         </div>
       </section>
