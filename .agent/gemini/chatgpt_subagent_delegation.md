@@ -6,9 +6,9 @@ You are equipped to launch a ChatGPT AI subagent via the `chatgpt` command. Chat
 
 **When to Delegate:**
 Invoke the ChatGPT subagent for:
-*   **Algorithm Conceptualization:** Designing evolutionary operators or Contextual Multi-Armed Bandit (CMAB) reward logic.
-*   **Documentation & Abstraction:** Generating clear, high-level summaries of complex system state machines or behavioral trees.
-*   **Alternative Paradigms:** Asking for a completely different approach to a problem when current models are stuck in local optima.
+*   **Content Drafting:** Drafting or tightening prose for a blog post/report before it's polished and placed under `app/content/`.
+*   **Documentation & Abstraction:** Generating clear, high-level summaries of a notebook's analysis for the write-up that cites it.
+*   **Alternative Paradigms:** Asking for a completely different framing of a post/report when the current draft feels stuck.
 
 **Execution Syntax:**
 Execute the command in your terminal environment. Always enclose the prompt in single quotes.
@@ -20,9 +20,9 @@ Execute the command in your terminal environment. Always enclose the prompt in s
 3.  **Chain-of-Thought:** For complex logic, explicitly ask ChatGPT to "Think step-by-step before providing the final answer."
 
 **Example Usage:**
-`chatgpt 'Act as a Reinforcement Learning specialist. I need to design a reward function for a hierarchical RL model managing daily waste collection routing. Think step-by-step about how to balance route efficiency with temporal constraints. Output format: 
+`chatgpt 'Act as a technical editor. Below is a draft section of a blog report on audio signal processing. Think step-by-step about where the explanation loses a non-specialist reader before tightening it. Output format:
 ## Reasoning: [Step-by-step thoughts]
-## Reward Function Logic: [Bullet points]'`
+## Revised Section: [Rewritten Markdown]'`
 
 **Failure Modes to Avoid:**
 *   **Do not** nest quotes improperly (e.g., `chatgpt 'He said 'hello''`).

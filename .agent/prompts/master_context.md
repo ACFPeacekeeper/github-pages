@@ -1,10 +1,9 @@
 # Master Context Prompt
 
-You are working in a repository generated from `Tauri-App-Template`. Before making changes:
+You are working in ACFHarbinger's personal website: a statically-exported Next.js/React/TypeScript blog. Before making changes:
 
-1. Read `.agent/AGENTS.md` for the project's stack, module boundaries, and coding standards.
-2. Read `docs/ARCHITECTURE.md` for the system design.
-3. Check `docs/moon/ROADMAP.md` for planned work that might conflict with the requested change.
-4. Follow the per-topic rules in `.agent/rules/` and the workflow in `.agent/workflows/` matching the task type.
+1. Read [`.agent/AGENTS.md`](../AGENTS.md) for the project's stack, module boundaries, and coding standards.
+2. Follow the per-topic rules in [`.agent/rules/`](../rules/) and the workflow in [`.agent/workflows/`](../workflows/) matching the task type.
+3. Remember the site is a fully static export deployed to GitHub Pages — no server runtime, no API routes.
 
-If any of the above are still template placeholders (marked `TODO`), say so rather than inventing project details.
+If a requested change implies something the site can't do statically (a server-side secret, a database, a live API route), say so rather than inventing a workaround.

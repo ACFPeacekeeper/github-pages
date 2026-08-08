@@ -1,74 +1,66 @@
 # AGENTS.md - Instructions for Coding Assistant LLMs
 
-[![Python](https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white)](https://www.python.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-[![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)](https://www.java.com/)
-[![Rust](https://img.shields.io/badge/Rust-1.80%2B-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
-[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white)](https://www.python.org/)
 
-> **Version**: 1.0
-> **Last Updated**: 2026-07-30
-> **Purpose**: Authoritative reference for AI assistants (Claude, GPT, Gemini, Copilot, etc.) working in repositories generated from this template.
+> **Purpose**: Authoritative reference for AI assistants (Claude, GPT, Gemini, Copilot, etc.) working in this repository.
 
 ## Table of Contents
 
-1. [Project Overview & Mission](#1-project-overview--mission)
-2. [Technical Stack & Governance](#2-technical-stack--governance)
+1. [Project Overview](#1-project-overview)
+2. [Technical Stack](#2-technical-stack)
 3. [Module Boundaries](#3-module-boundaries)
-4. [Key CLI Entry Points](#4-key-cli-entry-points)
+4. [Key Commands](#4-key-commands)
 5. [Coding Standards](#5-coding-standards)
 6. [Known Constraints](#6-known-constraints)
 
-## 1. Project Overview & Mission
+## 1. Project Overview
 
-> **TODO:** Replace with a one-paragraph description of what the generated project does and why it exists.
+This is ACFHarbinger's personal website: a statically-exported Next.js blog/knowledge base covering posts, longer-form reports, project write-ups, tool notes, and media, deployed to GitHub Pages at
+[acfharbinger.github.io/github-pages](https://acfharbinger.github.io/github-pages/). Content lives as Markdown under `app/content/<section>/` and is rendered through the App Router; `notebooks/` is a small, separate Python/uv workspace used to run the analysis behind some reports (e.g. audio signal processing, PCVRP) before writing them up.
 
-This repository is a scaffold, not a product. When it is used via "Use this template", update this section first — every other document under `.agent/` and `docs/` links back to it.
-
-## 2. Technical Stack & Governance
+## 2. Technical Stack
 
 | Component | Specification | Notes |
 | --- | --- | --- |
-| Python | 3.11+ | Managed via `uv`; always `source .venv/bin/activate` |
-| TypeScript | 5 | Managed via `npm` workspaces |
-| Kotlin | 2.0 / JVM 21 | Built via Gradle (`gradlew`) |
-| Java | 21 | Built via Maven (`mvn`) |
-| Rust | stable | Managed via `cargo` |
-| Go | 1.22+ | Managed via `go.mod`, no external tooling required |
-| C++ | 17 | Built via CMake, environment managed by Pixi or vcpkg |
-| Config | `.env` / `configs/` | Environment-specific values never committed; see `.env.example` |
+| Next.js | 14 (App Router, `output: 'export'`) | Static export deployed to GitHub Pages, `basePath: /github-pages` |
+| React / TypeScript | 18 / 5 | `strict: true` in `tsconfig.json` |
+| Styling | Tailwind CSS 3 | Config in `tailwind.config.js` |
+| Content | Markdown + `gray-matter` / `remark` | Parsed at build time from `app/content/<section>/` |
+| Unit tests | Jest + Testing Library | `src/components/__tests__/` |
+| E2E tests | Cypress | `cypress/e2e/` |
+| Notebooks | Python 3.11+, managed via `uv` | `notebooks/`, workspace member of the root `pyproject.toml` |
 
 ## 3. Module Boundaries
 
-- `python/src` — domain logic. No imports from `typescript/`, `kotlin/`, `java/`, or other language modules.
-- `typescript/src` — presentation/CLI layer. Talks to other modules only through their published APIs (HTTP, FFI, or CLI), never by reaching into their source trees.
-- `rust/src` and `cpp/src` — performance-critical cores, exposed to higher-level languages through explicit bindings (e.g. `pyo3`/`pybind11`, `napi`, JNI). No language-specific logic should leak across the binding boundary.
-- `go/cmd` and `go/internal` — services/CLIs. `internal/` is never imported from outside the `go/` module.
-- `kotlin/src` — JVM/Android-facing code, isolated behind Gradle module boundaries.
-- `java/src` — JVM-facing code, isolated behind Maven module boundaries.
-- Cross-module contracts (schemas, protobufs, OpenAPI specs) live under `docs/` or a dedicated `schemas/` directory — never duplicated per language.
+- `app/` — Next.js App Router: routes, layouts, and Markdown content under `app/content/<section>/` (`posts`, `reports`, `projects`, `tools`, `media`, `about`, `other`).
+- `src/components/` — presentational and layout React components consumed by `app/`. Business logic (content loading/parsing) belongs in `lib/`, not inline in components.
+- `lib/` — server-side helpers (Markdown loading/parsing, front-matter handling) used by `app/` at build time.
+- `notebooks/` — independent Python/uv workspace for exploratory analysis backing written reports. Not part of the Next.js build; never imported from `src/`/`app/`.
+- `public/` — static assets served as-is.
 
-## 4. Key CLI Entry Points
+## 4. Key Commands
 
 | Command | Purpose |
 | --- | --- |
-| `just --list` | List all available command-runner recipes |
-| `just test` | Run the test suite for every language module |
-| `just lint` | Run linters/formatters for every language module |
-| `just docs` | Build the MkDocs + Sphinx documentation site |
-| `just docker-up` | Start the local Docker Compose stack |
+| `npm run dev` | Local dev server |
+| `npm run build` | Static export to `out/` |
+| `npm run lint` | ESLint (Next.js config) |
+| `npm test` / `npm run test:watch` | Jest unit tests |
+| `npx cypress open` / `npx cypress run` | Cypress e2e (against a running build/dev server) |
+| `cd notebooks && uv sync --extra dev` | Set up the notebooks Python environment |
 
 ## 5. Coding Standards
 
-- Follow the per-language rules in [`.agent/rules/`](rules/) (`python.md`, `typescript_react.md`, `kotlin.md`, `java.md`, `rust.md`, `go.md`, `cpp.md`).
+- Follow the per-topic rules in [`.agent/rules/`](rules/) (`typescript_react.md`, `python.md`, plus the language-agnostic ones).
 - Prefer small, reviewable diffs. Do not reformat files unrelated to the change.
-- Every new public function/class needs a docstring/doc-comment; every new module needs at least one test.
-- Never commit secrets. Use `.env` (git-ignored) and document new variables in `.env.example`.
+- New components get a Jest test in `src/components/__tests__/`; new user-facing flows get a Cypress spec in `cypress/e2e/`.
+- Never commit secrets. This site has no runtime secrets today — flag it clearly if a change would introduce one.
 
 ## 6. Known Constraints
 
-> **TODO:** Document real constraints (rate limits, hardware requirements, licensing restrictions, etc.) once the project has them.
-
-- This template repository does not build or run as-is — each language module contains only illustrative examples.
+- The site is a fully static export (`output: 'export'`) — no server-side code, API routes, or runtime environment variables beyond the build-time `NEXT_PUBLIC_BASE_PATH`.
+- `notebooks/` is exploratory/research tooling, not covered by the main CI build; it has its own lint/test story via `uv`.
