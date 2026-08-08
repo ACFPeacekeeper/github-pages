@@ -1,6 +1,6 @@
 import { customElement } from 'aurelia';
 import { createSimulationController } from '../simulations/context/createSimulationController';
-import { getSimulationScenario } from '../simulations/repository/scenarios';
+import { getSimulationScenario } from '../simulations/scenarios/scenarios';
 
 @customElement({
   name: 'convergence-app',

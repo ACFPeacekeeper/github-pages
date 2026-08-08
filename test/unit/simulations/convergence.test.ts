@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createSimulationController } from '../../../src/simulations/context/createSimulationController';
 import { generateConvergence } from '../../../src/simulations/generator/convergence';
-import { getSimulationScenario } from '../../../src/simulations/repository/scenarios';
+import { getSimulationScenario } from '../../../src/simulations/scenarios/scenarios';
 
 describe('convergence simulation', () => {
   it('generates deterministic points for a scenario', () => {
