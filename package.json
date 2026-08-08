@@ -21,9 +21,10 @@
     "test:watch": "vitest",
     "test:unit": "vitest run test/unit",
     "test:integration": "vitest run test/integration",
-    "cypress:open": "cypress open --config-file test/cypress/cypress.config.js",
-    "cypress:run": "cypress run --config-file test/cypress/cypress.config.js",
-    "cypress:smoke": "cypress run --config-file test/cypress/cypress.config.js --spec \"test/cypress/smoke/**/*.cy.js\""
+    "cypress:open": "cd test/cypress && cypress open",
+    "cypress:run": "cd test/cypress && cypress run",
+    "cypress:e2e": "cd test/cypress && cypress run --spec \"e2e/**/*.cy.js\"",
+    "cypress:smoke": "cd test/cypress && cypress run --spec \"smoke/**/*.cy.js\""
   },
   "homepage": "https://acfharbinger.github.io/github-pages",
   "dependencies": {
