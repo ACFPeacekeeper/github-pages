@@ -30,8 +30,9 @@ This is ACFHarbinger's personal website: a statically-exported Next.js blog/know
 | React / TypeScript | 18 / 5 | `strict: true` in `tsconfig.json` |
 | Styling | Tailwind CSS 3 | Config in `tailwind.config.js` |
 | Content | Markdown + `gray-matter` / `remark` | Parsed at build time from `app/content/<section>/` |
-| Unit tests | Jest + Testing Library | `src/components/__tests__/` |
-| E2E tests | Cypress | `cypress/e2e/` |
+| Unit tests | Vitest + Testing Library | `test/unit/`, mirroring `src/components/` |
+| Integration tests | Vitest + Testing Library + MSW | `test/integration/` |
+| E2E / smoke tests | Cypress | `test/cypress/e2e/`, `test/cypress/smoke/` |
 | Notebooks | Python 3.11+, managed via `uv` | `notebooks/`, workspace member of the root `pyproject.toml` |
 
 ## 3. Module Boundaries
@@ -49,15 +50,15 @@ This is ACFHarbinger's personal website: a statically-exported Next.js blog/know
 | `npm run dev` | Local dev server |
 | `npm run build` | Static export to `out/` |
 | `npm run lint` | ESLint (Next.js config) |
-| `npm test` / `npm run test:watch` | Jest unit tests |
-| `npx cypress open` / `npx cypress run` | Cypress e2e (against a running build/dev server) |
+| `npm test` / `npm run test:watch` | Vitest: unit (`test/unit/`) + integration (`test/integration/`) |
+| `npm run cypress:run` / `npm run cypress:smoke` | Cypress e2e/smoke (against a running build/dev server) |
 | `cd notebooks && uv sync --extra dev` | Set up the notebooks Python environment |
 
 ## 5. Coding Standards
 
 - Follow the per-topic rules in [`.agent/rules/`](rules/) (`typescript_react.md`, `python.md`, plus the language-agnostic ones).
 - Prefer small, reviewable diffs. Do not reformat files unrelated to the change.
-- New components get a Jest test in `src/components/__tests__/`; new user-facing flows get a Cypress spec in `cypress/e2e/`.
+- New components get a Vitest unit test in `test/unit/`; multi-component interactions get an integration test in `test/integration/` (mock any network calls with MSW); new user-facing flows get a Cypress spec in `test/cypress/e2e/`.
 - Never commit secrets. This site has no runtime secrets today — flag it clearly if a change would introduce one.
 
 ## 6. Known Constraints

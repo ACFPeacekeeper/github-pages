@@ -61,7 +61,7 @@ Follow the rules in [`.agent/rules/`](../.agent/rules/), primarily [`typescript_
 
 ## 6. Testing Requirements
 
-New components/logic get a Jest test; new user-facing flows get a Cypress spec. See [`.agent/rules/test_writing.md`](../.agent/rules/test_writing.md).
+New components/logic get a Vitest unit test (`test/unit/`); new multi-component interactions get an integration test (`test/integration/`, using MSW for any network mocking); new user-facing flows get a Cypress spec (`test/cypress/e2e/`). See [`.agent/rules/test_writing.md`](../.agent/rules/test_writing.md).
 
 ## 7. Issue Reporting
 

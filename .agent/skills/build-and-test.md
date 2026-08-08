@@ -5,9 +5,9 @@ Run the full build + test cycle for the site.
 ```bash
 npm run lint          # eslint
 npx tsc --noEmit      # type check
-npm test              # jest unit tests
+npm test              # vitest: unit (test/unit/) + integration (test/integration/)
 npm run build         # static export to out/
-npx cypress run       # e2e, against a running dev/build server
+npm run cypress:run   # e2e + smoke (test/cypress/), against a running dev/build server
 ```
 
 For the notebooks workspace:

@@ -13,7 +13,11 @@ Delete `node_modules` and re-run `npm ci` (not `npm install`) to get the exact l
 
 ## Cypress can't reach the site
 
-`cypress.config.js` points `baseUrl` at `http://localhost:3000/github-pages` — the `basePath` is part of the URL. Make sure `npm run dev` or `npm start` (after `npm run build`) is actually running before `npx cypress run`.
+`test/cypress/cypress.config.js` points `baseUrl` at `http://localhost:3000/github-pages` — the `basePath` is part of the URL. Make sure `npm run dev`, or `npm start` after `npm run build`, is actually running before `npm run cypress:run`/`npm run cypress:smoke`. Note `npm start` alone (serving `out/` with `serve`) won't respond under `/github-pages` unless `npm run build` has run first — its `postbuild` script creates a self-referencing `out/github-pages` symlink so the static export answers at that path locally, matching how GitHub Pages serves it.
+
+## Cypress reports "no spec files were found"
+
+Cypress resolves `--spec` and `specPattern` relative to the current working directory, not the `--config-file`/`--project` flag. Always run Cypress commands from inside `test/cypress/` (the `npm run cypress:*` scripts already `cd` there first) rather than passing `--config-file` from the repo root.
 
 ## Notebooks: `uv sync` can't find dependencies
 

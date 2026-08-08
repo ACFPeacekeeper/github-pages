@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "ln -sfn . out/github-pages",
     "start": "npx serve@latest out",
     "lint": "next lint",
     "deploy": "next build && touch out/.nojekyll",

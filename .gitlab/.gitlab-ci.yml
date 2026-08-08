@@ -15,7 +15,8 @@ lint-typecheck-unit:
     - npm ci
     - npm run lint
     - npx tsc --noEmit
-    - npm test -- --ci --coverage
+    - npm run test:unit
+    - npm run test:integration
 
 build:
   stage: test
@@ -35,7 +36,9 @@ e2e:
   script:
     - npm ci
     - npm run build
-    - npx start-server-and-test start http://localhost:3000/github-pages "npx cypress run"
+    # cypress.config.js's specPattern covers both e2e/ and smoke/, so this
+    # one run covers both suites.
+    - npx start-server-and-test start http://localhost:3000/github-pages "npm run cypress:run"
 
 lint-notebooks:
   stage: test

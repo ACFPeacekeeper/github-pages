@@ -2,18 +2,19 @@
 
 | Layer | Framework | Command |
 | --- | --- | --- |
-| Unit (components/logic) | Jest + Testing Library | `npm test` |
-| E2E (user flows) | Cypress | `npx cypress run` (needs `npm run build && npm start`, or `npm run dev`, running) |
-| Notebooks lint | ruff | `cd notebooks && uv run ruff check .` |
+| Unit (components/logic) | Vitest + Testing Library | `npm run test:unit` |
+| Integration (composed components) | Vitest + Testing Library + MSW | `npm run test:integration` |
+| E2E (user flows) | Cypress | `npm run cypress:e2e` (needs `npm run build && npm start`, or `npm run dev`, running) |
+| Smoke (fast sanity check) | Cypress | `npm run cypress:smoke` |
 
-Tests live under `src/components/__tests__/` (Jest) and `cypress/e2e/` (one spec per content section: posts, reports, projects, tools, media, about, other).
+Tests live under `test/unit/` (mirroring `src/components/`), `test/integration/`, and `test/cypress/` (`e2e/` — one spec per content section — plus `smoke/`).
 
 ## Coverage
 
-`npm test -- --coverage` reports Jest coverage. There is no dedicated coverage service configured for this repo today.
+`npx vitest run --coverage` reports coverage (requires `@vitest/coverage-v8`, not currently installed). There is no dedicated coverage service configured for this repo today.
 
 ## Writing Tests
 
-- New components get a Jest test covering render, interaction, and at least one empty/error state.
-- New or changed user-facing flows get a Cypress spec.
-- Keep Cypress specs scoped to one content section per file, matching the existing `cypress/e2e/*.cy.js` layout.
+- New components get a unit test in `test/unit/components/` covering render, interaction, and at least one empty/error state.
+- New multi-component interactions (e.g. anything wiring into `ClientLayoutWrapper`) get an integration test in `test/integration/`. Mock network calls with MSW (`test/integration/mocks/handlers.ts`) rather than real `fetch`.
+- New or changed user-facing flows get a Cypress spec under `test/cypress/e2e/`, scoped to one content section per file. Build-breaking regressions should also be catchable by `test/cypress/smoke/`.

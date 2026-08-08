@@ -33,5 +33,5 @@ uv run jupyter lab
 | Static export build | `npm run build` |
 | Serve the export locally | `npm start` |
 | Lint | `npm run lint` |
-| Unit tests | `npm test` / `npm run test:watch` |
-| E2E tests | `npx cypress open` / `npx cypress run` |
+| Unit + integration tests | `npm test` / `npm run test:watch` |
+| E2E / smoke tests | `npm run cypress:open` / `npm run cypress:run` / `npm run cypress:smoke` |

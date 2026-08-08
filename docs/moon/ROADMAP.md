@@ -18,7 +18,7 @@ Status markers: ✅ Done · 🚧 In Progress · 📋 Pending
 | --- | --- | --- |
 | S1 | Next.js static export, deployed to GitHub Pages | ✅ Done |
 | S2 | Posts, reports, projects, tools, media, about, other content sections | ✅ Done |
-| S3 | Jest unit tests + Cypress e2e coverage | ✅ Done |
+| S3 | Vitest + RTL + MSW unit/integration tests, Cypress e2e/smoke coverage, all under `test/` | ✅ Done |
 | S4 | Notebooks workspace (`notebooks/`, managed via `uv`) for report research | ✅ Done |
 
 ## Track: Feature Roadmaps
@@ -30,5 +30,6 @@ Status markers: ✅ Done · 🚧 In Progress · 📋 Pending
 | Mathematical optimization | [`roadmaps/mathematical_optimization.md`](roadmaps/mathematical_optimization.md) |
 | Machine learning | [`roadmaps/machine_learning.md`](roadmaps/machine_learning.md) |
 | Documentation | [`roadmaps/documentation.md`](roadmaps/documentation.md) |
+| Software Infrastructure & Test Suite | [`roadmaps/infrastructure_and_testing.md`](roadmaps/infrastructure_and_testing.md) |
 
 > **TODO:** Add new themes here as they're identified, alongside a new file under `roadmaps/`.

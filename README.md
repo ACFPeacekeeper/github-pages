@@ -19,7 +19,9 @@
 
 <br>
 
-<a href="https://jestjs.io/"><img alt="Jest" src="https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white"></a>
+<a href="https://vitest.dev/"><img alt="Vitest" src="https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white"></a>
+<a href="https://testing-library.com/"><img alt="Testing Library" src="https://img.shields.io/badge/Testing_Library-E33332?logo=testing-library&logoColor=white"></a>
+<a href="https://mswjs.io/"><img alt="MSW" src="https://img.shields.io/badge/MSW-FF6A33?logo=mockserviceworker&logoColor=white"></a>
 <a href="https://www.cypress.io/"><img alt="Cypress" src="https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white"></a>
 <a href="https://eslint.org/"><img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=white"></a>
 <a href="https://github.com/astral-sh/uv"><img alt="uv" src="https://img.shields.io/badge/managed%20by-uv-261230.svg"></a>
@@ -50,7 +52,7 @@ It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) �
 - **Framework:** [Next.js](https://nextjs.org/) (App Router) + [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Content:** Markdown, parsed with [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and [`remark`](https://github.com/remarkjs/remark)
-- **Testing:** [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/) (unit) · [Cypress](https://www.cypress.io/) (e2e)
+- **Testing:** [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) (unit/integration) + [MSW](https://mswjs.io/) (network mocking) · [Cypress](https://www.cypress.io/) (e2e/smoke)
 - **Linting:** [ESLint](https://eslint.org/) (`eslint-config-next`)
 - **Icons:** [lucide-react](https://lucide.dev/)
 - **Research workspace:** [Python](https://www.python.org/) 3.11+ managed with [uv](https://github.com/astral-sh/uv), used for the analysis behind some reports
@@ -70,12 +72,14 @@ It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) �
 │       └── other/
 ├── src/
 │   ├── components/         # React components (layout, ui, content wrappers)
-│   │   └── __tests__/      # Jest + Testing Library specs
 │   └── styles/
 ├── lib/                    # Markdown loading/parsing helpers
-├── cypress/e2e/            # End-to-end specs, one per section
+├── test/
+│   ├── unit/               # Vitest + Testing Library specs, mirrors src/components/
+│   ├── integration/        # Vitest + Testing Library + MSW specs
+│   └── cypress/            # e2e/ (one spec per section) + smoke/
 ├── notebooks/              # Python/uv workspace for report research
-├── docs/research/          # Longer design/research write-ups
+├── docs/moon/research/     # Longer design/research write-ups
 └── public/                 # Static assets
 ```
 
@@ -103,15 +107,19 @@ npm start          # serve the out/ export locally
 ## Testing
 
 ```bash
-npm run lint       # ESLint
-npx tsc --noEmit   # type check
-npm test           # Jest unit tests
-npm run test:watch # Jest in watch mode
-npx cypress open   # Cypress e2e (interactive)
-npx cypress run    # Cypress e2e (headless)
+npm run lint             # ESLint
+npx tsc --noEmit         # type check
+npm test                 # Vitest: unit + integration
+npm run test:watch       # Vitest in watch mode
+npm run test:unit        # Vitest: test/unit/ only
+npm run test:integration # Vitest: test/integration/ only
+npm run cypress:open     # Cypress e2e + smoke (interactive)
+npm run cypress:run      # Cypress e2e + smoke (headless)
+npm run cypress:e2e      # Cypress: test/cypress/e2e/ only
+npm run cypress:smoke    # Cypress: test/cypress/smoke/ only
 ```
 
-Cypress runs against a served build, so run `npm run build && npm start` (or `npm run dev`) in another terminal first — see `cypress.config.js` for the `baseUrl`.
+Cypress runs against a served build, so run `npm run build && npm start` (or `npm run dev`) in another terminal first — see `test/cypress/cypress.config.js` for the `baseUrl`. `npm run build`'s `postbuild` step symlinks `out/github-pages -> .` so `npm start` (a plain static file server) answers under `/github-pages`, matching how GitHub Pages actually serves the site.
 
 ## Notebooks
 
