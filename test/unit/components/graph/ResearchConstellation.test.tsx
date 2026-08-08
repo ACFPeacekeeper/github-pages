@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import ResearchConstellation from '../../../../src/components/interactive/ResearchConstellation';
+import ResearchConstellation from '../../../../src/components/graph/ResearchConstellation';
 
 describe('ResearchConstellation', () => {
   it('describes the initially selected research node', () => {

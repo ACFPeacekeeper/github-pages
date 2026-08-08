@@ -7,17 +7,19 @@ export interface BlogPost {
   tags: string[];
 }
 
+import type { ReactNode } from 'react';
+
 export interface ProjectLink {
   label: string;
   url: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 export interface Project {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon?: ReactNode;
   iconColorClass: string;
   stats?: string;
   links: ProjectLink[];

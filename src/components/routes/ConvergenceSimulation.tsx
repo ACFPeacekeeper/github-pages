@@ -6,12 +6,16 @@ import { createSimulationController } from '../../simulations/context/createSimu
 import { getSimulationScenario, SIMULATION_SCENARIOS } from '../../simulations/repository/scenarios';
 import type { SimulationSnapshot } from '../../simulations/state/types';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useAppDispatch } from '../../redux/store/hooks';
+import { setActiveSimulation } from '../../redux/actions/appActions';
 
 export default function ConvergenceSimulation() {
   const [scenarioId, setScenarioId] = useState('balanced');
+  const dispatch = useAppDispatch();
   const controller = useMemo(() => createSimulationController(getSimulationScenario(scenarioId)), [scenarioId]);
   const [snapshot, setSnapshot] = useState<SimulationSnapshot>(controller.initial);
   const reducedMotion = useReducedMotion();
+  useEffect(() => { dispatch(setActiveSimulation(scenarioId)); }, [dispatch, scenarioId]);
 
   useEffect(() => setSnapshot(controller.initial), [controller]);
   useEffect(() => {
