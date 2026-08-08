@@ -1,0 +1,45 @@
+# Keep the Docker build context small and reproducible.
+
+# VCS / CI
+.git
+.github
+.gitignore
+
+# Python caches / envs
+.venv
+**/__pycache__
+*.py[cod]
+.mypy_cache
+.ruff_cache
+.pytest_cache
+*.egg-info
+
+# Node / TypeScript
+**/node_modules
+typescript/dist
+
+# Build outputs
+build/
+site/
+target/
+dist/
+*.so
+
+# Rust / Cargo
+Cargo.lock
+.cargo
+
+# Kotlin / Gradle
+.gradle
+kotlin/build
+
+# Editors / OS
+.vscode
+.idea
+.DS_Store
+
+# Docs build output
+docs/sphinx/_build
+
+# Secrets
+.env
