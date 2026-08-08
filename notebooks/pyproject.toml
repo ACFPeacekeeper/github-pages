@@ -24,7 +24,7 @@ dev = [
     "pyinstaller>=6.16.0",
     "pytest>=9.1.1",
     "pyvis>=0.3.2",            # §5.11C module dependency graph HTML (backend/validation/visualize_module_graph.py)
-    "ruff>=0.14.3",
+    "ruff>=0.16.1",
 ]
 docs = ["mkdocs>=1.6.1", "mkdocs-material>=9.7.7"]
 
