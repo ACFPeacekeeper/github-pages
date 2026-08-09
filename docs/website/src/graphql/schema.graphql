@@ -1,0 +1,15 @@
+# Docs/content graph for the github-pages documentation site (static-export friendly).
+
+type LoreStory {
+  id: ID!
+  title: String!
+  era: String!
+  summary: String!
+  tags: [String!]!
+  docPath: String
+}
+
+type Query {
+  loreStories: [LoreStory!]!
+  loreStory(id: ID!): LoreStory
+}

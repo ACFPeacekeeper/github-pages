@@ -27,7 +27,15 @@
     "cypress:open": "cd test/cypress && cypress open",
     "cypress:run": "cd test/cypress && cypress run",
     "cypress:e2e": "cd test/cypress && cypress run --spec \"e2e/**/*.cy.js\"",
-    "cypress:smoke": "cd test/cypress && cypress run --spec \"smoke/**/*.cy.js\""
+    "cypress:smoke": "cd test/cypress && cypress run --spec \"smoke/**/*.cy.js\"",
+    "docs:start": "npm --prefix docs/website start",
+    "docs:build": "npm --prefix docs/website run build",
+    "docs:serve": "npm --prefix docs/website run serve",
+    "docs:storybook": "npm --prefix docs/website run storybook",
+    "docs:lint": "npm --prefix docs/website run lint",
+    "docs:build:astro": "npm --prefix docs/website run build:astro",
+    "docs:next:dev": "npm --prefix docs/website run next:dev",
+    "docs:next:build": "npm --prefix docs/website run next:build"
   },
   "homepage": "https://acfharbinger.github.io/github-pages",
   "dependencies": {

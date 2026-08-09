@@ -5,33 +5,8 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
-
-const CARDS: { title: string; description: string; to: string; icon: string }[] = [
-  {
-    icon: '📚',
-    title: 'Docs',
-    description: 'Architecture, ADRs, the roadmap/changelog, and every feature roadmap under docs/moon/roadmaps/.',
-    to: '/docs/ARCHITECTURE',
-  },
-  {
-    icon: '🧭',
-    title: 'Guides',
-    description: 'The repository README, contributing guide, and AGENTS.md — curated, not a full repo crawl.',
-    to: '/guides',
-  },
-  {
-    icon: '🧩',
-    title: 'API Reference',
-    description: "TypeDoc-generated reference for lib/'s exported functions and types.",
-    to: '/docs/website/react/api-docs',
-  },
-  {
-    icon: '🎨',
-    title: 'Storybook',
-    description: 'Every UI/layout component from src/frameworks/react/components/, rendered live with react-docgen-typescript prop tables.',
-    to: '/storybook/index.html',
-  },
-];
+import { HOME_NAV_CARDS } from '../constants/navCards';
+import ResearchOrbitWrapper from '../frameworks/astro/components/ResearchOrbitWrapper';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -61,7 +36,7 @@ function Cards() {
     <section className={styles.cardsSection}>
       <div className="container">
         <div className={styles.cardGrid}>
-          {CARDS.map((card) => (
+          {HOME_NAV_CARDS.map((card) => (
             <Link key={card.title} to={card.to} className={styles.card}>
               <span className={styles.cardIcon} aria-hidden="true">
                 {card.icon}
@@ -88,6 +63,9 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <Cards />
+        <div className="container">
+          <ResearchOrbitWrapper />
+        </div>
       </main>
     </Layout>
   );

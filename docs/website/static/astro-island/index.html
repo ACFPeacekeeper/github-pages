@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research orbit — github-pages docs</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+      body {
+        padding: 0.25rem;
+        font-family: system-ui, sans-serif;
+      }
+      .research-orbit {
+        color: #e2e8f0;
+        background: #0b1220;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 14px;
+        padding: 1.25rem 1.35rem 1rem;
+      }
+      .kicker {
+        margin: 0 0 0.25rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+      header h2 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+      .sub {
+        margin: 0.35rem 0 0.85rem;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+      .orbit-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        background: #020617;
+      }
+      .core {
+        fill: rgba(59, 130, 246, 0.35);
+        stroke: #60a5fa;
+        stroke-width: 2;
+      }
+      .core-label {
+        fill: #e2e8f0;
+        font-size: 11px;
+      }
+      .ring {
+        stroke: rgba(148, 163, 184, 0.25);
+        stroke-dasharray: 4 4;
+        fill: none;
+      }
+      .spoke {
+        stroke: rgba(148, 163, 184, 0.35);
+        stroke-width: 1;
+      }
+      .node {
+        fill: rgba(251, 191, 36, 0.25);
+        stroke: #fbbf24;
+        stroke-width: 1.5;
+      }
+      .node-label {
+        fill: #fde68a;
+        font-size: 9px;
+      }
+      .note {
+        margin: 0.75rem 0 0;
+        font-size: 0.78rem;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Prebuilt export of ResearchOrbit.astro (seed=42). Rebuild with `npm run build:astro` when the Astro toolchain resolves cleanly. -->
+    <section class="research-orbit" id="ro-42" aria-labelledby="ro-42-title">
+      <header>
+        <p class="kicker">Astro island · docs site</p>
+        <h2 id="ro-42-title">Research orbit</h2>
+        <p class="sub">Theme nodes in orbit around applied research (illustrative, static export).</p>
+      </header>
+      <svg viewBox="0 0 400 280" role="img" aria-label="Research orbit" class="orbit-svg">
+        <circle cx="200" cy="140" r="28" class="core" />
+        <text x="200" y="144" text-anchor="middle" class="core-label">Core</text>
+        <circle cx="200" cy="140" r="90" class="ring" />
+        <g>
+          <line x1="200" y1="140" x2="200" y2="58" class="spoke" />
+          <circle cx="200" cy="58" r="16" class="node" />
+          <text x="200" y="62" text-anchor="middle" class="node-label">Research</text>
+        </g>
+        <g>
+          <line x1="200" y1="140" x2="278" y2="92" class="spoke" />
+          <circle cx="278" cy="92" r="16" class="node" />
+          <text x="278" y="96" text-anchor="middle" class="node-label">AI</text>
+        </g>
+        <g>
+          <line x1="200" y1="140" x2="285" y2="188" class="spoke" />
+          <circle cx="285" cy="188" r="16" class="node" />
+          <text x="285" y="192" text-anchor="middle" class="node-label">OR</text>
+        </g>
+        <g>
+          <line x1="200" y1="140" x2="200" y2="232" class="spoke" />
+          <circle cx="200" cy="232" r="16" class="node" />
+          <text x="200" y="236" text-anchor="middle" class="node-label">Systems</text>
+        </g>
+        <g>
+          <line x1="200" y1="140" x2="115" y2="188" class="spoke" />
+          <circle cx="115" cy="188" r="16" class="node" />
+          <text x="115" y="192" text-anchor="middle" class="node-label">Routing</text>
+        </g>
+        <g>
+          <line x1="200" y1="140" x2="122" y2="92" class="spoke" />
+          <circle cx="122" cy="92" r="16" class="node" />
+          <text x="122" y="96" text-anchor="middle" class="node-label">Audio</text>
+        </g>
+      </svg>
+      <p class="note">Built as a static Astro island for the Docusaurus docs dashboard (MFP5).</p>
+    </section>
+  </body>
+</html>
