@@ -236,9 +236,12 @@ Keep titles concise for cards and browser tabs. Use stable lowercase tags. Dates
 │   └── moon/{research,roadmaps}/
 ├── infra/                       # optional self-hosting / alt-deploy tooling
 │   ├── global/                  # external public-facing deploy & host configs
-│   │   ├── ansible/ cloud/ docker/ helm/ k8s/ terraform/
-│   └── private/                 # internal developer-only tooling
-│       └── webpack/ wordpress/
+│   │   ├── ansible/ docker/ helm/ k8s/ terraform/
+│   ├── private/                 # internal developer-only tooling
+│   │   └── webpack/ wordpress/
+│   ├── cloud/                   # AWS / Azure / Firebase / Serverless
+│   └── server/                  # nginx / Envoy reverse-proxy configs
+│       └── nginx/ proxy/
 ├── lib/                         # build-time Markdown/front-matter helpers
 ├── notebooks/                   # independent Python/uv research workspace
 ├── public/                      # static, licensed browser assets
