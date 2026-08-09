@@ -18,7 +18,7 @@ const apiDocsDir = path.resolve(__dirname, '../api-docs');
 
 // Must match the "default" docs-plugin's routeBasePath ("docs") + this
 // directory's position under its `path` (docs/) in docusaurus.config.ts.
-const API_DOCS_BASE_ROUTE = '/docs/website/react/api-docs';
+const API_DOCS_BASE_ROUTE = '/docs/website/api-docs';
 
 function walk(dir) {
     for (const entry of readdirSync(dir)) {

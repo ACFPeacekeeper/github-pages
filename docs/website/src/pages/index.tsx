@@ -28,7 +28,7 @@ const CARDS: { title: string; description: string; to: string; icon: string }[] 
   {
     icon: '🎨',
     title: 'Storybook',
-    description: 'Every UI/layout component from src/components/, rendered live with react-docgen-typescript prop tables.',
+    description: 'Every UI/layout component from src/frameworks/react/components/, rendered live with react-docgen-typescript prop tables.',
     to: '/storybook/index.html',
   },
 ];

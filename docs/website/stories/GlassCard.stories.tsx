@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import GlassCard from '../../../../src/components/ui/GlassCard';
+import GlassCard from '../../../src/frameworks/react/components/ui/GlassCard';
 
 const meta = {
     title: 'UI/GlassCard',

@@ -7,7 +7,7 @@
 // silently fight over if both builds ran from this same directory.
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['../../../src/**/*.{js,jsx,ts,tsx}'],
+    content: ['../../src/**/*.{js,jsx,ts,tsx}'],
     darkMode: 'class',
     theme: {
         extend: {

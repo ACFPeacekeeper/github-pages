@@ -8,10 +8,10 @@
     "strict": true,
     "paths": {
       // Same alias convention as the main repo's tsconfig.json, but
-      // pointing three levels up at the actual repo root — .storybook/ and
-      // stories/ import the real src/components/ sources directly rather
-      // than duplicating them.
-      "@/*": ["../../../*"]
+      // pointing two levels up at the actual repo root — .storybook/ and
+      // stories/ import the real src/frameworks/react/components/ sources
+      // rather than duplicating them.
+      "@/*": ["../../*"]
     }
   },
   "exclude": [".docusaurus", "build", "api-docs"]

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import Header from '../../../../src/components/layout/Header';
+import Header from '../../../src/frameworks/react/components/layout/Header';
 
 // Header calls next/navigation's usePathname(), which the Vite alias in
 // .storybook/main.ts points at .storybook/shims/next-navigation.ts — it

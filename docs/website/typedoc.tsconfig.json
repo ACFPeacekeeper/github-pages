@@ -5,7 +5,7 @@
     "moduleResolution": "bundler",
     "lib": ["esnext"],
     "types": ["node"],
-    "typeRoots": ["../../../node_modules/@types"],
+    "typeRoots": ["../../node_modules/@types"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -13,5 +13,5 @@
     "noImplicitAny": false,
     "noEmit": true
   },
-  "include": ["../../../lib/**/*.ts"]
+  "include": ["../../lib/**/*.ts"]
 }

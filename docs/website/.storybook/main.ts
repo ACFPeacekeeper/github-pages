@@ -8,7 +8,7 @@ import autoprefixer from 'autoprefixer';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 
-// Storybook for the actual site components at ../../../../src/components/ —
+// Storybook for the actual site components at ../../../src/frameworks/react/components/ —
 // stories import them directly (see ../stories/), no copy or symlink
 // involved. See ../README.md for how this fits with Docusaurus/TypeDoc.
 const config: StorybookConfig = {
@@ -32,7 +32,7 @@ const config: StorybookConfig = {
         reactDocgen: 'react-docgen-typescript',
     },
     async viteFinal(viteConfig) {
-        const root = path.resolve(__dirname, '../../../../');
+        const root = path.resolve(__dirname, '../../../');
         viteConfig.resolve ??= {};
         viteConfig.resolve.alias = {
             ...(viteConfig.resolve.alias ?? {}),

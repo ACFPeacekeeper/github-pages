@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FileText } from 'lucide-react';
-import SectionHeading from '../../../../src/components/ui/SectionHeading';
+import SectionHeading from '../../../src/frameworks/react/components/ui/SectionHeading';
 
 const meta = {
     title: 'UI/SectionHeading',
