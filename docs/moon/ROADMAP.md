@@ -1,8 +1,8 @@
 # github-pages — Immersive Research Portfolio Master Roadmap
 
-**Last updated:** 2026-08-08 · **Roadmap session:** R2 · **Delivery model:** static-first progressive enhancement
+**Last updated:** 2026-08-09 · **Roadmap session:** R4 · **Delivery model:** static-first progressive enhancement
 
-This is the product-level index. Each workstream file is an issue-ready implementation document with options, acceptance criteria, tests, budgets, risks, and a history of scope changes. The new evidence base is [`Interactive Features and Visual Storytelling Research.md`](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md).
+This is the product-level index. Each workstream file is an issue-ready implementation document with options, acceptance criteria, tests, budgets, risks, and a history of scope changes. Primary interactive evidence: [`Interactive Features and Visual Storytelling Research.md`](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md). Multi-framework / GraphQL / WASM evidence: [`Next.js Multi-Framework Architecture.md`](research/Next.js%20Multi-Framework%20Architecture.md), [`React Hosting Vue Micro-Frontends.md`](research/React%20Hosting%20Vue%20Micro-Frontends.md), plus architecture notes in [`Advanced Web Portfolio Architecture Research.md`](research/Advanced%20Web%20Portfolio%20Architecture%20Research.md) and [`Global Interactive Portfolio Website Architecture.md`](research/Global%20Interactive%20Portfolio%20Website%20Architecture.md).
 
 ## Table of contents
 
@@ -54,39 +54,49 @@ flowchart LR
   R5["R5 Culture room\nmedia + books + game"]:::feature
   R6["R6 Spatial tier\n360 + WebGL"]:::augment
   R7["R7 WebGPU frontier\nworkers + optional XR"]:::research
+  R8["R8 Polyglot islands\nVue + GraphQL/Apollo + WASM"]:::feature
   Q["Quality gates\nbudgets + a11y"]:::perf
   D["Docs + provenance\nresearch reports"]:::docs
   class R0 done
   class R1,R2,Q,D active
-  class R3,R4,R5,R6,R7 planned
+  class R3,R4,R5,R6,R7,R8 planned
   R0 ==> R1 ==> R2 ==> R3
   R2 --> R4
   R2 --> R5
   R3 --> R6
   R4 --> R7
+  R2 --> R8
+  R0 ==> R8
   Q ==> R2
   Q ==> R3
+  Q ==> R8
   D --- R2
   D --- R5
+  D --- R8
 ```
 
 ## Current state
 
-### Shipped or partially shipped (R1)
+### Shipped or partially shipped (R1–R3)
 
 - Next.js 14 static export, content routes, theme shell, Vitest/RTL/MSW, Cypress, and notebooks workspace.
 - Tokenized observatory homepage with Three.js model fallback, graph/DOM constellation, deterministic optimization-convergence simulation, and field-note components.
-- Typed contracts under `src/interfaces`, Redux experience state under `src/redux`, domain components under `src/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}`.
-- Framework-neutral simulations with `repository/` types, `scenarios/` presets, `generator/` computation, and `context/` lifecycle; optional Aurelia boundary.
-- 51 tests passing at the last implementation gate; production static export succeeds. Existing lint warnings for legacy `<img>` usage and one ref cleanup remain tracked in infrastructure work.
-- Root `benchmark/` harness now records static-export bytes, representative route responses, largest assets, and budget checks; the first baseline identifies existing media and aggregate-bundle optimization work.
+- Domain UI under `src/frameworks/react/components/{audio,books,canvas,games,graph,image,maps,models,routes,video,visualization,layout,ui}`; typed contracts under `src/interfaces`; Redux under `src/libraries/redux`.
+- Framework-neutral simulations with `repository/` types, `scenarios/` presets, `generator/` computation, and `context/` lifecycle.
+- **Multi-framework seeds:** React host; Astro island via `src/frameworks/astro` + `public/astro-island` iframe wrapper; Aurelia convergence island via `src/frameworks/aurelia` mount/unmount; `src/frameworks/shared` utilities.
+- **GraphQL seed:** `src/graphql/schema.graphql` is still a placeholder (`Query._empty`); `fragments/` empty; no Apollo Client dependency yet.
+- **WASM:** not in tree; research-backed paths only (solvers / edge ML).
+- Interactive graphics IF1–IF13 marked complete in their workstream; root `benchmark/` harness records static-export budgets.
+- Production static export succeeds; multi-framework test matrix not yet established.
 
 ### Open risks
 
 - Route map and solver are currently illustrative SVG/Canvas/recorded traces; they do not claim live municipal data or optimality.
-- Three.js model is a procedural object, not yet a reusable glTF/360 asset pipeline.
-- Redux currently covers shell-level experience state; capability-tier selection and worker job state remain to be added.
-- The current home imports the field-note gallery eagerly; domain-level lazy loading is a quality-gate task.
+- Vue 3 is research-only; dual-runtime cost and Next App Router loader conflicts are unproven in this repo.
+- GraphQL/Apollo must remain static-export safe—live HTTP GraphQL would violate the no-runtime-API product constraint unless explicitly forked.
+- Astro today is iframe-based, not a first-class SFC compile path inside Next webpack.
+- WASM OOM / main-thread jank if solvers or models load without workers, memory gates, and pure-TS fallbacks.
+- Module Federation is a poor fit for App Router + static export; avoid defaulting to it (see multi-framework roadmap).
 
 ## How to use this roadmap
 
@@ -125,13 +135,18 @@ Fleet route playback, solver comparison, model replay, and audio are worker/fixt
 
 WebGPU, splats, WebXR, and large graphs are only promoted after a device matrix proves a user-facing benefit. Exit: WebGL/SVG fallback, privacy review, and a documented support matrix.
 
+### Gate G6 — Polyglot platform (planned)
+
+React host remains authoritative; Vue/Astro/Aurelia islands load client-only with fallbacks; GraphQL schema + Apollo singleton work from static fixtures; optional WASM worker has pure-TS fallback. Exit: MF-G1–MF-G3 in [multi_framework_platform.md](roadmaps/multi_framework_platform.md), per-island budgets, and offline tests.
+
 ## Workstreams
 
 | Workstream | IDs | Detail | Current state |
 | --- | --- | --- | --- |
 | Visual design and UX | UI1–UI14 | [user_interface.md](roadmaps/user_interface.md) | 🔄 UI3–UI5/UI13–UI14 partial |
-| Interactive graphics | IF1–IF13 | [interactive_features.md](roadmaps/interactive_features.md) | 🔄 IF2–IF4/IF7/IF13 partial |
+| Interactive graphics | IF1–IF13 | [interactive_features.md](roadmaps/interactive_features.md) | ✅ IF1–IF13 (catalogue + experiments shipped) |
 | Simulations and Aurelia | SIM1–SIM10 | [simulations_and_aurelia.md](roadmaps/simulations_and_aurelia.md) | 🔄 SIM1–SIM4 partial |
+| Multi-framework platform | MFP1–MFP16 | [multi_framework_platform.md](roadmaps/multi_framework_platform.md) | 🔄 React/Astro/Aurelia seeds; Vue/Apollo/WASM ⬜ |
 | Mathematical optimization | MO1–MO8 | [mathematical_optimization.md](roadmaps/mathematical_optimization.md) | ✅ MO1; ⬜ MO2+ |
 | Machine learning | ML1–ML8 | [machine_learning.md](roadmaps/machine_learning.md) | ✅ ML1; ⬜ ML2+ |
 | Infrastructure and quality | IT1–IT14 | [infrastructure_and_testing.md](roadmaps/infrastructure_and_testing.md) | ✅ IT1–IT5; ⬜ IT6+ |
@@ -147,6 +162,10 @@ WebGPU, splats, WebXR, and large graphs are only promoted after a device matrix 
 | MO-B1 | Route playback remains static-first before solver worker integration | deterministic fixture and table equivalent |
 | ML-B1 | Model-card contract precedes runtime/model download | CPU fixture, version, limitations, privacy note |
 | IF-B1 | Domain islands remain independently importable | bundle and fallback checks |
+| MFP-B1 | Island host contract + ADR; no federation-by-default | ADR + `src/frameworks` layout |
+| MFP-B2 | GraphQL schema v1 + static fixtures (no live API) | schema + MSW/fixture tests |
+| MFP-B3 | First Vue or hardened Aurelia parity demo | dual-framework a11y table |
+| MFP-B4 | WASM worker stub with pure-TS fallback | cancel + seed parity tests |
 
 ## Detailed implementation playbook
 
@@ -221,6 +240,17 @@ Run the artifact benchmark, capture route bytes and largest assets, and record a
 - Mount Aurelia only in an island with a static fallback and a strict unmount path.
 - Keep worker protocol versioned and reject stale responses.
 - Document assumptions and validity limits beside every scenario fixture.
+- Cross-link platform concerns (Apollo, Vue, WASM toolchain) to MFP\* rather than bloating SIM\*.
+
+### Multi-framework platform (MFP1–MFP16)
+
+- Treat React/Next as the only host for routing and GitHub Pages static export.
+- Load Vue/Aurelia as client-only islands after intent/visibility; never in RSC/Node pre-render.
+- Prefer colocated islands or Web Components over App Router Module Federation.
+- Put GraphQL schema under `src/graphql`; Apollo core under `src/libraries/apollo` with **no** React imports; adapters per framework.
+- Default GraphQL to build-time fixtures + MSW; live HTTP is an explicit backend fork.
+- Put WASM loaders under `src/libraries/wasm` (or `src/wasm`); accelerate SIM/MO/ML only with pure-TS fallbacks and memory gates.
+- Enforce per-island gzip budgets and mount/unmount leak tests before claiming polyglot architecture.
 
 ### Infrastructure and testing (IT1–IT14)
 
@@ -270,6 +300,7 @@ Copy this template into an issue before implementation:
 
 | Date | Revision | Change |
 | --- | --- | --- |
+| 2026-08-09 | R4 | Added multi-framework platform workstream (MFP1–MFP16), gate G6, R8 timeline node, and research links for Vue/Astro/Aurelia/GraphQL/Apollo/WASM. |
 | 2026-08-08 | R3 | Added implementation playbook, workstream approaches, definition-of-done template, and review gates. |
 
 ## Research-derived feature index
@@ -299,22 +330,28 @@ Copy this template into an issue before implementation:
 | X6 | Accessibility gap | hover-only or chart-only insight | DOM summary/table, keyboard tree/list, user testing |
 | X7 | ML privacy/energy | large download or upload | tiny opt-in model, local-only inputs, static trace |
 | X8 | Scope inflation | effect added without claim | item must state visitor question and exit metric |
+| X9 | Dual-framework runtime cost | INP / long tasks with Vue+React | one secondary framework per route; intent hydration; MFP15 budgets |
+| X10 | GraphQL runtime dependency | network in static export | fixtures + MSW only by default (MFP11) |
+| X11 | WASM memory / unsupported browsers | instantiate fail | pure-TS fallback + capability gate (MFP12–MFP13) |
 
 ## Effort × impact matrix
 
 | | High impact | Medium impact | Discovery |
 | --- | --- | --- | --- |
-| S | RR1 source cards; IT6 budget baseline | UI13 taxonomy cleanup | — |
-| M | RR5 audio; RR6 timeline; SIM5 runner | UI8 search; DOC6 embed guide | RR9 WebGPU spike |
-| L | RR2 fleet playback; RR3 comparison; RR4 ML replay | RR7 game island; RR8 panorama | RR10 worker protocol hardening |
-| XL | — | — | WebGPU splats/XR; live backend solver |
+| S | RR1 source cards; IT6 budget baseline | UI13 taxonomy cleanup | MFP1 ADR + layout |
+| M | RR5 audio; RR6 timeline; SIM5 runner; MFP8–MFP9 schema/client | UI8 search; DOC6 embed guide; MFP5 Astro build | RR9 WebGPU spike |
+| L | RR2 fleet playback; RR3 comparison; RR4 ML replay; MFP4 Vue island; MFP10–MFP11 | RR7 game island; RR8 panorama; MFP13 WASM worker | RR10 worker protocol hardening |
+| XL | — | — | WebGPU splats/XR; live backend solver; MFP14 edge-ML WASM |
 
 ## Anchor index
 
 - [RR research report](research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md)
+- [Multi-framework architecture research](research/Next.js%20Multi-Framework%20Architecture.md)
+- [Vue-in-React host research](research/React%20Hosting%20Vue%20Micro-Frontends.md)
 - [UI visual system](roadmaps/user_interface.md)
 - [IF graphics](roadmaps/interactive_features.md)
 - [SIM simulations/Aurelia](roadmaps/simulations_and_aurelia.md)
+- [MFP multi-framework platform](roadmaps/multi_framework_platform.md)
 - [MO optimization](roadmaps/mathematical_optimization.md)
 - [ML browser ML](roadmaps/machine_learning.md)
 - [IT quality](roadmaps/infrastructure_and_testing.md)
@@ -322,5 +359,6 @@ Copy this template into an issue before implementation:
 
 ## Document history
 
+- 2026-08-09 — R4: multi-framework platform (React/Vue/Astro/Aurelia + GraphQL/Apollo + WASM) workstream and gate G6.
 - 2026-08-08 — R2: added research-derived RR1–RR10 index, phase gates, risk register, Image-Toolkit-style timeline/status conventions, and explicit current-state accounting.
 - 2026-08-08 — R1: established the immersive portfolio vision and initial feature workstreams.

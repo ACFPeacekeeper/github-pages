@@ -19,6 +19,15 @@ Goal: make ambitious visuals safe to ship by treating accessibility, performance
 | IT13 | Fix existing navigation and “other” Cypress failures and enforce zero uncaught console errors | S | IT3 | 📋 |
 | IT14 | Preview deployment with before/after Lighthouse and visual-diff artefacts on pull requests | M | IT6, IT10 | 📋 |
 
+## Multi-framework and WASM quality hooks
+
+When [multi_framework_platform.md](multi_framework_platform.md) lands islands, GraphQL fixtures, or WASM:
+
+- Extend IT6 budgets with **per-island chunk** measurements (Vue/Aurelia/Apollo/WASM) and fail CI only on host-route regressions unless an island budget is explicitly approved.
+- Extend IT9/IT10 for worker/WASM: cancellation, stale request IDs, ten mount/unmount leak probes per framework adapter (MFP15).
+- Keep GraphQL tests offline via MSW or static fixtures (MFP11)—do not require a live GraphQL server for green CI.
+- Treat dual-runtime INP regressions as quality-gate failures equal to bundle regressions.
+
 ## Release gates
 
 - Lint, strict TypeScript, unit/integration, static build, core Cypress smoke, and broken-link checks pass.

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Multi-framework platform roadmap ([`docs/moon/roadmaps/multi_framework_platform.md`](roadmaps/multi_framework_platform.md), MFP1–MFP16) covering React host + Vue/Astro/Aurelia islands, GraphQL schema/Apollo singleton, static-export fixtures, and WASM workers, grounded in architecture research and the current `src/frameworks` / `src/graphql` layout.
+- Master roadmap R4 updates: workstream table entry, phase gate G6, timeline node R8, MFP implementation slices, risks X9–X11, and research anchors for multi-framework docs.
+- Cross-links from simulations and infrastructure roadmaps into MFP for Apollo/WASM/island testing ownership.
 - Architecture Decision Record (ADR 0002) for the graphics renderer lifecycle, deciding on isolated lazy islands over a persistent singleton canvas to respect strict bundle budgets (IF1).
 - Capability-gated 3D hero model with intersection observer lazy-loading, strict resource disposal, webgl context loss recovery, and performance monitoring (IF2).
 - Shared typed visualization primitives (scales, palettes, legends, tooltips) with accessible summaries and keyboard roving, integrating them into the `ResearchConstellation` component (IF3).

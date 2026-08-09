@@ -42,8 +42,18 @@ RR2 and RR3 consume the deterministic controller and scenario repository for rou
 - Solver labels distinguish illustrative, best-known, and proven-optimal results.
 - Worker fixtures cover malformed messages, cancellation, stale responses, timeout, crash, and unmount.
 
+## Relationship to multi-framework platform
+
+Aurelia remains the **first non-React client island** for simulation controls. Platform-level work (shared Apollo client, Vue islands, WASM workers, webpack isolation) lives in [multi_framework_platform.md](multi_framework_platform.md) (MFP*). Prefer:
+
+- **SIM\*** when changing numerical contracts, scenarios, workers, or Aurelia control widgets for experiments.
+- **MFP\*** when changing host/island tooling, GraphQL/Apollo sharing, Vue/Astro build paths, or cross-framework test matrix.
+
+SIM4/SIM6/SIM9 feed MFP6/MFP13/MFP15; do not duplicate acceptance criteria—link issues across both IDs when a PR touches both layers.
+
 ## Document history
 
 | Date | Revision | Change |
 |---|---|---|
+| 2026-08-09 | R2.1 | Linked multi-framework platform roadmap (MFP) for Apollo/WASM/host concerns. |
 | 2026-08-08 | R2 | Renamed simulation boundaries and linked RR2/RR3/RR10. |
