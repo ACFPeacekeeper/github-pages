@@ -126,9 +126,9 @@ docs/
 benchmark/                   # production export performance harness
 infra/                       # optional self-hosting / alt-deploy (not the default GitHub Pages path)
   global/                    # external public-facing deploy & host configs
-    ansible/ cloud/ docker/ helm/ k8s/ terraform/ wordpress/
+    ansible/ cloud/ docker/ helm/ k8s/ terraform/
   private/                   # internal developer-only tooling
-    webpack/
+    webpack/ wordpress/
 notebooks/                   # independent Python/uv research workspace
 public/                      # licensed/static browser assets
 test/

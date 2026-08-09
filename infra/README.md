@@ -21,10 +21,10 @@ Every hosting option here containerizes the same thing: `npm run build` output, 
 | `global/terraform/` | Cloud provisioning for wherever the container ends up running |
 | `global/ansible/` | Playbook for installing/running the container on a plain host |
 | `global/cloud/` | AWS / Azure Pipelines / Firebase / Serverless static-hosting configs |
-| `global/wordpress/` | WordPress theme scaffolding for a public CMS-hosted front |
 
 ## private/ (internal)
 
 | Directory | What it does |
 | --- | --- |
 | `private/webpack/` | Webpack config for developer-side bundling experiments |
+| `private/wordpress/` | WordPress theme scaffolding for local/CMS experiments |

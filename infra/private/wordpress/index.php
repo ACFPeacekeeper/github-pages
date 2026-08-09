@@ -1,5 +1,5 @@
 <?php
-// infra/global/wordpress/index.php
+// infra/private/wordpress/index.php
 get_header();
 ?>
 

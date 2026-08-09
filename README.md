@@ -145,8 +145,8 @@ Optional alternatives to GitHub Pages (not used by the default workflow) live un
 | [`infra/global/docker/`](infra/global/docker/) | Build + serve the export locally with Docker Compose / nginx |
 | [`infra/global/k8s/`](infra/global/k8s/) · [`helm/`](infra/global/helm/) · [`terraform/`](infra/global/terraform/) · [`ansible/`](infra/global/ansible/) | Self-host the nginx container on a cluster or plain host |
 | [`infra/global/cloud/`](infra/global/cloud/) | AWS (S3 + CloudFront / Serverless), Azure Static Web Apps, Firebase configs |
-| [`infra/global/wordpress/`](infra/global/wordpress/) | Public WordPress theme scaffolding |
 | [`infra/private/webpack/`](infra/private/webpack/) | Developer-only Webpack experiments |
+| [`infra/private/wordpress/`](infra/private/wordpress/) | WordPress theme scaffolding for local/CMS experiments |
 
 Example local self-host:
 
@@ -233,9 +233,9 @@ Keep titles concise for cards and browser tabs. Use stable lowercase tags. Dates
 │   └── moon/{research,roadmaps}/
 ├── infra/                       # optional self-hosting / alt-deploy tooling
 │   ├── global/                  # external public-facing deploy & host configs
-│   │   ├── ansible/ cloud/ docker/ helm/ k8s/ terraform/ wordpress/
+│   │   ├── ansible/ cloud/ docker/ helm/ k8s/ terraform/
 │   └── private/                 # internal developer-only tooling
-│       └── webpack/
+│       └── webpack/ wordpress/
 ├── lib/                         # build-time Markdown/front-matter helpers
 ├── notebooks/                   # independent Python/uv research workspace
 ├── public/                      # static, licensed browser assets
