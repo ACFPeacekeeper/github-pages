@@ -9,7 +9,7 @@ Goal: make the static portfolio a **polyglot island host** where React owns the 
 | Layer | Path / state | Notes |
 | --- | --- | --- |
 | React host | `src/frameworks/react/` | Primary shell, domain components, visualization primitives |
-| Astro | `src/frameworks/astro/`, `src/pages/*.astro`, `public/astro-island/` | Island pattern via wrapper + static HTML iframe; not yet first-class SFC compilation in Next webpack |
+| Astro | `src/frameworks/astro/` (incl. `pages/*.astro`), `public/astro-island/` | Island pattern via wrapper + static HTML iframe; `astro.config` `srcDir` points at frameworks/astro |
 | Aurelia | `src/frameworks/aurelia/{mount.ts,convergence-app.ts,components/AureliaWrapper.tsx}` | Lazy mount/unmount for convergence demo; depends on `aurelia` package |
 | Vue | — | **Not present** (research only) |
 | GraphQL | `src/graphql/schema.graphql` (placeholder), `src/graphql/fragments/` empty | No Apollo Client, no operations, no build-time schema pipeline |
