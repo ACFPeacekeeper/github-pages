@@ -327,7 +327,7 @@ Do not commit `out/`, `.next/`, `tsconfig.tsbuildinfo`, benchmark result JSON, s
 
 ## Environment and configuration
 
-The website has no required runtime environment variables. `next/next.config.js (re-exported at root)` defines the static export and GitHub Pages base path. Browser-only APIs belong inside client components and effects, never during static rendering.
+The website has no required runtime environment variables. `stack/next/next.config.js (re-exported at root)` defines the static export and GitHub Pages base path. Browser-only APIs belong inside client components and effects, never during static rendering.
 
 If an optional integration needs a token, prefer a public build-time fixture or remove it from the default site. Never place a secret in `NEXT_PUBLIC_*`, Markdown, `public/`, or a committed notebook.
 

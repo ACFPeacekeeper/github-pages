@@ -35,7 +35,7 @@
     }
   },
   "include": [
-    "next/next-env.d.ts",
+    "stack/next/next-env.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

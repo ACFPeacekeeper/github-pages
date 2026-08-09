@@ -1,4 +1,4 @@
-# eslint/
+# stack/eslint/
 
 ESLint configuration for this repository (Next.js core-web-vitals ruleset).
 
@@ -13,7 +13,7 @@ From the repo root:
 ```bash
 npm run lint
 # or
-npx eslint -c eslint/.eslintrc.json .
+npx eslint -c stack/eslint/.eslintrc.json .
 ```
 
-A root `.eslintrc.cjs` re-exports this config so `next lint` and pre-commit keep working without changing their discovery path.
+Root `.eslintrc.cjs` re-exports this config so `next lint` and pre-commit keep working.

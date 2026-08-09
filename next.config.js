@@ -1,2 +1,2 @@
-/** Re-export Next.js config from next/. */
-module.exports = require('./next/next.config.js');
+/** Re-export Next.js config from stack/next/. */
+module.exports = require('./stack/next/next.config.js');

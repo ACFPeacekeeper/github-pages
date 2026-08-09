@@ -1,2 +1,2 @@
-/** Re-export project ESLint config from eslint/. */
-module.exports = require('./eslint/.eslintrc.json');
+/** Re-export project ESLint config from stack/eslint/. */
+module.exports = require('./stack/eslint/.eslintrc.json');
