@@ -50,3 +50,5 @@ Default deployment is GitHub Pages. Alternative container/cloud tooling lives un
 | Serverless (S3 static) | `npm run build && npx serverless client deploy --config infra/cloud/serverless/serverless.yml` |
 | AWS CloudFormation template | `infra/cloud/aws/cfn-template.yaml` (see stack Outputs for the post-build sync command) |
 | Azure Static Web Apps pipeline | `infra/cloud/azure-pipelines/azure-pipelines.yml` (point Azure DevOps at this path) |
+| Standalone nginx (static `out/`) | See `infra/server/nginx/README.md` |
+| Envoy reverse proxy | See `infra/server/proxy/README.md` |
