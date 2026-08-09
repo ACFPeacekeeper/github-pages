@@ -53,7 +53,7 @@ docs/website/
 │   ├── css/custom.css
 │   ├── pages/                  # Docusaurus pages (homepage)
 │   ├── frameworks/
-│   │   ├── react/components/   # host-local React UI
+│   │   ├── react/              # DocsWrapper.tsx (standalone) + components/
 │   │   ├── vue/                # mount.ts + components/ + directives/
 │   │   ├── aurelia/            # mount.ts + docs-convergence-app + components/
 │   │   ├── astro/              # ResearchOrbit island + wrappers

@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Docs website parity modules under `docs/website/src/`: `configs/`, `constants/`, `enums/`, `graphql/`, `hooks/`, `interfaces/`, `simulations/`, `utils/`, `stories/` (research lore), `libraries/{form,motion,router,redux}`, `frameworks/{react,vue,aurelia,astro,shared}` (Vue mount/directives, Aurelia island, ResearchOrbit Astro island, shared island utils).
+- Docs website parity modules under `docs/website/src/`: `configs/`, `constants/`, `enums/`, `graphql/`, `hooks/`, `interfaces/`, `simulations/`, `utils/`, `stories/` (research lore), `libraries/{form,motion,router,redux}`, `frameworks/{react,vue,aurelia,astro,shared}` (React `DocsWrapper`, Vue mount/directives, Aurelia island, ResearchOrbit Astro island, shared island utils).
 - `docs/website/stack/{eslint,next}` with root `eslint.config.js` / `next.config.js` re-exports; `postcss.config.cjs` + Astro build into `static/astro-island/`; root package scripts `docs:*` and `docs:next:*`.
 - Multi-framework platform roadmap ([`docs/moon/roadmaps/multi_framework_platform.md`](roadmaps/multi_framework_platform.md), MFP1–MFP16) covering React host + Vue/Astro/Aurelia islands, GraphQL schema/Apollo singleton, static-export fixtures, and WASM workers, grounded in architecture research and the current `src/frameworks` / `src/graphql` layout.
 - Master roadmap R4 updates: workstream table entry, phase gate G6, timeline node R8, MFP implementation slices, risks X9–X11, and research anchors for multi-framework docs.
