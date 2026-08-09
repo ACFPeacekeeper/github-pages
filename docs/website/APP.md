@@ -52,7 +52,12 @@ docs/website/
 ├── src/
 │   ├── css/custom.css
 │   ├── pages/                  # Docusaurus pages (homepage)
-│   ├── frameworks/react/       # local React host surface (optional islands)
+│   ├── frameworks/
+│   │   ├── react/components/   # host-local React UI
+│   │   ├── vue/                # mount.ts + components/ + directives/
+│   │   ├── aurelia/            # mount.ts + docs-convergence-app + components/
+│   │   ├── astro/              # ResearchOrbit island + wrappers
+│   │   └── shared/             # framework-neutral island utils only
 │   ├── libraries/              # form / motion / router / redux seeds
 │   ├── configs/, constants/, enums/, graphql/, hooks/, interfaces/
 │   ├── simulations/, utils/, stories/   # parity modules + research lore
