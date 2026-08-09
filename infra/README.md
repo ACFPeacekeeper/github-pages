@@ -1,6 +1,6 @@
 # infra/
 
-Infrastructure-as-code for self-hosting `github-pages` as an alternative to its actual deployment, which is the GitHub Pages static export via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) (also see [`cloud/`](../cloud/) for AWS/Azure static-hosting configs).
+Infrastructure-as-code for self-hosting `github-pages` as an alternative to its actual deployment, which is the GitHub Pages static export via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) (also see [`cloud/`](cloud/) for AWS/Azure static-hosting configs).
 
 Every option here containerizes the same thing: `npm run build` output, served by nginx. Pick one deployment path — don't run more than one against the same target at once.
 

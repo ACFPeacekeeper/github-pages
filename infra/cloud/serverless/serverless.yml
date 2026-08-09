@@ -1,4 +1,4 @@
-# Alternative to cloud/aws/cfn-template.yaml: deploys the static export to
+# Alternative to infra/cloud/aws/cfn-template.yaml: deploys the static export to
 # S3 via the Serverless Framework + serverless-finch, instead of hand-written
 # CloudFormation. Requires `npm install --save-dev serverless serverless-finch`.
 #
