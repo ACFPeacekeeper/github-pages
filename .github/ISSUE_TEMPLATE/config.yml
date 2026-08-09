@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🌐 Live Site
+    url: https://acfharbinger.github.io/github-pages/
+    about: The deployed site this repository builds.
+  - name: 📖 Docs
+    url: https://github.com/ACFHarbinger/github-pages/tree/main/docs
+    about: Research notes and write-ups backing the site's reports/posts.

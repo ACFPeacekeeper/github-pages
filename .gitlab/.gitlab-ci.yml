@@ -1,0 +1,132 @@
+stages:
+  - test
+  - security
+  - docs
+  - benchmark
+  - sync
+
+# ==========================================
+# STAGE: TEST (ci.yml)
+# ==========================================
+lint-typecheck-unit:
+  stage: test
+  image: node:20
+  script:
+    - npm ci
+    - npm run lint
+    - npx tsc --noEmit
+    - npm run test:unit
+    - npm run test:integration
+
+build:
+  stage: test
+  image: node:20
+  needs: ["lint-typecheck-unit"]
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - out
+
+e2e:
+  stage: test
+  image: cypress/browsers:node-20.11.1-chrome-123.0.6312.86-1-ff-124.0-edge-122.0.2365.92-1
+  needs: ["build"]
+  script:
+    - npm ci
+    - npm run build
+    # cypress.config.js's specPattern covers both e2e/ and smoke/, so this
+    # one run covers both suites.
+    - npx start-server-and-test start http://localhost:3000/github-pages "npm run cypress:run"
+
+lint-notebooks:
+  stage: test
+  image: python:3.12
+  script:
+    - pip install uv
+    - cd notebooks
+    - uv sync --extra dev
+    - uv run ruff check .
+
+# ==========================================
+# STAGE: SECURITY (security.yml)
+# ==========================================
+security-npm-audit:
+  stage: security
+  image: node:20
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+    - npm audit --audit-level=high
+
+security-pip-audit:
+  stage: security
+  image: python:3.12
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+    - pip install uv
+    - cd notebooks
+    - uv sync --extra dev
+    - uv run pip-audit
+
+# ==========================================
+# STAGE: DOCS (docs.yml)
+# ==========================================
+docs-link-check:
+  stage: docs
+  image: lycheeverse/lychee:latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      changes:
+        - "docs/**/*"
+  script:
+    - lychee --verbose --no-progress --include-verbatim 'docs/**/*.md'
+
+# ==========================================
+# STAGE: BENCHMARK (benchmark.yml)
+# ==========================================
+lighthouse:
+  stage: benchmark
+  image: node:20
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      changes:
+        - "app/**/*"
+        - "src/**/*"
+        - "public/**/*"
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  script:
+    - npm ci
+    - npm run build
+    - npx serve@latest out -l 3000 &
+    - npx wait-on http://localhost:3000/github-pages
+    - npx lighthouse http://localhost:3000/github-pages --output=json --output-path=./lighthouse-report.json --chrome-flags="--headless --no-sandbox"
+  artifacts:
+    paths:
+      - lighthouse-report.json
+
+# ==========================================
+# STAGE: SYNC (agent_sync.yml)
+# ==========================================
+agent-backlog-sync:
+  stage: sync
+  image: python:3.12
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      changes:
+        - "docs/moon/ROADMAP.md"
+        - "docs/moon/CHANGELOG.md"
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  before_script:
+    - pip install uv
+    - uv sync --project git
+  script:
+    - uv run --project git python -c "import json,pathlib; json.loads(pathlib.Path('git/config/project_labels.json').read_text())"
+    - uv run --project git python -c "import yaml,pathlib; yaml.safe_load(pathlib.Path('git/config/automation_rules.yaml').read_text())"
+    - uv run --project git python -m git.scripts.sync_backlog --repo-owner ACFHarbinger --repo-name github-pages --project-id "$PROJECT_ID"
+  variables:
+    GITHUB_TOKEN: $PROJECT_AUTOMATION_TOKEN

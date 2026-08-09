@@ -1,0 +1,183 @@
+# **Strategic Integration of Vue 3 Micro-Frontends within Next.js App Router Architectures**
+
+## **Executive Summary**
+
+The architectural imperative to embed Vue 3 components, custom directives, and reactive state stores inside an existing React 18 and Next.js App Router infrastructure presents profound technical and theoretical challenges. While both frameworks excel at declarative UI rendering, their underlying engines are diametrically opposed. React relies on referential equality, immutable state updates, and synthetic event delegation. Conversely, Vue 3 utilizes mutable proxies, fine-grained dependency tracking, and native DOM event emission. The integration of these two distinct paradigms within a single browser thread requires meticulous orchestration to prevent server-side hydration mismatches, memory leaks, and severe performance regressions.  
+This exhaustive analysis evaluates the mechanisms necessary to host a Vue application instance within a server-rendered Next.js environment. The research demonstrates that while Webpack Module Federation was historically the standard for such micro-frontend architectures, the ecosystem shift toward the Next.js App Router has rendered legacy federation plugins obsolete1. Consequently, architectural strategies must pivot toward alternative integration patterns. The most viable paths include Native Web Components via Vue’s defineCustomElement API, specialized runtime wrappers such as Veaury, or compile-time translation toolchains like VuReact that strip away the Vue runtime entirely4.  
+The findings indicate that embedding a secondary framework runtime inside Next.js necessitates strict client-side isolation. Vue components must be confined behind Next.js "use client" boundaries and loaded asynchronously via next/dynamic to neutralize server-side rendering (SSR) conflicts and prevent Node.js execution errors6. Furthermore, bridging cross-framework state—such as synchronizing a Pinia store with a React component—can be safely achieved using React’s useSyncExternalStore hook, which provides a concurrent-safe subscription model to Vue’s reactive proxies8.  
+Finally, the report highlights the critical importance of lifecycle memory management and CSS encapsulation. Rendering Vue inside a React host creates disconnected DOM hierarchies that the React garbage collector cannot naturally prune. Explicit teardown protocols, validated through Chrome DevTools heap snapshots, are mandatory10. Concurrently, styling collisions, particularly with utility frameworks like Tailwind CSS v4 operating within the Shadow DOM, require specialized PostCSS configurations or programmatic stylesheet injections to ensure visual consistency across the application boundary12.
+
+## **Framework Wrapper and Mount Options Matrix**
+
+Integrating a Vue component into a Next.js host requires a translation layer capable of mapping React props to Vue reactive properties, and Vue emitted events to React callback functions. Four primary architectural patterns exist for this requirement, each with distinct trade-offs regarding developer experience (DX), type safety, bundle footprint, and runtime performance.
+
+### **Native Web Components (Custom Elements)**
+
+Vue 3 provides a native API, defineCustomElement, which compiles a Vue component into a standard browser Web Component. This approach allows the Vue component to be consumed in React exactly as if it were a native HTML element. The internal Vue component instance mounts inside a Shadow Root when the element's connectedCallback is invoked by the browser4.  
+When setting props on a Custom Element, Vue 3 automatically checks for DOM-property presence and prefers setting values as DOM properties rather than attributes, effectively bypassing the string-only limitation of standard HTML attributes4. Events emitted via Vue's $emit are dispatched as native CustomEvent objects, with the payload exposed in the detail property4. For applications prioritizing strict framework agnosticism, this approach is highly effective, though it introduces friction regarding global CSS penetration and React synthetic event bindings.
+
+### **Runtime Wrappers and Coexistence Bridges**
+
+Runtime wrappers operate by maintaining both the React and Vue engines in memory and providing an interoperability bridge between the virtual DOMs. Veaury is a dedicated interoperability layer designed specifically for running Vue 3 inside React 18 (and vice versa)5. By utilizing Veaury’s applyVueInReact function, developers can wrap a Vue component and render it as a standard React component. Veaury handles the internal mapping of props, slots, and context automatically. It provides robust support for bidirectional events and even supports rendering React components inside the Vue children via specialized slots16.  
+However, Veaury relies heavily on the presence of both runtimes and is primarily designed for temporary coexistence scenarios rather than seamless, lightweight micro-frontend isolation5. Furthermore, dependency maintenance is a noted risk, as the project exhibits signs of reduced active maintenance, and the performance cost of a dual-engine architecture is inescapable5. Vuera, an older alternative, was highly relevant during the Vue 2 and React 15 era but lacks the architectural modernization required for React 18's concurrent mode and Vue 3's Composition API5.
+
+### **Compile-Time Translation Toolchains**
+
+A paradigm shift in cross-framework integration is the use of compile-time toolchains like VuReact. Rather than shipping a runtime wrapper that operates in the browser, VuReact functions as a compiler that translates Vue 3 Single-File Components (SFCs) directly into standard React 18 TypeScript code5.  
+VuReact parses the Vue Abstract Syntax Tree (AST) and semantically maps Vue concepts to React equivalents. For instance, defineProps becomes React props typing, defineEmits becomes callback props, and reactive ref dependencies are traced to generate precise React Hook dependency arrays5. This approach eliminates the dual-runtime overhead entirely, resulting in a pure React bundle. While highly efficient, this strategy is better suited for permanent migration or one-way component sharing rather than true dynamic micro-frontend federation where independent teams deploy code at runtime.
+
+### **Module Federation and Next.js Multi-Zones**
+
+Webpack Module Federation allows independent builds to share code dynamically at runtime, historically serving as the backbone for micro-frontend architectures18. The @module-federation/nextjs-mf plugin previously facilitated the injection of remote Vue apps into a Next.js host18.  
+However, this plugin is officially deprecated and does not support the Next.js App Router1. The App Router’s reliance on React Server Components (RSC) and a fundamentally restructured bundler output breaks the legacy module federation negotiation process. For modern Next.js architectures, Vercel officially recommends Next.js Multi-Zones, which relies on routing traffic between independent applications at the reverse-proxy level rather than embedding them at the component level19. If component-level embedding is strictly required, Web Components or lazy-loaded runtime wrappers remain the only viable paths.
+
+### **Integration Options Matrix**
+
+| Strategy | DX & Type Safety | Next.js App Router Compatibility | Performance & Bundle Cost | Architectural Pros & Cons |
+| :---- | :---- | :---- | :---- | :---- |
+| **Web Components (defineCustomElement)** | Medium. Requires manual declaration of custom element types in TS to recognize native DOM props and events. | High. Can be safely rendered inside a "use client" component without server-side hydration crashes. | Medium. Requires the Vue runtime, but benefits from Vite/Rollup tree-shaking20. | **Pros:** Framework agnostic; strict style isolation via Shadow DOM20. **Cons:** Shadow DOM breaks global CSS; scoped slots are unsupported (native slots only)4. |
+| **Veaury (Runtime Wrapper)** | High. Preserves TypeScript interfaces for props and maps defineEmits accurately to React callbacks5. | High. Requires 'use client' at the top of the wrapper file6. | High. Carries the weight of both the React and Vue runtimes simultaneously5. | **Pros:** Handles complex Vue features like v-model and Context automatically16. **Cons:** Unmaintained repository; dual-runtime memory cost is inescapable5. |
+| **VuReact (Compile-Time)** | Very High. Generates native React interfaces and preserves type definitions seamlessly22. | Very High. Outputs standard React 18 code, eliminating any Next.js compatibility issues5. | Minimal. Strips the Vue runtime entirely, resulting in zero overhead5. | **Pros:** Eliminates memory leaks and runtime friction; highly maintainable output17. **Cons:** Acts as a migration tool rather than a runtime micro-frontend orchestrator5. |
+| **Module Federation (nextjs-mf)** | Medium. Relies on Webpack typings and shared singleton configurations18. | Low. Officially unsupported and deprecated for Next.js App Router implementations1. | Low (if successful). Avoids downloading duplicate dependencies18. | **Pros:** True runtime composition of independent applications. **Cons:** Breaks App Router paradigms; fraught with version collisions18. |
+
+## **Vue Directives and Store Interop Guide**
+
+Bridging the conceptual gap between Vue’s template-driven, proxy-based reactivity and React’s JSX, unidirectional data flow requires a rigorous mapping strategy. The implementation details vary significantly depending on whether the architecture relies on Web Components or a runtime translation layer.
+
+### **Synthesizing Template Directives in React JSX**
+
+#### **Two-Way Data Binding (v-model)**
+
+In the Vue 3 ecosystem, the v-model directive on custom components is syntactic sugar for passing a modelValue prop and listening to an update:modelValue event5. When embedding a Vue component inside React, the React host must manually reconstruct this two-way binding using standard controlled component patterns.  
+If the Vue component is compiled as a Custom Element, React must pass the state to the element's property and attach a DOM event listener that extracts the updated value from the native CustomEvent detail payload. Compile-time tools like VuReact handle this translation automatically, semantically mapping v-model:name to a standard name prop coupled with an onUpdateName callback contract5.
+
+#### **Event Emitters and Modifiers (v-on / @)**
+
+Vue’s event system is highly expressive, supporting modifiers such as .prevent and .stop. When a Vue component uses defineEmits, a wrapper tool like Veaury will automatically translate a camelCase or kebab-case event into a React-compliant onCustomEvent callback prop5.  
+If utilizing Native Web Components, Vue events are dispatched as native DOM CustomEvent instances rather than React synthetic events4. React’s synthetic event system does not inherently recognize custom DOM events mapped via standard JSX attributes. Therefore, a React useLayoutEffect or useEffect is required to manually invoke addEventListener on the custom element's useRef, ensuring the payloads attached to the event.detail property are properly captured and routed to React's state handlers4.
+
+#### **Slot and Template Interoperability**
+
+Slot interoperability represents one of the most complex friction points between the two frameworks due to fundamental differences in compilation and execution.  
+When deploying Web Components, Custom Elements rely strictly on native HTML slots. Vue's scoped slots—which allow a child component to pass reactive data back up to the parent template—are fundamentally incompatible with native Web Component slots4. Native slots are eagerly evaluated by the browser during parsing, stripping the receiving custom element of the ability to control when or how the slot content renders4. Consequently, passing React state down into a Vue scoped slot via a Web Component boundary is structurally impossible without heavy JavaScript manual assignments.  
+Conversely, runtime wrappers and compile-time translators can circumvent this limitation. Veaury intercepts React's props.children and maps them into Vue's default slot, simulating scoped slot behavior by rendering the React node inside a specialized Vue wrapper on the fly5. VuReact maps Vue default slots directly to props.children and translates scoped slots into function children (e.g., props.children(data)), which perfectly aligns with React's render props pattern17.
+
+### **Cross-Framework State Synchronization**
+
+Micro-frontends rarely operate in total isolation; they frequently require shared state contexts. If the Vue micro-frontend utilizes Pinia for state management, the React host application must be able to read from and react to changes in the Pinia store without triggering full-tree re-renders or breaking referential equality24.  
+The optimal architectural pattern leverages React 18’s useSyncExternalStore hook. This hook was introduced to allow React to safely subscribe to non-React reactive data sources, preventing "tearing" during concurrent rendering passes8. Because Pinia stores offer a built-in $subscribe method and state getters, they natively align with the signature required by useSyncExternalStore9.  
+To bridge Pinia and React, a custom React hook must be authored containing two primary functions:
+
+> 1. **Subscribe Function:** A function that receives a callback from React and registers it with Pinia’s $subscribe. When the Pinia state mutates, the callback is invoked, signaling React to trigger a re-render.  
+> 2. **Snapshot Function:** A function that returns an immutable representation of the current store state. Since Vue’s reactive proxies mutate in place, returning the proxy directly to React will fail React’s Object.is equality check, preventing subsequent re-renders24. The snapshot function must map the Pinia state to a cloned, plain JavaScript object.
+
+This pattern eliminates the need to duplicate state across Redux or Zustand and Pinia. A single source of truth resides in the Vue ecosystem, while React components remain purely reactive consumers via useSyncExternalStore8. Alternatively, framework-agnostic atomic store bridges, such as Nano Stores or Travels, can be deployed to synchronize state across Vue reactivity refs and React Hooks without heavy boilerplate8.
+
+## **Next.js Integration and SSR Architecture**
+
+Deploying Vue components within a Next.js App Router application introduces strict server-side constraints. Next.js defaults to React Server Components (RSC), executing application logic in a Node.js environment to stream serialized HTML to the browser28. The Vue runtime, its template compiler, and its reliance on browser-native APIs (such as window, document, and customElements) cannot survive this execution context without causing immediate exceptions.
+
+### **Isolating Vue to Client Boundaries**
+
+To prevent SSR hydration errors and Node.js crashes, the entire Vue dependency chain must be strictly quarantined to the client side. This requires a robust boundary architecture.  
+The primary mechanism for this isolation is the "use client" directive. Any React component file that imports a Vue component, a Web Component wrapper, or a tool like Veaury must declare "use client" at the top of the module6. This signals the Next.js compiler that the component requires browser APIs and must bypass the Server Component render pipeline.  
+However, simply marking a component as a Client Component does not prevent Next.js from attempting to pre-render it on the server. Next.js pre-renders Client Components by default to optimize the First Contentful Paint (FCP). Because Vue Web Component registration (customElements.define) relies on the browser's global window object, this pre-rendering pass will fail7. The Vue wrapper must be dynamically imported using next/dynamic combined with the { ssr: false } configuration7. This explicit instruction forces the Next.js server to output a structural placeholder and defers the execution and mounting of the Vue runtime entirely to the client's browser.
+
+### **The Prop Serialization Boundary**
+
+A vital architectural constraint within the App Router is the serialization boundary between Server Components and Client Components. When a Next.js Server Component passes data as props to a Client Component (which in turn wraps the Vue application), the props must be plain, serializable JavaScript objects29.  
+Developers cannot pass functions, complex class instances, or Vue reactive proxies across this network boundary29. If the Vue application requires complex initialization data—such as pre-hydrated state from a backend database—the Next.js Server Component must serialize this data into a plain JSON object. The React Client Component then deserializes this object upon hydration and feeds it into the Vue wrapper as a standard prop, or directly injects it into the Pinia store initialization lifecycle.
+
+### **CSS Scoping Collisions: Tailwind CSS v4 vs Shadow DOM**
+
+If the integration relies on Vue Custom Elements, a severe style encapsulation conflict arises, particularly when the host application utilizes Tailwind CSS v4.  
+Web Components encapsulate their internal DOM inside a Shadow Root. As a fundamental rule of web standards, CSS defined in the global document does not penetrate the Shadow DOM30. Tailwind CSS v4 underwent a massive architectural rewrite, moving away from JavaScript configuration files toward a CSS-first approach built on modern features like @property and CSS cascade layers31.  
+By default, Tailwind v4 injects its CSS custom properties (variables) into the :root pseudo-class12. Because the Shadow DOM establishes an entirely separate boundary, elements inside the Shadow Root cannot resolve the variables attached to the document’s :root. This causes padding, borders, typography scaling, and layouts to silently fail or collapse entirely within the micro-frontend12.  
+To resolve this conflict and ensure Tailwind styling persists inside the Vue component, the architecture must adopt one of two strategies:
+
+> 1. **Selector Expansion:** Modify the Tailwind configuration or the PostCSS injection layer to append the :host selector alongside :root. By assigning the design token variables to :root, :host, the CSS variables become available both globally and within any Shadow DOM context that the Vue component generates12.  
+> 2. **Programmatic Stylesheet Injection:** During the build process, extract the required Tailwind utility classes and construct a CSSStyleSheet. When the Vue Web Component mounts and establishes its shadowRoot, the architecture must programmatically push this stylesheet into the shadow root’s adoptedStyleSheets array14. Vue's defineCustomElement API simplifies this by allowing styles to be passed as an array of strings in the styles configuration option, which Vue automatically injects into the shadow root upon instantiation4.
+
+## **Lifecycle and Memory Safety Rules**
+
+Dual-framework architectures are notoriously prone to memory leaks. In a standard React application, the React DOM renderer maintains a synthetic event system and a highly optimized garbage collection pipeline that cleans up virtual DOM nodes when components unmount. However, when React mounts a Vue application, it essentially spawns a parallel universe. React is entirely unaware of the event listeners, reactive proxies, and DOM nodes that Vue generates.  
+If the React host transitions to a new route in the Next.js App Router, the React component holding the Vue app will unmount, but the underlying Vue instances and detached DOM nodes may remain trapped in memory.
+
+### **Explicit Teardown Protocols**
+
+To prevent the accumulation of ghost components, strict lifecycle cleanup rules must be enforced at the boundary layer between React and Vue. Memory leaks in micro-frontends typically stem from variables retaining strong references to unreachable DOM nodes34.  
+If utilizing a manual DOM mounting strategy, the React useEffect hook responsible for instantiating the Vue application must return a cleanup function. Within this cleanup function, the architecture must explicitly invoke app.unmount(). This command instructs the Vue runtime to trigger onBeforeUnmount and onUnmounted hooks across its component tree, safely severing reactive bindings and releasing DOM references to the garbage collector10.  
+Memory leaks frequently originate from JavaScript closures that capture massive objects in scope11. A common failure point occurs when a Vue component attaches an event listener to the global window or document object, or establishes a postMessage channel to communicate with the React host34. If the Vue component does not explicitly call removeEventListener in its teardown hooks, the global listener will retain a strong reference to the Vue component's closure long after the Next.js route has changed36. Similarly, any React useEffect closures that subscribe to Vue’s Pinia stores must immediately call the unsubscribe function upon unmounting, preventing orphaned subscribers from firing state updates into detached trees10.
+
+### **Profiling Memory Leaks via Chrome DevTools**
+
+The prevention of memory bloat requires rigorous validation using the Chrome DevTools Memory Profiler. The diagnostic workflow involves capturing and comparing Heap Snapshots during Next.js route transitions38.  
+The profiling methodology dictates the following steps:
+
+> 1. **Baseline Snapshot:** Open the DevTools Memory panel, load the host Next.js application, navigate to the route containing the Vue micro-frontend, and take an initial Heap Snapshot11.  
+> 2. **Interaction and Unmounting:** Interact with the Vue component to populate its reactive state, then navigate away to a completely different Next.js route, forcing the React wrapper to unmount10.  
+> 3. **Garbage Collection:** Manually force garbage collection by clicking the "Collect Garbage" (trash can) icon in DevTools to ensure no orphaned objects are simply waiting for an idle cleanup cycle11.  
+> 4. **Comparison Snapshot:** Take a second Heap Snapshot. Switch the view from "Summary" to "Comparison" and evaluate the delta against the baseline11.
+
+The critical indicators of a memory leak in a micro-frontend architecture are objects labeled with the prefix Detached. A "Detached HTML element" signifies a DOM node that has been removed from the visible document tree but is still being kept alive in memory because a JavaScript variable or event listener continues to hold a reference to it34. By analyzing the "Retained Size"—which dictates the total amount of memory that would be freed if the object and its dependencies were deleted—and walking up the "Retainers" tree, developers can pinpoint the exact rogue closure preventing the Vue micro-frontend from being garbage collected34.
+
+## **Performance, Bundle Optimization, and Tree-Shaking**
+
+The decision to operate a Vue micro-frontend inside a React host carries undeniable performance penalties. The primary cost is network overhead: the client browser must download, parse, and execute both the React runtime (shipped by Next.js) and the Vue 3 runtime, significantly inflating the initial JavaScript payload.
+
+### **Latency and Core Web Vitals Impact**
+
+Academic research analyzing micro-frontend architectures indicates that loading multiple frontend frameworks dynamically can increase initial page load times, inflate memory consumption, and severely impact Core Web Vitals40. Specifically, the Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS) metrics are highly vulnerable in these environments.  
+If the Vue component is injected at runtime without a predetermined height or layout constraint, its sudden rendering inside the Next.js host will trigger a massive layout shift, severely penalizing the CLS metric40. To mitigate this, the Next.js next/dynamic implementation must specify a loading fallback component. This fallback should be a structurally identical skeleton screen rendered purely in React and CSS. This guarantees that the layout space is reserved while the browser asynchronously fetches the heavy Vue bundle, stabilizing the page architecture and preserving user experience.
+
+### **Bundle Isolation and Lazy Loading Strategies**
+
+To protect the performance of the broader Next.js application, the Vue dependencies must be aggressively isolated. The Vue runtime should never be bundled into the main Next.js application chunk.  
+By enforcing the next/dynamic pattern, Next.js automatically creates a distinct Webpack code-split boundary7. The JavaScript payload containing Vue, Pinia, and the compiled Vue components is partitioned into a separate asynchronous chunk. Consequently, users navigating purely React-driven pages within the host application will incur zero performance penalty. The Vue runtime is downloaded precisely when the user navigates to the specific route containing the micro-frontend widget.  
+Furthermore, leveraging Vue 3's Composition API and ensuring that the Web Component wrappers are built as ES Modules ensures that modern bundlers can effectively tree-shake unused Vue features. Vue's relatively compact bundle size allows it to operate harmoniously in this context, provided that heavy third-party libraries within the Vue ecosystem are also lazy-loaded independently from the core framework40. For organizations utilizing Vite alongside Vue to build their micro-frontends, specialized plugins such as @vitejs/plugin-vue can optimize .ce.vue files to ensure CSS is properly injected into the Shadow DOM without duplicating styles in the broader JavaScript bundle21.  
+For architectures where maximum performance is paramount and ongoing runtime coexistence is unnecessary, the aforementioned compile-time translators (like VuReact) provide the ultimate bundle optimization. By translating Vue syntax into pure React code during the CI/CD pipeline, the Vue runtime is eradicated from the production bundle entirely, yielding the performance profile of a monolithic React application while preserving the developer experience of Vue5.
+
+#### **Works cited**
+
+> 1. Building a Microfrontend Architecture with React, Vue, Angular, and Next.js in an Angular Host | by hemanthkumar rajan | Medium, [https://medium.com/@hemanthkumarrajan/building-a-microfrontend-architecture-with-react-vue-angular-and-next-js-in-an-angular-host-72753562c338](https://medium.com/@hemanthkumarrajan/building-a-microfrontend-architecture-with-react-vue-angular-and-next-js-in-an-angular-host-72753562c338)  
+> 2. Next.js Integration Overview \- Module federation, [https://module-federation.io/integrations/framework/nextjs/](https://module-federation.io/integrations/framework/nextjs/)  
+> 3. Module Federation Is a Dead End for Next.js. Here's the 2026 Migration Path. \- Medium, [https://medium.com/@yashnigam.p/module-federation-is-a-dead-end-for-next-js-heres-the-2026-migration-path-36090738cedb](https://medium.com/@yashnigam.p/module-federation-is-a-dead-end-for-next-js-heres-the-2026-migration-path-36090738cedb)  
+> 4. Vue and Web Components, [https://vuejs.org/guide/extras/web-components.html](https://vuejs.org/guide/extras/web-components.html)  
+> 5. Vue-to-React Migration Deep Dive: Vuera, Veaury, and VuReact \- DEV Community, [https://dev.to/smirk9581/vue-to-react-migration-deep-dive-vuera-veaury-and-vureact-12bo](https://dev.to/smirk9581/vue-to-react-migration-deep-dive-vuera-veaury-and-vureact-12bo)  
+> 6. How to create and use Vue components using Veaury in Next.js \- GitHub, [https://github.com/devilwjp/veaury\_in\_nextjs](https://github.com/devilwjp/veaury_in_nextjs)  
+> 7. Avoiding SSR Pitfalls: Using \`next/dynamic\` in Your Next.js App \- DEV Community, [https://dev.to/snaka/avoiding-ssr-pitfalls-using-nextdynamic-in-your-nextjs-app-a4o](https://dev.to/snaka/avoiding-ssr-pitfalls-using-nextdynamic-in-your-nextjs-app-a4o)  
+> 8. mutativejs/travels: A fast, framework-agnostic undo/redo core powered by Mutative JSON Patch \- GitHub, [https://github.com/mutativejs/travels](https://github.com/mutativejs/travels)  
+> 9. bytebase/AGENTS.md at main · bytebase/bytebase · GitHub, [https://github.com/bytebase/bytebase/blob/main/AGENTS.md](https://github.com/bytebase/bytebase/blob/main/AGENTS.md)  
+> 10. How to fix memory leaks in Vue \- CoreUI, [https://coreui.io/answers/how-to-fix-memory-leaks-in-vue/](https://coreui.io/answers/how-to-fix-memory-leaks-in-vue/)  
+> 11. How to Debug Memory Leaks in React Applications \- OneUptime, [https://oneuptime.com/blog/post/2026-01-15-debug-memory-leaks-react-applications/view](https://oneuptime.com/blog/post/2026-01-15-debug-memory-leaks-react-applications/view)  
+> 12. v4: define all Tailwind CSS Variables using ":root, :host" selector for Shadow DOM compatibility · tailwindlabs tailwindcss · Discussion \#15556 · GitHub, [https://github.com/tailwindlabs/tailwindcss/discussions/15556](https://github.com/tailwindlabs/tailwindcss/discussions/15556)  
+> 13. How I Finally Made TailwindCSS Work Inside the Shadow DOM (A Real Case Study), [https://dev.to/dhirajarya01/how-i-finally-made-tailwindcss-work-inside-the-shadow-dom-a-real-case-study-5gkl](https://dev.to/dhirajarya01/how-i-finally-made-tailwindcss-work-inside-the-shadow-dom-a-real-case-study-5gkl)  
+> 14. Is there a way to inject tailwind classes into shadow element so React Component gets correctly styled? \- Stack Overflow, [https://stackoverflow.com/questions/77777203/is-there-a-way-to-inject-tailwind-classes-into-shadow-element-so-react-component](https://stackoverflow.com/questions/77777203/is-there-a-way-to-inject-tailwind-classes-into-shadow-element-so-react-component)  
+> 15. Veaury \- Use Vue in React projects (and vice versa) \- Made With Vue.js, [https://madewithvuejs.com/veaury](https://madewithvuejs.com/veaury)  
+> 16. gloriasoft/veaury: Use React in Vue3 and Vue3 in React, And as perfect as possible\! \- GitHub, [https://github.com/gloriasoft/veaury](https://github.com/gloriasoft/veaury)  
+> 17. Vue to React Migration: Why Runtime Wrappers Hit a Ceiling \- DEV Community, [https://dev.to/smirk9581/vue-to-react-migration-why-runtime-wrappers-hit-a-ceiling-32c9](https://dev.to/smirk9581/vue-to-react-migration-why-runtime-wrappers-hit-a-ceiling-32c9)  
+> 18. Taming the Beast: Mastering Micro-Frontends with Webpack Module Federation & Next.js, [https://jealous.dev/blog/taming-the-beast-mastering-micro-frontends-with-webpack-module-federation-nextjs](https://jealous.dev/blog/taming-the-beast-mastering-micro-frontends-with-webpack-module-federation-nextjs)  
+> 19. Guides: Multi-zones \- Next.js, [https://nextjs.org/docs/app/guides/multi-zones](https://nextjs.org/docs/app/guides/multi-zones)  
+> 20. Building Modern Web Components with Vue 3 | by Ylenius \- Medium, [https://medium.com/@ylenius/building-modern-web-components-with-vue-3-0acd4964afc1](https://medium.com/@ylenius/building-modern-web-components-with-vue-3-0acd4964afc1)  
+> 21. @vitejs/plugin-vue \- npm, [https://www.npmjs.com/package/@vitejs/plugin-vue](https://www.npmjs.com/package/@vitejs/plugin-vue)  
+> 22. How does VuReact implement Vue v-on in React \- DEV Community, [https://dev.to/smirk9581/how-does-vureact-implement-vue-v-on-in-react-4mb0](https://dev.to/smirk9581/how-does-vureact-implement-vue-v-on-in-react-4mb0)  
+> 23. How does VuReact compile Vue 3's withDefaults to React? \- DEV Community, [https://dev.to/smirk9581/how-does-vureact-compile-vue-3s-withdefaults-to-react-5coa](https://dev.to/smirk9581/how-does-vureact-compile-vue-3s-withdefaults-to-react-5coa)  
+> 24. Isolating business logic from render : r/reactjs \- Reddit, [https://www.reddit.com/r/reactjs/comments/1equ753/isolating\_business\_logic\_from\_render/](https://www.reddit.com/r/reactjs/comments/1equ753/isolating_business_logic_from_render/)  
+> 25. We all love react as developers, but what you hate the most about react ? : r/reactjs \- Reddit, [https://www.reddit.com/r/reactjs/comments/1cjuq30/we\_all\_love\_react\_as\_developers\_but\_what\_you\_hate/](https://www.reddit.com/r/reactjs/comments/1cjuq30/we_all_love_react_as_developers_but_what_you_hate/)  
+> 26. React Class Note \- AltSchool Africa, [https://react.oluwasetemi.dev/186](https://react.oluwasetemi.dev/186)  
+> 27. Author page for OpenReplay Team, [https://blog.openreplay.com/authors/openreplay-team/](https://blog.openreplay.com/authors/openreplay-team/)  
+> 28. Next.js App Router \- React Framework for Production Web Applications \- GitHub, [https://github.com/Next-js-App-Router](https://github.com/Next-js-App-Router)  
+> 29. Only plain objects can be passed to Client Components from Server Components. What does this mean? : r/nextjs \- Reddit, [https://www.reddit.com/r/nextjs/comments/1as8cr1/only\_plain\_objects\_can\_be\_passed\_to\_client/](https://www.reddit.com/r/nextjs/comments/1as8cr1/only_plain_objects_can_be_passed_to_client/)  
+> 30. Digging Deeper into Why Web Components and Tailwind CSS Don't Play Well Together, [https://blog.kinto-technologies.com/posts/2025-07-14-web-components-and-tailwind-css-dont-mix-en/](https://blog.kinto-technologies.com/posts/2025-07-14-web-components-and-tailwind-css-dont-mix-en/)  
+> 31. Tailwind CSS v4.0, [https://tailwindcss.com/blog/tailwindcss-v4](https://tailwindcss.com/blog/tailwindcss-v4)  
+> 32. Tailwind CSS v4 styles not applying in Shadow DOM but work in development \- Reddit, [https://www.reddit.com/r/reactjs/comments/1lh36lx/tailwind\_css\_v4\_styles\_not\_applying\_in\_shadow\_dom/](https://www.reddit.com/r/reactjs/comments/1lh36lx/tailwind_css_v4_styles_not_applying_in_shadow_dom/)  
+> 33. Using Tailwind Classes in The Shadow DOM \- Richard Kovacs, [https://richardkovacs.dev/blog/using-tailwind-classes-in-the-shadow-dom](https://richardkovacs.dev/blog/using-tailwind-classes-in-the-shadow-dom)  
+> 34. Memory Leaks in Micro-Frontend Architectures \- d.velop Blog, [https://blog.d-velop.com/thinking-digitally/memory-leaks/](https://blog.d-velop.com/thinking-digitally/memory-leaks/)  
+> 35. Memory Leaks in JavaScript & React \- The Hidden Enemy \- DEV Community, [https://dev.to/fazal\_mansuri\_/memory-leaks-in-javascript-react-the-hidden-enemy-74p](https://dev.to/fazal_mansuri_/memory-leaks-in-javascript-react-the-hidden-enemy-74p)  
+> 36. A Practical Guide to Fixing Memory Leaks in Frontend Apps with Chrome DevTools., [https://javascript.plainenglish.io/stop-the-drain-a-practical-guide-to-fixing-memory-leaks-in-frontend-apps-with-chrome-devtools-aeca19a3bdbb](https://javascript.plainenglish.io/stop-the-drain-a-practical-guide-to-fixing-memory-leaks-in-frontend-apps-with-chrome-devtools-aeca19a3bdbb)  
+> 37. Fixing memory leaks in web applications | Read the Tea Leaves \- Nolan Lawson, [https://nolanlawson.com/2020/02/19/fixing-memory-leaks-in-web-applications/](https://nolanlawson.com/2020/02/19/fixing-memory-leaks-in-web-applications/)  
+> 38. Record heap snapshots | Chrome DevTools, [https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots](https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots)  
+> 39. Fix memory problems | Chrome DevTools, [https://developer.chrome.com/docs/devtools/memory-problems](https://developer.chrome.com/docs/devtools/memory-problems)  
+> 40. ISSN: 2320-5407 Int. J. Adv. Res. 12(10), 31-34 \- International Journal of Advanced Research (IJAR), [https://www.journalijar.com/uploads/2024/10/67176918ad488\_IJAR-48594.pdf](https://www.journalijar.com/uploads/2024/10/67176918ad488_IJAR-48594.pdf)  
+> 41. Exploring Software Architectural Transitions: From Monolithic Applications to Microfrontends enhanced by Webpack library and Cypress Testing \- WebThesis, [https://webthesis.biblio.polito.it/31828/1/tesi.pdf](https://webthesis.biblio.polito.it/31828/1/tesi.pdf)  
+> 42. (PDF) BALANCING ACCESSIBILITY AND PERFORMANCE IN PROGRESSIVE WEB APPLICATIONS USING MICRO FRONTEND ARCHITECTURE: A COMPREHENSIVE STUDY OF REACTJS, ANGULARJS, AND VUE-JS \- ResearchGate, [https://www.researchgate.net/publication/385422145\_BALANCING\_ACCESSIBILITY\_AND\_PERFORMANCE\_IN\_PROGRESSIVE\_WEB\_APPLICATIONS\_USING\_MICRO\_FRONTEND\_ARCHITECTURE\_A\_COMPREHENSIVE\_STUDY\_OF\_REACTJS\_ANGULARJS\_AND\_VUE-JS](https://www.researchgate.net/publication/385422145_BALANCING_ACCESSIBILITY_AND_PERFORMANCE_IN_PROGRESSIVE_WEB_APPLICATIONS_USING_MICRO_FRONTEND_ARCHITECTURE_A_COMPREHENSIVE_STUDY_OF_REACTJS_ANGULARJS_AND_VUE-JS)

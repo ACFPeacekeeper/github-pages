@@ -1,0 +1,7 @@
+/* Storybook's own Tailwind entry point — kept separate from
+   ../../../app/globals.css so Docusaurus never has a reason to load this
+   file (see tailwind.config.cjs's comment for why the two builds are
+   deliberately kept apart). */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

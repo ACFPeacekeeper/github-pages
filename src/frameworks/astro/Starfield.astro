@@ -1,0 +1,45 @@
+---
+// src/astro/Starfield.astro
+const { numStars = 100 } = Astro.props;
+---
+<div class="starfield-container">
+  <h2>Astro Starfield Component</h2>
+  <div class="stars">
+    {Array.from({ length: numStars }).map(() => (
+      <div 
+        class="star" 
+        style={`--top: ${Math.random() * 100}%; --left: ${Math.random() * 100}%; --delay: ${Math.random() * 5}s`}
+      ></div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .starfield-container {
+    background: #000;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+  }
+  .stars {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    top: var(--top);
+    left: var(--left);
+    animation: twinkle 5s infinite var(--delay);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+</style>

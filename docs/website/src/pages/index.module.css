@@ -1,0 +1,128 @@
+.heroBanner {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 1rem 5rem;
+  text-align: center;
+  background: linear-gradient(180deg, var(--ifm-background-color) 0%, var(--hero-bg-end) 100%);
+}
+
+.heroGlow {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 26rem;
+  background: radial-gradient(60% 60% at 50% 0%, var(--hero-glow-color) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroTitle {
+  position: relative;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--ifm-color-primary) 0%, var(--hero-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroSubtitle {
+  position: relative;
+  max-width: 42rem;
+  margin: 1rem auto 0;
+  font-size: 1.15rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.buttons {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primaryButton {
+  color: #fff;
+  background: linear-gradient(90deg, var(--ifm-color-primary) 0%, var(--hero-accent) 100%);
+  box-shadow: 0 8px 24px -8px var(--hero-glow-color);
+}
+
+.secondaryButton {
+  color: var(--ifm-font-color-base);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardsSection {
+  padding: 3rem 1rem 5rem;
+}
+
+.cardGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 12px 28px -12px var(--hero-glow-color);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 4rem 1rem 3rem;
+  }
+}

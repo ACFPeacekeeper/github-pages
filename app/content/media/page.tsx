@@ -1,7 +1,7 @@
 import React from 'react';
 import { Gamepad2, Film, BookOpen, Music } from 'lucide-react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import GlassCard from '@/src/components/ui/GlassCard';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import pageImage from '@/assets/images/dg7za3r-5c28683b-d2e4-4018-bf8b-eaea55cde631.png'; 
 
 export default function MediaPage() {

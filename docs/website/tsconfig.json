@@ -1,0 +1,18 @@
+// This file is not used by "docusaurus start/build" commands.
+// It is here to improve your IDE experience (type-checking, autocompletion...),
+// and can also run the package.json "typecheck" script manually.
+{
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      // Same alias convention as the main repo's tsconfig.json, but
+      // pointing two levels up at the actual repo root — .storybook/ and
+      // stories/ import the real src/frameworks/react/components/ sources
+      // rather than duplicating them.
+      "@/*": ["../../*"]
+    }
+  },
+  "exclude": [".docusaurus", "build", "api-docs"]
+}

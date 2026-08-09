@@ -1,0 +1,122 @@
+---
+/**
+ * ResearchOrbit — Astro island visualizing the portfolio research graph
+ * as orbiting theme nodes (docs-site companion to the main ResearchConstellation).
+ */
+interface Props {
+  seed?: number;
+  title?: string;
+}
+
+const { seed = 42, title = 'Research orbit' } = Astro.props;
+
+function mulberry32(a: number) {
+  return function next() {
+    let t = (a += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const rand = mulberry32(seed);
+const labels = ['Research', 'AI', 'OR', 'Systems', 'Routing', 'Audio'];
+const cx = 200;
+const cy = 140;
+const nodes = labels.map((label, i) => {
+  const angle = (i / labels.length) * Math.PI * 2 - Math.PI / 2;
+  const r = 72 + rand() * 18;
+  return {
+    label,
+    x: cx + Math.cos(angle) * r,
+    y: cy + Math.sin(angle) * r,
+  };
+});
+const islandId = `ro-${seed}`;
+---
+
+<section class="research-orbit" id={islandId} aria-labelledby={`${islandId}-title`}>
+  <header>
+    <p class="kicker">Astro island · docs site</p>
+    <h2 id={`${islandId}-title`}>{title}</h2>
+    <p class="sub">Theme nodes in orbit around applied research (illustrative, static export).</p>
+  </header>
+  <svg viewBox="0 0 400 280" role="img" aria-label={title} class="orbit-svg">
+    <circle cx={cx} cy={cy} r="28" class="core" />
+    <text x={cx} y={cy + 4} text-anchor="middle" class="core-label">Core</text>
+    <circle cx={cx} cy={cy} r="90" class="ring" fill="none" />
+    {nodes.map((n) => (
+      <g>
+        <line x1={cx} y1={cy} x2={n.x} y2={n.y} class="spoke" />
+        <circle cx={n.x} cy={n.y} r="16" class="node" />
+        <text x={n.x} y={n.y + 4} text-anchor="middle" class="node-label">{n.label}</text>
+      </g>
+    ))}
+  </svg>
+  <p class="note">Built as a static Astro island for the Docusaurus docs dashboard (MFP5).</p>
+</section>
+
+<style>
+  .research-orbit {
+    color: #e2e8f0;
+    background: #0b1220;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem 1rem;
+    font-family: system-ui, sans-serif;
+  }
+  .kicker {
+    margin: 0 0 0.25rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+  }
+  header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .sub {
+    margin: 0.35rem 0 0.85rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+  .orbit-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    background: #020617;
+  }
+  .core {
+    fill: rgba(59, 130, 246, 0.35);
+    stroke: #60a5fa;
+    stroke-width: 2;
+  }
+  .core-label {
+    fill: #e2e8f0;
+    font-size: 11px;
+  }
+  .ring {
+    stroke: rgba(148, 163, 184, 0.25);
+    stroke-dasharray: 4 4;
+  }
+  .spoke {
+    stroke: rgba(148, 163, 184, 0.35);
+    stroke-width: 1;
+  }
+  .node {
+    fill: rgba(251, 191, 36, 0.25);
+    stroke: #fbbf24;
+    stroke-width: 1.5;
+  }
+  .node-label {
+    fill: #fde68a;
+    font-size: 9px;
+  }
+  .note {
+    margin: 0.75rem 0 0;
+    font-size: 0.78rem;
+    color: #94a3b8;
+  }
+</style>

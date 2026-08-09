@@ -61,10 +61,17 @@ vendor/
 ###########################
 .next
 out
+*.tsbuildinfo
+
+# Cypress #
+###########################
+test/cypress/screenshots
+test/cypress/videos
 
 # Other #
 #########
 tmp
 .cache
+benchmark/results
 .vscode
 /**/gatsby-types.d.ts

@@ -1,0 +1,49 @@
+name: 🐛 Bug Report
+description: Report a defect (structured for humans and coding agents)
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Telling us which page or area is affected speeds up triage.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Which part of the site?
+      options:
+        - Posts
+        - Reports
+        - Projects
+        - Tools
+        - Media
+        - About / Other
+        - Notebooks (notebooks/)
+        - Build / tooling / CI
+        - Other / unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Expected vs actual behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Minimal, exact steps — commands, inputs, environment.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      render: shell

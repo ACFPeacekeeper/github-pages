@@ -1,0 +1,55 @@
+---
+// src/astro/src/pages/index.astro
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro Island</title>
+    <style>
+      :root {
+        --aurora-gradient: linear-gradient(135deg, #0f172a 0%, #312e81 100%);
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: transparent;
+        color: white;
+      }
+      .astro-island {
+        padding: 2rem;
+        background: var(--aurora-gradient);
+        border-radius: 1rem;
+        border: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+      }
+      button {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: rgba(255,255,255,0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="astro-island">
+      <h2>Astro Component</h2>
+      <p>This is a real compiled Astro page running as a micro-frontend inside Next.js!</p>
+      <button id="astro-btn">Click me to run Astro JS</button>
+    </div>
+    
+    <script>
+      let count = 0;
+      document.getElementById('astro-btn')?.addEventListener('click', (e) => {
+        count++;
+        e.target.textContent = `Clicked ${count} times (Astro JS running!)`;
+      });
+    </script>
+  </body>
+</html>

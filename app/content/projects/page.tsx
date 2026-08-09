@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { Brain, Code, Cpu, Gamepad2, FileText, BookOpen } from 'lucide-react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import GlassCard from '@/src/components/ui/GlassCard';
-import Badge from '@/src/components/ui/Badge';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
+import Badge from '@/src/frameworks/react/components/ui/Badge';
 import pageImage from '@/assets/images/Ella-Purnell-Jinx-Arcane-League-of-Legends.webp';
 
 // Common style for links
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
           <GlassCard className="p-6">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">CSE Master of Science (MSc) Dissertation</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              Thesis: "Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations". Developed and compared new Multimodal Deep Unsupervised Models.
+              Thesis: &ldquo;Leveraging Deep Unsupervised Models Towards Learning Robust Multimodal Representations&rdquo;. Developed and compared new Multimodal Deep Unsupervised Models.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
                 <div className="flex gap-2">

@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
-import ReportWrapper from '@/src/components/ReportWrapper';
+import ReportWrapper from '@/src/frameworks/react/ReportWrapper';
 
 // Configuration: Map the slug to the Base Filename (no extension) and Title
 const REPORTS_DATA: Record<string, { baseName: string; title: string }> = {

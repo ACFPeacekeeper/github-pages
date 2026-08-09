@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import fs from 'fs';
 import path from 'path';
-import PostWrapper from '@/src/components/PostWrapper';
+import PostWrapper from '@/src/frameworks/react/PostWrapper';
 
 // Define the type for the URL parameters
 interface PostPageProps {

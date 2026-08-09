@@ -3,8 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { FileText, ExternalLink } from 'lucide-react';
-import SectionHeading from '@/src/components/ui/SectionHeading';
-import GlassCard from '@/src/components/ui/GlassCard';
+import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
+import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import pageImage from '@/assets/images/Jinx-League-of-Legends-League-of-Legends-arcane-Netflix-TV-Series-tv-series-video-game-characters-2233556.jpg';
 
 // Note: 'id' matches the keys in page.tsx 'REPORTS_DATA'

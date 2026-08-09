@@ -1,0 +1,36 @@
+/**
+ * Brand colors match the main site's Tailwind theme (tailwind.config.js:
+ * primary.500/600) so this docs dashboard reads as part of the same
+ * project rather than a generic Docusaurus site.
+ */
+:root {
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d5fe0;
+  --ifm-color-primary-darker: #1b59d4;
+  --ifm-color-primary-darkest: #1749ae;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #4f8ff7;
+  --ifm-color-primary-lightest: #7aabf9;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Homepage hero (src/pages/index.module.css) */
+  --hero-accent: #7c3aed;
+  --hero-glow-color: rgba(37, 99, 235, 0.25);
+  --hero-bg-end: #eef2ff;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #3b82f6;
+  --ifm-color-primary-dark: #206bf5;
+  --ifm-color-primary-darker: #135ff0;
+  --ifm-color-primary-darkest: #0f4dc6;
+  --ifm-color-primary-light: #5c97f8;
+  --ifm-color-primary-lighter: #6da2f9;
+  --ifm-color-primary-lightest: #9bbffb;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --hero-accent: #a78bfa;
+  --hero-glow-color: rgba(59, 130, 246, 0.35);
+  --hero-bg-end: #0f172a;
+}

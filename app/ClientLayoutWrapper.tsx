@@ -3,24 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import Sidebar from '../src/components/layout/Sidebar';
-import Footer from '../src/components/layout/Footer';
-import Header from '../src/components/layout/Header';
+import Sidebar from '../src/frameworks/react/components/layout/Sidebar';
+import Footer from '../src/frameworks/react/components/layout/Footer';
+import Header from '../src/frameworks/react/components/layout/Header';
+import { useAppDispatch } from '../src/libraries/redux/store/hooks';
+import { setTheme } from '../src/libraries/redux/actions/appActions';
+import { persistTheme, readStoredTheme } from '../src/libraries/redux/services/persistence';
+import ReduxProvider from '../src/libraries/redux/store/ReduxProvider';
 
 interface ClientLayoutWrapperProps {
   children: React.ReactNode;
 }
 
-const ClientLayoutWrapper: React.FC<ClientLayoutWrapperProps> = ({ children }) => {
+const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(true); // Default to true (Dark Mode)
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(true);
 
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
 
   // --- getActiveSection Logic ---
-  const getActiveSection = (path: string) => {
-    if (path === '/') return 'home';
+  const getActiveSection = (path: string | null) => {
+    if (!path || path === '/') return 'home';
     const match = path.match(/^\/(?:content\/)?([a-z-]+)/);
     if (match) {
       return match[1];
@@ -32,25 +37,23 @@ const ClientLayoutWrapper: React.FC<ClientLayoutWrapperProps> = ({ children }) =
 
   // --- Dark Mode Logic ---
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
+    const storedTheme = readStoredTheme();
 
     // If stored as 'light', set false. Otherwise default to true (Dark).
-    if (storedTheme === 'light') {
-      setDarkMode(false);
-    } else {
-      setDarkMode(true);
-    }
+    setDarkMode(storedTheme !== 'light');
   }, []);
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      persistTheme('dark');
+      dispatch(setTheme('dark'));
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      persistTheme('light');
+      dispatch(setTheme('light'));
     }
-  }, [darkMode]);
+  }, [darkMode, dispatch]);
 
   const toggleTheme = () => setDarkMode(!darkMode);
   const toggleSidebarCollapsed = () => setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -59,9 +62,7 @@ const ClientLayoutWrapper: React.FC<ClientLayoutWrapperProps> = ({ children }) =
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   useEffect(() => {
-    if (mobileMenuOpen) {
-      setMobileMenuOpen(false);
-    }
+    setMobileMenuOpen(false);
   }, [pathname]);
 
 
@@ -124,5 +125,9 @@ const ClientLayoutWrapper: React.FC<ClientLayoutWrapperProps> = ({ children }) =
     </div>
   );
 };
+
+const ClientLayoutWrapper: React.FC<ClientLayoutWrapperProps> = ({ children }) => (
+  <ReduxProvider><ClientLayoutContent>{children}</ClientLayoutContent></ReduxProvider>
+);
 
 export default ClientLayoutWrapper;

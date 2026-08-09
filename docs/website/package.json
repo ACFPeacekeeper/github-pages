@@ -1,0 +1,82 @@
+{
+  "name": "github-pages-docs-website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "gen:api": "typedoc && node scripts/fix-api-links.mjs",
+    "prestart": "npm run gen:api",
+    "start": "docusaurus start",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-dist",
+    "prebuild": "npm run gen:api && npm run build-storybook",
+    "build": "docusaurus build",
+    "postbuild": "cp -r storybook-dist build/storybook",
+    "build:astro": "astro build || echo 'astro build failed — using committed static/astro-island fallback'",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
+    "next:lint": "next lint",
+    "lint": "eslint -c stack/eslint/eslint.config.js .",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "^3.0.0",
+    "@tanstack/react-form": "^1.33.4",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.469.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "vue": "^3.5.41"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@eslint/js": "^9.39.5",
+    "@storybook/addon-a11y": "^10.5.7",
+    "@storybook/addon-docs": "^10.5.7",
+    "@storybook/react-vite": "^10.5.7",
+    "@types/react": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.66.0",
+    "@typescript-eslint/parser": "^8.66.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "astro": "^7.2.0",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9.39.5",
+    "globals": "^17.9.0",
+    "next": "^15.1.0",
+    "postcss": "^8.5.26",
+    "storybook": "^10.5.7",
+    "tailwindcss": "^3.4.19",
+    "typedoc": "^0.28.20",
+    "typedoc-plugin-markdown": "^4.12.0",
+    "typescript": "^6.0.2",
+    "vite": "^5.4.21"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

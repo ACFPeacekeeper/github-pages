@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Static hosting for the github-pages Next.js export (out/) via S3 + CloudFront.
+  Template path: infra/cloud/aws/cfn-template.yaml.
+  Deploy the stack once, then sync `out/` to the bucket on every release
+  (see the sample deploy commands in the Outputs section).
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: ""
+    Description: Optional custom domain (e.g. acfharbinger.dev). Leave blank to use the CloudFront default domain.
+
+Conditions:
+  HasCustomDomain: !Not [!Equals [!Ref DomainName, ""]]
+
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "github-pages-${AWS::AccountId}-site"
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${AWS::StackName}-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontReadOnly
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${SiteBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Aliases: !If [HasCustomDomain, [!Ref DomainName], !Ref "AWS::NoValue"]
+        Origins:
+          - Id: site-bucket-origin
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          TargetOriginId: site-bucket-origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # AWS managed "CachingOptimized"
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 404
+            ResponsePagePath: /404.html
+        PriceClass: PriceClass_100
+
+Outputs:
+  CloudFrontDomainName:
+    Description: CloudFront distribution domain (or point your custom domain's DNS here)
+    Value: !GetAtt Distribution.DomainName
+  BucketName:
+    Description: S3 bucket to sync the static export into
+    Value: !Ref SiteBucket
+  DeployCommand:
+    Description: Sync the build output and invalidate the cache
+    Value: !Sub >-
+      npm run build &&
+      aws s3 sync out/ s3://${SiteBucket} --delete &&
+      aws cloudfront create-invalidation --distribution-id ${Distribution} --paths "/*"

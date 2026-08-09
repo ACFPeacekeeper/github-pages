@@ -1,0 +1,35 @@
+name: ✨ Feature Request
+description: Propose a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Posts
+        - Reports
+        - Projects
+        - Tools
+        - Media
+        - About / Other
+        - Notebooks (notebooks/)
+        - Build / tooling / CI
+        - Other / unknown
+    validations:
+      required: true
