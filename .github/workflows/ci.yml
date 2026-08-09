@@ -58,7 +58,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Run Cypress against the static export
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           working-directory: test/cypress
           start: npm start --prefix ../..
