@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useAppDispatch } from '../../../../redux/store/hooks';
-import { setActiveMedia } from '../../../../redux/actions/appActions';
+import { useAppDispatch } from '../../../../libraries/redux/store/hooks';
+import { setActiveMedia } from '../../../../libraries/redux/actions/appActions';
 
 const chapters = ['Opening title', 'Problem framing', 'Route animation', 'Results'];
 

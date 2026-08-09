@@ -6,8 +6,8 @@ import { createSimulationController } from '../../../../simulations/context/crea
 import { getSimulationScenario, SIMULATION_SCENARIOS } from '../../../../simulations/scenarios/scenarios';
 import type { SimulationSnapshot } from '../../../../simulations/repository/types';
 import { useReducedMotion } from '../../../../hooks/useReducedMotion';
-import { useAppDispatch } from '../../../../redux/store/hooks';
-import { setActiveSimulation } from '../../../../redux/actions/appActions';
+import { useAppDispatch } from '../../../../libraries/redux/store/hooks';
+import { setActiveSimulation } from '../../../../libraries/redux/actions/appActions';
 
 export default function ConvergenceSimulation() {
   const [scenarioId, setScenarioId] = useState('balanced');

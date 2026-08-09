@@ -1,4 +1,4 @@
-import { ExperienceQuality } from '../../enums/ExperienceQuality';
+import { ExperienceQuality } from '../../../enums/ExperienceQuality';
 
 export interface AppState {
   theme: 'light' | 'dark';

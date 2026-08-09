@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 import Sidebar from '../src/frameworks/react/components/layout/Sidebar';
 import Footer from '../src/frameworks/react/components/layout/Footer';
 import Header from '../src/frameworks/react/components/layout/Header';
-import { useAppDispatch } from '../src/redux/store/hooks';
-import { setTheme } from '../src/redux/actions/appActions';
-import { persistTheme, readStoredTheme } from '../src/redux/services/persistence';
-import ReduxProvider from '../src/redux/store/ReduxProvider';
+import { useAppDispatch } from '../src/libraries/redux/store/hooks';
+import { setTheme } from '../src/libraries/redux/actions/appActions';
+import { persistTheme, readStoredTheme } from '../src/libraries/redux/services/persistence';
+import ReduxProvider from '../src/libraries/redux/store/ReduxProvider';
 
 interface ClientLayoutWrapperProps {
   children: React.ReactNode;
