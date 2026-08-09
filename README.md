@@ -80,7 +80,9 @@ It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) �
 │   └── cypress/            # e2e/ (one spec per section) + smoke/
 ├── infra/                  # Optional self-hosting / alt-deploy tooling
 │   ├── global/             # External (public-facing) deploy & host configs
-│   └── private/            # Internal (developer-only) tooling
+│   ├── private/            # Internal (developer-only) tooling
+│   ├── cloud/              # Managed cloud static-host configs
+│   └── server/             # nginx / Envoy reverse-proxy configs
 ├── notebooks/              # Python/uv workspace for report research
 ├── docs/moon/research/     # Longer design/research write-ups
 └── public/                 # Static assets
@@ -144,9 +146,10 @@ Optional alternatives to GitHub Pages (not used by the default workflow) live un
 | --- | --- |
 | [`infra/global/docker/`](infra/global/docker/) | Build + serve the export locally with Docker Compose / nginx |
 | [`infra/global/k8s/`](infra/global/k8s/) · [`helm/`](infra/global/helm/) · [`terraform/`](infra/global/terraform/) · [`ansible/`](infra/global/ansible/) | Self-host the nginx container on a cluster or plain host |
-| [`infra/global/cloud/`](infra/global/cloud/) | AWS (S3 + CloudFront / Serverless), Azure Static Web Apps, Firebase configs |
+| [`infra/cloud/`](infra/cloud/) | AWS (S3 + CloudFront / Serverless), Azure Static Web Apps, Firebase configs |
 | [`infra/private/webpack/`](infra/private/webpack/) | Developer-only Webpack experiments |
 | [`infra/private/wordpress/`](infra/private/wordpress/) | WordPress theme scaffolding for local/CMS experiments |
+| [`infra/server/nginx/`](infra/server/nginx/) · [`proxy/`](infra/server/proxy/) | Standalone nginx and Envoy reverse-proxy configs |
 
 Example local self-host:
 

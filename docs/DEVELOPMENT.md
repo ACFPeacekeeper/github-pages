@@ -47,6 +47,6 @@ Default deployment is GitHub Pages. Alternative container/cloud tooling lives un
 | Helm install | `helm install github-pages infra/global/helm/github-pages -f infra/global/helm/github-pages/values.yaml` |
 | Terraform (ECR) | `cd infra/global/terraform && terraform init && terraform plan -var-file=environments/dev.tfvars` |
 | Ansible (plain host) | `cd infra/global/ansible && ansible-playbook -i inventory/hosts.ini playbook.yml` |
-| Serverless (S3 static) | `npm run build && npx serverless client deploy --config infra/global/cloud/serverless/serverless.yml` |
-| AWS CloudFormation template | `infra/global/cloud/aws/cfn-template.yaml` (see stack Outputs for the post-build sync command) |
-| Azure Static Web Apps pipeline | `infra/global/cloud/azure-pipelines/azure-pipelines.yml` (point Azure DevOps at this path) |
+| Serverless (S3 static) | `npm run build && npx serverless client deploy --config infra/cloud/serverless/serverless.yml` |
+| AWS CloudFormation template | `infra/cloud/aws/cfn-template.yaml` (see stack Outputs for the post-build sync command) |
+| Azure Static Web Apps pipeline | `infra/cloud/azure-pipelines/azure-pipelines.yml` (point Azure DevOps at this path) |

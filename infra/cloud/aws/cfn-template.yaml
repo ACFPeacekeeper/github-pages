@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   Static hosting for the github-pages Next.js export (out/) via S3 + CloudFront.
-  Template path: infra/global/cloud/aws/cfn-template.yaml.
+  Template path: infra/cloud/aws/cfn-template.yaml.
   Deploy the stack once, then sync `out/` to the bucket on every release
   (see the sample deploy commands in the Outputs section).
 

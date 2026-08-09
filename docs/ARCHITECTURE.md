@@ -126,9 +126,12 @@ docs/
 benchmark/                   # production export performance harness
 infra/                       # optional self-hosting / alt-deploy (not the default GitHub Pages path)
   global/                    # external public-facing deploy & host configs
-    ansible/ cloud/ docker/ helm/ k8s/ terraform/
+    ansible/ docker/ helm/ k8s/ terraform/
   private/                   # internal developer-only tooling
     webpack/ wordpress/
+  cloud/                     # managed cloud static hosts (AWS/Azure/Firebase/Serverless)
+  server/                    # standalone nginx and Envoy reverse-proxy configs
+    nginx/ proxy/
 notebooks/                   # independent Python/uv research workspace
 public/                      # licensed/static browser assets
 test/
@@ -150,6 +153,8 @@ test/
 | `benchmark` | build artifact measurements | Node standard library | user data, telemetry, secrets |
 | `infra/global` | optional public deploy/host alternatives | container/IaC tooling | site runtime imports |
 | `infra/private` | developer-only infra experiments | local build tooling | production deploy path |
+| `infra/cloud` | managed cloud static-host configs | cloud CLIs / pipelines | site runtime imports |
+| `infra/server` | nginx / Envoy reverse-proxy configs | reverse-proxy daemons | app source imports |
 
 ## Content pipeline
 

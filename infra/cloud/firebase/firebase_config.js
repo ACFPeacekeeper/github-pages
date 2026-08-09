@@ -1,4 +1,4 @@
-// infra/global/cloud/firebase/firebase_config.js
+// infra/cloud/firebase/firebase_config.js
 // Firebase configuration and modular SDK initialization example.
 
 import { initializeApp } from "firebase/app";

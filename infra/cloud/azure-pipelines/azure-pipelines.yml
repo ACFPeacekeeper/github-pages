@@ -1,7 +1,7 @@
 # Builds the Next.js static export and deploys it to Azure Static Web Apps.
 #
 # Pipeline YAML path (register this in Azure DevOps):
-#   infra/global/cloud/azure-pipelines/azure-pipelines.yml
+#   infra/cloud/azure-pipelines/azure-pipelines.yml
 #
 # Setup:
 #   1. Create an Azure Static Web App (Standard or Free tier).
