@@ -3,6 +3,7 @@
 Installs Docker on a plain host (VM, bare metal) and runs the container built by `infra/global/docker/Dockerfile`, as an alternative to the `k8s/`/`helm/` paths when there's no cluster.
 
 ```bash
+cd infra/global/ansible
 ansible-playbook -i inventory/hosts.ini playbook.yml
 ```
 

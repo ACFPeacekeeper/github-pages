@@ -1,5 +1,5 @@
 <?php
-// generators/wordpress/functions.php
+// infra/global/wordpress/functions.php
 
 function polyglot_wp_setup() {
     // Add default posts and comments RSS feed links to head.

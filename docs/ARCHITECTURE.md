@@ -124,6 +124,11 @@ docs/
   moon/roadmaps/             # issue-ready workstream roadmaps
   moon/research/             # research reports and source registers
 benchmark/                   # production export performance harness
+infra/                       # optional self-hosting / alt-deploy (not the default GitHub Pages path)
+  global/                    # external public-facing deploy & host configs
+    ansible/ cloud/ docker/ helm/ k8s/ terraform/ wordpress/
+  private/                   # internal developer-only tooling
+    webpack/
 notebooks/                   # independent Python/uv research workspace
 public/                      # licensed/static browser assets
 test/
@@ -143,6 +148,8 @@ test/
 | `redux` | cross-route experience preferences | serializable actions/reducers | simulation frames, media buffers, refs |
 | `notebooks` | exploratory analysis | Python/uv dependencies | production imports |
 | `benchmark` | build artifact measurements | Node standard library | user data, telemetry, secrets |
+| `infra/global` | optional public deploy/host alternatives | container/IaC tooling | site runtime imports |
+| `infra/private` | developer-only infra experiments | local build tooling | production deploy path |
 
 ## Content pipeline
 
@@ -338,7 +345,7 @@ Architecture decisions live in [`docs/adr/`](adr/). Create an ADR before changin
 
 Current architectural decisions:
 
-1. Next.js static export is the deployment contract.
+1. Next.js static export is the deployment contract (default: GitHub Pages via `.github/workflows/deploy.yml`; optional self-host/cloud alternatives under `infra/global/`).
 2. Markdown is parsed at build time.
 3. Simulation algorithms are framework-neutral.
 4. Domain components are separated by interaction/media type.
@@ -363,4 +370,5 @@ Before opening a pull request:
 
 | Date | Revision | Change |
 | --- | --- | --- |
+| 2026-08-09 | R3.1 | Documented `infra/global` vs `infra/private` layout after consolidating `cloud/` under infra. |
 | 2026-08-08 | R3 | Replaced the short overview with system flows, contracts, diagrams, excerpts, benchmark architecture, and contributor gates. |

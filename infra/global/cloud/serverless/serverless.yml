@@ -2,7 +2,11 @@
 # S3 via the Serverless Framework + serverless-finch, instead of hand-written
 # CloudFormation. Requires `npm install --save-dev serverless serverless-finch`.
 #
-# Usage:
+# Usage (from the repository root):
+#   npm run build
+#   npx serverless client deploy --config infra/global/cloud/serverless/serverless.yml
+#
+# Or from this directory:
 #   npm run build
 #   npx serverless client deploy
 

@@ -78,6 +78,9 @@ It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) �
 │   ├── unit/               # Vitest + Testing Library specs, mirrors src/components/
 │   ├── integration/        # Vitest + Testing Library + MSW specs
 │   └── cypress/            # e2e/ (one spec per section) + smoke/
+├── infra/                  # Optional self-hosting / alt-deploy tooling
+│   ├── global/             # External (public-facing) deploy & host configs
+│   └── private/            # Internal (developer-only) tooling
 ├── notebooks/              # Python/uv workspace for report research
 ├── docs/moon/research/     # Longer design/research write-ups
 └── public/                 # Static assets
@@ -134,6 +137,22 @@ uv run jupyter lab
 ## Deployment
 
 Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the static export and publishes `out/` to the `gh-pages` branch via [`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages). [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs lint/typecheck/unit/e2e on every push and PR.
+
+Optional alternatives to GitHub Pages (not used by the default workflow) live under [`infra/`](infra/README.md):
+
+| Path | Purpose |
+| --- | --- |
+| [`infra/global/docker/`](infra/global/docker/) | Build + serve the export locally with Docker Compose / nginx |
+| [`infra/global/k8s/`](infra/global/k8s/) · [`helm/`](infra/global/helm/) · [`terraform/`](infra/global/terraform/) · [`ansible/`](infra/global/ansible/) | Self-host the nginx container on a cluster or plain host |
+| [`infra/global/cloud/`](infra/global/cloud/) | AWS (S3 + CloudFront / Serverless), Azure Static Web Apps, Firebase configs |
+| [`infra/global/wordpress/`](infra/global/wordpress/) | Public WordPress theme scaffolding |
+| [`infra/private/webpack/`](infra/private/webpack/) | Developer-only Webpack experiments |
+
+Example local self-host:
+
+```bash
+docker compose -f infra/global/docker/docker-compose.yml up --build
+```
 
 ## License
 
@@ -212,6 +231,11 @@ Keep titles concise for cards and browser tabs. Use stable lowercase tags. Dates
 │   ├── ARCHITECTURE.md
 │   ├── adr/
 │   └── moon/{research,roadmaps}/
+├── infra/                       # optional self-hosting / alt-deploy tooling
+│   ├── global/                  # external public-facing deploy & host configs
+│   │   ├── ansible/ cloud/ docker/ helm/ k8s/ terraform/ wordpress/
+│   └── private/                 # internal developer-only tooling
+│       └── webpack/
 ├── lib/                         # build-time Markdown/front-matter helpers
 ├── notebooks/                   # independent Python/uv research workspace
 ├── public/                      # static, licensed browser assets

@@ -1,4 +1,4 @@
-// generators/webpack/webpack.config.js
+// infra/private/webpack/webpack.config.js
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
