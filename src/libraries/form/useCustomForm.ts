@@ -1,16 +1,24 @@
-import { useForm, UseFormProps } from 'react-hook-form';
+'use client';
+
+import { useForm } from '@tanstack/react-form';
 
 /**
- * A custom wrapper around react-hook-form to standardize form configuration
- * across the application.
+ * Shared TanStack Form helper for the React host.
+ * Prefer this over importing `@tanstack/react-form` directly so defaults
+ * stay consistent across demos and islands.
  */
-export function useCustomForm<TFieldValues extends Record<string, any>>(
-  options?: UseFormProps<TFieldValues>
-) {
-  const form = useForm<TFieldValues>({
-    mode: 'onBlur',
-    ...options,
+export function useCustomForm<TValues extends Record<string, unknown>>(options: {
+  defaultValues: TValues;
+  onSubmit?: (props: { value: TValues }) => void | Promise<void>;
+}) {
+  return useForm({
+    defaultValues: options.defaultValues,
+    onSubmit: options.onSubmit
+      ? async ({ value }) => {
+          await options.onSubmit?.({ value: value as TValues });
+        }
+      : undefined,
   });
-
-  return form;
 }
+
+export { useForm } from '@tanstack/react-form';
