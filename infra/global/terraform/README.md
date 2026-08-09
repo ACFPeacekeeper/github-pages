@@ -1,9 +1,9 @@
 # terraform/
 
-Provisions an AWS ECR repository to push the image built by `infra/docker/Dockerfile` to, for the `k8s/`/`helm/`/`ansible/` deployment paths to pull from.
+Provisions an AWS ECR repository to push the image built by `infra/global/docker/Dockerfile` to, for the `k8s/`/`helm/`/`ansible/` deployment paths to pull from.
 
 ```bash
-cd infra/terraform
+cd infra/global/terraform
 terraform init
 terraform plan -var-file=environments/dev.tfvars
 terraform apply -var-file=environments/dev.tfvars

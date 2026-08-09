@@ -3,7 +3,7 @@
 # actually uses.
 #
 # Build context is the repository ROOT (see docker-compose.yml:
-#   build: { context: .., dockerfile: infra/docker/Dockerfile }).
+#   build: { context: ../../.., dockerfile: infra/global/docker/Dockerfile }).
 
 # ---------------------------------------------------------------------------
 # Stage 1 — build the static export
@@ -23,7 +23,7 @@ RUN npm run build
 # ---------------------------------------------------------------------------
 FROM nginx:1.27-alpine AS runtime
 
-COPY infra/docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY infra/global/docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/out /usr/share/nginx/html
 
 EXPOSE 80
